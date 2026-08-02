@@ -1,28 +1,67 @@
 'use client'
 
 /**
- * This configuration is used to for the Sanity Studio that’s mounted on the `/app/admin/[[...tool]]/page.tsx` route
+ * This configuration is used for the Sanity Studio mounted at `/admin`.
  */
 
 import {visionTool} from '@sanity/vision'
-import {defineConfig} from 'sanity'
+import {defineConfig, defineField} from 'sanity'
 import {structureTool} from 'sanity/structure'
+import {documentInternationalization} from '@sanity/document-internationalization'
+import {internationalizedArray} from 'sanity-plugin-internationalized-array'
 
-// Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import {apiVersion, dataset, projectId} from './sanity/env'
-import {schema} from './sanity/schemaTypes'
-import {structure} from './sanity/structure'
+import {DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES} from './studio/lib/languages'
+import {schemaTypes} from './studio/schemaTypes'
+import {structure} from './studio/structure'
+
+const DOCUMENT_I18N_TYPES = [
+  'homePage',
+  'privateLabelPage',
+  'contactPage',
+  'page',
+  'post',
+]
 
 export default defineConfig({
+  name: 'polumat-studio',
+  title: 'Polumat Kimya',
   basePath: '/admin',
   projectId,
   dataset,
-  // Add and edit the content schema in the './sanity/schemaTypes' folder
-  schema,
   plugins: [
     structureTool({structure}),
-    // Vision is for querying with GROQ from inside the Studio
-    // https://www.sanity.io/docs/the-vision-plugin
     visionTool({defaultApiVersion: apiVersion}),
+    internationalizedArray({
+      languages: [...SUPPORTED_LANGUAGES],
+      defaultLanguages: [DEFAULT_LANGUAGE],
+      fieldTypes: [
+        'string',
+        'text',
+        defineField({
+          name: 'portableText',
+          type: 'portableText',
+        }),
+      ],
+    }),
+    documentInternationalization({
+      supportedLanguages: [...SUPPORTED_LANGUAGES],
+      schemaTypes: DOCUMENT_I18N_TYPES,
+    }),
   ],
+  schema: {
+    types: schemaTypes,
+    templates: (templates) =>
+      templates.filter((template) => {
+        if (
+          template.schemaType === 'homePage' ||
+          template.schemaType === 'privateLabelPage' ||
+          template.schemaType === 'contactPage' ||
+          template.schemaType === 'siteSettings'
+        ) {
+          return false
+        }
+        return true
+      }),
+  },
 })
