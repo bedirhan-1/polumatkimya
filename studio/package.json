@@ -1,0 +1,27 @@
+{
+  "name": "polumat-studio",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "dev": "sanity dev",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "typecheck": "tsc --noEmit",
+    "schema:extract": "sanity schema extract --path=../schema.json",
+    "typegen": "sanity typegen generate"
+  },
+  "dependencies": {
+    "@sanity/document-internationalization": "^6.2.27",
+    "@sanity/icons": "^3.7.4",
+    "@sanity/vision": "^5.31.1",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "sanity": "^5.31.1",
+    "sanity-plugin-internationalized-array": "^5.1.24",
+    "styled-components": "^6.4.4"
+  },
+  "devDependencies": {
+    "@types/react": "^19",
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,91 @@
+import type {SchemaTypeDefinition} from 'sanity'
+
+import {applicationGridSectionType} from './blocks/application-grid-section'
+import {certificateSectionType} from './blocks/certificate-section'
+import {ctaSectionType} from './blocks/cta-section'
+import {featureGridSectionType} from './blocks/feature-grid-section'
+import {heroSectionType} from './blocks/hero-section'
+import {imageTextSectionType} from './blocks/image-text-section'
+import {latestContentSectionType} from './blocks/latest-content-section'
+import {privateLabelSectionType} from './blocks/private-label-section'
+import {productShowcaseSectionType} from './blocks/product-showcase-section'
+import {statsSectionType} from './blocks/stats-section'
+import {videoSectionType} from './blocks/video-section'
+import {applicationAreaType} from './documents/application-area'
+import {certificateType} from './documents/certificate'
+import {contactPageType} from './documents/contact-page'
+import {downloadableDocumentType} from './documents/downloadable-document'
+import {homePageType} from './documents/home-page'
+import {localeType} from './documents/locale'
+import {pageType} from './documents/page'
+import {postType} from './documents/post'
+import {privateLabelPageType} from './documents/private-label-page'
+import {productType} from './documents/product'
+import {productCategoryType} from './documents/product-category'
+import {siteSettingsType} from './documents/site-settings'
+import {videoType} from './documents/video'
+import {callToActionType} from './objects/call-to-action'
+import {contactChannelType} from './objects/contact-channel'
+import {documentReferenceType} from './objects/document-reference'
+import {featureItemType} from './objects/feature-item'
+import {imageWithAltType} from './objects/image-with-alt'
+import {internalOrExternalLinkType} from './objects/internal-or-external-link'
+import {localizedImageWithAltType} from './objects/localized-image-with-alt'
+import {packagingVariantType} from './objects/packaging-variant'
+import {pageBuilderType} from './objects/page-builder'
+import {portableTextType} from './objects/portable-text'
+import {seoType} from './objects/seo'
+import {simpleCallToActionType} from './objects/simple-call-to-action'
+import {simpleFeatureItemType} from './objects/simple-feature-item'
+import {socialLinkType} from './objects/social-link'
+import {specificationGroupType, specificationItemType} from './objects/specification-group'
+import {statItemType} from './objects/stat-item'
+
+export const schemaTypes: SchemaTypeDefinition[] = [
+  // Documents
+  localeType,
+  siteSettingsType,
+  productType,
+  productCategoryType,
+  applicationAreaType,
+  homePageType,
+  privateLabelPageType,
+  contactPageType,
+  pageType,
+  postType,
+  videoType,
+  downloadableDocumentType,
+  certificateType,
+
+  // Objects
+  seoType,
+  imageWithAltType,
+  localizedImageWithAltType,
+  internalOrExternalLinkType,
+  callToActionType,
+  simpleCallToActionType,
+  simpleFeatureItemType,
+  statItemType,
+  featureItemType,
+  contactChannelType,
+  socialLinkType,
+  specificationItemType,
+  specificationGroupType,
+  documentReferenceType,
+  portableTextType,
+  packagingVariantType,
+  pageBuilderType,
+
+  // Blocks
+  heroSectionType,
+  productShowcaseSectionType,
+  featureGridSectionType,
+  applicationGridSectionType,
+  privateLabelSectionType,
+  imageTextSectionType,
+  statsSectionType,
+  certificateSectionType,
+  videoSectionType,
+  latestContentSectionType,
+  ctaSectionType,
+]
