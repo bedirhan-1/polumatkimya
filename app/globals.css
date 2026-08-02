@@ -1,26 +1,142 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* Industrial dark surface system */
+  --background: #0b0c0e;
+  --foreground: #f2f2f0;
+  --surface: #14161a;
+  --surface-elevated: #1b1e24;
+  --border: #2a2e36;
+  --muted: #9a9a96;
+  --accent: #e31c23;
+  --accent-soft: color-mix(in srgb, var(--accent) 18%, transparent);
+  --accent-glow: color-mix(in srgb, var(--accent) 35%, transparent);
+  --focus: #ff5a5f;
+  --success: #3d9a6a;
+  --danger: #d64545;
+
+  --header-height: 4.25rem;
+  --container: 72rem;
+  --section-space: clamp(3.5rem, 6vw, 6.5rem);
+
+  --grid-line: color-mix(in srgb, #ffffff 4%, transparent);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-border: var(--border);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-focus: var(--focus);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+  --font-arabic: var(--font-arabic);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  body {
+    background:
+      linear-gradient(180deg, rgba(11, 12, 14, 0.92), rgba(11, 12, 14, 0.98)),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 47px,
+        var(--grid-line) 47px,
+        var(--grid-line) 48px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 47px,
+        var(--grid-line) 47px,
+        var(--grid-line) 48px
+      ),
+      radial-gradient(ellipse 80% 50% at 50% -20%, var(--accent-soft), transparent 55%),
+      var(--background);
+    background-attachment: fixed;
+    color: var(--foreground);
+    font-family: var(--font-body), system-ui, sans-serif;
+    line-height: 1.6;
+    min-height: 100%;
+  }
+
+  html[lang='ar'] body {
+    font-family: var(--font-arabic), var(--font-body), system-ui, sans-serif;
+    line-height: 1.75;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    text-wrap: balance;
+  }
+
+  html[lang='ar'] h1,
+  html[lang='ar'] h2,
+  html[lang='ar'] h3,
+  html[lang='ar'] h4 {
+    font-family: var(--font-arabic), var(--font-display), system-ui, sans-serif;
+    letter-spacing: 0;
+  }
+
+  a {
+    color: inherit;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.2em;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 3px;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: white;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@utility container-site {
+  margin-inline: auto;
+  width: min(100% - 2rem, var(--container));
+}
+
+@utility section-space {
+  padding-block: var(--section-space);
+}
+
+@utility frame-accent {
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border));
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 12%, transparent);
 }
