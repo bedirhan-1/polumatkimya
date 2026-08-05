@@ -57,7 +57,9 @@ function NavAnchor({
 
 function isActivePath(pathname: string, href: string) {
   if (href.startsWith('http')) return false
+  if (href.includes('#')) return false
   if (pathname === href) return true
+  if (href.split('/').filter(Boolean).length === 1) return false
   return pathname.startsWith(`${href}/`)
 }
 
@@ -68,7 +70,10 @@ function isNavItemActive(pathname: string, item: NavItem) {
 
 export function SiteHeader({locale, dictionary, items, phone, email}: SiteHeaderProps) {
   const pathname = usePathname() || `/${locale}`
-  const navItems = withDealerLogin(getDefaultNavItems(locale, dictionary), dictionary)
+  const navItems = withDealerLogin(
+    items?.length ? items : getDefaultNavItems(locale, dictionary),
+    dictionary,
+  )
   const homeHref = `/${locale}`
   const quoteHref = `/${locale}/request-a-quote`
   const phoneValue = phone?.trim() || DEFAULT_CONTACT.phone
@@ -78,7 +83,16 @@ export function SiteHeader({locale, dictionary, items, phone, email}: SiteHeader
     : DEFAULT_CONTACT.phoneHref
   const emailHref = `mailto:${emailValue}`
 
-  const primaryNav = navItems.filter((item) => item.href !== DEALER_PORTAL_URL)
+  const standardNav = navItems.filter((item) => item.href !== DEALER_PORTAL_URL)
+  const findNav = (href: string) => standardNav.find((item) => item.href === href)
+  const primaryNav = [
+    {href: homeHref, label: dictionary.common.home},
+    findNav(`/${locale}/products`),
+    findNav(`/${locale}/industries`),
+    {href: `${homeHref}#private-label`, label: 'Private Label'},
+    findNav(`/${locale}/about`),
+    findNav(`/${locale}/contact`),
+  ].filter((item): item is NavItem => Boolean(item))
   const dealerItem =
     navItems.find((item) => item.href === DEALER_PORTAL_URL) ||
     ({
@@ -89,27 +103,8 @@ export function SiteHeader({locale, dictionary, items, phone, email}: SiteHeader
     } satisfies NavItem)
 
   return (
-    <header className="sticky top-0 z-50 border-b border-border/80 bg-background/95 backdrop-blur-md">
-      {/* Utility strip — contact + dealer portal */}
-      <div className="hidden border-b border-border/60 bg-surface lg:block">
-        <div className="container-site flex h-11 items-center justify-between gap-4 text-sm">
-          <div className="flex items-center gap-5 text-muted">
-            <a href={phoneHref} className="no-underline transition hover:text-foreground" dir="ltr">
-              {phoneValue}
-            </a>
-            <span className="h-3 w-px bg-border" aria-hidden />
-            <a href={emailHref} className="no-underline transition hover:text-foreground" dir="ltr">
-              {emailValue}
-            </a>
-          </div>
-          <NavAnchor
-            item={dealerItem}
-            className="inline-flex items-center gap-1.5 text-sm font-semibold tracking-wide text-accent no-underline transition hover:brightness-110"
-          />
-        </div>
-      </div>
-
-      <div className="container-site flex h-[var(--header-height)] items-center justify-between gap-4">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-[#070809]/96 shadow-[0_10px_30px_rgba(0,0,0,0.22)]">
+      <div className="container-site flex h-[var(--header-height)] items-center justify-between gap-5">
         <Link
           href={homeHref}
           aria-label={dictionary.meta.siteName}
@@ -119,13 +114,13 @@ export function SiteHeader({locale, dictionary, items, phone, email}: SiteHeader
             alt={dictionary.meta.siteName}
             size="small"
             surface="dark"
-            className="h-7 w-auto sm:h-9"
+            className="h-8 w-auto xl:h-9"
             eager
           />
         </Link>
 
         <nav aria-label={dictionary.a11y.mainNavigation} className="hidden lg:block">
-          <ul className="flex items-center gap-0.5">
+          <ul className="flex items-center gap-0.5 xl:gap-1">
             {primaryNav.map((item) => {
               const active = isNavItemActive(pathname, item)
               if (item.children?.length) {
@@ -133,7 +128,7 @@ export function SiteHeader({locale, dictionary, items, phone, email}: SiteHeader
                   <li key={`${item.href}-${item.label}`} className="group relative">
                     <Link
                       href={item.href}
-                      className={`inline-flex min-h-11 items-center gap-1.5 border-b-2 px-3 text-sm font-medium no-underline transition ${
+                      className={`inline-flex min-h-11 items-center gap-1.5 border-b px-2.5 text-[0.7rem] font-semibold tracking-[0.06em] uppercase no-underline transition xl:px-3 ${
                         active
                           ? 'border-accent text-foreground'
                           : 'border-transparent text-muted hover:text-foreground'
@@ -177,7 +172,7 @@ export function SiteHeader({locale, dictionary, items, phone, email}: SiteHeader
                 <li key={`${item.href}-${item.label}`}>
                   <NavAnchor
                     item={item}
-                    className={`inline-flex min-h-11 items-center border-b-2 px-3 text-sm font-medium no-underline transition ${
+                    className={`inline-flex min-h-11 items-center border-b px-2.5 text-[0.7rem] font-semibold tracking-[0.06em] uppercase no-underline transition xl:px-3 ${
                       active
                         ? 'border-accent text-foreground'
                         : 'border-transparent text-muted hover:text-foreground'
@@ -191,12 +186,12 @@ export function SiteHeader({locale, dictionary, items, phone, email}: SiteHeader
 
         <div className="flex items-center gap-2 sm:gap-3">
           <LanguageSwitcher locale={locale} label={dictionary.a11y.languageSwitcher} />
-          <NavAnchor
-            item={dealerItem}
-            className="hidden min-h-11 items-center border border-border px-3 text-sm font-semibold text-foreground no-underline transition hover:border-accent hover:text-accent md:inline-flex lg:hidden"
-          />
-          <ButtonLink href={quoteHref} className="hidden sm:inline-flex">
+          <ButtonLink
+            href={quoteHref}
+            className="hidden min-h-10 px-4 py-2 text-xs uppercase no-underline sm:inline-flex xl:px-5"
+          >
             {dictionary.nav.requestQuote}
+            <span aria-hidden>→</span>
           </ButtonLink>
           <MobileNavigation
             localeHome={homeHref}
