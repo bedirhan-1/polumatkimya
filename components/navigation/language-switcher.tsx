@@ -26,6 +26,47 @@ type LanguageSwitcherProps = {
   label: string
 }
 
+function LocaleFlag({locale}: {locale: Locale}) {
+  const className = 'h-3.5 w-5 shrink-0 overflow-hidden rounded-[1px] ring-1 ring-white/15'
+
+  if (locale === 'tr') {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 28 18" className={className}>
+        <rect width="28" height="18" fill="#e30a17" />
+        <circle cx="10.8" cy="9" r="4.6" fill="#fff" />
+        <circle cx="12.3" cy="9" r="3.7" fill="#e30a17" />
+        <polygon
+          points="16.8,6.5 17.4,8.1 19.1,8.2 17.8,9.3 18.2,11 16.8,10 15.4,11 15.8,9.3 14.5,8.2 16.2,8.1"
+          fill="#fff"
+        />
+      </svg>
+    )
+  }
+
+  if (locale === 'en') {
+    return (
+      <svg aria-hidden="true" viewBox="0 0 28 18" className={className}>
+        <rect width="28" height="18" fill="#b22234" />
+        {[2, 6, 10, 14].map((y) => (
+          <rect key={y} y={y} width="28" height="2" fill="#fff" />
+        ))}
+        <rect width="12" height="10" fill="#3c3b6e" />
+        {[2, 5, 8].flatMap((x) =>
+          [2, 5, 8].map((y) => <circle key={`${x}-${y}`} cx={x} cy={y} r="0.65" fill="#fff" />),
+        )}
+      </svg>
+    )
+  }
+
+  return (
+    <svg aria-hidden="true" viewBox="0 0 28 18" className={className}>
+      <rect width="28" height="18" fill="#006c35" />
+      <path d="M7 6.2h14M8.5 8.2h11" stroke="#fff" strokeWidth="1.15" strokeLinecap="round" />
+      <path d="M7.3 12.8h13.2l1.7-1" stroke="#fff" strokeWidth="1.1" strokeLinecap="round" />
+    </svg>
+  )
+}
+
 function replaceLocaleInPath(pathname: string, nextLocale: Locale): string {
   const segments = pathname.split('/')
   if (segments.length > 1 && locales.includes(segments[1] as Locale)) {
@@ -75,6 +116,7 @@ export function LanguageSwitcher({locale, label}: LanguageSwitcherProps) {
         aria-controls={listId}
         onClick={() => setOpen((value) => !value)}
       >
+        <LocaleFlag locale={locale} />
         <span>{localeCodes[locale]}</span>
         <svg
           aria-hidden="true"
@@ -115,7 +157,10 @@ export function LanguageSwitcher({locale, label}: LanguageSwitcherProps) {
                       : 'text-muted hover:bg-surface-elevated hover:text-foreground'
                   }`}
                 >
-                  <span>{localeLabels[item]}</span>
+                  <span className="flex items-center gap-2">
+                    <LocaleFlag locale={item} />
+                    <span>{localeLabels[item]}</span>
+                  </span>
                   <span className="text-[0.7rem] tracking-[0.14em] opacity-70">{localeCodes[item]}</span>
                 </Link>
               </li>

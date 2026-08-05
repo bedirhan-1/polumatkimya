@@ -15,9 +15,8 @@
   --success: #3d9a6a;
   --danger: #d64545;
 
-  --header-height: 4.25rem;
-  /* Main nav + desktop utility strip (h-11) + breathing room */
-  --sticky-offset: calc(var(--header-height) + 2.75rem + 1rem);
+  --header-height: 4.5rem;
+  --sticky-offset: calc(var(--header-height) + 1rem);
   --container: 72rem;
   --section-space: clamp(3.5rem, 6vw, 6.5rem);
 
@@ -134,6 +133,14 @@
 @utility container-site {
   margin-inline: auto;
   width: min(100% - 2rem, var(--container));
+}
+
+@layer utilities {
+  .container {
+    width: min(calc(100% - 2rem), var(--container));
+    max-width: var(--container);
+    margin-inline: auto;
+  }
 }
 
 @utility section-space {

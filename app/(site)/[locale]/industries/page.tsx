@@ -1,10 +1,12 @@
 import type {Metadata} from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import {notFound} from 'next/navigation'
 
 import {MarketingFallback} from '@/components/content/marketing-fallback'
 import {SanityImage} from '@/components/content/sanity-image'
 import {SectionHeading} from '@/components/content/section-heading'
+import {getApplicationAreaFallbackImage} from '@/lib/application-area-images'
 import {getDictionary} from '@/lib/i18n/get-dictionary'
 import {isLocale, locales, type Locale} from '@/lib/i18n/locales'
 import {buildPageMetadata} from '@/lib/seo/metadata'
@@ -59,6 +61,7 @@ export default async function IndustriesPage({params}: PageProps) {
                   coverImage?: {asset?: {_ref?: string}; alt?: string | null} | null
                 }
                 if (!item.slug || !item.title) return null
+                const fallbackImage = getApplicationAreaFallbackImage(item.slug)
                 return (
                   <li key={item._id}>
                     <Link
@@ -68,6 +71,14 @@ export default async function IndustriesPage({params}: PageProps) {
                       {item.coverImage?.asset ? (
                         <SanityImage
                           image={item.coverImage}
+                          fill
+                          className="object-cover opacity-35 transition group-hover:opacity-50"
+                          sizes="(max-width: 768px) 100vw, 33vw"
+                        />
+                      ) : fallbackImage ? (
+                        <Image
+                          src={fallbackImage}
+                          alt=""
                           fill
                           className="object-cover opacity-35 transition group-hover:opacity-50"
                           sizes="(max-width: 768px) 100vw, 33vw"

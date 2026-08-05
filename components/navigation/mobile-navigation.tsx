@@ -31,8 +31,8 @@ function MobileLink({
   nested?: boolean
 }) {
   const className = nested
-    ? 'min-h-10 border-b border-border/60 py-2.5 ps-4 text-sm text-muted no-underline hover:text-foreground'
-    : 'min-h-11 border-b border-border py-3 text-base text-foreground no-underline'
+    ? 'flex min-h-10 items-center border-b border-border/60 py-2.5 ps-4 text-sm text-muted no-underline hover:text-foreground'
+    : 'flex min-h-11 items-center border-b border-border py-3 text-base text-foreground no-underline'
 
   if (item.external) {
     return (
@@ -101,11 +101,11 @@ export function MobileNavigation({
       {open ? (
         <div
           id={panelId}
-          className="fixed inset-0 top-[var(--header-height)] z-40 border-t border-border bg-background/98 backdrop-blur-sm"
+          className="fixed inset-0 top-[var(--header-height)] z-40 border-t border-border bg-[#0b0c0e]"
         >
           <nav
             aria-label={navLabel}
-            className="container-site flex max-h-[calc(100dvh-var(--header-height))] flex-col gap-1 overflow-y-auto py-6"
+            className="container-site flex h-full max-h-[calc(100dvh-var(--header-height))] flex-col gap-1 overflow-y-auto py-6"
           >
             <Link
               href={localeHome}

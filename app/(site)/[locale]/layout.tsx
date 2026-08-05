@@ -68,7 +68,12 @@ export default async function LocaleLayout({children, params}: LocaleLayoutProps
     .join(' ')
 
   return (
-    <html lang={locale} dir={direction} className={`${fontVariables} h-full antialiased`}>
+    <html
+      lang={locale}
+      dir={direction}
+      data-scroll-behavior="smooth"
+      className={`${fontVariables} h-full antialiased`}
+    >
       <body className="flex min-h-full flex-col">
         <a
           href="#main-content"
