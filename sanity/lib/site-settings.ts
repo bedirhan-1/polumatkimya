@@ -10,6 +10,7 @@ type HeaderNavItem = {
   linkType?: 'internal' | 'external' | 'reference' | null
   internalPath?: string | null
   externalUrl?: string | null
+  openInNewTab?: boolean | null
   reference?: {
     _type?: string
     slug?: string | null
@@ -19,7 +20,21 @@ type HeaderNavItem = {
 
 type SiteSettingsData = {
   companyName?: string | null
+  whatsappNumber?: string | null
+  whatsappMessage?: string | null
   headerNavigation?: HeaderNavItem[] | null
+  contactChannels?: Array<{
+    _key?: string
+    phone?: string | null
+    email?: string | null
+    department?: string | null
+  }> | null
+  uiLabels?: {
+    requestQuote?: string | null
+    viewProducts?: string | null
+    readMore?: string | null
+    download?: string | null
+  } | null
 }
 
 export async function getSiteSettings(locale: Locale): Promise<SiteSettingsData | null> {
@@ -42,14 +57,17 @@ export function mapHeaderNavigation(
 ): NavItem[] {
   if (!navigation?.length) return []
 
-  return navigation
-    .map((item) => {
-      const href = resolveHref(locale, item)
-      if (!href || !item.label) return null
-      return {
-        href,
-        label: item.label,
-      }
+  const items: NavItem[] = []
+  for (const item of navigation) {
+    const href = resolveHref(locale, item)
+    if (!href || !item.label) continue
+    const external = item.linkType === 'external' || /^https?:\/\//i.test(href)
+    items.push({
+      href,
+      label: item.label,
+      external,
+      openInNewTab: Boolean(item.openInNewTab ?? external),
     })
-    .filter((item): item is NavItem => item !== null)
+  }
+  return items
 }

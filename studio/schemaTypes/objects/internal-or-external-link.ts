@@ -1,6 +1,8 @@
 import {LinkIcon} from '@sanity/icons'
 import {defineField, defineType} from 'sanity'
 
+import {validateLinkValue} from '../../lib/cta-validation'
+
 export const internalOrExternalLinkType = defineType({
   name: 'internalOrExternalLink',
   title: 'Link',
@@ -11,7 +13,7 @@ export const internalOrExternalLinkType = defineType({
       name: 'label',
       title: 'Label',
       type: 'internationalizedArrayString',
-      validation: (rule) => rule.required(),
+      description: 'Optional when this link is nested inside a call to action.',
     }),
     defineField({
       name: 'linkType',
@@ -26,7 +28,6 @@ export const internalOrExternalLinkType = defineType({
         layout: 'radio',
       },
       initialValue: 'internal',
-      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'internalPath',
@@ -65,6 +66,7 @@ export const internalOrExternalLinkType = defineType({
       initialValue: false,
     }),
   ],
+  validation: (rule) => rule.custom((value) => validateLinkValue(value)),
   preview: {
     select: {
       linkType: 'linkType',

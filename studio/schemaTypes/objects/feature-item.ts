@@ -27,11 +27,16 @@ export const featureItemType = defineType({
   ],
   preview: {
     select: {
+      titleTr: 'title',
       media: 'icon',
     },
-    prepare({media}) {
+    prepare({titleTr, media}) {
+      const localized = Array.isArray(titleTr)
+        ? titleTr.find((item: {language?: string; _key?: string; value?: string}) => item.language === 'tr' || item._key === 'tr')
+            ?.value
+        : undefined
       return {
-        title: 'Feature',
+        title: localized || 'Feature',
         media,
       }
     },

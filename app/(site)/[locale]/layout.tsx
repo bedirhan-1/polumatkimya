@@ -6,11 +6,12 @@ import type {ReactNode} from 'react'
 
 import {SiteFooter} from '@/components/layout/site-footer'
 import {SiteHeader} from '@/components/layout/site-header'
+import {LocaleAlternatesProvider} from '@/components/i18n/locale-alternates'
 import {getDictionary} from '@/lib/i18n/get-dictionary'
 import {getDirection, isLocale, locales, type Locale} from '@/lib/i18n/locales'
 import {fontArabic, fontBody, fontDisplay} from '@/lib/fonts'
 import {SanityLive} from '@/sanity/lib/live'
-import {getSiteSettings, mapHeaderNavigation} from '@/sanity/lib/site-settings'
+import {getSiteSettings} from '@/sanity/lib/site-settings'
 
 import '../../globals.css'
 
@@ -34,6 +35,7 @@ export async function generateMetadata({
   }
   const dictionary = await getDictionary(localeParam)
   return {
+    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://polumatkimya.com'),
     title: {
       default: dictionary.meta.siteName,
       template: `%s | ${dictionary.meta.siteName}`,
@@ -53,7 +55,9 @@ export default async function LocaleLayout({children, params}: LocaleLayoutProps
   const dictionary = await getDictionary(locale)
   const {isEnabled: isDraftMode} = await draftMode()
   const siteSettings = await getSiteSettings(locale)
-  const sanityNav = mapHeaderNavigation(locale, siteSettings?.headerNavigation)
+  const primaryChannel = siteSettings?.contactChannels?.find(
+    (channel) => channel.phone || channel.email,
+  )
 
   const fontVariables = [
     fontDisplay.variable,
@@ -72,9 +76,16 @@ export default async function LocaleLayout({children, params}: LocaleLayoutProps
         >
           {dictionary.a11y.skipToContent}
         </a>
-        <SiteHeader locale={locale} dictionary={dictionary} items={sanityNav} />
-        <div className="flex-1">{children}</div>
-        <SiteFooter locale={locale} dictionary={dictionary} />
+        <LocaleAlternatesProvider>
+          <SiteHeader
+            locale={locale}
+            dictionary={dictionary}
+            phone={primaryChannel?.phone}
+            email={primaryChannel?.email}
+          />
+          <div className="flex-1">{children}</div>
+          <SiteFooter locale={locale} dictionary={dictionary} />
+        </LocaleAlternatesProvider>
         <SanityLive />
         {isDraftMode ? <VisualEditing /> : null}
       </body>

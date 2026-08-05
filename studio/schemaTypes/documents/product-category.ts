@@ -1,6 +1,6 @@
 import {TagIcon} from '@sanity/icons'
-import {defineField, defineType} from 'sanity'
-import {slugValidation} from '../../lib/slug'
+import {defineArrayMember, defineField, defineType} from 'sanity'
+import {slugValidation, isUniqueSlug} from '../../lib/slug'
 
 export const productCategoryType = defineType({
   name: 'productCategory',
@@ -21,6 +21,7 @@ export const productCategoryType = defineType({
       description: 'Shared English slug used across all locales',
       options: {
         maxLength: 96,
+        isUnique: isUniqueSlug,
       },
       validation: slugValidation,
     }),
@@ -66,7 +67,20 @@ export const productCategoryType = defineType({
     defineField({
       name: 'seo',
       title: 'SEO',
-      type: 'seo',
+      type: 'localizedSeo',
+    }),
+    defineField({
+      name: 'legacyId',
+      title: 'Legacy ID',
+      type: 'string',
+      readOnly: true,
+    }),
+    defineField({
+      name: 'legacyUrls',
+      title: 'Legacy URLs',
+      type: 'array',
+      of: [defineArrayMember({type: 'string'})],
+      readOnly: true,
     }),
   ],
   orderings: [
@@ -78,12 +92,18 @@ export const productCategoryType = defineType({
   ],
   preview: {
     select: {
+      titleTr: 'title',
       slug: 'slug.current',
       media: 'image',
     },
-    prepare({slug, media}) {
+    prepare({titleTr, slug, media}) {
+      const localized = Array.isArray(titleTr)
+        ? titleTr.find((item: {language?: string; _key?: string; value?: string}) => item.language === 'tr' || item._key === 'tr')
+            ?.value
+        : undefined
       return {
-        title: slug || 'Category',
+        title: localized || slug || 'Category',
+        subtitle: slug,
         media,
       }
     },

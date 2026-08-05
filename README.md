@@ -11,6 +11,7 @@ Three-locale corporate site (Turkish, English, Arabic) built with Next.js App Ro
 │   └── (studio)/admin/    # Embedded Sanity Studio → /admin
 ├── studio/                # Schema source (+ optional standalone CLI)
 ├── sanity/                # Frontend Sanity client helpers
+├── migration/             # Extract → transform → import pipeline
 ├── dictionaries/          # Server-only UI copy (tr/en/ar)
 ├── lib/                   # i18n, redirects, shared helpers
 └── docs/
@@ -39,6 +40,12 @@ npm run dev
 | `npm run typecheck` | TypeScript |
 | `npm run schema:extract` | Extract Sanity schema JSON |
 | `npm run typegen` | Generate `sanity.types.ts` |
+| `npm run migrate:extract` | Snapshot live site content |
+| `npm run migrate:transform` | Build Sanity-shaped JSON |
+| `npm run migrate:validate` | Count + redirect checks |
+| `npm run migrate:import` | Dry-run import (add `-- --write` to mutate) |
+
+See [migration/README.md](migration/README.md) for the full cutover checklist.
 
 ## Localization
 

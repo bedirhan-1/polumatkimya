@@ -1,0 +1,1781 @@
+{
+  "extractedAt": "2026-08-05T06:30:07.701Z",
+  "sourceOrigin": "https://polumatkimya.com",
+  "categories": [
+    {
+      "sourceKey": "category:industrial-sprays",
+      "legacyId": "endustriyel-spreyler",
+      "slug": "industrial-sprays",
+      "title": {
+        "tr": "Endüstriyel Spreyler",
+        "en": "Industrial Sprays",
+        "ar": "بخاخات صناعية"
+      },
+      "summary": {
+        "tr": "Otomotiv ve endüstriyel bakım spreyleri.",
+        "en": "Automotive and industrial maintenance sprays.",
+        "ar": "بخاخات صيانة للسيارات والاستخدام الصناعي."
+      },
+      "legacyUrls": [
+        "/urunler/kategori/endustriyel-spreyler"
+      ],
+      "sortOrder": 1
+    },
+    {
+      "sourceKey": "category:construction-chemicals",
+      "legacyId": "yapi-kimyasallari",
+      "slug": "construction-chemicals",
+      "title": {
+        "tr": "Yapı Kimyasalları",
+        "en": "Construction Chemicals",
+        "ar": "كيماويات البناء"
+      },
+      "summary": {
+        "tr": "Silikon, mastik ve yapı kimyasalları.",
+        "en": "Silicones, sealants and construction chemicals.",
+        "ar": "سيليكون ومانعات تسرب وكيماويات البناء."
+      },
+      "legacyUrls": [
+        "/urunler/kategori/yapi-kimyasallari"
+      ],
+      "sortOrder": 2
+    }
+  ],
+  "products": [
+    {
+      "sourceKey": "product:fren-balata-temizleme-spreyi",
+      "legacyId": "fren-balata-temizleme-spreyi",
+      "legacySlug": "fren-balata-temizleme-spreyi",
+      "slug": "brake-cleaner-spray",
+      "sortOrder": 1,
+      "categorySlug": "industrial-sprays",
+      "title": {
+        "tr": "Fren Balata Temizleme Spreyi"
+      },
+      "shortDescription": {
+        "tr": "Taşıtlarda, diskli ve kampanalı frenler, motor ve şansıman gövdeleri vb. yerlerde yağlı/gresli artıkların, kurumun ve balata tozunun hızlı bir şekilde giderilmesini sağlar. Endüstride genel amaçlı parça temizlik ve yağ giderme işlemlerinin yanında, yapıştırma ve sızdırmazlık işlemleri öncesinde yüzey ön hazırlığında kullanıma da uygundur."
+      },
+      "bodyText": {
+        "tr": "Taşıtlarda, diskli ve kampanalı frenler, motor ve şansıman gövdeleri vb. yerlerde yağlı/gresli artıkların, kurumun ve balata tozunun hızlı bir şekilde giderilmesini sağlar. Endüstride genel amaçlı parça temizlik ve yağ giderme işlemlerinin yanında, yapıştırma ve sızdırmazlık işlemleri öncesinde yüzey ön hazırlığında kullanıma da uygundur.\n\nÜRÜN ÖZELLİKLERİ\n• Aşındırıcı malzeme içermez. Aseton içermez.\n• Kurum, yağ, fren tozları ve yağlı artıkların etkili bir biçimde temizlenmesini sağlar.\n• Disk, fren ve balata sesini azaltır.\n• İletken değildir. Sürtünme yüzeylerini ve mekanik parçaları kir ve tozdan arındırır.\n• Çevreye zarar vermeyen ozonla çevre dostu itici gaz içerir."
+      },
+      "featuresTr": [
+        "Aşındırıcı malzeme içermez. Aseton içermez.",
+        "Kurum, yağ, fren tozları ve yağlı artıkların etkili bir biçimde temizlenmesini sağlar.",
+        "Disk, fren ve balata sesini azaltır.",
+        "İletken değildir. Sürtünme yüzeylerini ve mekanik parçaları kir ve tozdan arındırır.",
+        "Çevreye zarar vermeyen ozonla çevre dostu itici gaz içerir."
+      ],
+      "usageAreasTr": "Taşıtlarda, diskli ve kampanalı frenler, motor ve şansıman gövdeleri vb. yerlerde yağlı/gresli artıkların, kurumun ve balata tozunun hızlı bir şekilde giderilmesini sağlar. Endüstride genel amaçlı parça temizlik ve yağ giderme işlemlerinin yanında, yapıştırma ve sızdırmazlık işlemleri öncesinde yüzey ön hazırlığında kullanıma da uygundur.",
+      "specs": [
+        {
+          "labelTr": "RENK",
+          "value": "Şeffaf"
+        },
+        {
+          "labelTr": "KOKU",
+          "value": "Karakteristik"
+        },
+        {
+          "labelTr": "YOĞUNLUK",
+          "value": "1.2 g/cm&sup3;"
+        },
+        {
+          "labelTr": "BUHARLAŞMA ORANI",
+          "value": "Orta (Ortam sıcaklığına bağlı olarak değişmektedir)"
+        },
+        {
+          "labelTr": "SICAKLIK ARALIĞI",
+          "value": "-20°C ila +50°C, bazı ürünler daha geniş sıcaklığa sahip olabilir."
+        },
+        {
+          "labelTr": "GRAMAJ",
+          "value": "500ml"
+        },
+        {
+          "labelTr": "KOLİ",
+          "value": "24 Adet"
+        },
+        {
+          "labelTr": "PALET",
+          "value": "80 Koli"
+        }
+      ],
+      "packaging": [
+        {
+          "labelTr": "500ml",
+          "volume": "500ml"
+        }
+      ],
+      "sdsUrl": "https://polumatkimya.com/fren-balata-temizleme-spreyi-guvenlik-formu.pdf",
+      "catalogUrl": "https://polumatkimya.com/Polumat.pdf",
+      "externalVideoUrl": "https://polumatkimya.com/sayfa/uygulama-videolari",
+      "legacyUrls": [
+        "/urunler/detay/fren-balata-temizleme-spreyi",
+        "/urunler/fren-balata-temizleme-spreyi",
+        "http://www.polumatkimya.com/urunler/detay/fren-balata-temizleme-spreyi"
+      ],
+      "previousSlugs": [
+        "fren-balata-temizleme-spreyi"
+      ],
+      "imageUrls": [
+        "https://polumatkimya.com/images/urunler/1740338292.webp"
+      ],
+      "status": "published"
+    },
+    {
+      "sourceKey": "product:pas-sokucu-sprey",
+      "legacyId": "pas-sokucu-sprey",
+      "legacySlug": "pas-sokucu-sprey",
+      "slug": "rust-remover-spray",
+      "sortOrder": 2,
+      "categorySlug": "industrial-sprays",
+      "title": {
+        "tr": "Pas Sökücü Sprey"
+      },
+      "shortDescription": {
+        "tr": "Pas ve rutubete maruz kalan yüzeylerde oluşabilecek korozyonu ve pası engeller. Sürtünmeyi ve aşınmayı azaltır. Endüstriyel birçok alanda, ayrıca evde ve iş yerlerinde korozyona uğramış tüm yüzeylerde güvenle kullanılır. Hareketli parçaların sürtünme mukavemetini artırarak arızaları geciktirir ya da engellemesine yardımcı olur. Ardında bıraktığı yağlı yüzey sayesinde, bakım aralıklarını uzatır, ye"
+      },
+      "bodyText": {
+        "tr": "Pas ve rutubete maruz kalan yüzeylerde oluşabilecek korozyonu ve pası engeller. Sürtünmeyi ve aşınmayı azaltır. Endüstriyel birçok alanda, ayrıca evde ve iş yerlerinde korozyona uğramış tüm yüzeylerde güvenle kullanılır. Hareketli parçaların sürtünme mukavemetini artırarak arızaları geciktirir ya da engellemesine yardımcı olur. Ardında bıraktığı yağlı yüzey sayesinde, bakım aralıklarını uzatır, yedek parça tasarrufuyla maliyet kazancı sağlar. Pası giderdikten sonra, yüzeyde ince bir film tabakası oluşturarak daha sonraki evrelerdeki paslanmayı geciktirir. Su iticidir. Lastik ve contalara zarar vermez. Silikon içermez. 360 derece uygulanabilir.\n\nÜRÜN ÖZELLİKLERİ\n• Metaller arasında koruyucu bir tabaka oluşturur, sürtünmeyi azaltır.\n• Suyu uzaklaştırır, metal parçaları uzun süre paslanmaya karşı korur.\n• Ulaşılması zor yerlere dahi nüfus eder."
+      },
+      "featuresTr": [
+        "Metaller arasında koruyucu bir tabaka oluşturur, sürtünmeyi azaltır.",
+        "Suyu uzaklaştırır, metal parçaları uzun süre paslanmaya karşı korur.",
+        "Ulaşılması zor yerlere dahi nüfus eder."
+      ],
+      "usageAreasTr": "Pas ve rutubete maruz kalan yüzeylerde oluşabilecek korozyonu ve pası engeller. Sürtünmeyi ve aşınmayı azaltır. Endüstriyel birçok alanda, ayrıca evde ve iş yerlerinde korozyona uğramış tüm yüzeylerde güvenle kullanılır. Hareketli parçaların sürtünme mukavemetini artırarak arızaları geciktirir ya da engellemesine yardımcı olur. Ardında bıraktığı yağlı yüzey sayesinde, bakım aralıklarını uzatır, yedek parça tasarrufuyla maliyet kazancı sağlar. Pası giderdikten sonra, yüzeyde ince bir film tabakası oluşturarak daha sonraki evrelerdeki paslanmayı geciktirir. Su iticidir. Lastik ve contalara zarar vermez. Silikon içermez. 360 derece uygulanabilir.",
+      "specs": [
+        {
+          "labelTr": "RENK",
+          "value": "Renksiz"
+        },
+        {
+          "labelTr": "KOKU",
+          "value": "Karakteristik (genellikle güçlü, asidik veya çözücü koku)"
+        },
+        {
+          "labelTr": "YOĞUNLUK",
+          "value": "0.94 g/cm"
+        },
+        {
+          "labelTr": "PH DEĞERİ",
+          "value": "Asidik veya nötr (su bazlı formülasyonlar daha nötr bir pH'a sahip olabilir)"
+        },
+        {
+          "labelTr": "VİSKOSİTE",
+          "value": "Viskozite"
+        },
+        {
+          "labelTr": "PARLAMA NOKTASI",
+          "value": "> 60°C"
+        },
+        {
+          "labelTr": "KAYNAMA NOKTASI",
+          "value": "150°C"
+        },
+        {
+          "labelTr": "DONMA NOKTASI",
+          "value": "-20°C"
+        },
+        {
+          "labelTr": "GRAMAJ",
+          "value": "400ml"
+        },
+        {
+          "labelTr": "KOLİ",
+          "value": "24 Adet"
+        },
+        {
+          "labelTr": "PALET",
+          "value": "80 Koli"
+        }
+      ],
+      "packaging": [
+        {
+          "labelTr": "400ml",
+          "volume": "400ml"
+        },
+        {
+          "labelTr": "200ml",
+          "volume": "200ml"
+        }
+      ],
+      "sdsUrl": "https://polumatkimya.com/pas-sokucu-sprey-guvenlik-bilgi-formu.pdf",
+      "catalogUrl": "https://polumatkimya.com/Polumat.pdf",
+      "externalVideoUrl": "https://polumatkimya.com/sayfa/uygulama-videolari",
+      "legacyUrls": [
+        "/urunler/detay/pas-sokucu-sprey",
+        "/urunler/pas-sokucu-sprey",
+        "http://www.polumatkimya.com/urunler/detay/pas-sokucu-sprey"
+      ],
+      "previousSlugs": [
+        "pas-sokucu-sprey"
+      ],
+      "imageUrls": [
+        "https://polumatkimya.com/images/urunler/1740339665.webp"
+      ],
+      "status": "published"
+    },
+    {
+      "sourceKey": "product:motor-temizleme-spreyi",
+      "legacyId": "motor-temizleme-spreyi",
+      "legacySlug": "motor-temizleme-spreyi",
+      "slug": "engine-cleaner-spray",
+      "sortOrder": 3,
+      "categorySlug": "industrial-sprays",
+      "title": {
+        "tr": "Motor Temizleme Spreyi"
+      },
+      "shortDescription": {
+        "tr": "Motor üzerindeki zorlu kirleri temizlemek için, binek araç, motosiklet, çim biçme makinesi ve benzeri tüm motor tipleri için uygun, yıkama gerektirmeyen motor temizleyicidir."
+      },
+      "bodyText": {
+        "tr": "Motor üzerindeki zorlu kirleri temizlemek için, binek araç, motosiklet, çim biçme makinesi ve benzeri tüm motor tipleri için uygun, yıkama gerektirmeyen motor temizleyicidir.\n\nÜRÜN ÖZELLİKLERİ\n• Üstün içeriği sayesinde motor üzerindeki yağ, gres ve inatçı kirlere hızlı nüfuz etme ve çıkarma özelliğine sahiptir.\n• Motor aksamında bulunan hiçbir parçaya zarar vermez.\n• Motor temizliğinin yanısıra, motora parlak görünüm verir ve üstün koruma sağlar.\n• Elektronik devrelere zarar vermez"
+      },
+      "featuresTr": [
+        "Üstün içeriği sayesinde motor üzerindeki yağ, gres ve inatçı kirlere hızlı nüfuz etme ve çıkarma özelliğine sahiptir.",
+        "Motor aksamında bulunan hiçbir parçaya zarar vermez.",
+        "Motor temizliğinin yanısıra, motora parlak görünüm verir ve üstün koruma sağlar.",
+        "Elektronik devrelere zarar vermez"
+      ],
+      "usageAreasTr": "Motor üzerindeki zorlu kirleri temizlemek için, binek araç, motosiklet, çim biçme makinesi ve benzeri tüm motor tipleri için uygun, yıkama gerektirmeyen motor temizleyicidir.",
+      "specs": [
+        {
+          "labelTr": "RENK",
+          "value": "Renksiz veya şeffaf"
+        },
+        {
+          "labelTr": "KOKU",
+          "value": "Karakteristik"
+        },
+        {
+          "labelTr": "YOĞUNLUK",
+          "value": "0.84 g/cm&sup3;"
+        },
+        {
+          "labelTr": "PARLAMA NOKTASI",
+          "value": "> 60°C"
+        },
+        {
+          "labelTr": "GRAMAJ",
+          "value": "500 ml"
+        },
+        {
+          "labelTr": "KOLİ",
+          "value": "24 Adet"
+        },
+        {
+          "labelTr": "PALET",
+          "value": "80 Koli"
+        }
+      ],
+      "packaging": [
+        {
+          "labelTr": "500 ml",
+          "volume": "500 ml"
+        }
+      ],
+      "sdsUrl": "https://polumatkimya.com/motor-temizleme-spreyi-guvenlik-bilgi-formu.pdf",
+      "catalogUrl": "https://polumatkimya.com/Polumat.pdf",
+      "externalVideoUrl": "https://polumatkimya.com/sayfa/uygulama-videolari",
+      "legacyUrls": [
+        "/urunler/detay/motor-temizleme-spreyi",
+        "/urunler/motor-temizleme-spreyi",
+        "http://www.polumatkimya.com/urunler/detay/motor-temizleme-spreyi"
+      ],
+      "previousSlugs": [
+        "motor-temizleme-spreyi"
+      ],
+      "imageUrls": [
+        "https://polumatkimya.com/images/urunler/1740339808.webp"
+      ],
+      "status": "published"
+    },
+    {
+      "sourceKey": "product:sivi-gres-zincir-yaglayici",
+      "legacyId": "sivi-gres-zincir-yaglayici",
+      "legacySlug": "sivi-gres-zincir-yaglayici",
+      "slug": "chain-lubricant-spray",
+      "sortOrder": 4,
+      "categorySlug": "industrial-sprays",
+      "title": {
+        "tr": "Sıvı Gres Zincir Yağlayıcı"
+      },
+      "shortDescription": {
+        "tr": "Çok amaçlı yağlama spreyidir. Sürtünmeyi ve aşınmayı azaltır. Endüstriyel birçok alanda, ayrıca evde ve iş yerlerinde yağlama gerektiren tüm yüzeylerde güvenle kullanılır. Hareketli parçaların sürtünme mukavemetini artırarak arızaları geciktirir yada engellemesine yardımcı olur."
+      },
+      "bodyText": {
+        "tr": "Çok amaçlı yağlama spreyidir. Sürtünmeyi ve aşınmayı azaltır. Endüstriyel birçok alanda, ayrıca evde ve iş yerlerinde yağlama gerektiren tüm yüzeylerde güvenle kullanılır. Hareketli parçaların sürtünme mukavemetini artırarak arızaları geciktirir yada engellemesine yardımcı olur.\n\nÜRÜN ÖZELLİKLERİ\n• Yüzeyde oluşturduğu dayanıklı film tabakası sayesinde uzun süre yağlama sağlar.\n• Özellikle dik yüzeylerde yapışma kabiliyeti çok yüksektir.\n• Hareketli noktalarda kullanıma uygundur.\n• Boyaya zarar vermez."
+      },
+      "featuresTr": [
+        "Yüzeyde oluşturduğu dayanıklı film tabakası sayesinde uzun süre yağlama sağlar.",
+        "Özellikle dik yüzeylerde yapışma kabiliyeti çok yüksektir.",
+        "Hareketli noktalarda kullanıma uygundur.",
+        "Boyaya zarar vermez."
+      ],
+      "usageAreasTr": "Çok amaçlı yağlama spreyidir. Sürtünmeyi ve aşınmayı azaltır. Endüstriyel birçok alanda, ayrıca evde ve iş yerlerinde yağlama gerektiren tüm yüzeylerde güvenle kullanılır. Hareketli parçaların sürtünme mukavemetini artırarak arızaları geciktirir yada engellemesine yardımcı olur.",
+      "specs": [
+        {
+          "labelTr": "RENK",
+          "value": "Sarı"
+        },
+        {
+          "labelTr": "KOKU",
+          "value": "Çoğunlukla yağlı veya çözücü kokusu"
+        },
+        {
+          "labelTr": "YOĞUNLUK",
+          "value": "0.94 g/cm&sup3;"
+        },
+        {
+          "labelTr": "VİZKOZİTE",
+          "value": "150-250 cSt (40°C'de)"
+        },
+        {
+          "labelTr": "PARLAMA NOKTASI",
+          "value": "> 150°C"
+        },
+        {
+          "labelTr": "KAYNAMA NOKTASI",
+          "value": "200°C ile 350°C arasında"
+        },
+        {
+          "labelTr": "KORUMA ÖZELLİĞİ",
+          "value": "Yüksek koruma, pas ve korozyon önleme özellikleri sağlar"
+        },
+        {
+          "labelTr": "GRAMAJ",
+          "value": "400ml"
+        },
+        {
+          "labelTr": "KOLİ",
+          "value": "24 Adet"
+        },
+        {
+          "labelTr": "PALET",
+          "value": "80 Koli"
+        }
+      ],
+      "packaging": [
+        {
+          "labelTr": "400ml",
+          "volume": "400ml"
+        }
+      ],
+      "sdsUrl": "https://polumatkimya.com/sivi-gres-zincir-yaglayici-guvenlik-bilgi-formu.pdf",
+      "catalogUrl": "https://polumatkimya.com/Polumat.pdf",
+      "externalVideoUrl": "https://polumatkimya.com/sayfa/uygulama-videolari",
+      "legacyUrls": [
+        "/urunler/detay/sivi-gres-zincir-yaglayici",
+        "/urunler/sivi-gres-zincir-yaglayici",
+        "http://www.polumatkimya.com/urunler/detay/sivi-gres-zincir-yaglayici"
+      ],
+      "previousSlugs": [
+        "sivi-gres-zincir-yaglayici"
+      ],
+      "imageUrls": [
+        "https://polumatkimya.com/images/urunler/1740340327.webp"
+      ],
+      "status": "published"
+    },
+    {
+      "sourceKey": "product:kontak-temizleme-spreyi",
+      "legacyId": "kontak-temizleme-spreyi",
+      "legacySlug": "kontak-temizleme-spreyi",
+      "slug": "contact-cleaner-spray",
+      "sortOrder": 5,
+      "categorySlug": "industrial-sprays",
+      "title": {
+        "tr": "Kontak Temizleme Spreyi"
+      },
+      "shortDescription": {
+        "tr": "Elektronik Devre Kart Temizleyici Spreyi, suyu ve nemi yüzeyden uzak tutarak, elektrikli cihazlarda koruyucu tabaka oluşturan spreydir."
+      },
+      "bodyText": {
+        "tr": "Elektronik Devre Kart Temizleyici Spreyi, suyu ve nemi yüzeyden uzak tutarak, elektrikli cihazlarda koruyucu tabaka oluşturan spreydir.\n\nÜRÜN ÖZELLİKLERİ\n• Makine, ekipman, televizyon , bilgisayar, faks, santral, fotokopi gibi tüm aletlerde kullanılabilir.\n• Hassas elektronik yüzeyleri temizlemek için özel olarak hazırlanmıştır.\n• Etkin formülü sayesinde hızlı kuruma sağlar.\n• Antisitatiktir. Yağ içermez."
+      },
+      "featuresTr": [
+        "Makine, ekipman, televizyon , bilgisayar, faks, santral, fotokopi gibi tüm aletlerde kullanılabilir.",
+        "Hassas elektronik yüzeyleri temizlemek için özel olarak hazırlanmıştır.",
+        "Etkin formülü sayesinde hızlı kuruma sağlar.",
+        "Antisitatiktir. Yağ içermez."
+      ],
+      "usageAreasTr": "Elektronik Devre Kart Temizleyici Spreyi, suyu ve nemi yüzeyden uzak tutarak, elektrikli cihazlarda koruyucu tabaka oluşturan spreydir.",
+      "specs": [
+        {
+          "labelTr": "RENK",
+          "value": "Renksiz"
+        },
+        {
+          "labelTr": "KOKU",
+          "value": "Karakteristik (genellikle çözücü kokusu)"
+        },
+        {
+          "labelTr": "YOĞUNLUK",
+          "value": "0.9 g/cm&sup3;"
+        },
+        {
+          "labelTr": "VİZKOZİTE",
+          "value": "1 - 5 cp (25°C'de)"
+        },
+        {
+          "labelTr": "ALEVLENME NOKTASI",
+          "value": "< 30°C (çok sıcak) yanıcı, kullanılmalı (dikkatli olun)"
+        },
+        {
+          "labelTr": "BUHARLAŞMA ORANI",
+          "value": "Orta ila hızlı (ortam sıcaklığına bağlı olarak)"
+        },
+        {
+          "labelTr": "DONMA NOKTASI",
+          "value": "-20°C ile -30°C arasında"
+        },
+        {
+          "labelTr": "KORUMA ÖZELLİĞİ",
+          "value": "Oksidasyona karşı korozyon direnciyle yüksek koruma sağlar."
+        },
+        {
+          "labelTr": "GRAMAJ",
+          "value": "200 ml"
+        },
+        {
+          "labelTr": "KOLİ",
+          "value": "24 Adet"
+        },
+        {
+          "labelTr": "PALET",
+          "value": "96 Koli"
+        }
+      ],
+      "packaging": [
+        {
+          "labelTr": "200 ml",
+          "volume": "200 ml"
+        }
+      ],
+      "sdsUrl": null,
+      "catalogUrl": "https://polumatkimya.com/Polumat.pdf",
+      "externalVideoUrl": "https://polumatkimya.com/sayfa/uygulama-videolari",
+      "legacyUrls": [
+        "/urunler/detay/kontak-temizleme-spreyi",
+        "/urunler/kontak-temizleme-spreyi",
+        "http://www.polumatkimya.com/urunler/detay/kontak-temizleme-spreyi"
+      ],
+      "previousSlugs": [
+        "kontak-temizleme-spreyi"
+      ],
+      "imageUrls": [
+        "https://polumatkimya.com/images/urunler/1740340412.webp"
+      ],
+      "status": "published"
+    },
+    {
+      "sourceKey": "product:lastik-parlatici-sprey",
+      "legacyId": "lastik-parlatici-sprey",
+      "legacySlug": "lastik-parlatici-sprey",
+      "slug": "tire-shine-spray",
+      "sortOrder": 6,
+      "categorySlug": "industrial-sprays",
+      "title": {
+        "tr": "Lastik Parlatıcı Sprey"
+      },
+      "shortDescription": {
+        "tr": "Genel amaçlı bir temizleme spreyi olup, lastiklerin üzerinde yer alan kir, toz ve yağın derinlemesine temizliğinde kullanılır."
+      },
+      "bodyText": {
+        "tr": "Genel amaçlı bir temizleme spreyi olup, lastiklerin üzerinde yer alan kir, toz ve yağın derinlemesine temizliğinde kullanılır.\n\nÜRÜN ÖZELLİKLERİ\n• Aracın lastiklerine ilk günkü gibi parlaklık verir.\n• Kuruma, çatlama ve güneş ışınlarına karşı koruyucu bir film tabakası oluşturur.\n• Etkin formülü sayesinde hızlı kuruma sağlar.\n• Anti-statiktir. Toz yapışmasını uzun süre geciktirir."
+      },
+      "featuresTr": [
+        "Aracın lastiklerine ilk günkü gibi parlaklık verir.",
+        "Kuruma, çatlama ve güneş ışınlarına karşı koruyucu bir film tabakası oluşturur.",
+        "Etkin formülü sayesinde hızlı kuruma sağlar.",
+        "Anti-statiktir. Toz yapışmasını uzun süre geciktirir."
+      ],
+      "usageAreasTr": "Genel amaçlı bir temizleme spreyi olup, lastiklerin üzerinde yer alan kir, toz ve yağın derinlemesine temizliğinde kullanılır.",
+      "specs": [
+        {
+          "labelTr": "RENK",
+          "value": "Şeffaf"
+        },
+        {
+          "labelTr": "KOKU",
+          "value": "Karakteristik"
+        },
+        {
+          "labelTr": "YOĞUNLUK",
+          "value": "1.1 g/cm&sup3;"
+        },
+        {
+          "labelTr": "VİZKOZİTE",
+          "value": "10 - 30 cP (at 25°C)"
+        },
+        {
+          "labelTr": "ALEVLENME NOKTASI",
+          "value": "> 60°C"
+        },
+        {
+          "labelTr": "BUHARLAŞMA ORANI",
+          "value": "Orta ila hızlı (ortam sıcaklığına bağlı olarak)"
+        },
+        {
+          "labelTr": "DONMA NOKTASI",
+          "value": "-10°C ile -20°C arasında"
+        },
+        {
+          "labelTr": "KORUMA ÖZELLİĞİ",
+          "value": "Lastik yüzeyini UV ışınlarından korur"
+        },
+        {
+          "labelTr": "GRAMAJ",
+          "value": "500 ml"
+        },
+        {
+          "labelTr": "KOLİ",
+          "value": "24 Adet"
+        },
+        {
+          "labelTr": "PALET",
+          "value": "80 Koli"
+        }
+      ],
+      "packaging": [
+        {
+          "labelTr": "500 ml",
+          "volume": "500 ml"
+        }
+      ],
+      "sdsUrl": "https://polumatkimya.com/lastik-parlatici-sprey-guvenlik-bilgi-formu.pdf",
+      "catalogUrl": "https://polumatkimya.com/Polumat.pdf",
+      "externalVideoUrl": "https://polumatkimya.com/sayfa/uygulama-videolari",
+      "legacyUrls": [
+        "/urunler/detay/lastik-parlatici-sprey",
+        "/urunler/lastik-parlatici-sprey",
+        "http://www.polumatkimya.com/urunler/detay/lastik-parlatici-sprey"
+      ],
+      "previousSlugs": [
+        "lastik-parlatici-sprey"
+      ],
+      "imageUrls": [
+        "https://polumatkimya.com/images/urunler/1740340453.webp"
+      ],
+      "status": "published"
+    },
+    {
+      "sourceKey": "product:torpido-parlatici-sprey",
+      "legacyId": "torpido-parlatici-sprey",
+      "legacySlug": "torpido-parlatici-sprey",
+      "slug": "dashboard-polish-spray",
+      "sortOrder": 7,
+      "categorySlug": "industrial-sprays",
+      "title": {
+        "tr": "Torpido Parlatıcı Sprey"
+      },
+      "shortDescription": {
+        "tr": "Aracın konsol ve diğer iç aksamında yer alan plastik, deri yüzeylerin etkin bir şekilde temizlenmesini sağlar. Düzenli kullanıldığında yüzeylerin ömrünü uzatır."
+      },
+      "bodyText": {
+        "tr": "Aracın konsol ve diğer iç aksamında yer alan plastik, deri yüzeylerin etkin bir şekilde temizlenmesini sağlar. Düzenli kullanıldığında yüzeylerin ömrünü uzatır.\n\nÜRÜN ÖZELLİKLERİ\n• Düzenli kullanıldığında yüzeylerin ömrünü uzatır.\n• Araç içinde uzun süre dayanıklı hoş bir koku bırakan farklı esansları vardır.\n• Ozon tabakasına zarar verici, itici gazlar içermez.\n• Parlaklığını uzun süre korur. Leke Yapmaz."
+      },
+      "featuresTr": [
+        "Düzenli kullanıldığında yüzeylerin ömrünü uzatır.",
+        "Araç içinde uzun süre dayanıklı hoş bir koku bırakan farklı esansları vardır.",
+        "Ozon tabakasına zarar verici, itici gazlar içermez.",
+        "Parlaklığını uzun süre korur. Leke Yapmaz."
+      ],
+      "usageAreasTr": "Aracın konsol ve diğer iç aksamında yer alan plastik, deri yüzeylerin etkin bir şekilde temizlenmesini sağlar. Düzenli kullanıldığında yüzeylerin ömrünü uzatır.",
+      "specs": [
+        {
+          "labelTr": "RENK",
+          "value": "Şeffaf"
+        },
+        {
+          "labelTr": "KOKU",
+          "value": "Karakteristik"
+        },
+        {
+          "labelTr": "YOĞUNLUK",
+          "value": "0.98 g/cm&sup3;"
+        },
+        {
+          "labelTr": "VİZKOZİTE",
+          "value": "- 20 cP (at 25°C)"
+        },
+        {
+          "labelTr": "ALEVLENME NOKTASI",
+          "value": "> 60°C"
+        },
+        {
+          "labelTr": "BUHARLAŞMA ORANI",
+          "value": "Orta ila hızlı (ortam sıcaklığına bağlı olarak)"
+        },
+        {
+          "labelTr": "DONMA NOKTASI",
+          "value": "-10°C ile -20°C arasında"
+        },
+        {
+          "labelTr": "KORUMA ÖZELLİĞİ",
+          "value": "Yüzeyde koruyucu bir tabaka bırakır"
+        },
+        {
+          "labelTr": "GRAMAJ",
+          "value": "200 ml"
+        },
+        {
+          "labelTr": "KOLİ",
+          "value": "24 Adet"
+        },
+        {
+          "labelTr": "PALET",
+          "value": "96 Koli"
+        }
+      ],
+      "packaging": [
+        {
+          "labelTr": "200 ml",
+          "volume": "200 ml"
+        }
+      ],
+      "sdsUrl": null,
+      "catalogUrl": "https://polumatkimya.com/Polumat.pdf",
+      "externalVideoUrl": "https://polumatkimya.com/sayfa/uygulama-videolari",
+      "legacyUrls": [
+        "/urunler/detay/torpido-parlatici-sprey",
+        "/urunler/torpido-parlatici-sprey",
+        "http://www.polumatkimya.com/urunler/detay/torpido-parlatici-sprey"
+      ],
+      "previousSlugs": [
+        "torpido-parlatici-sprey"
+      ],
+      "imageUrls": [
+        "https://polumatkimya.com/images/urunler/1740340499.webp"
+      ],
+      "status": "published"
+    },
+    {
+      "sourceKey": "product:kalip-ayirici-sprey",
+      "legacyId": "kalip-ayirici-sprey",
+      "legacySlug": "kalip-ayirici-sprey",
+      "slug": "mold-release-spray",
+      "sortOrder": 8,
+      "categorySlug": "industrial-sprays",
+      "title": {
+        "tr": "Kalıp Ayırıcı Sprey"
+      },
+      "shortDescription": {
+        "tr": "Plastik enjeksiyon makinalarda kalıp ayırma işleminde kullanılan, silikon içeren formülü ile kauçuk parçaların modellerinden etkin bir şekilde ayrılmasını sağlayan etkin bir üründür."
+      },
+      "bodyText": {
+        "tr": "Plastik enjeksiyon makinalarda kalıp ayırma işleminde kullanılan, silikon içeren formülü ile kauçuk parçaların modellerinden etkin bir şekilde ayrılmasını sağlayan etkin bir üründür.\n\nÜRÜN ÖZELLİKLERİ\n• Kalıp üzerinde leke yapmaz.\n• Kağıt ve Tekstil sektöründe yapışma önleyici olarak kullanılır.\n• Yüzeyde homojen ve düzgün bir film tabakası oluşturur.\n• Doğal kauçuk, sentetik kauçuk, nitril kauçuk, Neopren Kauçuk, PP, HDPE, LDPE, PVC ve farklı türde plastik parça üretiminde kullanılabilir."
+      },
+      "featuresTr": [
+        "Kalıp üzerinde leke yapmaz.",
+        "Kağıt ve Tekstil sektöründe yapışma önleyici olarak kullanılır.",
+        "Yüzeyde homojen ve düzgün bir film tabakası oluşturur.",
+        "Doğal kauçuk, sentetik kauçuk, nitril kauçuk, Neopren Kauçuk, PP, HDPE, LDPE, PVC ve farklı türde plastik parça üretiminde kullanılabilir."
+      ],
+      "usageAreasTr": "Plastik enjeksiyon makinalarda kalıp ayırma işleminde kullanılan, silikon içeren formülü ile kauçuk parçaların modellerinden etkin bir şekilde ayrılmasını sağlayan etkin bir üründür.",
+      "specs": [
+        {
+          "labelTr": "RENK",
+          "value": "Şeffaf"
+        },
+        {
+          "labelTr": "KOKU",
+          "value": "Genellikle hafif çözücü kokusu"
+        },
+        {
+          "labelTr": "YOĞUNLUK",
+          "value": "0.9 g/cm&sup3;"
+        },
+        {
+          "labelTr": "VİZKOZİTE",
+          "value": "10 - 50 cP (25°C'de)"
+        },
+        {
+          "labelTr": "ALEVLENME NOKTASI",
+          "value": "150°C - 300°C"
+        },
+        {
+          "labelTr": "BUHARLAŞMA ORANI",
+          "value": "Orta ila hızlı (ortam sıcaklığına bağlı olarak)"
+        },
+        {
+          "labelTr": "DONMA NOKTASI",
+          "value": "-5°C ile -15°C arasında"
+        },
+        {
+          "labelTr": "KORUMA ÖZELLİĞİ",
+          "value": "Kalıp yüzeyinde ayrılma sağlar."
+        },
+        {
+          "labelTr": "GRAMAJ",
+          "value": "400ml"
+        },
+        {
+          "labelTr": "KOLİ",
+          "value": "24 Adet"
+        },
+        {
+          "labelTr": "PALET",
+          "value": "80 Koli"
+        }
+      ],
+      "packaging": [
+        {
+          "labelTr": "400ml",
+          "volume": "400ml"
+        },
+        {
+          "labelTr": "200ml",
+          "volume": "200ml"
+        }
+      ],
+      "sdsUrl": null,
+      "catalogUrl": "https://polumatkimya.com/Polumat.pdf",
+      "externalVideoUrl": "https://polumatkimya.com/sayfa/uygulama-videolari",
+      "legacyUrls": [
+        "/urunler/detay/kalip-ayirici-sprey",
+        "/urunler/kalip-ayirici-sprey",
+        "http://www.polumatkimya.com/urunler/detay/kalip-ayirici-sprey"
+      ],
+      "previousSlugs": [
+        "kalip-ayirici-sprey"
+      ],
+      "imageUrls": [
+        "https://polumatkimya.com/images/urunler/1740340556.webp"
+      ],
+      "status": "published"
+    },
+    {
+      "sourceKey": "product:silikonize-mastik",
+      "legacyId": "silikonize-mastik",
+      "legacySlug": "silikonize-mastik",
+      "slug": "siliconized-sealant",
+      "sortOrder": 9,
+      "categorySlug": "construction-chemicals",
+      "title": {
+        "tr": "Silikonize Mastik"
+      },
+      "shortDescription": {
+        "tr": "Tek bileşenli yüksek kaliteli, çatlamaya karşı dirençli, esnek silikonize mastik. %12,5 derz hareket kabiliyeti vardır. PVC ve alüminyum doğramaların montajında kullanılır. PVC, alüminyum, ahşap, beton gibi yapı malzemelerine mükemmel yapışma sağlar."
+      },
+      "bodyText": {
+        "tr": "Tek bileşenli yüksek kaliteli, çatlamaya karşı dirençli, esnek silikonize mastik. %12,5 derz hareket kabiliyeti vardır. PVC ve alüminyum doğramaların montajında kullanılır. PVC, alüminyum, ahşap, beton gibi yapı malzemelerine mükemmel yapışma sağlar.\n\nÜRÜN ÖZELLİKLERİ\n• Tuğla, beton ve ahşap gibi tüm gözenekli yüzeylerde kullanılabilir.\n• Alüminyum, ahşap ve PVC çerçeve ve pencerelerde, su, rüzgar ve neme dayanıklıdır.\n• Tek komponentlidir. Tiksotropik yapıya sahiptir. Tabanca ile kolay uygulanabilir.\n• Kuruduktan sonra su geçirmez bir tabaka oluşturur. Hava şartlarına dayanıklıdır.\n• Uzun süre esnekliğini korur. Boyanabilirdir. Yüzeyinde yağ içermez.\n• Dolgu yapılan yüzeyi etkilemez. Elastiktir. Parlak ve kaygan bir görünümü vardır."
+      },
+      "featuresTr": [
+        "Tuğla, beton ve ahşap gibi tüm gözenekli yüzeylerde kullanılabilir.",
+        "Alüminyum, ahşap ve PVC çerçeve ve pencerelerde, su, rüzgar ve neme dayanıklıdır.",
+        "Tek komponentlidir. Tiksotropik yapıya sahiptir. Tabanca ile kolay uygulanabilir.",
+        "Kuruduktan sonra su geçirmez bir tabaka oluşturur. Hava şartlarına dayanıklıdır.",
+        "Uzun süre esnekliğini korur. Boyanabilirdir. Yüzeyinde yağ içermez.",
+        "Dolgu yapılan yüzeyi etkilemez. Elastiktir. Parlak ve kaygan bir görünümü vardır."
+      ],
+      "usageAreasTr": "Tek bileşenli yüksek kaliteli, çatlamaya karşı dirençli, esnek silikonize mastik. %12,5 derz hareket kabiliyeti vardır. PVC ve alüminyum doğramaların montajında kullanılır. PVC, alüminyum, ahşap, beton gibi yapı malzemelerine mükemmel yapışma sağlar.",
+      "specs": [
+        {
+          "labelTr": "KİMYASAL BAZ",
+          "value": "Akrilik Dispersiyon"
+        },
+        {
+          "labelTr": "YOĞUNLUK",
+          "value": "1,65 (+/-0,03 )"
+        },
+        {
+          "labelTr": "KATILAŞMA SÜRESİ",
+          "value": "2 mm / 24 saat (23 °C ve %50 B.N.)"
+        },
+        {
+          "labelTr": "KURUMA SÜRESİ",
+          "value": "15-45 dk. (23 °C, % 50 RH)"
+        },
+        {
+          "labelTr": "GRAMAJ",
+          "value": "500 gr"
+        },
+        {
+          "labelTr": "KOLİ",
+          "value": "24 Adet"
+        },
+        {
+          "labelTr": "PALET",
+          "value": "80 Koli"
+        }
+      ],
+      "packaging": [
+        {
+          "labelTr": "500 gr",
+          "volume": "500 gr"
+        }
+      ],
+      "sdsUrl": null,
+      "catalogUrl": "https://polumatkimya.com/Polumat.pdf",
+      "externalVideoUrl": "https://polumatkimya.com/sayfa/uygulama-videolari",
+      "legacyUrls": [
+        "/urunler/detay/silikonize-mastik",
+        "/urunler/silikonize-mastik",
+        "http://www.polumatkimya.com/urunler/detay/silikonize-mastik"
+      ],
+      "previousSlugs": [
+        "silikonize-mastik"
+      ],
+      "imageUrls": [
+        "https://polumatkimya.com/images/urunler/1740340750.webp"
+      ],
+      "status": "published"
+    },
+    {
+      "sourceKey": "product:akrilik-mastik",
+      "legacyId": "akrilik-mastik",
+      "legacySlug": "akrilik-mastik",
+      "slug": "acrylic-sealant",
+      "sortOrder": 10,
+      "categorySlug": "construction-chemicals",
+      "title": {
+        "tr": "Akrilik Mastik"
+      },
+      "shortDescription": {
+        "tr": "İç ve dış ortamlarda, yapı malzemelerinin birleşimlerinde ve çatlaklarda kullanılabilen, tek komponentli ve genel amaçlı bir akrilik mastiktir. Özellikle statik fugalarda (boşluklarda) kullanım için ideal, ekonomik bir derz dolgu mastiğidir. Üzeri boyanabilir. Tuğla, beton, ahşap vb. bütün gözenekli yüzeylerde kullanılabilir."
+      },
+      "bodyText": {
+        "tr": "İç ve dış ortamlarda, yapı malzemelerinin birleşimlerinde ve çatlaklarda kullanılabilen, tek komponentli ve genel amaçlı bir akrilik mastiktir. Özellikle statik fugalarda (boşluklarda) kullanım için ideal, ekonomik bir derz dolgu mastiğidir. Üzeri boyanabilir. Tuğla, beton, ahşap vb. bütün gözenekli yüzeylerde kullanılabilir.\n\nÜRÜN ÖZELLİKLERİ\n• Tek komponentlidir.\n• Tabanca ile kolay uygulanabilir.\n• Kuruduktan sonra su geçirmez bir tabaka oluşturur.\n• Hava şartlarına dayanıklıdır.\n• Uzun süre esnekliğini korur.\n• Boyanabilirdir.\n• Yüzeyinde yağ içermez.\n• Dolgu yapılan yüzeyi etkilemez.\n• Alüminyum, ahşap ve PVC çerçeve ve pencerelerde, su, rüzgar ve neme dayanıklıdır."
+      },
+      "featuresTr": [
+        "Tek komponentlidir.",
+        "Tabanca ile kolay uygulanabilir.",
+        "Kuruduktan sonra su geçirmez bir tabaka oluşturur.",
+        "Hava şartlarına dayanıklıdır.",
+        "Uzun süre esnekliğini korur.",
+        "Boyanabilirdir.",
+        "Yüzeyinde yağ içermez.",
+        "Dolgu yapılan yüzeyi etkilemez.",
+        "Alüminyum, ahşap ve PVC çerçeve ve pencerelerde, su, rüzgar ve neme dayanıklıdır."
+      ],
+      "usageAreasTr": "İç ve dış ortamlarda, yapı malzemelerinin birleşimlerinde ve çatlaklarda kullanılabilen, tek komponentli ve genel amaçlı bir akrilik mastiktir. Özellikle statik fugalarda (boşluklarda) kullanım için ideal, ekonomik bir derz dolgu mastiğidir. Üzeri boyanabilir. Tuğla, beton, ahşap vb. bütün gözenekli yüzeylerde kullanılabilir.",
+      "specs": [
+        {
+          "labelTr": "KİMYASAL BAZ",
+          "value": "Akrilik Dispersiyon"
+        },
+        {
+          "labelTr": "YOĞUNLUK",
+          "value": "1,15 (+/-0,03)"
+        },
+        {
+          "labelTr": "KATILAŞMA SÜRESİ",
+          "value": "2 mm / 24 saat (23 °C ve %50 B.N.)"
+        },
+        {
+          "labelTr": "KURUMA SÜRESİ",
+          "value": "15-45 dk. (23 °C, % 50 RH)"
+        },
+        {
+          "labelTr": "GRAMAJ",
+          "value": "450 gr"
+        },
+        {
+          "labelTr": "KOLİ",
+          "value": "24 Adet"
+        },
+        {
+          "labelTr": "PALET",
+          "value": "80 Koli"
+        }
+      ],
+      "packaging": [
+        {
+          "labelTr": "450 gr",
+          "volume": "450 gr"
+        }
+      ],
+      "sdsUrl": null,
+      "catalogUrl": "https://polumatkimya.com/Polumat.pdf",
+      "externalVideoUrl": "https://polumatkimya.com/sayfa/uygulama-videolari",
+      "legacyUrls": [
+        "/urunler/detay/akrilik-mastik",
+        "/urunler/akrilik-mastik",
+        "http://www.polumatkimya.com/urunler/detay/akrilik-mastik"
+      ],
+      "previousSlugs": [
+        "akrilik-mastik"
+      ],
+      "imageUrls": [
+        "https://polumatkimya.com/images/urunler/1740340814.webp"
+      ],
+      "status": "published"
+    },
+    {
+      "sourceKey": "product:rtv-yuksek-isi-silikonu",
+      "legacyId": "rtv-yuksek-isi-silikonu",
+      "legacySlug": "rtv-yuksek-isi-silikonu",
+      "slug": "high-temperature-rtv-silicone",
+      "sortOrder": 11,
+      "categorySlug": "construction-chemicals",
+      "title": {
+        "tr": "RTV Yüksek Isı Silikonu"
+      },
+      "shortDescription": {
+        "tr": "Asetoksi esaslı havadaki nem ile kürlenen 300 °C&rsquo;ye kadar dayanıklı fırın kapıları, ısıtma sistemleri, motor kapakları, makine contalama uygulamaları ve yüksek sıcaklık dayanımı gerektiren yerlerde sızdırmazlık uygulamalarında kullanılır. Yapışma gücü yüksek ve solvent içermeyen %100 silikondur."
+      },
+      "bodyText": {
+        "tr": "Asetoksi esaslı havadaki nem ile kürlenen 300 °C&rsquo;ye kadar dayanıklı fırın kapıları, ısıtma sistemleri, motor kapakları, makine contalama uygulamaları ve yüksek sıcaklık dayanımı gerektiren yerlerde sızdırmazlık uygulamalarında kullanılır. Yapışma gücü yüksek ve solvent içermeyen %100 silikondur.\n\nÜRÜN ÖZELLİKLERİ\n• %100 silikon polimerdir.\n• Yüksek mukavemetlidir.\n• Solvent içermez.\n• ISO 11600 – F&G – 25 HM yi karşılar.\n• UV ışınlarına dayanıklıdır.\n• -50°C ile +250°C ye kadar dayanıklıdır."
+      },
+      "featuresTr": [
+        "%100 silikon polimerdir.",
+        "Yüksek mukavemetlidir.",
+        "Solvent içermez.",
+        "ISO 11600 – F&G – 25 HM yi karşılar.",
+        "UV ışınlarına dayanıklıdır.",
+        "-50°C ile +250°C ye kadar dayanıklıdır."
+      ],
+      "usageAreasTr": "Asetoksi esaslı havadaki nem ile kürlenen 300 °C&rsquo;ye kadar dayanıklı fırın kapıları, ısıtma sistemleri, motor kapakları, makine contalama uygulamaları ve yüksek sıcaklık dayanımı gerektiren yerlerde sızdırmazlık uygulamalarında kullanılır. Yapışma gücü yüksek ve solvent içermeyen %100 silikondur.",
+      "specs": [
+        {
+          "labelTr": "KİMYASAL BAZ",
+          "value": "Asetoksi"
+        },
+        {
+          "labelTr": "YOĞUNLUK",
+          "value": "0,98 (+/-0,03"
+        },
+        {
+          "labelTr": "KATILAŞMA SÜRESİ",
+          "value": "3mm/24 hours (23 °C and 50% R.H)"
+        },
+        {
+          "labelTr": "KURUMA SÜRESİ",
+          "value": "10-20 min. (23 °C and 50% R.H)"
+        },
+        {
+          "labelTr": "GRAMAJ",
+          "value": "310 ml"
+        },
+        {
+          "labelTr": "KOLİ",
+          "value": "24 Adet"
+        },
+        {
+          "labelTr": "PALET",
+          "value": "80 Koli"
+        }
+      ],
+      "packaging": [
+        {
+          "labelTr": "310 ml",
+          "volume": "310 ml"
+        }
+      ],
+      "sdsUrl": null,
+      "catalogUrl": "https://polumatkimya.com/Polumat.pdf",
+      "externalVideoUrl": "https://polumatkimya.com/sayfa/uygulama-videolari",
+      "legacyUrls": [
+        "/urunler/detay/rtv-yuksek-isi-silikonu",
+        "/urunler/rtv-yuksek-isi-silikonu",
+        "http://www.polumatkimya.com/urunler/detay/rtv-yuksek-isi-silikonu"
+      ],
+      "previousSlugs": [
+        "rtv-yuksek-isi-silikonu"
+      ],
+      "imageUrls": [
+        "https://polumatkimya.com/images/urunler/1740340898.webp"
+      ],
+      "status": "published"
+    },
+    {
+      "sourceKey": "product:akvaryum-silikonu",
+      "legacyId": "akvaryum-silikonu",
+      "legacySlug": "akvaryum-silikonu",
+      "slug": "aquarium-silicone",
+      "sortOrder": 12,
+      "categorySlug": "construction-chemicals",
+      "title": {
+        "tr": "Akvaryum Silikonu"
+      },
+      "shortDescription": {
+        "tr": "Akvaryum imalatında ve cam yapıştırma işlerinde kullanılan, balıklara ve akvaryumda yaşayan canlılara zarar verebilecek kimyasallar içermeyen %100 silikondur. %100 Silikon, solvent içermez. Balıklara ve diğer canlılara zarar vermez. Çatlamaz, çekme yapmaz ve rengi bozulmaz."
+      },
+      "bodyText": {
+        "tr": "Akvaryum imalatında ve cam yapıştırma işlerinde kullanılan, balıklara ve akvaryumda yaşayan canlılara zarar verebilecek kimyasallar içermeyen %100 silikondur. %100 Silikon, solvent içermez. Balıklara ve diğer canlılara zarar vermez. Çatlamaz, çekme yapmaz ve rengi bozulmaz.\n\nÜRÜN ÖZELLİKLERİ\n• %100 silikon polimerdir.\n• Yüksek mukavemetlidir.\n• Solvent içermez.\n• ISO 11600 – F&G – 25 LM yi karşılar.\n• UV ışınlarına dayanıklıdır.\n• Yüksek ısıya dayanıklıdır.\n• Her türlü akvaryum imalatında kullanılabilir."
+      },
+      "featuresTr": [
+        "%100 silikon polimerdir.",
+        "Yüksek mukavemetlidir.",
+        "Solvent içermez.",
+        "ISO 11600 – F&G – 25 LM yi karşılar.",
+        "UV ışınlarına dayanıklıdır.",
+        "Yüksek ısıya dayanıklıdır.",
+        "Her türlü akvaryum imalatında kullanılabilir."
+      ],
+      "usageAreasTr": "Akvaryum imalatında ve cam yapıştırma işlerinde kullanılan, balıklara ve akvaryumda yaşayan canlılara zarar verebilecek kimyasallar içermeyen %100 silikondur. %100 Silikon, solvent içermez. Balıklara ve diğer canlılara zarar vermez. Çatlamaz, çekme yapmaz ve rengi bozulmaz.",
+      "specs": [
+        {
+          "labelTr": "KİMYASAL BAZ",
+          "value": "Asetoksi"
+        },
+        {
+          "labelTr": "YOĞUNLUK",
+          "value": "1,01 (+/-0,03)"
+        },
+        {
+          "labelTr": "KATILAŞMA SÜRESİ",
+          "value": "3mm/24 hours (23 °C and 50% R.H)"
+        },
+        {
+          "labelTr": "KURUMA SÜRESİ",
+          "value": "10-20 min. (23 °C and 50% R.H)"
+        },
+        {
+          "labelTr": "GRAMAJ",
+          "value": "310 ml"
+        },
+        {
+          "labelTr": "KOLİ",
+          "value": "24 Adet"
+        },
+        {
+          "labelTr": "PALET",
+          "value": "80 Koli"
+        }
+      ],
+      "packaging": [
+        {
+          "labelTr": "310 ml",
+          "volume": "310 ml"
+        }
+      ],
+      "sdsUrl": null,
+      "catalogUrl": "https://polumatkimya.com/Polumat.pdf",
+      "externalVideoUrl": "https://polumatkimya.com/sayfa/uygulama-videolari",
+      "legacyUrls": [
+        "/urunler/detay/akvaryum-silikonu",
+        "/urunler/akvaryum-silikonu",
+        "http://www.polumatkimya.com/urunler/detay/akvaryum-silikonu"
+      ],
+      "previousSlugs": [
+        "akvaryum-silikonu"
+      ],
+      "imageUrls": [
+        "https://polumatkimya.com/images/urunler/1740341055.webp"
+      ],
+      "status": "published"
+    },
+    {
+      "sourceKey": "product:dusakabin-silikonu",
+      "legacyId": "dusakabin-silikonu",
+      "legacySlug": "dusakabin-silikonu",
+      "slug": "shower-enclosure-silicone",
+      "sortOrder": 13,
+      "categorySlug": "construction-chemicals",
+      "title": {
+        "tr": "Duşakabin Silikonu"
+      },
+      "shortDescription": {
+        "tr": ", duşakabinlerin ve küvetlerin etrafındaki derzleri doldurmak ve su sızıntısını engellemek için kullanılan özel bir silikondur. Bu silikon, suya ve küf oluşumuna dayanıklı üstün formüle sahiptir, böylece duş alanınızı uzun süre temiz ve hijyenik tutar."
+      },
+      "bodyText": {
+        "tr": ", duşakabinlerin ve küvetlerin etrafındaki derzleri doldurmak ve su sızıntısını engellemek için kullanılan özel bir silikondur. Bu silikon, suya ve küf oluşumuna dayanıklı üstün formüle sahiptir, böylece duş alanınızı uzun süre temiz ve hijyenik tutar.\n\nÜRÜN ÖZELLİKLERİ\n• %100 Silikon, solvent içermez, hızlı kurur, çekme yapmaz.\n• Neme ve küfe karşı son derece dayanıklıdır.\n• Çatlamaz ve rengi sararmaz.\n• Deterjan ve temizlik malzemelerine karşı son derece dayanıklıdır.\n• Asetoksi kürleşme sistemine sahiptir."
+      },
+      "featuresTr": [
+        "%100 Silikon, solvent içermez, hızlı kurur, çekme yapmaz.",
+        "Neme ve küfe karşı son derece dayanıklıdır.",
+        "Çatlamaz ve rengi sararmaz.",
+        "Deterjan ve temizlik malzemelerine karşı son derece dayanıklıdır.",
+        "Asetoksi kürleşme sistemine sahiptir."
+      ],
+      "usageAreasTr": ", duşakabinlerin ve küvetlerin etrafındaki derzleri doldurmak ve su sızıntısını engellemek için kullanılan özel bir silikondur. Bu silikon, suya ve küf oluşumuna dayanıklı üstün formüle sahiptir, böylece duş alanınızı uzun süre temiz ve hijyenik tutar.",
+      "specs": [
+        {
+          "labelTr": "KİMYASAL BAZ",
+          "value": "Asetoksi veya Nötr"
+        },
+        {
+          "labelTr": "YOĞUNLUK",
+          "value": "1,01 (+/-0,03)"
+        },
+        {
+          "labelTr": "KATILAŞMA SÜRESİ",
+          "value": "2mm/24 hours (23 °C and 50% R.H)"
+        },
+        {
+          "labelTr": "KURUMA SÜRESİ",
+          "value": "10-20 min. (23 °C and 50% R.H)"
+        },
+        {
+          "labelTr": "GRAMAJ",
+          "value": "310 ml"
+        },
+        {
+          "labelTr": "KOLİ",
+          "value": "24 Adet"
+        },
+        {
+          "labelTr": "PALET",
+          "value": "80 Koli"
+        }
+      ],
+      "packaging": [
+        {
+          "labelTr": "310 ml",
+          "volume": "310 ml"
+        }
+      ],
+      "sdsUrl": null,
+      "catalogUrl": "https://polumatkimya.com/Polumat.pdf",
+      "externalVideoUrl": "https://polumatkimya.com/sayfa/uygulama-videolari",
+      "legacyUrls": [
+        "/urunler/detay/dusakabin-silikonu",
+        "/urunler/dusakabin-silikonu",
+        "http://www.polumatkimya.com/urunler/detay/dusakabin-silikonu"
+      ],
+      "previousSlugs": [
+        "dusakabin-silikonu"
+      ],
+      "imageUrls": [
+        "https://polumatkimya.com/images/urunler/1740341334.webp"
+      ],
+      "status": "published"
+    },
+    {
+      "sourceKey": "product:ayna-silikonu",
+      "legacyId": "ayna-silikonu",
+      "legacySlug": "ayna-silikonu",
+      "slug": "mirror-silicone",
+      "sortOrder": 14,
+      "categorySlug": "construction-chemicals",
+      "title": {
+        "tr": "Ayna Silikonu"
+      },
+      "shortDescription": {
+        "tr": "Nötr esaslı, ayna yapıştırmak için kullanılan yüksek kaliteli yapıştırma silikonudur. Aynalarda kararmaya neden olmaz. Kokusuzdur. Korozyona neden olmaz. Solvent içermez. %100 silikondur. Aynaları; fayans, çelik, alüminyum, ahşap, alçıpan ve beton gibi yüzeylere yapıştırmak için uygundur."
+      },
+      "bodyText": {
+        "tr": "Nötr esaslı, ayna yapıştırmak için kullanılan yüksek kaliteli yapıştırma silikonudur. Aynalarda kararmaya neden olmaz. Kokusuzdur. Korozyona neden olmaz. Solvent içermez. %100 silikondur. Aynaları; fayans, çelik, alüminyum, ahşap, alçıpan ve beton gibi yüzeylere yapıştırmak için uygundur.\n\nÜRÜN ÖZELLİKLERİ\n• Nötr kürlenir.\n• Düşük modüllü, yüksek elastikiyetlidir.\n• Birçok çeşit yüzeye primersiz iyi yapışma gösterir.\n• Metal korozyonuna neden olmaz.\n• Uygulaması kolaydır.\n• Az kokuludur.\n• UV ışınlarına ve sınır sıcaklıklara dayanıklıdır."
+      },
+      "featuresTr": [
+        "Nötr kürlenir.",
+        "Düşük modüllü, yüksek elastikiyetlidir.",
+        "Birçok çeşit yüzeye primersiz iyi yapışma gösterir.",
+        "Metal korozyonuna neden olmaz.",
+        "Uygulaması kolaydır.",
+        "Az kokuludur.",
+        "UV ışınlarına ve sınır sıcaklıklara dayanıklıdır."
+      ],
+      "usageAreasTr": "Nötr esaslı, ayna yapıştırmak için kullanılan yüksek kaliteli yapıştırma silikonudur. Aynalarda kararmaya neden olmaz. Kokusuzdur. Korozyona neden olmaz. Solvent içermez. %100 silikondur. Aynaları; fayans, çelik, alüminyum, ahşap, alçıpan ve beton gibi yüzeylere yapıştırmak için uygundur.",
+      "specs": [
+        {
+          "labelTr": "KİMYASAL BAZ",
+          "value": "Nötr kürleme"
+        },
+        {
+          "labelTr": "YOĞUNLUK",
+          "value": "1,01 (+/-0,03)"
+        },
+        {
+          "labelTr": "KATILAŞMA SÜRESİ",
+          "value": "2mm/24 hours (23 °C and 50% R.H)"
+        },
+        {
+          "labelTr": "KURUMA SÜRESİ",
+          "value": "10-20 min. (23 °C and 50% R.H)"
+        },
+        {
+          "labelTr": "GRAMAJ",
+          "value": "310 ml"
+        },
+        {
+          "labelTr": "KOLİ",
+          "value": "24 Adet"
+        },
+        {
+          "labelTr": "PALET",
+          "value": "80 Koli"
+        }
+      ],
+      "packaging": [
+        {
+          "labelTr": "310 ml",
+          "volume": "310 ml"
+        }
+      ],
+      "sdsUrl": null,
+      "catalogUrl": "https://polumatkimya.com/Polumat.pdf",
+      "externalVideoUrl": "https://polumatkimya.com/sayfa/uygulama-videolari",
+      "legacyUrls": [
+        "/urunler/detay/ayna-silikonu",
+        "/urunler/ayna-silikonu",
+        "http://www.polumatkimya.com/urunler/detay/ayna-silikonu"
+      ],
+      "previousSlugs": [
+        "ayna-silikonu"
+      ],
+      "imageUrls": [
+        "https://polumatkimya.com/images/urunler/1740341524.webp"
+      ],
+      "status": "published"
+    },
+    {
+      "sourceKey": "product:universal-silikon",
+      "legacyId": "universal-silikon",
+      "legacySlug": "universal-silikon",
+      "slug": "universal-silicone",
+      "sortOrder": 15,
+      "categorySlug": "construction-chemicals",
+      "title": {
+        "tr": "Universal Silikon"
+      },
+      "shortDescription": {
+        "tr": "Genel amaçlı ve tek komponentli (asetik kürleşme), geniş kullanım alanına sahip silikon bazlı bir sızdırmazlık ve dolgu malzemesidir. Kürleştikten sonra sürekli elastik kalır. Gözeneksiz yüzeylere mükemmel yapışma sağlar. Çatlamaz, sararma yapmaz. Düşük ve yüksek sıcaklıklarda niteliklerini kaybetmez."
+      },
+      "bodyText": {
+        "tr": "Genel amaçlı ve tek komponentli (asetik kürleşme), geniş kullanım alanına sahip silikon bazlı bir sızdırmazlık ve dolgu malzemesidir. Kürleştikten sonra sürekli elastik kalır. Gözeneksiz yüzeylere mükemmel yapışma sağlar. Çatlamaz, sararma yapmaz. Düşük ve yüksek sıcaklıklarda niteliklerini kaybetmez.\n\nÜRÜN ÖZELLİKLERİ\n• Gözeneksiz yüzeylere mükemmel tutunma\n• Kalıcı renkler\n• Kolay uygulama\n• Kuruduktan sonra esnektir"
+      },
+      "featuresTr": [
+        "Gözeneksiz yüzeylere mükemmel tutunma",
+        "Kalıcı renkler",
+        "Kolay uygulama",
+        "Kuruduktan sonra esnektir"
+      ],
+      "usageAreasTr": "Genel amaçlı ve tek komponentli (asetik kürleşme), geniş kullanım alanına sahip silikon bazlı bir sızdırmazlık ve dolgu malzemesidir. Kürleştikten sonra sürekli elastik kalır. Gözeneksiz yüzeylere mükemmel yapışma sağlar. Çatlamaz, sararma yapmaz. Düşük ve yüksek sıcaklıklarda niteliklerini kaybetmez.",
+      "specs": [
+        {
+          "labelTr": "KİMYASAL BAZ",
+          "value": "Asetoksi"
+        },
+        {
+          "labelTr": "YOĞUNLUK",
+          "value": "0,98 (+/-0,03)"
+        },
+        {
+          "labelTr": "KATILAŞMA SÜRESİ",
+          "value": "2mm/24 hours (23 °C and 50% R.H)"
+        },
+        {
+          "labelTr": "KURUMA SÜRESİ",
+          "value": "10-20 min. (23 °C and 50% R.H)"
+        },
+        {
+          "labelTr": "GRAMAJ",
+          "value": "280 gr"
+        },
+        {
+          "labelTr": "KOLİ",
+          "value": "24 Adet"
+        },
+        {
+          "labelTr": "PALET",
+          "value": "80 Koli"
+        }
+      ],
+      "packaging": [
+        {
+          "labelTr": "280 gr",
+          "volume": "280 gr"
+        }
+      ],
+      "sdsUrl": null,
+      "catalogUrl": "https://polumatkimya.com/Polumat.pdf",
+      "externalVideoUrl": "https://polumatkimya.com/sayfa/uygulama-videolari",
+      "legacyUrls": [
+        "/urunler/detay/universal-silikon",
+        "/urunler/universal-silikon",
+        "http://www.polumatkimya.com/urunler/detay/universal-silikon"
+      ],
+      "previousSlugs": [
+        "universal-silikon"
+      ],
+      "imageUrls": [
+        "https://polumatkimya.com/images/urunler/1740341730.webp"
+      ],
+      "status": "published"
+    },
+    {
+      "sourceKey": "product:e-universal-silikon",
+      "legacyId": "e-universal-silikon",
+      "legacySlug": "e-universal-silikon",
+      "slug": "e-universal-silicone",
+      "sortOrder": 16,
+      "categorySlug": "construction-chemicals",
+      "title": {
+        "tr": "E-Universal Silikon"
+      },
+      "shortDescription": {
+        "tr": "Tek bileşenli nötr kürlenen yüksek performanslı sızdırmazlık ve dolgu malzemesidir. Güneş ışınlarına dayanıklı, yüksek yapışma gücüne sahip olduğundan alüminyum ve cam dış cephelerde kullanılır. Korozyona neden olmaz. Her türlü hava koşullarına son derece dayanıklıdır. Yüksek ve düşük sıcaklıklarda özelliklerini kaybetmez. (-60 oc / +180 o c). Duvar, tuğla, beton, pvc, alüminyum, ahşap, cam vb. pe"
+      },
+      "bodyText": {
+        "tr": "Tek bileşenli nötr kürlenen yüksek performanslı sızdırmazlık ve dolgu malzemesidir. Güneş ışınlarına dayanıklı, yüksek yapışma gücüne sahip olduğundan alüminyum ve cam dış cephelerde kullanılır. Korozyona neden olmaz. Her türlü hava koşullarına son derece dayanıklıdır. Yüksek ve düşük sıcaklıklarda özelliklerini kaybetmez. (-60 oc / +180 o c). Duvar, tuğla, beton, pvc, alüminyum, ahşap, cam vb. pek çok malzemede dolgu ve sızdırmazlık uygulamalarında kullanılır.\n\nÜRÜN ÖZELLİKLERİ\n• Solvent içermez. %100 silikondur.\n• Kürlenirken çok az koku yayar.\n• Oldukça geniş uygulama sıcaklığına sahiptir.\n• Gözenekli ve gözeneksiz yüzeye astarsız mükemmel yapışma sağlar."
+      },
+      "featuresTr": [
+        "Solvent içermez. %100 silikondur.",
+        "Kürlenirken çok az koku yayar.",
+        "Oldukça geniş uygulama sıcaklığına sahiptir.",
+        "Gözenekli ve gözeneksiz yüzeye astarsız mükemmel yapışma sağlar."
+      ],
+      "usageAreasTr": "Tek bileşenli nötr kürlenen yüksek performanslı sızdırmazlık ve dolgu malzemesidir. Güneş ışınlarına dayanıklı, yüksek yapışma gücüne sahip olduğundan alüminyum ve cam dış cephelerde kullanılır. Korozyona neden olmaz. Her türlü hava koşullarına son derece dayanıklıdır. Yüksek ve düşük sıcaklıklarda özelliklerini kaybetmez. (-60 oc / +180 o c). Duvar, tuğla, beton, pvc, alüminyum, ahşap, cam vb. pek çok malzemede dolgu ve sızdırmazlık uygulamalarında kullanılır.",
+      "specs": [
+        {
+          "labelTr": "KİMYASAL BAZ",
+          "value": "Poliüretan"
+        },
+        {
+          "labelTr": "YOĞUNLUK",
+          "value": "1,15 (+/-0,03)"
+        },
+        {
+          "labelTr": "KATILAŞMA SÜRESİ",
+          "value": "2mm/24 hours (23 °C and 50% R.H)"
+        },
+        {
+          "labelTr": "KURUMA SÜRESİ",
+          "value": "60-90 min. (23 °C and 50% R.H)"
+        },
+        {
+          "labelTr": "GRAMAJ",
+          "value": "280 gr"
+        },
+        {
+          "labelTr": "KOLİ",
+          "value": "24 Adet"
+        },
+        {
+          "labelTr": "PALET",
+          "value": "80 Koli"
+        }
+      ],
+      "packaging": [
+        {
+          "labelTr": "280 gr",
+          "volume": "280 gr"
+        }
+      ],
+      "sdsUrl": null,
+      "catalogUrl": "https://polumatkimya.com/Polumat.pdf",
+      "externalVideoUrl": "https://polumatkimya.com/sayfa/uygulama-videolari",
+      "legacyUrls": [
+        "/urunler/detay/e-universal-silikon",
+        "/urunler/e-universal-silikon",
+        "http://www.polumatkimya.com/urunler/detay/e-universal-silikon"
+      ],
+      "previousSlugs": [
+        "e-universal-silikon"
+      ],
+      "imageUrls": [
+        "https://polumatkimya.com/images/urunler/1740341818.webp"
+      ],
+      "status": "published"
+    },
+    {
+      "sourceKey": "product:high-tack-silikon",
+      "legacyId": "high-tack-silikon",
+      "legacySlug": "high-tack-silikon",
+      "slug": "high-tack-adhesive",
+      "sortOrder": 17,
+      "categorySlug": "construction-chemicals",
+      "title": {
+        "tr": "High Tack Silikon"
+      },
+      "shortDescription": {
+        "tr": "High Tack, tek komponentli, yüksek yapışma ve ilk tutunma gücüne sahip, AST Polimer esaslı bir yapıştırıcıdır. Ağır yapı malzemelerinin sabitlenme ihtiyacı olmadan yapıştırılmasına olanak verir. Su geçirmezdir. Tek komponentlidir. Üzeri boyanabilir. Kabarcık oluşumu yoktur. Hacim kaybına uğramaz. Astar gerektirmez."
+      },
+      "bodyText": {
+        "tr": "High Tack, tek komponentli, yüksek yapışma ve ilk tutunma gücüne sahip, AST Polimer esaslı bir yapıştırıcıdır. Ağır yapı malzemelerinin sabitlenme ihtiyacı olmadan yapıştırılmasına olanak verir. Su geçirmezdir. Tek komponentlidir. Üzeri boyanabilir. Kabarcık oluşumu yoktur. Hacim kaybına uğramaz. Astar gerektirmez.\n\nÜRÜN ÖZELLİKLERİ\n• Su geçirmezdir.\n• Tek komponentlidir.\n• Üzeri boyanabilir.\n• Kabarcık oluşumu yoktur.\n• Hacim kaybına uğramaz.\n• Astar gerektirmez (Ön test yapılması önerilir).\n• Mükemmel elastikiyet ve çok iyi yapışma gücüne sahiptir.\n• Solvent, silikon ve izosiyanat içermez."
+      },
+      "featuresTr": [
+        "Su geçirmezdir.",
+        "Tek komponentlidir.",
+        "Üzeri boyanabilir.",
+        "Kabarcık oluşumu yoktur.",
+        "Hacim kaybına uğramaz.",
+        "Astar gerektirmez (Ön test yapılması önerilir).",
+        "Mükemmel elastikiyet ve çok iyi yapışma gücüne sahiptir.",
+        "Solvent, silikon ve izosiyanat içermez."
+      ],
+      "usageAreasTr": "High Tack, tek komponentli, yüksek yapışma ve ilk tutunma gücüne sahip, AST Polimer esaslı bir yapıştırıcıdır. Ağır yapı malzemelerinin sabitlenme ihtiyacı olmadan yapıştırılmasına olanak verir. Su geçirmezdir. Tek komponentlidir. Üzeri boyanabilir. Kabarcık oluşumu yoktur. Hacim kaybına uğramaz. Astar gerektirmez.",
+      "specs": [
+        {
+          "labelTr": "KİMYASAL BAZ",
+          "value": "SMP polimer"
+        },
+        {
+          "labelTr": "YOĞUNLUK",
+          "value": "1,60 (+/-0,04) gr/cm&sup3;"
+        },
+        {
+          "labelTr": "KATILAŞMA SÜRESİ",
+          "value": "3mm/24 hours (23 °C and 50% R.H)"
+        },
+        {
+          "labelTr": "KURUMA SÜRESİ",
+          "value": "10-15 min."
+        },
+        {
+          "labelTr": "GRAMAJ",
+          "value": "290 ml"
+        },
+        {
+          "labelTr": "KOLİ",
+          "value": "24 Adet"
+        },
+        {
+          "labelTr": "PALET",
+          "value": "80 Koli"
+        }
+      ],
+      "packaging": [
+        {
+          "labelTr": "290 ml",
+          "volume": "290 ml"
+        }
+      ],
+      "sdsUrl": null,
+      "catalogUrl": "https://polumatkimya.com/Polumat.pdf",
+      "externalVideoUrl": "https://polumatkimya.com/sayfa/uygulama-videolari",
+      "legacyUrls": [
+        "/urunler/detay/high-tack-silikon",
+        "/urunler/high-tack-silikon",
+        "http://www.polumatkimya.com/urunler/detay/high-tack-silikon"
+      ],
+      "previousSlugs": [
+        "high-tack-silikon"
+      ],
+      "imageUrls": [
+        "https://polumatkimya.com/images/urunler/1740341905.webp"
+      ],
+      "status": "published"
+    },
+    {
+      "sourceKey": "product:mdf-kit-aktivator",
+      "legacyId": "mdf-kit-aktivator",
+      "legacySlug": "mdf-kit-aktivator",
+      "slug": "mdf-kit-activator",
+      "sortOrder": 18,
+      "categorySlug": "construction-chemicals",
+      "title": {
+        "tr": "Mdf Kit Aktivatör"
+      },
+      "shortDescription": {
+        "tr": "Ahşap parçaların montaj ve tamiratında. MDF, kauçuk, deri ve plastik yüzeylerde. Özellikle hızlı kürleşme istenen uygulamalarda tercih edilir. Yüksek yapıştırma gücü. Dikey yüzeylerde kullanıma uygundur, akma ve sıçrama yapmaz. Yüksek viskoziteli olduğu için özellikle gözenekli ve yapıştırılması zor yüzeylerde yapışma gücünün artmasını sağlar."
+      },
+      "bodyText": {
+        "tr": "Ahşap parçaların montaj ve tamiratında. MDF, kauçuk, deri ve plastik yüzeylerde. Özellikle hızlı kürleşme istenen uygulamalarda tercih edilir. Yüksek yapıştırma gücü. Dikey yüzeylerde kullanıma uygundur, akma ve sıçrama yapmaz. Yüksek viskoziteli olduğu için özellikle gözenekli ve yapıştırılması zor yüzeylerde yapışma gücünün artmasını sağlar.\n\nÜRÜN ÖZELLİKLERİ\n• Yüksek yapışma gücü\n• Dikey yüzeylerde kullanıma uygun, akma ve sıçrama yapmaz.\n• Yüksek viskoziteli olduğu için özellikle gözenekli ve yapıştırılması zor yüzeylerde, yapışma gücünün artmasını sağlar."
+      },
+      "featuresTr": [
+        "Yüksek yapışma gücü",
+        "Dikey yüzeylerde kullanıma uygun, akma ve sıçrama yapmaz.",
+        "Yüksek viskoziteli olduğu için özellikle gözenekli ve yapıştırılması zor yüzeylerde, yapışma gücünün artmasını sağlar."
+      ],
+      "usageAreasTr": "Ahşap parçaların montaj ve tamiratında. MDF, kauçuk, deri ve plastik yüzeylerde. Özellikle hızlı kürleşme istenen uygulamalarda tercih edilir. Yüksek yapıştırma gücü. Dikey yüzeylerde kullanıma uygundur, akma ve sıçrama yapmaz. Yüksek viskoziteli olduğu için özellikle gözenekli ve yapıştırılması zor yüzeylerde yapışma gücünün artmasını sağlar.",
+      "specs": [
+        {
+          "labelTr": "RENK",
+          "value": "Şeffaf"
+        },
+        {
+          "labelTr": "KOKU",
+          "value": "Karakteristik (genellikle hafif koku veya hafif kimyasal koku)"
+        },
+        {
+          "labelTr": "YOĞUNLUK",
+          "value": "1.3 g/cm&sup3;"
+        },
+        {
+          "labelTr": "VİSKOSİTE",
+          "value": "1500 - 5000 cP (at 25°C)"
+        },
+        {
+          "labelTr": "PH DEĞERİ",
+          "value": "8"
+        },
+        {
+          "labelTr": "KURUMA SÜRESİ",
+          "value": "Genellikle 30 dakika ile 1 saat arasında"
+        },
+        {
+          "labelTr": "PARLAMA NOKTASI",
+          "value": "> 60°C"
+        },
+        {
+          "labelTr": "DONMA NOKTASI",
+          "value": "-5°C ile -15°C arasında"
+        },
+        {
+          "labelTr": "KOLİ",
+          "value": "24 Adet"
+        },
+        {
+          "labelTr": "GRAMAJ",
+          "value": "400ml"
+        },
+        {
+          "labelTr": "PALET",
+          "value": "80 Koli"
+        }
+      ],
+      "packaging": [
+        {
+          "labelTr": "400ml",
+          "volume": "400ml"
+        },
+        {
+          "labelTr": "200ml",
+          "volume": "200ml"
+        }
+      ],
+      "sdsUrl": null,
+      "catalogUrl": "https://polumatkimya.com/Polumat.pdf",
+      "externalVideoUrl": "https://polumatkimya.com/sayfa/uygulama-videolari",
+      "legacyUrls": [
+        "/urunler/detay/mdf-kit-aktivator",
+        "/urunler/mdf-kit-aktivator",
+        "http://www.polumatkimya.com/urunler/detay/mdf-kit-aktivator"
+      ],
+      "previousSlugs": [
+        "mdf-kit-aktivator"
+      ],
+      "imageUrls": [
+        "https://polumatkimya.com/images/urunler/1740342100.webp"
+      ],
+      "status": "published"
+    },
+    {
+      "sourceKey": "product:derz-dolgusu",
+      "legacyId": "derz-dolgusu",
+      "legacySlug": "derz-dolgusu",
+      "slug": "grout-filler",
+      "sortOrder": 19,
+      "categorySlug": "construction-chemicals",
+      "title": {
+        "tr": "Derz Dolgusu"
+      },
+      "shortDescription": {
+        "tr": "Tek bileşenli, akrilik esaslı kullanıma hazır derz dolgudur. Küf ve mantar oluşumuna dirençli, çatlama ve çökme yapmaz. Kuruduktan sonra suya karşı dayanıklıdır. İç ve dış mekanlarda kullanıma uygundur."
+      },
+      "bodyText": {
+        "tr": "Tek bileşenli, akrilik esaslı kullanıma hazır derz dolgudur. Küf ve mantar oluşumuna dirençli, çatlama ve çökme yapmaz. Kuruduktan sonra suya karşı dayanıklıdır. İç ve dış mekanlarda kullanıma uygundur.\n\nÜRÜN ÖZELLİKLERİ\n• Tuğla, beton, ahşap vb. bütün gözenekli yüzeylerde kullanılabilir.\n• Uygulanması ve temizlenmesi oldukça kolaydır, solvent içermez, kokusuzdur.\n• Üzeri boyanabilir."
+      },
+      "featuresTr": [
+        "Tuğla, beton, ahşap vb. bütün gözenekli yüzeylerde kullanılabilir.",
+        "Uygulanması ve temizlenmesi oldukça kolaydır, solvent içermez, kokusuzdur.",
+        "Üzeri boyanabilir."
+      ],
+      "usageAreasTr": "Tek bileşenli, akrilik esaslı kullanıma hazır derz dolgudur. Küf ve mantar oluşumuna dirençli, çatlama ve çökme yapmaz. Kuruduktan sonra suya karşı dayanıklıdır. İç ve dış mekanlarda kullanıma uygundur.",
+      "specs": [
+        {
+          "labelTr": "KİMYASAL BAZ",
+          "value": "Akrilik Dispersiyon"
+        },
+        {
+          "labelTr": "YOĞUNLUK",
+          "value": "1,67 (+/-0,03)"
+        },
+        {
+          "labelTr": "KATILAŞMA SÜRESİ",
+          "value": "2 mm / 24 saat (23 °C ve %50 B.N.)"
+        },
+        {
+          "labelTr": "KURUMA SÜRESİ",
+          "value": "15-45 min. (23 °C, % 50 R.H )"
+        },
+        {
+          "labelTr": "KOLİ",
+          "value": "24 Adet"
+        },
+        {
+          "labelTr": "PALET",
+          "value": "120 Koli"
+        }
+      ],
+      "packaging": [],
+      "sdsUrl": null,
+      "catalogUrl": "https://polumatkimya.com/Polumat.pdf",
+      "externalVideoUrl": "https://polumatkimya.com/sayfa/uygulama-videolari",
+      "legacyUrls": [
+        "/urunler/detay/derz-dolgusu",
+        "/urunler/derz-dolgusu",
+        "http://www.polumatkimya.com/urunler/detay/derz-dolgusu"
+      ],
+      "previousSlugs": [
+        "derz-dolgusu"
+      ],
+      "imageUrls": [
+        "https://polumatkimya.com/images/urunler/1740342195.webp"
+      ],
+      "status": "published"
+    }
+  ],
+  "posts": [
+    {
+      "sourceKey": "post:tr:yeni-nesil-polumat-endustriyel-spreyler",
+      "legacyId": "yeni-nesil-polumat-endustriyel-spreyler",
+      "language": "tr",
+      "slug": "next-generation-polumat-industrial-sprays",
+      "title": "Yeni Nesil Polumat Endüstriyel Spreyler",
+      "excerpt": "Yeni Nesil Polumat Endüstriyel Spreyler Yeni Nesil Polumat Endüstriyel Spreyler Polumat Yeni Nesil Endüstriyel Spreyler: Devrim Yaratan Teknoloji Endüstriyel alanda yenilikçi çözümler sunan Polumat, yeni nesil sprey teknolojileri ile sektörde devrim yaratmaya hazırlanıyor. Poluma",
+      "bodyText": "Yeni Nesil Polumat Endüstriyel Spreyler Yeni Nesil Polumat Endüstriyel Spreyler Polumat Yeni Nesil Endüstriyel Spreyler: Devrim Yaratan Teknoloji Endüstriyel alanda yenilikçi çözümler sunan Polumat, yeni nesil sprey teknolojileri ile sektörde devrim yaratmaya hazırlanıyor. Polumat'ın geliştirdiği bu yeni spreyler, hem çevre dostu özellikleri hem de üstün performansları ile dikkat çekiyor.\n\nÜstün Performans ve Dayanıklılık Polumat'ın spreyleri, sadece çevre dostu olmakla kalmıyor, aynı zamanda performans açısından da oldukça etkileyici özellikler taşıyor. Yüksek temizleme, yağlama, parlatma ve hızlı kuruma gibi avantajları sayesinde, endüstriyel uygulamalarda zaman ve maliyet tasarrufu sağlıyor. Spreylerin dayanıklılığı, uzun süreli kullanımda bile performans kaybı yaşanmamasını sağlıyor.\n\nGeniş Kullanım Alanları Yeni nesil Polumat spreyler, geniş bir kullanım alanına sahip. Özellikle otomotiv, inşaat, elektronik ve mobilya sektörlerinde yaygın olarak kullanılabilen bu spreyler, farklı yüzeylerde mükemmel sonuçlar sunuyor. Polumat, her sektöre ve ihtiyaca uygun farklı ürün çeşitliliği ile müşterilerine esnek çözümler sunuyor.\n\nPolumat Kimya olarak, geniş ürün yelpazemizle sanayi ve bireysel kullanımlar için yüksek kaliteli kimyasal çözümler sunuyoruz.",
+      "translationStatus": "complete",
+      "legacyUrls": [
+        "/blog/yeni-nesil-polumat-endustriyel-spreyler",
+        "http://www.polumatkimya.com/blog/yeni-nesil-polumat-endustriyel-spreyler"
+      ],
+      "previousSlugs": [
+        "yeni-nesil-polumat-endustriyel-spreyler"
+      ]
+    },
+    {
+      "sourceKey": "post:tr:neden-polumati-tercih-etmelisiniz",
+      "legacyId": "neden-polumati-tercih-etmelisiniz",
+      "language": "tr",
+      "slug": "why-choose-polumat",
+      "title": "Neden Polumat'ı Tercih Etmelisiniz?",
+      "excerpt": "Neden Polumat'ı Tercih Etmelisiniz? Neden Polumat'ı Tercih Etmelisiniz? Polumat'ın Yenilikçi Yaklaşımı Polumat, Ar-Ge çalışmalarına büyük önem verir. Sürekli olarak daha etkili ve çevre dostu ürünler geliştirmek için çalışır. Ayrıca, müşteri memnuniyetini ön planda tutarak, her ü",
+      "bodyText": "Neden Polumat'ı Tercih Etmelisiniz? Neden Polumat'ı Tercih Etmelisiniz? Polumat'ın Yenilikçi Yaklaşımı Polumat, Ar-Ge çalışmalarına büyük önem verir. Sürekli olarak daha etkili ve çevre dostu ürünler geliştirmek için çalışır. Ayrıca, müşteri memnuniyetini ön planda tutarak, her ürününde kalite ve güvenlik standartlarına uyum sağlamaktadır.\n\nKalite Güvencesi: Her ürün, sıkı kalite kontrol süreçlerinden geçer.\n\nYenilikçilik: Sürekli gelişim ve yeni teknolojilerin entegrasyonu.\n\nMüşteri Odaklılık: İhtiyaçlarınıza özel çözümler sunan profesyonel destek.\n\nPolumat Kimya, kimya endüstrisindeki güvenilir çözüm ortağınız olmaya devam ediyor. İnovasyon ve kaliteyi bir araya getiren Polumat ürünleri ile siz de iş süreçlerinizi daha verimli hale getirebilirsiniz.\n\nPolumat Kimya olarak, geniş ürün yelpazemizle sanayi ve bireysel kullanımlar için yüksek kaliteli kimyasal çözümler sunuyoruz.",
+      "translationStatus": "complete",
+      "legacyUrls": [
+        "/blog/neden-polumati-tercih-etmelisiniz",
+        "http://www.polumatkimya.com/blog/neden-polumati-tercih-etmelisiniz"
+      ],
+      "previousSlugs": [
+        "neden-polumati-tercih-etmelisiniz"
+      ]
+    },
+    {
+      "sourceKey": "post:tr:kuresel-ekonomiye-yeni-bir-soluk",
+      "legacyId": "kuresel-ekonomiye-yeni-bir-soluk",
+      "language": "tr",
+      "slug": "a-new-breath-for-global-economy",
+      "title": "Küresel Ekonomiye Yeni Bir Soluk",
+      "excerpt": "Küresel Ekonomiye Yeni Bir Soluk Küresel Ekonomiye Yeni Bir Soluk Polumat Uluslararası İşbirlikleri ile Büyümeye Devam Ediyor Polumat, kimya sektöründe uluslararası işbirlikleriyle büyümeye ve yenilikçi çözümler sunmaya devam ediyor. Şirket, son dönemde gerçekleştirdiği stratejik",
+      "bodyText": "Küresel Ekonomiye Yeni Bir Soluk Küresel Ekonomiye Yeni Bir Soluk Polumat Uluslararası İşbirlikleri ile Büyümeye Devam Ediyor Polumat, kimya sektöründe uluslararası işbirlikleriyle büyümeye ve yenilikçi çözümler sunmaya devam ediyor. Şirket, son dönemde gerçekleştirdiği stratejik anlaşmalarla global pazarda daha güçlü bir konuma gelmeyi hedefliyor.\n\nYenilikçi Ürün Geliştirme Uluslararası işbirlikleri, Polumat Kimya'nın ürün portföyünü genişletmesine ve yenilikçi ürünler geliştirmesine olanak tanıyor. Şirket, bu sayede müşterilerine daha çeşitli ve kaliteli ürünler sunarak sektördeki lider konumunu pekiştirmeyi amaçlıyor.\n\nPolumat Kimya olarak, geniş ürün yelpazemizle sanayi ve bireysel kullanımlar için yüksek kaliteli kimyasal çözümler sunuyoruz.",
+      "translationStatus": "complete",
+      "legacyUrls": [
+        "/blog/kuresel-ekonomiye-yeni-bir-soluk",
+        "http://www.polumatkimya.com/blog/kuresel-ekonomiye-yeni-bir-soluk"
+      ],
+      "previousSlugs": [
+        "kuresel-ekonomiye-yeni-bir-soluk"
+      ]
+    },
+    {
+      "sourceKey": "post:tr:yapi-kimyasallari-sektorunde-yenilikci-cozumler",
+      "legacyId": "yapi-kimyasallari-sektorunde-yenilikci-cozumler",
+      "language": "tr",
+      "slug": "innovative-solutions-in-construction-chemicals",
+      "title": "Yapı Kimyasalları Sektöründe Yenilikçi Çözümler",
+      "excerpt": "Yapı Kimyasalları Sektöründe Yenilikçi Çözümler Yapı Kimyasalları Sektöründe Yenilikçi Çözümler Yapı kimyasalları sektörü, inşaat projelerinin kalitesini ve dayanıklılığını artırmak için sürekli olarak yenilikçi çözümler arayışındadır. Polumat, bu alanda öncü firmalardan biri ola",
+      "bodyText": "Yapı Kimyasalları Sektöründe Yenilikçi Çözümler Yapı Kimyasalları Sektöründe Yenilikçi Çözümler Yapı kimyasalları sektörü, inşaat projelerinin kalitesini ve dayanıklılığını artırmak için sürekli olarak yenilikçi çözümler arayışındadır. Polumat, bu alanda öncü firmalardan biri olarak, sürdürülebilir ve etkili çözümler sunmayı hedeflemektedir.\n\nSilikon ve Mastik Çeşitlerimiz Mekanik ve yapı projelerinizde güvenle kullanabileceğiniz universal silikonlarımız, çeşitli ihtiyaçlarınıza çözüm sunar. Özel amaçlarla tasarlanmış silikon çeşitlerimiz, her türlü montaj ve sızdırmazlık gereksinimlerinizi karşılamak için idealdir.\n\nÖzel Amaçlı Silikon Çeşitleri Akvaryum Silikonu: Sızdırmazlık ve dayanıklılık gerektiren akvaryum projelerinizde mükemmel sonuçlar verir. Universal Silikon: Geniş bir kullanım yelpazesine sahip, çok amaçlı bir üründür. Duşakabin Silikonu: Duşakabinlerdeki sızdırmazlık sorunlarını çözmek için özel olarak formüle edilmiştir. Ayna Silikonu: Aynaların güvenli bir şekilde monte edilmesi ve sabitlenmesi için tasarlanmıştır.\n\nAkrilik Mastik ve Derz Dolgu Ürünlerimiz İnşaat ve dekorasyon projelerinizde hem esneklik hem de dayanıklılık sunan akrilik mastik ve derz dolgu ürünlerimiz, projelerinizin uzun ömürlü olmasına katkıda bulunur.\n\nEsneklik: Farklı yüzeylerde mükemmel yapışma sağlar ve hareket eden yapı elemanları için idealdir. Dayanıklılık: Zamanla çatlamaz ve solmaz, bu da projelerinizin kalitesini uzun süre korur.\n\nÜrünlerimiz, projelerinizin her aşamasında size güvenilir çözümler sunar. Her türlü montaj ve sızdırmazlık ihtiyaçlarınızı karşılamak için tasarlanmış bu ürünlerle projeleriniz daha sağlam ve dayanıklı hale gelir.\n\nPolumat Kimya olarak, geniş ürün yelpazemizle sanayi ve bireysel kullanımlar için yüksek kaliteli kimyasal çözümler sunuyoruz.",
+      "translationStatus": "complete",
+      "legacyUrls": [
+        "/blog/yapi-kimyasallari-sektorunde-yenilikci-cozumler",
+        "http://www.polumatkimya.com/blog/yapi-kimyasallari-sektorunde-yenilikci-cozumler"
+      ],
+      "previousSlugs": [
+        "yapi-kimyasallari-sektorunde-yenilikci-cozumler"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "sourceKey": "page:tr:about",
+      "language": "tr",
+      "slug": "about",
+      "title": "Hakkımızda",
+      "bodyText": "Hakkımızda Hakkımızda TEK YERLEŞKEDE DOUBLE HAT İLE GÜNLÜK 30.000+ ÜRETİM KAPASİTESİ\n\nPolumat Kimya olarak, geniş ürün yelpazemizle sanayi ve bireysel kullanımlar için yüksek kaliteli kimyasal ürünler üretiyoruz. Ürün portföyümüzde, fren balata temizleyicilerden çok amaçlı sprey ve pas sökücülere kadar çeşitli ihtiyaçlara yönelik ürünler bulunmaktadır. MDF kit aktivatörlerimiz ve motor temizleme spreylerimiz ile endüstriyel bakımda ihtiyaç duyduğunuz çözümleri sağlıyoruz.\n\nAyrıca, sıvı gres zincir yağlayıcılarımız ve universal silikonlarımız, mekanik ve yapı projelerinizde güvenle kullanabileceğiniz ürünlerdir. Akvaryum silikonu, güçlü silikon, duşakabin silikonu, ayna silikonu gibi özel amaçlı silikon çeşitlerimiz, her türlü montaj ve sızdırmazlık ihtiyacınızı karşılamak üzere tasarlanmıştır. Her biri titizlikle geliştirilmiş olan bu ürünlerimiz, kalite ve performans açısından beklentilerinizi karşılayacak şekilde üretilmektedir.\n\nÇEVRESEL SORUMLULUK Polumat Kimya, çevreye duyarlı üretim süreçleri geliştirmeye büyük önem vermektedir. Sürdürülebilirlik ilkelerimiz doğrultusunda, atık yönetimi ve enerji tasarrufu konularında çeşitli projeler yürütmekteyiz. Gelecek nesillere daha yaşanabilir bir dünya bırakmak için çalışıyoruz.\n\nİhtiyacınız olan tüm kimyasal ürün tedariğinde Polumat Kimya yanınızda!\n\nPolumat Kimya olarak, geniş ürün yelpazemizle sanayi ve bireysel kullanımlar için yüksek kaliteli kimyasal çözümler sunuyoruz.",
+      "legacyUrls": [
+        "/sayfa/hakkimizda"
+      ],
+      "translationStatus": "complete"
+    },
+    {
+      "sourceKey": "page:tr:mission-and-vision",
+      "language": "tr",
+      "slug": "mission-and-vision",
+      "title": "Misyon ve Vizyonumuz",
+      "legacyUrls": [
+        "/sayfa/misyon-ve-vizyonumuz"
+      ],
+      "translationStatus": "complete"
+    },
+    {
+      "sourceKey": "page:tr:quality-certificates",
+      "language": "tr",
+      "slug": "quality-certificates",
+      "title": "Polumat Kalitesi",
+      "legacyUrls": [
+        "/sayfa/polumat-kalitesi"
+      ],
+      "translationStatus": "complete"
+    },
+    {
+      "sourceKey": "page:tr:environmental-responsibility",
+      "language": "tr",
+      "slug": "environmental-responsibility",
+      "title": "Çevreye Duyarlılık",
+      "legacyUrls": [
+        "/sayfa/cevreye-duyarlilik"
+      ],
+      "translationStatus": "complete"
+    },
+    {
+      "sourceKey": "page:tr:occupational-health-and-safety",
+      "language": "tr",
+      "slug": "occupational-health-and-safety",
+      "title": "İş Sağlığı ve Güvenliği",
+      "legacyUrls": [
+        "/sayfa/is-sagligi-ve-guvenligi"
+      ],
+      "translationStatus": "complete"
+    },
+    {
+      "sourceKey": "page:tr:customer-satisfaction",
+      "language": "tr",
+      "slug": "customer-satisfaction",
+      "title": "Müşteri Memnuniyeti",
+      "legacyUrls": [
+        "/sayfa/musteri-memnuniyeti"
+      ],
+      "translationStatus": "complete"
+    },
+    {
+      "sourceKey": "page:tr:human-resources",
+      "language": "tr",
+      "slug": "human-resources",
+      "title": "İnsan Kaynakları",
+      "legacyUrls": [
+        "/sayfa/insan-kaynaklari"
+      ],
+      "translationStatus": "complete"
+    },
+    {
+      "sourceKey": "page:tr:return-and-exchange-policy",
+      "language": "tr",
+      "slug": "return-and-exchange-policy",
+      "title": "İade ve Değişim Politikamız",
+      "legacyUrls": [
+        "/sayfa/iade-ve-degisim-politikamiz"
+      ],
+      "translationStatus": "complete"
+    }
+  ],
+  "contact": {
+    "companyName": "Polumat Kimya San.Tic.Ltd.Şti",
+    "phone": "+90 372 615 77 70",
+    "email": "fabrika@polumatkimya.com",
+    "catalogUrl": "https://polumatkimya.com/Polumat.pdf"
+  },
+  "videos": [
+    {
+      "sourceKey": "video:application-videos",
+      "title": {
+        "tr": "Uygulama videoları",
+        "en": "Application videos",
+        "ar": "مقاطع فيديو التطبيق"
+      },
+      "description": {
+        "tr": "Ürün uygulama videoları."
+      },
+      "provider": "youtube",
+      "externalUrl": null,
+      "legacyUrls": [
+        "/sayfa/uygulama-videolari"
+      ]
+    }
+  ]
+}

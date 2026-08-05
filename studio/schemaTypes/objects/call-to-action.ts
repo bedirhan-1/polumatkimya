@@ -1,6 +1,8 @@
 import {LaunchIcon} from '@sanity/icons'
 import {defineField, defineType} from 'sanity'
 
+import {validateCallToActionValue} from '../../lib/cta-validation'
+
 export const callToActionType = defineType({
   name: 'callToAction',
   title: 'Call to action',
@@ -11,7 +13,6 @@ export const callToActionType = defineType({
       name: 'label',
       title: 'Label',
       type: 'internationalizedArrayString',
-      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'link',
@@ -33,14 +34,27 @@ export const callToActionType = defineType({
       initialValue: 'primary',
     }),
   ],
+  validation: (rule) => rule.custom((value) => validateCallToActionValue(value)),
   preview: {
     select: {
       variant: 'variant',
+      label: 'label',
+      linkType: 'link.linkType',
+      internalPath: 'link.internalPath',
+      externalUrl: 'link.externalUrl',
     },
-    prepare({variant}) {
+    prepare({variant, label, linkType, internalPath, externalUrl}) {
+      const localized = Array.isArray(label)
+        ? label.find(
+            (item: {language?: string; _key?: string; value?: string}) =>
+              item.language === 'tr' || item._key === 'tr',
+          )?.value || label.find((item: {value?: string}) => item.value)?.value
+        : undefined
+      const target =
+        linkType === 'external' ? externalUrl : linkType === 'internal' ? internalPath : linkType
       return {
-        title: 'Call to action',
-        subtitle: variant,
+        title: localized || 'Call to action',
+        subtitle: [variant, target].filter(Boolean).join(' · '),
       }
     },
   },

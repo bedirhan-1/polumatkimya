@@ -15,9 +15,14 @@
     "typecheck": "tsc --noEmit",
     "typecheck:studio": "npm run typecheck --workspace=polumat-studio",
     "schema:extract": "npm run schema:extract --workspace=polumat-studio",
-    "typegen": "npm run typegen --workspace=polumat-studio"
+    "typegen": "npm run typegen --workspace=polumat-studio",
+    "migrate:extract": "tsx migration/scripts/extract.ts",
+    "migrate:transform": "tsx migration/scripts/transform.ts",
+    "migrate:validate": "tsx migration/scripts/validate.ts",
+    "migrate:import": "tsx migration/scripts/import.ts"
   },
   "dependencies": {
+    "@sanity/client": "^7.20.0",
     "@sanity/document-internationalization": "^6.2.27",
     "@sanity/icons": "^3.7.4",
     "@sanity/image-url": "^2.1.1",
@@ -38,6 +43,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.2.12",
     "tailwindcss": "^4",
+    "tsx": "^4.20.5",
     "typescript": "^5"
   }
 }

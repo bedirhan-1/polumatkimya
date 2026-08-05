@@ -6,13 +6,12 @@ import {internationalizedArray} from 'sanity-plugin-internationalized-array'
 import {defineField} from 'sanity'
 
 import {apiVersion, dataset, projectId} from './env'
-import {DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES} from './lib/languages'
+import {LANGUAGE_IDS, SUPPORTED_LANGUAGES} from './lib/languages'
 import {schemaTypes} from './schemaTypes'
 import {structure} from './structure'
 
 const DOCUMENT_I18N_TYPES = [
   'homePage',
-  'privateLabelPage',
   'contactPage',
   'page',
   'post',
@@ -28,7 +27,7 @@ export default defineConfig({
     visionTool({defaultApiVersion: apiVersion}),
     internationalizedArray({
       languages: [...SUPPORTED_LANGUAGES],
-      defaultLanguages: [DEFAULT_LANGUAGE],
+      defaultLanguages: [...LANGUAGE_IDS],
       fieldTypes: [
         'string',
         'text',
@@ -50,7 +49,6 @@ export default defineConfig({
         // Localized singletons are created via Structure fixed IDs
         if (
           template.schemaType === 'homePage' ||
-          template.schemaType === 'privateLabelPage' ||
           template.schemaType === 'contactPage' ||
           template.schemaType === 'siteSettings'
         ) {

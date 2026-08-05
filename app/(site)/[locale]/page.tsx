@@ -1,52 +1,85 @@
-import {ButtonLink} from '@/components/ui/button-link'
-import {getDictionary} from '@/lib/i18n/get-dictionary'
-import {isLocale, type Locale} from '@/lib/i18n/locales'
-import {notFound} from 'next/navigation'
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+
+import type { PostCardData } from "@/components/content/post-card";
+import { PageBuilder } from "@/components/content/page-builder";
+import { HomeLanding } from "@/components/home/home-landing";
+import { getDictionary } from "@/lib/i18n/get-dictionary";
+import { isLocale, type Locale } from "@/lib/i18n/locales";
+import { asPageBuilderBlocks, asSeo } from "@/lib/sanity/content";
+import type { FilterOption, ProductCardData } from "@/lib/products/types";
+import { buildPageMetadata } from "@/lib/seo/metadata";
+import { getLatestPosts } from "@/sanity/lib/content";
+import { getHomePage } from "@/sanity/lib/pages";
+import { getProductCategories, getProducts } from "@/sanity/lib/products";
 
 type HomePageProps = {
-  params: Promise<{locale: string}>
+  params: Promise<{ locale: string }>;
+};
+
+export async function generateMetadata({
+  params,
+}: HomePageProps): Promise<Metadata> {
+  const { locale: localeParam } = await params;
+  if (!isLocale(localeParam)) return {};
+  const dictionary = await getDictionary(localeParam);
+  const page = await getHomePage(localeParam);
+  return buildPageMetadata({
+    locale: localeParam,
+    fallbackTitle: dictionary.meta.siteName,
+    fallbackDescription: dictionary.meta.defaultDescription,
+    seo: asSeo(
+      page && typeof page === "object" ? (page as { seo?: unknown }).seo : null,
+    ),
+    path: "/",
+  });
 }
 
-export default async function HomePage({params}: HomePageProps) {
-  const {locale: localeParam} = await params
-  if (!isLocale(localeParam)) {
-    notFound()
+export default async function HomePage({ params }: HomePageProps) {
+  const { locale: localeParam } = await params;
+  if (!isLocale(localeParam)) notFound();
+
+  const locale = localeParam as Locale;
+  const dictionary = await getDictionary(locale);
+  const page = await getHomePage(locale);
+  const blocks = asPageBuilderBlocks(
+    page && typeof page === "object"
+      ? (page as { pageBuilder?: unknown }).pageBuilder
+      : null,
+  );
+
+  if (blocks) {
+    return (
+      <main id="main-content">
+        <PageBuilder locale={locale} dictionary={dictionary} blocks={blocks} />
+      </main>
+    );
   }
 
-  const locale = localeParam as Locale
-  const dictionary = await getDictionary(locale)
+  const [categoriesRaw, productsRaw, postsRaw] = await Promise.all([
+    getProductCategories(locale),
+    getProducts(locale),
+    getLatestPosts(locale, 3),
+  ]);
+
+  const categories = (
+    Array.isArray(categoriesRaw) ? categoriesRaw : []
+  ) as FilterOption[];
+  const products = (
+    Array.isArray(productsRaw) ? productsRaw : []
+  ) as ProductCardData[];
+  const posts = (Array.isArray(postsRaw) ? postsRaw : []) as PostCardData[];
 
   return (
     <main id="main-content">
-      <section className="relative overflow-hidden border-b border-border">
-        <div className="container-site section-space grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="flex flex-col gap-6">
-            <p className="text-xs font-semibold tracking-[0.28em] text-accent uppercase">
-              {dictionary.home.eyebrow}
-            </p>
-            <h1 className="max-w-3xl text-5xl text-foreground sm:text-6xl lg:text-7xl">
-              {dictionary.home.headline}
-            </h1>
-            <p className="max-w-2xl text-lg text-muted">{dictionary.home.supporting}</p>
-            <div className="flex flex-wrap gap-3">
-              <ButtonLink href={`/${locale}/products`}>{dictionary.nav.products}</ButtonLink>
-              <ButtonLink href={`/${locale}/request-a-quote`} variant="secondary">
-                {dictionary.nav.requestQuote}
-              </ButtonLink>
-            </div>
-          </div>
-
-          <div className="frame-accent relative min-h-72 bg-surface p-6 sm:min-h-96">
-            <div className="absolute inset-3 border border-accent/30" />
-            <div className="relative flex h-full min-h-60 flex-col justify-end gap-3">
-              <p className="font-display text-sm tracking-[0.2em] text-accent uppercase">
-                {dictionary.home.panelLabel}
-              </p>
-              <p className="max-w-sm text-sm text-muted">{dictionary.home.panelText}</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HomeLanding
+        locale={locale}
+        dictionary={dictionary}
+        categories={categories}
+        products={products}
+        posts={posts}
+        dateLocale={locale}
+      />
     </main>
-  )
+  );
 }

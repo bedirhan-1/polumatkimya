@@ -1,6 +1,6 @@
 import {CubeIcon} from '@sanity/icons'
 import {defineArrayMember, defineField, defineType} from 'sanity'
-import {slugValidation} from '../../lib/slug'
+import {slugValidation, isUniqueSlug} from '../../lib/slug'
 
 export const productType = defineType({
   name: 'product',
@@ -19,7 +19,7 @@ export const productType = defineType({
       title: 'Slug',
       type: 'slug',
       description: 'Shared English slug used across all locales',
-      options: {maxLength: 96},
+      options: {maxLength: 96, isUnique: isUniqueSlug},
       validation: slugValidation,
     }),
     defineField({
@@ -159,12 +159,6 @@ export const productType = defineType({
       of: [defineArrayMember({type: 'documentReference'})],
     }),
     defineField({
-      name: 'privateLabelEligible',
-      title: 'Private label eligible',
-      type: 'boolean',
-      initialValue: false,
-    }),
-    defineField({
       name: 'productCta',
       title: 'Product CTA',
       type: 'callToAction',
@@ -172,7 +166,7 @@ export const productType = defineType({
     defineField({
       name: 'seo',
       title: 'SEO',
-      type: 'seo',
+      type: 'localizedSeo',
     }),
     defineField({
       name: 'legacyId',
@@ -204,15 +198,20 @@ export const productType = defineType({
   ],
   preview: {
     select: {
+      titleTr: 'title',
       slug: 'slug.current',
       sku: 'sku',
       media: 'packshot',
       status: 'status',
     },
-    prepare({slug, sku, media, status}) {
+    prepare({titleTr, slug, sku, media, status}) {
+      const localized = Array.isArray(titleTr)
+        ? titleTr.find((item: {_key?: string; language?: string; value?: string}) => item.language === 'tr' || item._key === 'tr')
+            ?.value
+        : undefined
       return {
-        title: slug || sku || 'Product',
-        subtitle: [sku, status].filter(Boolean).join(' · '),
+        title: localized || slug || sku || 'Product',
+        subtitle: [slug, sku, status].filter(Boolean).join(' · '),
         media,
       }
     },

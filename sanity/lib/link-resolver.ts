@@ -58,3 +58,25 @@ export function resolveHref(locale: Locale, link?: ResolvableLink | null): strin
 
   return null
 }
+
+export function resolveSimpleCta(
+  locale: Locale,
+  cta?: {
+    label?: string | null
+    linkType?: 'internal' | 'external' | null
+    internalPath?: string | null
+    externalUrl?: string | null
+    variant?: string | null
+  } | null,
+): {href: string; label: string; variant: 'primary' | 'secondary' | 'ghost'} | null {
+  if (!cta?.label) return null
+  const href = resolveHref(locale, {
+    linkType: cta.linkType === 'external' ? 'external' : 'internal',
+    internalPath: cta.internalPath,
+    externalUrl: cta.externalUrl,
+  })
+  if (!href) return null
+  const variant =
+    cta.variant === 'secondary' || cta.variant === 'ghost' ? cta.variant : 'primary'
+  return {href, label: cta.label, variant}
+}

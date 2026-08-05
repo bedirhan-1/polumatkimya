@@ -16,6 +16,8 @@
   --danger: #d64545;
 
   --header-height: 4.25rem;
+  /* Main nav + desktop utility strip (h-11) + breathing room */
+  --sticky-offset: calc(var(--header-height) + 2.75rem + 1rem);
   --container: 72rem;
   --section-space: clamp(3.5rem, 6vw, 6.5rem);
 
@@ -32,6 +34,8 @@
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
   --color-focus: var(--focus);
+  --color-success: var(--success);
+  --color-danger: var(--danger);
   --font-sans: var(--font-body);
   --font-display: var(--font-display);
   --font-arabic: var(--font-arabic);
@@ -139,4 +143,38 @@
 @utility frame-accent {
   border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--border));
   box-shadow: 0 0 0 1px color-mix(in srgb, var(--accent) 12%, transparent);
+}
+
+@utility product-mesh {
+  background-image:
+    linear-gradient(color-mix(in srgb, #ffffff 8%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, #ffffff 8%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+@utility product-hero-panel {
+  background:
+    radial-gradient(ellipse 70% 80% at 80% 20%, var(--accent-soft), transparent 50%),
+    linear-gradient(135deg, #12151a 0%, #0b0c0e 55%, #151820 100%);
+}
+
+@keyframes product-rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@utility animate-product-rise {
+  animation: product-rise 0.55s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-product-rise {
+    animation: none;
+  }
 }

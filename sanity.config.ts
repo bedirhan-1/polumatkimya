@@ -11,13 +11,12 @@ import {documentInternationalization} from '@sanity/document-internationalizatio
 import {internationalizedArray} from 'sanity-plugin-internationalized-array'
 
 import {apiVersion, dataset, projectId} from './sanity/env'
-import {DEFAULT_LANGUAGE, SUPPORTED_LANGUAGES} from './studio/lib/languages'
+import {LANGUAGE_IDS, SUPPORTED_LANGUAGES} from './studio/lib/languages'
 import {schemaTypes} from './studio/schemaTypes'
 import {structure} from './studio/structure'
 
 const DOCUMENT_I18N_TYPES = [
   'homePage',
-  'privateLabelPage',
   'contactPage',
   'page',
   'post',
@@ -34,7 +33,8 @@ export default defineConfig({
     visionTool({defaultApiVersion: apiVersion}),
     internationalizedArray({
       languages: [...SUPPORTED_LANGUAGES],
-      defaultLanguages: [DEFAULT_LANGUAGE],
+      // Empty TR/EN/AR rows on new field-level documents (products, categories, …)
+      defaultLanguages: [...LANGUAGE_IDS],
       fieldTypes: [
         'string',
         'text',
@@ -55,7 +55,6 @@ export default defineConfig({
       templates.filter((template) => {
         if (
           template.schemaType === 'homePage' ||
-          template.schemaType === 'privateLabelPage' ||
           template.schemaType === 'contactPage' ||
           template.schemaType === 'siteSettings'
         ) {

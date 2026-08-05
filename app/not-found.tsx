@@ -1,6 +1,11 @@
+import type {Metadata} from 'next'
 import Link from 'next/link'
 
 import {defaultLocale} from '@/lib/i18n/locales'
+
+export const metadata: Metadata = {
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://polumatkimya.com'),
+}
 
 export default function GlobalNotFound() {
   return (

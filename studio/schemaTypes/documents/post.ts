@@ -1,6 +1,6 @@
 import {DocumentTextIcon} from '@sanity/icons'
 import {defineArrayMember, defineField, defineType} from 'sanity'
-import {slugValidation} from '../../lib/slug'
+import {slugValidation, isUniqueSlugPerLanguage} from '../../lib/slug'
 import {languageField, translationStatusField} from '../shared/localization-fields'
 
 export const postType = defineType({
@@ -21,9 +21,12 @@ export const postType = defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
+      description:
+        'Shared English-character slug across language versions (TR/EN/AR of the same post keep the same slug).',
       options: {
         source: 'title',
         maxLength: 96,
+        isUnique: isUniqueSlugPerLanguage,
       },
       validation: slugValidation,
     }),
@@ -68,6 +71,26 @@ export const postType = defineType({
       name: 'seo',
       title: 'SEO',
       type: 'seo',
+    }),
+    defineField({
+      name: 'legacyId',
+      title: 'Legacy ID',
+      type: 'string',
+      readOnly: true,
+    }),
+    defineField({
+      name: 'legacyUrls',
+      title: 'Legacy URLs',
+      type: 'array',
+      of: [defineArrayMember({type: 'string'})],
+      readOnly: true,
+    }),
+    defineField({
+      name: 'previousSlugs',
+      title: 'Previous slugs',
+      type: 'array',
+      of: [defineArrayMember({type: 'string'})],
+      readOnly: true,
     }),
   ],
   preview: {

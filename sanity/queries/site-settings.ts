@@ -6,10 +6,11 @@ export const SITE_SETTINGS_QUERY = defineQuery(`
     companyName,
     siteUrl,
     whatsappNumber,
-    "shortDescription": shortDescription[_key == $locale][0].value,
-    "address": address[_key == $locale][0].value,
-    "workingHours": workingHours[_key == $locale][0].value,
-    "footerLegalText": footerLegalText[_key == $locale][0].value,
+    "whatsappMessage": whatsappMessage[language == $locale || _key == $locale][0].value,
+    "shortDescription": shortDescription[language == $locale || _key == $locale][0].value,
+    "address": address[language == $locale || _key == $locale][0].value,
+    "workingHours": workingHours[language == $locale || _key == $locale][0].value,
+    "footerLegalText": footerLegalText[language == $locale || _key == $locale][0].value,
     logoLight{
       asset,
       alt
@@ -25,7 +26,7 @@ export const SITE_SETTINGS_QUERY = defineQuery(`
       internalPath,
       externalUrl,
       openInNewTab,
-      "label": label[_key == $locale][0].value,
+      "label": label[language == $locale || _key == $locale][0].value,
       reference->{
         _type,
         "slug": slug.current,
@@ -34,13 +35,13 @@ export const SITE_SETTINGS_QUERY = defineQuery(`
     },
     quoteCta{
       variant,
-      "label": label[_key == $locale][0].value,
+      "label": label[language == $locale || _key == $locale][0].value,
       link{
         linkType,
         internalPath,
         externalUrl,
         openInNewTab,
-        "label": label[_key == $locale][0].value,
+        "label": label[language == $locale || _key == $locale][0].value,
         reference->{
           _type,
           "slug": slug.current,
@@ -52,7 +53,7 @@ export const SITE_SETTINGS_QUERY = defineQuery(`
       _key,
       phone,
       email,
-      "department": department[_key == $locale][0].value
+      "department": department[language == $locale || _key == $locale][0].value
     },
     socialLinks[]{
       _key,
@@ -60,10 +61,10 @@ export const SITE_SETTINGS_QUERY = defineQuery(`
       url
     },
     uiLabels{
-      "requestQuote": requestQuote[_key == $locale][0].value,
-      "viewProducts": viewProducts[_key == $locale][0].value,
-      "readMore": readMore[_key == $locale][0].value,
-      "download": download[_key == $locale][0].value
+      "requestQuote": requestQuote[language == $locale || _key == $locale][0].value,
+      "viewProducts": viewProducts[language == $locale || _key == $locale][0].value,
+      "readMore": readMore[language == $locale || _key == $locale][0].value,
+      "download": download[language == $locale || _key == $locale][0].value
     }
   }
 `)

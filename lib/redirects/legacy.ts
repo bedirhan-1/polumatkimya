@@ -45,6 +45,7 @@ export const legacyPageRedirects: Array<{source: string; destination: string}> =
     destination: `/${defaultLocale}/company/return-and-exchange-policy`,
   },
   {source: '/iletisim', destination: `/${defaultLocale}/contact`},
+  {source: '/blog', destination: `/${defaultLocale}/blog`},
 ]
 
 /** Old Turkish product slugs → shared English slugs (must be validated with catalog before go-live). */
@@ -70,6 +71,15 @@ export const legacyProductSlugMap: Record<string, string> = {
   'derz-dolgusu': 'grout-filler',
 }
 
+/** Old Turkish blog slugs → English-character document slugs. */
+export const legacyBlogSlugMap: Record<string, string> = {
+  'yeni-nesil-polumat-endustriyel-spreyler': 'next-generation-polumat-industrial-sprays',
+  'neden-polumati-tercih-etmelisiniz': 'why-choose-polumat',
+  'kuresel-ekonomiye-yeni-bir-soluk': 'a-new-breath-for-global-economy',
+  'yapi-kimyasallari-sektorunde-yenilikci-cozumler':
+    'innovative-solutions-in-construction-chemicals',
+}
+
 export function getLegacyRedirects(): Array<{
   source: string
   destination: string
@@ -80,11 +90,19 @@ export function getLegacyRedirects(): Array<{
     permanent: true,
   }))
 
-  const productRedirects = Object.entries(legacyProductSlugMap).map(([oldSlug, newSlug]) => ({
-    source: `/urunler/${oldSlug}`,
-    destination: `/${defaultLocale}/products/${newSlug}`,
+  const productRedirects = Object.entries(legacyProductSlugMap).flatMap(([oldSlug, newSlug]) => {
+    const destination = `/${defaultLocale}/products/${newSlug}`
+    return [
+      {source: `/urunler/detay/${oldSlug}`, destination, permanent: true},
+      {source: `/urunler/${oldSlug}`, destination, permanent: true},
+    ]
+  })
+
+  const blogRedirects = Object.entries(legacyBlogSlugMap).map(([oldSlug, newSlug]) => ({
+    source: `/blog/${oldSlug}`,
+    destination: `/${defaultLocale}/blog/${newSlug}`,
     permanent: true,
   }))
 
-  return [...pageRedirects, ...productRedirects]
+  return [...pageRedirects, ...productRedirects, ...blogRedirects]
 }

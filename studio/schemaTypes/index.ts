@@ -5,9 +5,9 @@ import {certificateSectionType} from './blocks/certificate-section'
 import {ctaSectionType} from './blocks/cta-section'
 import {featureGridSectionType} from './blocks/feature-grid-section'
 import {heroSectionType} from './blocks/hero-section'
+import {heroSliderSectionType} from './blocks/hero-slider-section'
 import {imageTextSectionType} from './blocks/image-text-section'
 import {latestContentSectionType} from './blocks/latest-content-section'
-import {privateLabelSectionType} from './blocks/private-label-section'
 import {productShowcaseSectionType} from './blocks/product-showcase-section'
 import {statsSectionType} from './blocks/stats-section'
 import {videoSectionType} from './blocks/video-section'
@@ -19,7 +19,6 @@ import {homePageType} from './documents/home-page'
 import {localeType} from './documents/locale'
 import {pageType} from './documents/page'
 import {postType} from './documents/post'
-import {privateLabelPageType} from './documents/private-label-page'
 import {productType} from './documents/product'
 import {productCategoryType} from './documents/product-category'
 import {siteSettingsType} from './documents/site-settings'
@@ -28,9 +27,11 @@ import {callToActionType} from './objects/call-to-action'
 import {contactChannelType} from './objects/contact-channel'
 import {documentReferenceType} from './objects/document-reference'
 import {featureItemType} from './objects/feature-item'
+import {heroSlideType} from './objects/hero-slide'
 import {imageWithAltType} from './objects/image-with-alt'
 import {internalOrExternalLinkType} from './objects/internal-or-external-link'
 import {localizedImageWithAltType} from './objects/localized-image-with-alt'
+import {localizedSeoType} from './objects/localized-seo'
 import {packagingVariantType} from './objects/packaging-variant'
 import {pageBuilderType} from './objects/page-builder'
 import {portableTextType} from './objects/portable-text'
@@ -49,7 +50,6 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   productCategoryType,
   applicationAreaType,
   homePageType,
-  privateLabelPageType,
   contactPageType,
   pageType,
   postType,
@@ -59,6 +59,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
 
   // Objects
   seoType,
+  localizedSeoType,
   imageWithAltType,
   localizedImageWithAltType,
   internalOrExternalLinkType,
@@ -67,6 +68,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   simpleFeatureItemType,
   statItemType,
   featureItemType,
+  heroSlideType,
   contactChannelType,
   socialLinkType,
   specificationItemType,
@@ -78,10 +80,10 @@ export const schemaTypes: SchemaTypeDefinition[] = [
 
   // Blocks
   heroSectionType,
+  heroSliderSectionType,
   productShowcaseSectionType,
   featureGridSectionType,
   applicationGridSectionType,
-  privateLabelSectionType,
   imageTextSectionType,
   statsSectionType,
   certificateSectionType,

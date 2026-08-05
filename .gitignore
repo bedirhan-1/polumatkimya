@@ -38,9 +38,16 @@ yarn-error.log*
 !.env.example
 !studio/.env.example
 
+# migration generated artifacts
+/migration/transformed/
+/migration/reports/
+
 # vercel
 .vercel
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# local source dumps
+/slider-images/

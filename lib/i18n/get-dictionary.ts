@@ -19,11 +19,18 @@ export type Dictionary = {
   nav: {
     products: string
     industries: string
-    privateLabel: string
+    corporate: string
     about: string
+    missionVision: string
+    quality: string
+    environment: string
+    ohs: string
+    customerSatisfaction: string
+    humanResources: string
     blog: string
     contact: string
     requestQuote: string
+    dealerLogin: string
   }
   home: {
     eyebrow: string
@@ -31,6 +38,52 @@ export type Dictionary = {
     supporting: string
     panelLabel: string
     panelText: string
+  }
+  pages: {
+    aboutDescription: string
+    qualityDescription: string
+    industriesTitle: string
+    industriesDescription: string
+    contactDescription: string
+    quoteTitle: string
+    quoteDescription: string
+    emptyIndustry: string
+  }
+  quotePage: {
+    eyebrow: string
+    formTitle: string
+    formHint: string
+    responseTime: string
+    step1Title: string
+    step1Body: string
+    step2Title: string
+    step2Body: string
+    step3Title: string
+    step3Body: string
+    directContact: string
+  }
+  contactPage: {
+    address: string
+    phone: string
+    email: string
+    channels: string
+    employees: string
+    writeUs: string
+    writeUsDescription: string
+    map: string
+  }
+  forms: {
+    name: string
+    email: string
+    phone: string
+    company: string
+    message: string
+    productInterest: string
+    submitContact: string
+    submitQuote: string
+    consent: string
+    success: string
+    error: string
   }
   footer: {
     company: string
@@ -49,10 +102,57 @@ export type Dictionary = {
     validationEmail: string
   }
   filters: {
+    title: string
     openFilters: string
+    closeFilters: string
     clearFilters: string
+    apply: string
+    all: string
+    search: string
+    searchPlaceholder: string
+    category: string
+    industry: string
     resultsCount: string
     noResults: string
+  }
+  products: {
+    title: string
+    description: string
+    detail: string
+    breadcrumbs: string
+    specifications: string
+    documents: string
+    download: string
+    related: string
+    benefits: string
+    features: string
+    packaging: string
+    usageAreas: string
+    applicationInstructions: string
+    warnings: string
+    industries: string
+    categories: string
+    sku: string
+    watchVideo: string
+    whatsapp: string
+    empty: string
+  }
+  blog: {
+    title: string
+    description: string
+    readMore: string
+    empty: string
+    emptyLatest: string
+    relatedProducts: string
+    byAuthor: string
+    breadcrumbs: string
+  }
+  videos: {
+    title: string
+    description: string
+    play: string
+    empty: string
+    breadcrumbs: string
   }
 }
 

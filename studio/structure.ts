@@ -20,12 +20,24 @@ import {SUPPORTED_LANGUAGES} from './lib/languages'
 const SINGLETON_TYPES = new Set([
   'siteSettings',
   'homePage',
-  'privateLabelPage',
   'contactPage',
 ])
 
+/** Document types with explicit sidebar list items — hide from auto-generated list. */
+const CURATED_LIST_TYPES = [
+  'product',
+  'productCategory',
+  'applicationArea',
+  'page',
+  'post',
+  'video',
+  'downloadableDocument',
+  'certificate',
+] as const
+
 const HIDDEN_FROM_LIST = new Set([
   ...SINGLETON_TYPES,
+  ...CURATED_LIST_TYPES,
   'locale',
   'translation.metadata',
 ])
@@ -72,7 +84,6 @@ export const structure: StructureResolver = (S) =>
             .title('Site settings')
         ),
       createLocalizedSingleton(S, 'homePage', 'Home page', HomeIcon),
-      createLocalizedSingleton(S, 'privateLabelPage', 'Private label', TagIcon),
       createLocalizedSingleton(S, 'contactPage', 'Contact page', EnvelopeIcon),
       S.divider(),
       S.listItem()

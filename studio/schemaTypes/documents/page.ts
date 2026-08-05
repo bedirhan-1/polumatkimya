@@ -1,6 +1,6 @@
 import {DocumentIcon} from '@sanity/icons'
 import {defineArrayMember, defineField, defineType} from 'sanity'
-import {slugValidation} from '../../lib/slug'
+import {slugValidation, isUniqueSlugPerLanguage} from '../../lib/slug'
 import {languageField, translationStatusField} from '../shared/localization-fields'
 
 export const pageType = defineType({
@@ -21,10 +21,12 @@ export const pageType = defineType({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
-      description: 'English-character slug for this language version',
+      description:
+        'Shared English-character slug across language versions (TR/EN/AR of the same page keep the same slug).',
       options: {
         source: 'title',
         maxLength: 96,
+        isUnique: isUniqueSlugPerLanguage,
       },
       validation: slugValidation,
     }),

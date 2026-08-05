@@ -1,6 +1,6 @@
 import {EarthGlobeIcon} from '@sanity/icons'
 import {defineArrayMember, defineField, defineType} from 'sanity'
-import {slugValidation} from '../../lib/slug'
+import {slugValidation, isUniqueSlug} from '../../lib/slug'
 
 export const applicationAreaType = defineType({
   name: 'applicationArea',
@@ -19,7 +19,7 @@ export const applicationAreaType = defineType({
       title: 'Slug',
       type: 'slug',
       description: 'Shared English slug used across all locales',
-      options: {maxLength: 96},
+      options: {maxLength: 96, isUnique: isUniqueSlug},
       validation: slugValidation,
     }),
     defineField({
@@ -62,17 +62,23 @@ export const applicationAreaType = defineType({
     defineField({
       name: 'seo',
       title: 'SEO',
-      type: 'seo',
+      type: 'localizedSeo',
     }),
   ],
   preview: {
     select: {
+      titleTr: 'title',
       slug: 'slug.current',
       media: 'coverImage',
     },
-    prepare({slug, media}) {
+    prepare({titleTr, slug, media}) {
+      const localized = Array.isArray(titleTr)
+        ? titleTr.find((item: {language?: string; _key?: string; value?: string}) => item.language === 'tr' || item._key === 'tr')
+            ?.value
+        : undefined
       return {
-        title: slug || 'Application area',
+        title: localized || slug || 'Application area',
+        subtitle: slug,
         media,
       }
     },
