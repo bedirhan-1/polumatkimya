@@ -135,14 +135,6 @@
   width: min(100% - 2rem, var(--container));
 }
 
-@layer utilities {
-  .container {
-    width: min(calc(100% - 2rem), var(--container));
-    max-width: var(--container);
-    margin-inline: auto;
-  }
-}
-
 @utility section-space {
   padding-block: var(--section-space);
 }

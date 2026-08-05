@@ -72,44 +72,32 @@ export function HomeLanding({locale, dictionary, products, industries}: HomeLand
   return (
     <div className={styles.home}>
       <section
-        className="relative isolate min-h-[50rem] w-full overflow-hidden border-b border-white/10 bg-[#050607] sm:min-h-[48rem] lg:min-h-[38rem] lg:aspect-[8/3]"
+        className="relative isolate min-h-[50rem] w-full overflow-hidden border-b border-white/10 bg-[#050607] sm:min-h-[48rem] lg:aspect-[21/9] lg:min-h-0"
         aria-labelledby="home-hero-title"
       >
         <div className="absolute inset-0">
           <Image
-            src="/brand/slides/hero-product-family-slider-v2.webp"
+            src="/brand/slides/hero-product-family-21x9-v4.webp"
             alt={copy.hero.imageAlt}
             fill
             priority
             sizes="100vw"
-            className="object-cover object-[70%_center] lg:object-center"
+            className="object-cover object-[64%_center] lg:object-center"
           />
         </div>
         <div
-          className="absolute inset-0 z-[1] bg-gradient-to-r from-[#050607] via-[#050607]/85 to-transparent"
-          aria-hidden
-        />
-        <div
-          className="absolute inset-0 z-[1] bg-gradient-to-t from-[#050607] via-transparent to-black/15"
-          aria-hidden
-        />
-        <div
-          className="absolute inset-0 z-[1] opacity-20 [background-image:linear-gradient(rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.06)_1px,transparent_1px)] [background-size:42px_42px] [mask-image:linear-gradient(90deg,black,transparent_55%)]"
-          aria-hidden
-        />
-        <div
-          className="absolute -bottom-1/3 left-1/3 z-0 h-2/3 w-2/3 rounded-full bg-accent/25 blur-[130px]"
+          className="absolute inset-0 z-[1] bg-[linear-gradient(90deg,rgba(2,3,4,0.96)_0%,rgba(2,3,4,0.82)_52%,rgba(2,3,4,0.26)_100%)] lg:hidden"
           aria-hidden
         />
 
-        <div className="container relative z-[2] mx-auto flex min-h-[50rem] flex-col justify-center pt-14 pb-56 sm:min-h-[48rem] lg:min-h-full lg:pt-16 lg:pb-28">
-          <div className="max-w-[34rem]">
+        <div className="container relative z-[2] mx-auto flex min-h-[50rem] flex-col justify-center px-4 pt-14 pb-56 sm:min-h-[48rem] sm:px-6 lg:min-h-full lg:justify-center lg:px-8 lg:pt-0 lg:pb-20">
+          <div className="max-w-[31rem] lg:w-[36%] lg:min-w-[28rem]">
             <p className="flex items-center gap-3 text-[0.68rem] font-bold leading-none tracking-[0.2em] text-accent uppercase before:h-px before:w-7 before:shrink-0 before:bg-current before:content-['']">
               {copy.hero.eyebrow}
             </p>
             <h1
               id="home-hero-title"
-              className="mt-4 max-w-[11ch] font-[family-name:var(--font-display)] text-[clamp(3.1rem,4.2vw,4.8rem)] leading-[0.91] font-bold tracking-[-0.015em] text-[#f8f8f5] uppercase"
+              className="mt-3 max-w-[11ch] font-[family-name:var(--font-display)] text-[clamp(3rem,4vw,4.65rem)] leading-[0.92] font-bold tracking-[-0.015em] text-[#f8f8f5] uppercase"
             >
               <span className="block">{copy.hero.lead}</span>
               <span className="mt-1 block text-accent drop-shadow-[0_0_32px_rgba(227,28,35,0.2)]">
@@ -117,10 +105,10 @@ export function HomeLanding({locale, dictionary, products, industries}: HomeLand
               </span>
               <span className="mt-1 block">{copy.hero.tail}</span>
             </h1>
-            <p className="mt-5 max-w-[30rem] text-[clamp(0.92rem,1.1vw,1.05rem)] leading-7 text-white/65">
+            <p className="mt-4 max-w-[28rem] text-[clamp(0.86rem,0.9vw,1rem)] leading-6 text-white/65">
               {copy.hero.description}
             </p>
-            <div className="mt-7 flex flex-wrap gap-3">
+            <div className="mt-5 flex flex-wrap gap-3">
               <ButtonLink
                 href={`/${locale}/products`}
                 className="min-w-40 no-underline uppercase"
@@ -139,24 +127,20 @@ export function HomeLanding({locale, dictionary, products, industries}: HomeLand
             </div>
           </div>
 
-          <div className="absolute inset-x-0 bottom-0 grid grid-cols-2 overflow-hidden border border-b-0 border-white/10 bg-[#08090b]/85 shadow-2xl backdrop-blur-xl lg:grid-cols-4">
+          <div className="absolute inset-x-4 bottom-0 grid grid-cols-2 overflow-hidden border border-b-0 border-white/10 bg-[#08090b]/85 shadow-2xl backdrop-blur-xl sm:inset-x-6 lg:inset-x-auto lg:bottom-4 lg:left-8 lg:w-[calc(100%_-_4rem)] lg:max-w-[50rem] lg:grid-cols-4 lg:border-white/10 lg:bg-black/20 lg:shadow-none lg:backdrop-blur-sm">
             {copy.trust.map((item, index) => (
               <div
-                className={`grid min-h-24 grid-cols-[auto_1fr] items-center gap-3 px-4 py-4 ${
-                  index % 2 === 1 ? 'border-l border-white/10' : ''
-                } ${index >= 2 ? 'border-t border-white/10' : ''} ${
-                  index > 0 ? 'lg:border-l lg:border-white/10' : ''
-                } lg:border-t-0 lg:px-5`}
+                className="grid min-h-24 grid-cols-[auto_1fr] items-center gap-3 px-4 py-4 lg:min-h-16 lg:px-3 lg:py-2"
                 key={item.title}
               >
-                <span className="flex size-10 shrink-0 rotate-45 items-center justify-center border border-accent/45 bg-accent/5 text-accent [&>svg]:size-5 [&>svg]:-rotate-45">
+                <span className="flex size-10 shrink-0 rotate-45 items-center justify-center border border-accent/45 bg-accent/5 text-accent lg:size-9 [&>svg]:size-5 [&>svg]:-rotate-45 lg:[&>svg]:size-4">
                   <HomeIcon name={trustIcons[index]} />
                 </span>
                 <span>
                   <strong className="block font-[family-name:var(--font-display)] text-sm leading-tight font-semibold text-[#f3f3f0] uppercase">
                     {item.title}
                   </strong>
-                  <small className="mt-1 hidden text-[0.7rem] leading-snug text-white/45 xl:block">
+                  <small className="mt-1 hidden text-[0.7rem] leading-snug text-white/45 2xl:block">
                     {item.description}
                   </small>
                 </span>
