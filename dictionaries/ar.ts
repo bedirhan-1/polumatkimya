@@ -33,6 +33,7 @@ const ar: Dictionary = {
     contact: 'اتصل بنا',
     requestQuote: 'اطلب عرض سعر',
     dealerLogin: 'دخول الوكيل',
+    downloadCatalog: 'تحميل الكتالوج',
   },
   home: {
     eyebrow: 'Polumat Kimya',

@@ -11,7 +11,7 @@ import {getDictionary} from '@/lib/i18n/get-dictionary'
 import {getDirection, isLocale, locales, type Locale} from '@/lib/i18n/locales'
 import {fontArabic, fontBody, fontDisplay} from '@/lib/fonts'
 import {SanityLive} from '@/sanity/lib/live'
-import {getSiteSettings} from '@/sanity/lib/site-settings'
+import {getCatalogDownload, getSiteSettings} from '@/sanity/lib/site-settings'
 
 import '../../globals.css'
 
@@ -58,6 +58,7 @@ export default async function LocaleLayout({children, params}: LocaleLayoutProps
   const primaryChannel = siteSettings?.contactChannels?.find(
     (channel) => channel.phone || channel.email,
   )
+  const catalog = getCatalogDownload(locale, siteSettings?.catalogs)
 
   const fontVariables = [
     fontDisplay.variable,
@@ -87,6 +88,7 @@ export default async function LocaleLayout({children, params}: LocaleLayoutProps
             dictionary={dictionary}
             phone={primaryChannel?.phone}
             email={primaryChannel?.email}
+            catalogHref={catalog?.href}
           />
           <div className="flex-1">{children}</div>
           <SiteFooter locale={locale} dictionary={dictionary} />

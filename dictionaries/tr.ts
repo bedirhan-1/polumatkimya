@@ -34,6 +34,7 @@ const tr: Dictionary = {
     contact: 'İletişim',
     requestQuote: 'Teklif Al',
     dealerLogin: 'Bayi Girişi',
+    downloadCatalog: 'Katalog İndir',
   },
   home: {
     eyebrow: 'Polumat Kimya',

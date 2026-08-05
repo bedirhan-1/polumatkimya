@@ -18,6 +18,13 @@ type HeaderNavItem = {
   } | null
 }
 
+type CatalogDocument = {
+  _id?: string
+  title?: string | null
+  language?: string | null
+  url?: string | null
+}
+
 type SiteSettingsData = {
   companyName?: string | null
   whatsappNumber?: string | null
@@ -29,6 +36,7 @@ type SiteSettingsData = {
     email?: string | null
     department?: string | null
   }> | null
+  catalogs?: CatalogDocument[] | null
   uiLabels?: {
     requestQuote?: string | null
     viewProducts?: string | null
@@ -48,6 +56,28 @@ export async function getSiteSettings(locale: Locale): Promise<SiteSettingsData 
     return data as SiteSettingsData
   } catch {
     return null
+  }
+}
+
+export function getCatalogDownload(
+  locale: Locale,
+  catalogs: CatalogDocument[] | null | undefined,
+): {href: string; title: string} | null {
+  if (!catalogs?.length) return null
+  const withFile = catalogs.filter((catalog) => Boolean(catalog.url))
+  const catalog = withFile.find((item) => item.language === locale) || withFile[0]
+  if (!catalog?.url) return null
+
+  const filename = `${(catalog.title || 'catalog')
+    .normalize('NFKD')
+    .replace(/[^\w\s-]/g, '')
+    .trim()
+    .replace(/\s+/g, '-')
+    .toLowerCase()}.pdf`
+
+  return {
+    href: `${catalog.url}?dl=${filename}`,
+    title: catalog.title || filename,
   }
 }
 

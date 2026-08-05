@@ -12,6 +12,8 @@ type MobileNavigationProps = {
   items: NavItem[]
   quoteHref: string
   quoteLabel: string
+  catalogHref?: string | null
+  catalogLabel: string
   phoneHref: string
   phoneLabel: string
   emailHref: string
@@ -61,6 +63,8 @@ export function MobileNavigation({
   items,
   quoteHref,
   quoteLabel,
+  catalogHref,
+  catalogLabel,
   phoneHref,
   phoneLabel,
   emailHref,
@@ -156,6 +160,17 @@ export function MobileNavigation({
             >
               {quoteLabel}
             </Link>
+
+            {catalogHref ? (
+              <a
+                href={catalogHref}
+                download
+                className="mt-2 inline-flex min-h-11 items-center justify-center border border-border px-4 py-3 text-sm font-semibold text-foreground no-underline"
+                onClick={close}
+              >
+                {catalogLabel}
+              </a>
+            ) : null}
           </nav>
         </div>
       ) : null}

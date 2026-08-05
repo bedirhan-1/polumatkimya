@@ -60,6 +60,21 @@ export const SITE_SETTINGS_QUERY = defineQuery(`
       platform,
       url
     },
+    "catalogs": coalesce(
+      catalogs[]->{
+        _id,
+        title,
+        "language": language->tag,
+        "url": file.asset->url
+      }[defined(url)],
+      *[_type == "downloadableDocument" && documentType == "catalog" && defined(file.asset)]
+        | order(coalesce(publishedAt, _createdAt) desc){
+          _id,
+          title,
+          "language": language->tag,
+          "url": file.asset->url
+        }
+    ),
     uiLabels{
       "requestQuote": requestQuote[language == $locale || _key == $locale][0].value,
       "viewProducts": viewProducts[language == $locale || _key == $locale][0].value,

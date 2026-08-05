@@ -31,6 +31,7 @@ export type Dictionary = {
     contact: string
     requestQuote: string
     dealerLogin: string
+    downloadCatalog: string
   }
   home: {
     eyebrow: string

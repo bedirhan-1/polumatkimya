@@ -6,7 +6,7 @@ import {usePathname} from 'next/navigation'
 import {PolumatLogo} from '@/components/brand/polumat-logo'
 import {LanguageSwitcher} from '@/components/navigation/language-switcher'
 import {MobileNavigation} from '@/components/navigation/mobile-navigation'
-import {ButtonLink} from '@/components/ui/button-link'
+import {ButtonLink, buttonClassName} from '@/components/ui/button-link'
 import type {Dictionary} from '@/lib/i18n/get-dictionary'
 import type {Locale} from '@/lib/i18n/locales'
 import {
@@ -23,6 +23,25 @@ type SiteHeaderProps = {
   items?: NavItem[]
   phone?: string | null
   email?: string | null
+  catalogHref?: string | null
+}
+
+function DownloadIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 16 16"
+      className="h-3.5 w-3.5 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M8 2v8m0 0L5 7m3 3 3-3" />
+      <path d="M2.5 12.5h11" />
+    </svg>
+  )
 }
 
 function NavAnchor({
@@ -68,7 +87,14 @@ function isNavItemActive(pathname: string, item: NavItem) {
   return isActivePath(pathname, item.href)
 }
 
-export function SiteHeader({locale, dictionary, items, phone, email}: SiteHeaderProps) {
+export function SiteHeader({
+  locale,
+  dictionary,
+  items,
+  phone,
+  email,
+  catalogHref,
+}: SiteHeaderProps) {
   const pathname = usePathname() || `/${locale}`
   const navItems = withDealerLogin(
     items?.length ? items : getDefaultNavItems(locale, dictionary),
@@ -186,6 +212,19 @@ export function SiteHeader({locale, dictionary, items, phone, email}: SiteHeader
 
         <div className="flex items-center gap-2 sm:gap-3">
           <LanguageSwitcher locale={locale} label={dictionary.a11y.languageSwitcher} />
+          {catalogHref ? (
+            <a
+              href={catalogHref}
+              download
+              className={buttonClassName(
+                'secondary',
+                'hidden min-h-10 px-4 py-2 text-xs uppercase no-underline lg:inline-flex xl:px-5',
+              )}
+            >
+              <DownloadIcon />
+              {dictionary.nav.downloadCatalog}
+            </a>
+          ) : null}
           <ButtonLink
             href={quoteHref}
             className="hidden min-h-10 px-4 py-2 text-xs uppercase no-underline sm:inline-flex xl:px-5"
@@ -199,6 +238,8 @@ export function SiteHeader({locale, dictionary, items, phone, email}: SiteHeader
             items={[...primaryNav, dealerItem]}
             quoteHref={quoteHref}
             quoteLabel={dictionary.nav.requestQuote}
+            catalogHref={catalogHref}
+            catalogLabel={dictionary.nav.downloadCatalog}
             phoneHref={phoneHref}
             phoneLabel={phoneValue}
             emailHref={emailHref}

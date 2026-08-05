@@ -34,6 +34,7 @@ const en: Dictionary = {
     contact: 'Contact',
     requestQuote: 'Request a quote',
     dealerLogin: 'Dealer login',
+    downloadCatalog: 'Download catalog',
   },
   home: {
     eyebrow: 'Polumat Kimya',
