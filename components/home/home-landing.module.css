@@ -290,7 +290,8 @@
 
 .industryCard {
   position: relative;
-  min-height: 23rem;
+  aspect-ratio: 3 / 2;
+  min-height: 12rem;
   overflow: hidden;
   border: 1px solid var(--home-line);
   color: inherit;
@@ -300,6 +301,7 @@
 
 .industryImage {
   object-fit: cover;
+  object-position: 72% center;
   filter: saturate(0.82) contrast(1.08);
   transition: transform 400ms ease, filter 400ms ease;
 }
@@ -327,7 +329,7 @@
 .industryContent h3 {
   margin-top: 0.3rem;
   color: #fff;
-  font-size: 2rem;
+  font-size: clamp(1.35rem, 1.8vw, 1.85rem);
   text-transform: uppercase;
 }
 
@@ -343,7 +345,7 @@
 
 .industryCard:hover .industryImage {
   filter: saturate(1) contrast(1.05);
-  transform: scale(1.045);
+  transform: scale(1.03);
 }
 
 .industryCard:hover {
@@ -737,7 +739,7 @@
   }
 
   .industryCard {
-    min-height: 19rem;
+    min-height: 11rem;
   }
 
   .aboutGrid {
