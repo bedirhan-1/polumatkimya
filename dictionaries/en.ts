@@ -116,6 +116,7 @@ const en: Dictionary = {
     contact2Name: 'Export Contact 2',
     contactRole: 'Export Department',
     phoneLabel: 'Phone',
+    emailLabel: 'Email',
   },
   contactPage: {
     address: 'Address',

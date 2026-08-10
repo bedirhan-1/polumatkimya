@@ -101,6 +101,7 @@ export type Dictionary = {
     contact2Name: string
     contactRole: string
     phoneLabel: string
+    emailLabel: string
   }
   contactPage: {
     address: string

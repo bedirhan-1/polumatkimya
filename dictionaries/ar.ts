@@ -114,6 +114,7 @@ const ar: Dictionary = {
     contact2Name: 'مسؤول التصدير 2',
     contactRole: 'قسم التصدير',
     phoneLabel: 'الهاتف',
+    emailLabel: 'البريد الإلكتروني',
   },
   contactPage: {
     address: 'العنوان',
