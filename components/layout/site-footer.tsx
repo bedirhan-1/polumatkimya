@@ -21,7 +21,11 @@ export function SiteFooter({locale, dictionary}: SiteFooterProps) {
   return (
     <footer className="mt-auto border-t border-border">
       <div className="product-hero-panel relative overflow-hidden">
-        <div className="product-mesh absolute inset-0 opacity-25" aria-hidden />
+        <div className="product-mesh absolute inset-0 opacity-70" aria-hidden />
+        <div
+          className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"
+          aria-hidden
+        />
         <div className="container-site relative grid gap-10 py-14 lg:grid-cols-[1.2fr_2fr] lg:gap-16 lg:py-16">
           <div>
             <Link

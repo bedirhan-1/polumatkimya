@@ -3,6 +3,7 @@ import Link from 'next/link'
 import {notFound} from 'next/navigation'
 
 import {Breadcrumbs} from '@/components/content/breadcrumbs'
+import {PageHero} from '@/components/content/page-hero'
 import {PortableTextRenderer} from '@/components/content/portable-text'
 import {DocumentDownloads} from '@/components/product/document-downloads'
 import {ProductGallery} from '@/components/product/product-gallery'
@@ -116,48 +117,41 @@ export default async function ProductDetailPage({params}: PageProps) {
     <main id="main-content">
       <JsonLd data={jsonLd} />
 
-      {/* Industrial title band — old-site character */}
-      <section className="product-hero-panel relative overflow-hidden border-b border-border">
-        <div className="product-mesh absolute inset-0 opacity-30" aria-hidden />
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-accent to-transparent opacity-80"
-          aria-hidden
+      {/* Industrial title band */}
+      <PageHero compact>
+        <Breadcrumbs
+          className="mb-0"
+          label={dictionary.products.breadcrumbs}
+          items={[
+            {href: `/${locale}`, label: dictionary.common.home},
+            {href: `/${locale}/products`, label: dictionary.products.title},
+            ...(product.primaryCategory?.slug && product.primaryCategory.title
+              ? [
+                  {
+                    href: `/${locale}/products/category/${product.primaryCategory.slug}`,
+                    label: product.primaryCategory.title,
+                  },
+                ]
+              : []),
+            {label: product.title!},
+          ]}
         />
-        <div className="container-site relative py-10 sm:py-14">
-          <Breadcrumbs
-            className="mb-0"
-            label={dictionary.products.breadcrumbs}
-            items={[
-              {href: `/${locale}`, label: dictionary.common.home},
-              {href: `/${locale}/products`, label: dictionary.products.title},
-              ...(product.primaryCategory?.slug && product.primaryCategory.title
-                ? [
-                    {
-                      href: `/${locale}/products/category/${product.primaryCategory.slug}`,
-                      label: product.primaryCategory.title,
-                    },
-                  ]
-                : []),
-              {label: product.title!},
-            ]}
-          />
-          <div className="animate-product-rise mt-5 max-w-4xl">
-            {product.primaryCategory?.title || product.badge ? (
-              <p className="mb-3 text-xs font-semibold tracking-[0.22em] text-accent uppercase">
-                {[product.badge, product.primaryCategory?.title].filter(Boolean).join(' · ')}
-              </p>
-            ) : null}
-            <h1 className="font-display text-4xl text-foreground sm:text-5xl lg:text-6xl">
-              {product.title}
-            </h1>
-            {product.sku ? (
-              <p className="mt-3 text-sm text-muted" dir="ltr">
-                {dictionary.products.sku}: {product.sku}
-              </p>
-            ) : null}
-          </div>
+        <div className="animate-product-rise mt-5 max-w-4xl">
+          {product.primaryCategory?.title || product.badge ? (
+            <p className="mb-3 text-xs font-semibold tracking-[0.22em] text-accent uppercase">
+              {[product.badge, product.primaryCategory?.title].filter(Boolean).join(' · ')}
+            </p>
+          ) : null}
+          <h1 className="font-display text-4xl text-foreground sm:text-5xl lg:text-6xl">
+            {product.title}
+          </h1>
+          {product.sku ? (
+            <p className="mt-3 text-sm text-muted" dir="ltr">
+              {dictionary.products.sku}: {product.sku}
+            </p>
+          ) : null}
         </div>
-      </section>
+      </PageHero>
 
       {/* One composition: packshot + technical summary */}
       <section className="border-b border-border">

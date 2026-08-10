@@ -21,6 +21,7 @@ import {pageType} from './documents/page'
 import {postType} from './documents/post'
 import {productType} from './documents/product'
 import {productCategoryType} from './documents/product-category'
+import {productOrderType} from './documents/product-order'
 import {siteSettingsType} from './documents/site-settings'
 import {videoType} from './documents/video'
 import {callToActionType} from './objects/call-to-action'
@@ -28,6 +29,17 @@ import {contactChannelType} from './objects/contact-channel'
 import {documentReferenceType} from './objects/document-reference'
 import {featureItemType} from './objects/feature-item'
 import {heroSlideType} from './objects/hero-slide'
+import {homeHeroType} from './objects/home-hero'
+import {
+  homeAboutSectionType,
+  homeCtaSectionType,
+  homeIndustriesSectionType,
+  homeIndustryCardType,
+  homePrivateLabelSectionType,
+  homeProductsSectionType,
+  homeQualitySectionType,
+  homeStrengthsSectionType,
+} from './objects/home-sections'
 import {imageWithAltType} from './objects/image-with-alt'
 import {internalOrExternalLinkType} from './objects/internal-or-external-link'
 import {localizedImageWithAltType} from './objects/localized-image-with-alt'
@@ -48,6 +60,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   siteSettingsType,
   productType,
   productCategoryType,
+  productOrderType,
   applicationAreaType,
   homePageType,
   contactPageType,
@@ -69,6 +82,15 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   statItemType,
   featureItemType,
   heroSlideType,
+  homeHeroType,
+  homeProductsSectionType,
+  homeStrengthsSectionType,
+  homeIndustryCardType,
+  homeIndustriesSectionType,
+  homePrivateLabelSectionType,
+  homeAboutSectionType,
+  homeQualitySectionType,
+  homeCtaSectionType,
   contactChannelType,
   socialLinkType,
   specificationItemType,

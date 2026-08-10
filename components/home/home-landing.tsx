@@ -1,29 +1,26 @@
-import Image from 'next/image'
 import Link from 'next/link'
 
 import {SanityImage} from '@/components/content/sanity-image'
+import {IndustryCards} from '@/components/content/industry-cards'
 import {ButtonLink} from '@/components/ui/button-link'
-import {getApplicationAreaFallbackImage} from '@/lib/application-area-images'
-import type {Dictionary} from '@/lib/i18n/get-dictionary'
+import type {HomeImage, HomePageContent} from '@/lib/home/content'
 import type {Locale} from '@/lib/i18n/locales'
 import type {ProductCardData} from '@/lib/products/types'
+import {resolveSimpleCta} from '@/sanity/lib/link-resolver'
 
+import {AboutVideo} from './about-video'
 import {getHomeCopy} from './home-copy'
 import styles from './home-landing.module.css'
-
-type ApplicationAreaCardData = {
-  _id: string
-  title?: string | null
-  slug?: string | null
-  summary?: string | null
-  coverImage?: {asset?: {_ref?: string}; alt?: string | null} | null
-}
+import {
+  inferQualityBadgeKind,
+  QUALITY_FEATURE_ICONS,
+  QualityBadgeMark,
+  QualityFeatureIcon,
+} from './quality-marks'
 
 type HomeLandingProps = {
   locale: Locale
-  dictionary: Dictionary
-  products: ProductCardData[]
-  industries: ApplicationAreaCardData[]
+  content?: HomePageContent | null
 }
 
 type IconName =
@@ -35,39 +32,194 @@ type IconName =
   | 'beaker'
   | 'package'
   | 'check'
+  | 'list'
 
 const strengthIcons: IconName[] = ['bolt', 'diamond', 'factory', 'globe', 'shield', 'package']
 const trustIcons: IconName[] = ['shield', 'bolt', 'diamond', 'globe']
+const aboutStatIcons: IconName[] = ['shield', 'globe', 'factory', 'list', 'package']
 
-const fallbackIndustries: Record<
-  Locale,
-  Array<{_id: string; title: string; slug: string; staticImage: string}>
-> = {
-  tr: [
-    {_id: 'automotive', title: 'Otomotiv', slug: 'automotive', staticImage: '/brand/slides/slide-brake-cleaner.webp'},
-    {_id: 'industrial', title: 'Endüstriyel bakım', slug: 'industrial-maintenance', staticImage: '/brand/slides/slide-engine-cleaner.webp'},
-    {_id: 'construction', title: 'Yapı ve inşaat', slug: 'construction', staticImage: '/brand/slides/slide-rust-remover.webp'},
-  ],
-  en: [
-    {_id: 'automotive', title: 'Automotive', slug: 'automotive', staticImage: '/brand/slides/slide-brake-cleaner.webp'},
-    {_id: 'industrial', title: 'Industrial maintenance', slug: 'industrial-maintenance', staticImage: '/brand/slides/slide-engine-cleaner.webp'},
-    {_id: 'construction', title: 'Construction', slug: 'construction', staticImage: '/brand/slides/slide-rust-remover.webp'},
-  ],
-  ar: [
-    {_id: 'automotive', title: 'السيارات', slug: 'automotive', staticImage: '/brand/slides/slide-brake-cleaner.webp'},
-    {_id: 'industrial', title: 'الصيانة الصناعية', slug: 'industrial-maintenance', staticImage: '/brand/slides/slide-engine-cleaner.webp'},
-    {_id: 'construction', title: 'البناء والتشييد', slug: 'construction', staticImage: '/brand/slides/slide-rust-remover.webp'},
-  ],
-}
-
-export function HomeLanding({locale, dictionary, products, industries}: HomeLandingProps) {
+export function HomeLanding({locale, content}: HomeLandingProps) {
   const copy = getHomeCopy(locale)
-  const preferredProducts = products.filter((product) => product.featured)
-  const remainingProducts = products.filter((product) => !product.featured)
-  const featuredProducts = [...preferredProducts, ...remainingProducts].slice(0, 6)
-  const visibleIndustries = industries.filter((area) => area.slug && area.title).slice(0, 3)
-  const industryCards = visibleIndustries.length ? visibleIndustries : fallbackIndustries[locale]
-  const aboutImage = visibleIndustries[1]?.coverImage || visibleIndustries[0]?.coverImage
+  const hero = content?.hero
+  const productsSection = content?.productsSection
+  const strengthsSection = content?.strengthsSection
+  const industriesSection = content?.industriesSection
+  const privateLabel = content?.privateLabelSection
+  const about = content?.aboutSection
+  const quality = content?.qualitySection
+  const cta = content?.ctaSection
+
+  const featuredProducts = (productsSection?.products || []).filter(
+    (product) => product?.slug && product?.title,
+  ) as ProductCardData[]
+  const industryCards = (industriesSection?.areas || [])
+    .map((entry) => {
+      if (entry && typeof entry === 'object' && 'area' in entry) {
+        const area = entry.area
+        if (!area?.slug) return null
+        return {
+          ...area,
+          _id: area._id || entry._key || area.slug,
+          title: entry.title || area.title,
+          summary: entry.summary ?? area.summary ?? null,
+        }
+      }
+      if (entry && typeof entry === 'object' && 'slug' in entry) {
+        return entry
+      }
+      return null
+    })
+    .filter((area): area is NonNullable<typeof area> => Boolean(area?.slug && area?.title))
+    .slice(0, 6)
+
+  const heroEyebrow = hero?.eyebrow || copy.hero.eyebrow
+  const heroLead = hero?.headingLead || copy.hero.lead
+  const heroAccent = hero?.headingAccent || copy.hero.accent
+  const heroTail = hero?.headingTail || copy.hero.tail
+  const heroDescription = hero?.description || copy.hero.description
+  const heroImageAlt =
+    hero?.desktopImage?.alt || hero?.mobileImage?.alt || copy.hero.imageAlt
+  const primaryCta = resolveSimpleCta(locale, hero?.primaryCta) || {
+    href: `/${locale}/products`,
+    label: copy.hero.products,
+    variant: 'primary' as const,
+  }
+  const secondaryCta = resolveSimpleCta(locale, hero?.secondaryCta) || {
+    href: `/${locale}/request-a-quote`,
+    label: copy.hero.quote,
+    variant: 'secondary' as const,
+  }
+  const trustItems =
+    hero?.trustItems?.filter((item) => item.title)?.slice(0, 4) ||
+    copy.trust.map((item) => ({
+      _key: item.title,
+      title: item.title,
+      description: item.description,
+    }))
+
+  const productsEyebrow = productsSection?.eyebrow || copy.products.eyebrow
+  const productsTitle = productsSection?.title || copy.products.title
+  const productsDescription = productsSection?.description || copy.products.description
+  const productsAll = productsSection?.viewAllLabel || copy.products.all
+  const productsDetail = productsSection?.detailLabel || copy.products.detail
+
+  const strengthsEyebrow = strengthsSection?.eyebrow || copy.strengths.eyebrow
+  const strengthsTitle = strengthsSection?.title || copy.strengths.title
+  const strengthItems =
+    strengthsSection?.items?.filter((item) => item.title) ||
+    copy.strengths.items.map((item) => ({
+      _key: item.title,
+      title: item.title,
+      description: item.description,
+    }))
+
+  const industriesEyebrow = industriesSection?.eyebrow || copy.industries.eyebrow
+  const industriesTitle = industriesSection?.title || copy.industries.title
+  const industriesDescription = industriesSection?.description || copy.industries.description
+  const industriesDetailLabel = industriesSection?.detailLabel || copy.industries.detail
+  const industriesViewAll = resolveSimpleCta(locale, industriesSection?.viewAllCta) || {
+    href: `/${locale}/industries`,
+    label: copy.industries.viewAll,
+    variant: 'secondary' as const,
+  }
+
+  const privateCta = resolveSimpleCta(locale, privateLabel?.cta) || {
+    href: `/${locale}/private-label`,
+    label: copy.privateLabel.action,
+    variant: 'primary' as const,
+  }
+  const privateFeatures =
+    privateLabel?.features?.filter((item) => item.title) ||
+    copy.privateLabel.features.map((item) => ({
+      _key: item.title,
+      title: item.title,
+      description: item.description,
+    }))
+  const privateProcess =
+    privateLabel?.process?.filter((item) => item.title) ||
+    copy.privateLabel.process.map((item) => ({
+      _key: item.title,
+      title: item.title,
+      description: item.description,
+    }))
+  const privateImage = privateLabel?.image?.asset
+    ? privateLabel.image
+    : featuredProducts[0]?.cardImage?.asset
+      ? featuredProducts[0].cardImage
+      : featuredProducts[0]?.packshot?.asset
+        ? featuredProducts[0].packshot
+        : null
+
+  const aboutCta = resolveSimpleCta(locale, about?.cta) || {
+    href: `/${locale}/about`,
+    label: copy.about.action,
+    variant: 'primary' as const,
+  }
+  const aboutImage = about?.image?.asset ? about.image : null
+  const aboutPlayLabel = about?.videoPlayLabel || copy.about.videoPlayLabel
+  const aboutStatsFromCms = (about?.stats || []).filter((stat) =>
+    Boolean(stat?.value && stat?.label),
+  )
+  const aboutStats =
+    aboutStatsFromCms.length >= 5
+      ? aboutStatsFromCms.slice(0, 5)
+      : copy.about.stats.map((stat) => ({
+          _key: stat.label,
+          value: stat.value,
+          label: stat.label,
+          icon: null as HomeImage | null,
+        }))
+
+  const qualityLink = resolveSimpleCta(locale, quality?.link) || {
+    href: `/${locale}/quality-certificates`,
+    label: 'ISO 9001 · 14001 · 45001',
+    variant: 'primary' as const,
+  }
+  const qualityItemsFromCms = (quality?.items || []).flatMap((item) => {
+    if (typeof item === 'string') {
+      return item ? [{label: item, icon: null, _key: item}] : []
+    }
+    if (!item?.label) return []
+    return [
+      {
+        label: item.label,
+        icon: item.icon ?? null,
+        _key: item._key || item.label,
+      },
+    ]
+  })
+  const qualityItems = (
+    qualityItemsFromCms.length
+      ? qualityItemsFromCms
+      : copy.quality.items.map((item) => ({
+          label: item.label,
+          icon: null as HomeImage | null,
+          _key: item.label,
+        }))
+  ).slice(0, 5)
+  const qualityBadgesFromCms = (quality?.badges || []).filter(
+    (badge): badge is NonNullable<typeof badge> & {label: string} => Boolean(badge?.label),
+  )
+  const qualityBadges = (
+    qualityBadgesFromCms.length
+      ? qualityBadgesFromCms
+      : copy.quality.badges.map((badge) => ({
+          label: badge.label,
+          image: null as HomeImage | null,
+          _key: badge.label,
+        }))
+  ).slice(0, 4)
+
+  const bottomPrimary = resolveSimpleCta(locale, cta?.primaryCta) || {
+    href: `/${locale}/request-a-quote`,
+    label: copy.cta.quote,
+    variant: 'primary' as const,
+  }
+  const bottomSecondary = resolveSimpleCta(locale, cta?.secondaryCta) || {
+    href: `/${locale}/contact`,
+    label: copy.cta.contact,
+    variant: 'secondary' as const,
+  }
 
   return (
     <div className={styles.home}>
@@ -76,14 +228,35 @@ export function HomeLanding({locale, dictionary, products, industries}: HomeLand
         aria-labelledby="home-hero-title"
       >
         <div className="absolute inset-0">
-          <Image
-            src="/brand/slides/hero-product-family-21x9-v4.webp"
-            alt={copy.hero.imageAlt}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover object-[64%_center] lg:object-center"
-          />
+          {hero?.mobileImage?.asset ? (
+            <>
+              <SanityImage
+                image={hero.desktopImage}
+                alt={heroImageAlt}
+                fill
+                priority
+                sizes="100vw"
+                className="hidden object-cover object-[64%_center] lg:block lg:object-center"
+              />
+              <SanityImage
+                image={hero.mobileImage}
+                alt={hero.mobileImage.alt || heroImageAlt}
+                fill
+                priority
+                sizes="100vw"
+                className="object-cover object-[64%_center] lg:hidden"
+              />
+            </>
+          ) : hero?.desktopImage?.asset ? (
+            <SanityImage
+              image={hero.desktopImage}
+              alt={heroImageAlt}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-[64%_center] lg:object-center"
+            />
+          ) : null}
         </div>
         <div
           className="absolute inset-0 z-[1] bg-[linear-gradient(90deg,rgba(2,3,4,0.96)_0%,rgba(2,3,4,0.82)_52%,rgba(2,3,4,0.26)_100%)] lg:hidden"
@@ -92,61 +265,70 @@ export function HomeLanding({locale, dictionary, products, industries}: HomeLand
 
         <div className="container relative z-[2] mx-auto flex min-h-[50rem] flex-col justify-center px-4 pt-14 pb-56 sm:min-h-[48rem] sm:px-6 lg:min-h-full lg:justify-center lg:px-8 lg:pt-0 lg:pb-20">
           <div className="max-w-[31rem] lg:w-[36%] lg:min-w-[28rem]">
-            <p className="flex items-center gap-3 text-[0.68rem] font-bold leading-none tracking-[0.2em] text-accent uppercase before:h-px before:w-7 before:shrink-0 before:bg-current before:content-['']">
-              {copy.hero.eyebrow}
-            </p>
+            {heroEyebrow ? (
+              <p className="flex items-center gap-3 text-[0.68rem] font-bold leading-none tracking-[0.2em] text-accent uppercase before:h-px before:w-7 before:shrink-0 before:bg-current before:content-['']">
+                {heroEyebrow}
+              </p>
+            ) : null}
             <h1
               id="home-hero-title"
               className="mt-3 max-w-[11ch] font-[family-name:var(--font-display)] text-[clamp(3rem,4vw,4.65rem)] leading-[0.92] font-bold tracking-[-0.015em] text-[#f8f8f5] uppercase"
             >
-              <span className="block">{copy.hero.lead}</span>
+              <span className="block">{heroLead}</span>
               <span className="mt-1 block text-accent drop-shadow-[0_0_32px_rgba(227,28,35,0.2)]">
-                {copy.hero.accent}
+                {heroAccent}
               </span>
-              <span className="mt-1 block">{copy.hero.tail}</span>
+              <span className="mt-1 block">{heroTail}</span>
             </h1>
-            <p className="mt-4 max-w-[28rem] text-[clamp(0.86rem,0.9vw,1rem)] leading-6 text-white/65">
-              {copy.hero.description}
-            </p>
+            {heroDescription ? (
+              <p className="mt-4 max-w-[28rem] text-[clamp(0.86rem,0.9vw,1rem)] leading-6 text-white/65">
+                {heroDescription}
+              </p>
+            ) : null}
             <div className="mt-5 flex flex-wrap gap-3">
               <ButtonLink
-                href={`/${locale}/products`}
+                href={primaryCta.href}
+                variant={primaryCta.variant}
                 className="min-w-40 no-underline uppercase"
               >
-                {copy.hero.products}
+                {primaryCta.label}
                 <ArrowIcon />
               </ButtonLink>
               <ButtonLink
-                href={`/${locale}/request-a-quote`}
-                variant="secondary"
+                href={secondaryCta.href}
+                variant={secondaryCta.variant}
                 className="min-w-36 border-white/20 bg-black/20 no-underline uppercase backdrop-blur-sm"
               >
-                {copy.hero.quote}
+                {secondaryCta.label}
                 <ArrowIcon />
               </ButtonLink>
             </div>
           </div>
 
-          <div className="absolute inset-x-4 bottom-0 grid grid-cols-2 overflow-hidden border border-b-0 border-white/10 bg-[#08090b]/85 shadow-2xl backdrop-blur-xl sm:inset-x-6 lg:inset-x-auto lg:bottom-4 lg:left-8 lg:w-[calc(100%_-_4rem)] lg:max-w-[50rem] lg:grid-cols-4 lg:border-white/10 lg:bg-black/20 lg:shadow-none lg:backdrop-blur-sm">
-            {copy.trust.map((item, index) => (
-              <div
-                className="grid min-h-24 grid-cols-[auto_1fr] items-center gap-3 px-4 py-4 lg:min-h-16 lg:px-3 lg:py-2"
-                key={item.title}
-              >
-                <span className="flex size-10 shrink-0 rotate-45 items-center justify-center border border-accent/45 bg-accent/5 text-accent lg:size-9 [&>svg]:size-5 [&>svg]:-rotate-45 lg:[&>svg]:size-4">
-                  <HomeIcon name={trustIcons[index]} />
-                </span>
-                <span>
-                  <strong className="block font-[family-name:var(--font-display)] text-sm leading-tight font-semibold text-[#f3f3f0] uppercase">
-                    {item.title}
-                  </strong>
-                  <small className="mt-1 hidden text-[0.7rem] leading-snug text-white/45 2xl:block">
-                    {item.description}
-                  </small>
-                </span>
-              </div>
-            ))}
-          </div>
+          {trustItems.length ? (
+            <div className="absolute inset-x-4 bottom-0 grid grid-cols-2 overflow-hidden border border-b-0 border-white/10 bg-[#08090b]/85 shadow-2xl backdrop-blur-xl sm:inset-x-6 lg:inset-x-auto lg:bottom-4 lg:left-8 lg:w-[calc(100%_-_4rem)] lg:max-w-[50rem] lg:grid-cols-4 lg:border-white/10 lg:bg-black/20 lg:shadow-none lg:backdrop-blur-sm">
+              {trustItems.map((item, index) => (
+                <div
+                  className="grid min-h-24 grid-cols-[auto_1fr] items-center gap-3 px-4 py-4 lg:min-h-16 lg:px-3 lg:py-2"
+                  key={item._key || item.title || index}
+                >
+                  <span className="flex size-10 shrink-0 rotate-45 items-center justify-center border border-accent/45 bg-accent/5 text-accent lg:size-9 [&>svg]:size-5 [&>svg]:-rotate-45 lg:[&>svg]:size-4">
+                    <HomeIcon name={trustIcons[index % trustIcons.length]} />
+                  </span>
+                  <span>
+                    <strong className="block font-[family-name:var(--font-display)] text-sm leading-tight font-semibold text-[#f3f3f0] uppercase">
+                      {item.title}
+                    </strong>
+                    {item.description ? (
+                      <small className="mt-1 hidden text-[0.7rem] leading-snug text-white/45 2xl:block">
+                        {item.description}
+                      </small>
+                    ) : null}
+                  </span>
+                </div>
+              ))}
+            </div>
+          ) : null}
         </div>
       </section>
 
@@ -155,24 +337,23 @@ export function HomeLanding({locale, dictionary, products, industries}: HomeLand
           <div className="container-site">
             <div className={styles.headingRow}>
               <div>
-                <p className={styles.eyebrow}>{copy.products.eyebrow}</p>
+                <p className={styles.eyebrow}>{productsEyebrow}</p>
                 <h2 id="home-products-title" className={styles.sectionTitle}>
-                  {copy.products.title}
+                  {productsTitle}
                 </h2>
-                <p className={styles.sectionDescription}>{copy.products.description}</p>
+                <p className={styles.sectionDescription}>{productsDescription}</p>
               </div>
               <Link href={`/${locale}/products`} className={styles.textLink}>
-                {copy.products.all} <ArrowIcon />
+                {productsAll} <ArrowIcon />
               </Link>
             </div>
-
             <div className={styles.productsGrid}>
               {featuredProducts.map((product) => (
                 <HomeProductCard
                   key={product._id}
                   locale={locale}
                   product={product}
-                  detailLabel={copy.products.detail}
+                  detailLabel={productsDetail}
                 />
               ))}
             </div>
@@ -186,16 +367,16 @@ export function HomeLanding({locale, dictionary, products, industries}: HomeLand
       >
         <div className="container-site">
           <div className={styles.centerHeading}>
-            <p className={styles.eyebrow}>{copy.strengths.eyebrow}</p>
+            <p className={styles.eyebrow}>{strengthsEyebrow}</p>
             <h2 id="home-strengths-title" className={styles.sectionTitle}>
-              {copy.strengths.title}
+              {strengthsTitle}
             </h2>
           </div>
           <div className={styles.benefitsGrid}>
-            {copy.strengths.items.map((item, index) => (
-              <article className={styles.benefit} key={item.title}>
+            {strengthItems.map((item, index) => (
+              <article className={styles.benefit} key={item._key || item.title}>
                 <span className={styles.benefitIcon}>
-                  <HomeIcon name={strengthIcons[index]} />
+                  <HomeIcon name={strengthIcons[index % strengthIcons.length]} />
                 </span>
                 <strong>{item.title}</strong>
                 <p>{item.description}</p>
@@ -205,61 +386,31 @@ export function HomeLanding({locale, dictionary, products, industries}: HomeLand
         </div>
       </section>
 
-      <section className={styles.section} aria-labelledby="home-industries-title">
-        <div className="container-site">
-          <div className={styles.headingRow}>
-            <div>
-              <p className={styles.eyebrow}>{copy.industries.eyebrow}</p>
+      {industryCards.length ? (
+        <section className={styles.section} aria-labelledby="home-industries-title">
+          <div className="container-site">
+            <div className={styles.centerHeading}>
+              <p className={styles.eyebrow}>{industriesEyebrow}</p>
               <h2 id="home-industries-title" className={styles.sectionTitle}>
-                {copy.industries.title}
+                {industriesTitle}
               </h2>
-              <p className={styles.sectionDescription}>{copy.industries.description}</p>
-            </div>
-            <Link href={`/${locale}/industries`} className={styles.textLink}>
-              {dictionary.nav.industries} <ArrowIcon />
-            </Link>
-          </div>
-
-          <div className={styles.industryGrid}>
-            {industryCards.map((area, index) => {
-              if (!area.slug || !area.title) return null
-              const staticImage =
-                ('staticImage' in area ? area.staticImage : null) ||
-                getApplicationAreaFallbackImage(area.slug)
-              return (
-                <Link
-                  href={`/${locale}/industries/${area.slug}`}
-                  className={styles.industryCard}
-                  key={area._id}
-                >
-                  {staticImage ? (
-                    <Image
-                      src={staticImage}
-                      alt=""
-                      fill
-                      sizes="(max-width: 920px) 100vw, 33vw"
-                      className={styles.industryImage}
-                    />
-                  ) : 'coverImage' in area && area.coverImage?.asset ? (
-                    <SanityImage
-                      image={area.coverImage}
-                      fill
-                      sizes="(max-width: 920px) 100vw, 33vw"
-                      className={styles.industryImage}
-                    />
-                  ) : null}
-                  <span className={styles.industryShade} aria-hidden />
-                  <span className={styles.industryContent}>
-                    <span className={styles.industryIndex}>{String(index + 1).padStart(2, '0')}</span>
-                    <h3>{area.title}</h3>
-                    <span>{copy.industries.detail} →</span>
-                  </span>
+              {industriesDescription ? (
+                <p className={styles.sectionDescription}>{industriesDescription}</p>
+              ) : null}
+              {industriesViewAll.href ? (
+                <Link href={industriesViewAll.href} className={`${styles.textLink} mt-5`}>
+                  {industriesViewAll.label} <ArrowIcon />
                 </Link>
-              )
-            })}
+              ) : null}
+            </div>
+            <IndustryCards
+              locale={locale}
+              areas={industryCards}
+              detailLabel={industriesDetailLabel}
+            />
           </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       <section
         id="private-label"
@@ -269,34 +420,40 @@ export function HomeLanding({locale, dictionary, products, industries}: HomeLand
         <div className="container-site">
           <div className={styles.privatePanel}>
             <div className={styles.privateIntro}>
-              <p className={styles.eyebrow}>{copy.privateLabel.eyebrow}</p>
+              <p className={styles.eyebrow}>
+                {privateLabel?.eyebrow || copy.privateLabel.eyebrow}
+              </p>
               <h2 id="private-label-title" className={styles.sectionTitle}>
-                {copy.privateLabel.title}
+                {privateLabel?.title || copy.privateLabel.title}
               </h2>
-              <p className={styles.sectionDescription}>{copy.privateLabel.description}</p>
-              <ButtonLink
-                href={`/${locale}/request-a-quote?type=private-label`}
-                className={styles.privateAction}
-              >
-                {copy.privateLabel.action} <ArrowIcon />
+              <p className={styles.sectionDescription}>
+                {privateLabel?.description || copy.privateLabel.description}
+              </p>
+              <ButtonLink href={privateCta.href} className={styles.privateAction}>
+                {privateCta.label} <ArrowIcon />
               </ButtonLink>
             </div>
 
             <div className={styles.privateVisual} aria-hidden="true">
-              <Image
-                src="/brand/private-label-product-scene-v2.webp"
-                alt=""
-                fill
-                sizes="(max-width: 640px) 100vw, (max-width: 1180px) 50vw, 25vw"
-                className={styles.privateVisualImage}
-              />
+              {privateImage ? (
+                <SanityImage
+                  image={privateImage}
+                  alt={privateImage.alt || ''}
+                  fill
+                  fit="max"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1180px) 50vw, 25vw"
+                  className={styles.privateVisualImage}
+                />
+              ) : null}
             </div>
 
             <div className={styles.privateFeatures}>
               <div className={styles.featureList}>
-                {copy.privateLabel.features.map((item, index) => (
-                  <div className={styles.featureItem} key={item.title}>
-                    <HomeIcon name={index === 0 ? 'beaker' : index === 4 ? 'globe' : 'package'} />
+                {privateFeatures.map((item, index) => (
+                  <div className={styles.featureItem} key={item._key || item.title}>
+                    <HomeIcon
+                      name={index === 0 ? 'beaker' : index === 4 ? 'globe' : 'package'}
+                    />
                     <span>
                       <strong>{item.title}</strong>
                       <p>{item.description}</p>
@@ -307,10 +464,12 @@ export function HomeLanding({locale, dictionary, products, industries}: HomeLand
             </div>
 
             <div className={styles.privateProcess}>
-              <p className={styles.processTitle}>{copy.privateLabel.processTitle}</p>
+              <p className={styles.processTitle}>
+                {privateLabel?.processTitle || copy.privateLabel.processTitle}
+              </p>
               <div className={styles.processList}>
-                {copy.privateLabel.process.map((step, index) => (
-                  <div className={styles.processStep} key={step.title}>
+                {privateProcess.map((step, index) => (
+                  <div className={styles.processStep} key={step._key || step.title}>
                     <span className={styles.processNumber}>
                       {String(index + 1).padStart(2, '0')}
                     </span>
@@ -329,67 +488,118 @@ export function HomeLanding({locale, dictionary, products, industries}: HomeLand
       <section className={styles.section} aria-labelledby="home-about-title">
         <div className="container-site">
           <div className={styles.aboutGrid}>
-            <div className={styles.aboutMedia}>
-              {aboutImage?.asset ? (
-                <SanityImage
-                  image={aboutImage}
-                  alt={copy.about.imageAlt}
-                  fill
-                  sizes="(max-width: 920px) 100vw, 55vw"
-                  className={styles.aboutImage}
-                />
-              ) : (
-                <Image
-                  src="/brand/slides/slide-engine-cleaner.webp"
-                  alt={copy.about.imageAlt}
-                  fill
-                  sizes="(max-width: 920px) 100vw, 55vw"
-                  className={styles.aboutImage}
-                />
-              )}
-            </div>
+            <AboutVideo
+              poster={aboutImage}
+              posterAlt={about?.image?.alt || copy.about.imageAlt}
+              playLabel={aboutPlayLabel}
+              streamUrl={about?.streamUrl}
+              streamVideoId={about?.streamVideoId}
+            />
             <div className={styles.aboutCopy}>
-              <p className={styles.eyebrow}>{copy.about.eyebrow}</p>
+              <p className={styles.aboutEyebrow}>{about?.eyebrow || copy.about.eyebrow}</p>
               <h2 id="home-about-title" className={styles.sectionTitle}>
-                {copy.about.title}
+                {about?.title || copy.about.title}
               </h2>
-              <p className={styles.sectionDescription}>{copy.about.description}</p>
-              <Link href={`/${locale}/about`} className={`${styles.textLink} mt-7 w-fit`}>
-                {copy.about.action} <ArrowIcon />
-              </Link>
+              <p className={styles.sectionDescription}>
+                {about?.description || copy.about.description}
+              </p>
               <div className={styles.statsGrid}>
-                {copy.about.stats.map((stat) => (
-                  <div className={styles.stat} key={stat.label}>
+                {aboutStats.map((stat, index) => (
+                  <div className={styles.stat} key={stat._key || `${stat.value}-${stat.label}`}>
+                    <span className={styles.statIcon}>
+                      {stat.icon?.asset ? (
+                        <SanityImage image={stat.icon} alt="" width={48} height={48} />
+                      ) : (
+                        <HomeIcon name={aboutStatIcons[index] || 'shield'} />
+                      )}
+                    </span>
                     <strong>{stat.value}</strong>
                     <span>{stat.label}</span>
                   </div>
                 ))}
               </div>
+              <Link href={aboutCta.href} className={styles.aboutOutlineCta}>
+                {aboutCta.label} <ArrowIcon />
+              </Link>
             </div>
           </div>
         </div>
       </section>
 
       <section className={styles.qualityBand} aria-labelledby="home-quality-title">
-        <div className="container-site">
+        <img
+          src="/brand/polumat-mark-512-light.webp"
+          alt=""
+          aria-hidden="true"
+          className={styles.qualityWatermark}
+        />
+        <div className={`container-site ${styles.qualityInner}`}>
           <div className={styles.qualityTop}>
-            <div>
-              <p className={styles.eyebrow}>{copy.quality.eyebrow}</p>
-              <h2 id="home-quality-title" className={styles.sectionTitle}>
-                {copy.quality.title}
-              </h2>
-            </div>
-            <Link href={`/${locale}/quality-certificates`} className={styles.textLink}>
-              ISO 9001 · 14001 · 45001 <ArrowIcon />
-            </Link>
+            <p className={styles.eyebrow}>{quality?.eyebrow || copy.quality.eyebrow}</p>
+            <h2 id="home-quality-title" className={styles.sectionTitle}>
+              {quality?.title || copy.quality.title}
+            </h2>
           </div>
-          <div className={styles.qualityGrid}>
-            {copy.quality.items.map((item) => (
-              <div className={styles.qualityItem} key={item}>
-                <HomeIcon name="check" />
-                <strong>{item}</strong>
-              </div>
-            ))}
+
+          <div className={styles.qualityRow}>
+            <div className={styles.qualityGrid}>
+              {qualityItems.map((item, index) => (
+                <div className={styles.qualityItem} key={item._key || item.label}>
+                  <span className={styles.qualityItemIcon}>
+                    {item.icon?.asset ? (
+                      <SanityImage image={item.icon} alt="" width={48} height={48} />
+                    ) : (
+                      <QualityFeatureIcon
+                        name={QUALITY_FEATURE_ICONS[index] || 'service'}
+                      />
+                    )}
+                  </span>
+                  <strong>{item.label}</strong>
+                </div>
+              ))}
+            </div>
+
+            {qualityBadges.length ? (
+              <>
+                <div className={styles.qualityDivider} aria-hidden="true" />
+                <div className={styles.qualityBadges}>
+                  {qualityBadges.map((badge) => {
+                    const kind = inferQualityBadgeKind(badge.label || '')
+                    const content = (
+                      <>
+                        <span className={styles.qualityBadgeMark}>
+                          {badge.image?.asset ? (
+                            <SanityImage
+                              image={badge.image}
+                              alt={badge.label || ''}
+                              width={96}
+                              height={96}
+                            />
+                          ) : (
+                            <QualityBadgeMark kind={kind} label={badge.label || ''} />
+                          )}
+                        </span>
+                        <span className={styles.qualityBadgeLabel}>{badge.label}</span>
+                      </>
+                    )
+
+                    return qualityLink.href ? (
+                      <Link
+                        key={badge._key || badge.label}
+                        href={qualityLink.href}
+                        className={styles.qualityBadge}
+                      >
+                        {content}
+                      </Link>
+                    ) : (
+                      <div key={badge._key || badge.label} className={styles.qualityBadge}>
+                        {content}
+                      </div>
+                    )
+                  })}
+                </div>
+              </>
+            ) : null}
           </div>
         </div>
       </section>
@@ -397,22 +607,24 @@ export function HomeLanding({locale, dictionary, products, industries}: HomeLand
       <section className={styles.ctaBand} aria-labelledby="home-cta-title">
         <div className={`container-site ${styles.ctaInner}`}>
           <div>
-            <p className={styles.eyebrow}>{copy.cta.eyebrow}</p>
+            <p className={styles.eyebrow}>{cta?.eyebrow || copy.cta.eyebrow}</p>
             <h2 id="home-cta-title" className={styles.ctaTitle}>
-              {copy.cta.title}
+              {cta?.title || copy.cta.title}
             </h2>
-            <p className={styles.ctaDescription}>{copy.cta.description}</p>
+            <p className={styles.ctaDescription}>
+              {cta?.description || copy.cta.description}
+            </p>
           </div>
           <div className={styles.ctaActions}>
-            <ButtonLink href={`/${locale}/request-a-quote`} className="no-underline uppercase">
-              {copy.cta.quote} <ArrowIcon />
+            <ButtonLink href={bottomPrimary.href} className="no-underline uppercase">
+              {bottomPrimary.label} <ArrowIcon />
             </ButtonLink>
             <ButtonLink
-              href={`/${locale}/contact`}
-              variant="secondary"
+              href={bottomSecondary.href}
+              variant={bottomSecondary.variant}
               className="no-underline uppercase"
             >
-              {copy.cta.contact}
+              {bottomSecondary.label}
             </ButtonLink>
           </div>
         </div>
@@ -469,7 +681,11 @@ function ArrowIcon() {
       stroke="currentColor"
       strokeWidth="1.6"
     >
-      <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path
+        d="M3 8h9M8.5 4.5 12 8l-3.5 3.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
     </svg>
   )
 }
@@ -526,6 +742,14 @@ function HomeIcon({name}: {name: IconName}) {
         <>
           <circle cx="16" cy="16" r="12" />
           <path d="m10 16 4 4 8-9" />
+        </>
+      ) : null}
+      {name === 'list' ? (
+        <>
+          <path d="M8 7h16M8 16h16M8 25h12" />
+          <circle cx="4" cy="7" r="1.4" fill="currentColor" stroke="none" />
+          <circle cx="4" cy="16" r="1.4" fill="currentColor" stroke="none" />
+          <circle cx="4" cy="25" r="1.4" fill="currentColor" stroke="none" />
         </>
       ) : null}
     </svg>

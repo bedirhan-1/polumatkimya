@@ -56,7 +56,8 @@ export default defineConfig({
         if (
           template.schemaType === 'homePage' ||
           template.schemaType === 'contactPage' ||
-          template.schemaType === 'siteSettings'
+          template.schemaType === 'siteSettings' ||
+          template.schemaType === 'productOrder'
         ) {
           return false
         }

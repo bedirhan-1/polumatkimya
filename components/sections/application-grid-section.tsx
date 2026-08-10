@@ -1,9 +1,7 @@
-import Image from 'next/image'
 import Link from 'next/link'
 
 import {SectionHeading} from '@/components/content/section-heading'
 import {SanityImage} from '@/components/content/sanity-image'
-import {getApplicationAreaFallbackImage} from '@/lib/application-area-images'
 import type {Locale} from '@/lib/i18n/locales'
 
 type ApplicationGridSectionProps = {
@@ -31,7 +29,6 @@ export function ApplicationGridSection({locale, block}: ApplicationGridSectionPr
           <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {block.applicationAreas.map((area) => {
               if (!area.slug || !area.title) return null
-              const fallbackImage = getApplicationAreaFallbackImage(area.slug)
               return (
                 <li key={area._id}>
                   <Link
@@ -41,14 +38,7 @@ export function ApplicationGridSection({locale, block}: ApplicationGridSectionPr
                     {area.coverImage?.asset ? (
                       <SanityImage
                         image={area.coverImage}
-                        fill
-                        className="object-cover opacity-30 transition group-hover:opacity-45"
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                      />
-                    ) : fallbackImage ? (
-                      <Image
-                        src={fallbackImage}
-                        alt=""
+                        alt={area.coverImage.alt || area.title}
                         fill
                         className="object-cover opacity-30 transition group-hover:opacity-45"
                         sizes="(max-width: 768px) 100vw, 33vw"

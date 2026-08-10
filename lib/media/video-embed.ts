@@ -1,4 +1,4 @@
-export type VideoProvider = 'youtube' | 'vimeo' | 'mux'
+export type VideoProvider = 'youtube' | 'vimeo' | 'mux' | 'cloudflare'
 
 export type EmbedInfo = {
   provider: VideoProvider
@@ -33,10 +33,55 @@ function vimeoId(url: string): string | null {
   return null
 }
 
+/** Build Cloudflare Stream iframe URL from a full URL or video UID + customer code. */
+export function resolveCloudflareStreamEmbed(input: {
+  externalUrl?: string | null
+  playbackId?: string | null
+  customerCode?: string | null
+}): EmbedInfo | null {
+  const customerCode =
+    input.customerCode?.trim() ||
+    process.env.NEXT_PUBLIC_CLOUDFLARE_STREAM_CUSTOMER_CODE?.trim() ||
+    null
+
+  if (input.externalUrl) {
+    try {
+      const parsed = new URL(input.externalUrl)
+      if (!parsed.hostname.includes('cloudflarestream.com')) return null
+      const parts = parsed.pathname.split('/').filter(Boolean)
+      const uid = parts[0]
+      if (!uid) return null
+      const embedUrl = new URL(`${parsed.origin}/${uid}/iframe`)
+      embedUrl.searchParams.set('autoplay', 'true')
+      return {
+        provider: 'cloudflare',
+        embedUrl: embedUrl.toString(),
+        watchUrl: input.externalUrl,
+      }
+    } catch {
+      return null
+    }
+  }
+
+  const uid = input.playbackId?.trim()
+  if (!uid || !customerCode) return null
+
+  const origin = `https://customer-${customerCode.replace(/^customer-/, '')}.cloudflarestream.com`
+  const embedUrl = new URL(`${origin}/${uid}/iframe`)
+  embedUrl.searchParams.set('autoplay', 'true')
+
+  return {
+    provider: 'cloudflare',
+    embedUrl: embedUrl.toString(),
+    watchUrl: `${origin}/${uid}/watch`,
+  }
+}
+
 export function resolveVideoEmbed(input: {
   provider?: string | null
   externalUrl?: string | null
   playbackId?: string | null
+  customerCode?: string | null
 }): EmbedInfo | null {
   const provider = input.provider as VideoProvider | null | undefined
 
@@ -46,6 +91,14 @@ export function resolveVideoEmbed(input: {
       embedUrl: `https://player.mux.com/${input.playbackId}`,
       watchUrl: `https://player.mux.com/${input.playbackId}`,
     }
+  }
+
+  if (
+    provider === 'cloudflare' ||
+    (!provider && input.externalUrl?.includes('cloudflarestream.com'))
+  ) {
+    const cloudflare = resolveCloudflareStreamEmbed(input)
+    if (cloudflare) return cloudflare
   }
 
   if (!input.externalUrl) return null

@@ -1,17 +1,18 @@
 import type {Metadata} from 'next'
-import Link from 'next/link'
 import {notFound} from 'next/navigation'
 
+import {Breadcrumbs} from '@/components/content/breadcrumbs'
+import {PageHero} from '@/components/content/page-hero'
 import {PortableTextRenderer} from '@/components/content/portable-text'
 import {SanityImage} from '@/components/content/sanity-image'
-import {SectionHeading} from '@/components/content/section-heading'
-import {ButtonLink} from '@/components/ui/button-link'
+import {RelatedProductsSlider} from '@/components/product/related-products-slider'
 import {getDictionary} from '@/lib/i18n/get-dictionary'
 import {isLocale, locales, type Locale} from '@/lib/i18n/locales'
+import type {ProductCardData} from '@/lib/products/types'
 import {buildPageMetadata} from '@/lib/seo/metadata'
-import {resolveHref} from '@/sanity/lib/link-resolver'
 import {client} from '@/sanity/lib/client'
 import {getApplicationAreaBySlug} from '@/sanity/lib/pages'
+import {getProducts} from '@/sanity/lib/products'
 import {APPLICATION_AREA_SLUGS_QUERY} from '@/sanity/queries/industries'
 
 type PageProps = {
@@ -49,13 +50,24 @@ export async function generateMetadata({params}: PageProps): Promise<Metadata> {
   })
 }
 
+function asProductCards(value: unknown): ProductCardData[] {
+  if (!Array.isArray(value)) return []
+  return value.filter(
+    (item): item is ProductCardData =>
+      Boolean(item && typeof item === 'object' && 'slug' in item && 'title' in item),
+  )
+}
+
 export default async function IndustryDetailPage({params}: PageProps) {
   const {locale: localeParam, industrySlug} = await params
   if (!isLocale(localeParam)) notFound()
 
   const locale = localeParam as Locale
   const dictionary = await getDictionary(locale)
-  const area = await getApplicationAreaBySlug(locale, industrySlug)
+  const [area, filteredProducts] = await Promise.all([
+    getApplicationAreaBySlug(locale, industrySlug),
+    getProducts(locale, {industry: industrySlug}),
+  ])
 
   if (!area || typeof area !== 'object' || !('title' in area) || !area.title) {
     notFound()
@@ -71,55 +83,74 @@ export default async function IndustryDetailPage({params}: PageProps) {
       title?: string | null
       description?: string | null
     }> | null
-    products?: Array<{
-      _id: string
-      title?: string | null
-      slug?: string | null
-      shortDescription?: string | null
-      cardImage?: {asset?: {_ref?: string}; alt?: string | null} | null
-    }> | null
-    cta?: {
-      label?: string | null
-      variant?: string | null
-      link?: {
-        linkType?: 'internal' | 'external' | 'reference' | null
-        internalPath?: string | null
-        externalUrl?: string | null
-        reference?: {_type?: string; slug?: string | null} | null
-      } | null
-    } | null
+    products?: ProductCardData[] | null
   }
 
-  const ctaHref = data.cta?.link ? resolveHref(locale, data.cta.link) : null
+  const curated = asProductCards(data.products)
+  const fromFilter = asProductCards(filteredProducts)
+  const products = (curated.length ? curated : fromFilter).slice(0, 12)
 
   return (
     <main id="main-content">
-      <section className="relative overflow-hidden border-b border-border">
-        <div className="container-site section-space grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="flex flex-col gap-6">
-            <SectionHeading as="h1" heading={data.title} description={data.summary} />
-            {ctaHref && data.cta?.label ? (
-              <ButtonLink href={ctaHref}>{data.cta.label}</ButtonLink>
-            ) : (
-              <ButtonLink href={`/${locale}/request-a-quote`}>
-                {dictionary.nav.requestQuote}
-              </ButtonLink>
-            )}
+      <PageHero compact>
+        <Breadcrumbs
+          className="mb-0"
+          label={dictionary.products.breadcrumbs}
+          items={[
+            {href: `/${locale}`, label: dictionary.common.home},
+            {href: `/${locale}/industries`, label: dictionary.pages.industriesTitle},
+            {label: data.title},
+          ]}
+        />
+
+        <div className="mt-5 grid items-center gap-6 lg:grid-cols-[1.35fr_0.65fr]">
+          <div className="min-w-0">
+            <p className="text-xs font-semibold tracking-[0.22em] text-accent uppercase">
+              {dictionary.pages.industriesTitle}
+            </p>
+            <h1 className="mt-2 font-display text-3xl text-foreground sm:text-4xl lg:text-[2.75rem] lg:leading-tight">
+              {data.title}
+            </h1>
+            {data.summary ? (
+              <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted sm:text-base line-clamp-3">
+                {data.summary}
+              </p>
+            ) : null}
           </div>
-          <div className="relative min-h-72 overflow-hidden border border-border bg-surface lg:min-h-96">
-            <SanityImage
-              image={data.coverImage}
-              fill
-              priority
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 45vw"
-            />
-          </div>
+
+          {data.coverImage?.asset ? (
+            <div className="relative hidden aspect-[16/10] overflow-hidden border border-white/10 bg-surface sm:block lg:aspect-[5/3]">
+              <SanityImage
+                image={data.coverImage}
+                fill
+                priority
+                className="object-cover"
+                sizes="(max-width: 1024px) 40vw, 28vw"
+              />
+            </div>
+          ) : null}
         </div>
-      </section>
+      </PageHero>
+
+      {products.length ? (
+        <RelatedProductsSlider
+          locale={locale}
+          products={products}
+          detailLabel={dictionary.products.detail}
+          heading={dictionary.pages.recommendedProducts}
+          allProductsHref={`/${locale}/products?industry=${encodeURIComponent(industrySlug)}`}
+          allProductsLabel={dictionary.nav.products}
+        />
+      ) : (
+        <section className="border-b border-border section-space">
+          <div className="container-site">
+            <p className="text-sm text-muted">{dictionary.pages.emptyIndustry}</p>
+          </div>
+        </section>
+      )}
 
       {data.body ? (
-        <section className="border-b border-border section-space">
+        <section className="border-b border-border py-10 sm:py-12">
           <div className="container-site max-w-3xl">
             <PortableTextRenderer value={data.body} />
           </div>
@@ -127,52 +158,18 @@ export default async function IndustryDetailPage({params}: PageProps) {
       ) : null}
 
       {data.benefits?.length ? (
-        <section className="border-b border-border section-space">
-          <div className="container-site grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <section className="border-b border-border py-10 sm:py-12">
+          <div className="container-site grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {data.benefits.map((benefit) => (
-              <div key={benefit._key} className="border border-border bg-surface p-5">
-                <h2 className="font-display text-xl text-foreground">{benefit.title}</h2>
+              <div key={benefit._key} className="border border-border/80 bg-surface/60 px-4 py-4">
+                <h2 className="text-sm font-semibold tracking-wide text-foreground uppercase">
+                  {benefit.title}
+                </h2>
                 {benefit.description ? (
-                  <p className="mt-2 text-sm text-muted">{benefit.description}</p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-muted">{benefit.description}</p>
                 ) : null}
               </div>
             ))}
-          </div>
-        </section>
-      ) : null}
-
-      {data.products?.length ? (
-        <section className="border-b border-border section-space">
-          <div className="container-site flex flex-col gap-8">
-            <SectionHeading heading={dictionary.nav.products} />
-            <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {data.products.map((product) => {
-                if (!product.slug || !product.title) return null
-                return (
-                  <li key={product._id}>
-                    <Link
-                      href={`/${locale}/products/${product.slug}`}
-                      className="flex h-full flex-col border border-border bg-surface no-underline transition hover:border-accent"
-                    >
-                      <div className="relative aspect-[4/3] bg-surface-elevated">
-                        <SanityImage
-                          image={product.cardImage}
-                          fill
-                          className="object-contain p-6"
-                          sizes="(max-width: 768px) 100vw, 33vw"
-                        />
-                      </div>
-                      <div className="p-5">
-                        <h3 className="font-display text-xl text-foreground">{product.title}</h3>
-                        {product.shortDescription ? (
-                          <p className="mt-2 text-sm text-muted">{product.shortDescription}</p>
-                        ) : null}
-                      </div>
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
           </div>
         </section>
       ) : null}

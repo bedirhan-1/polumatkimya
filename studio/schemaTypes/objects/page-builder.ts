@@ -7,7 +7,6 @@ export const pageBuilderType = defineType({
   type: 'array',
   icon: BlockElementIcon,
   of: [
-    defineArrayMember({type: 'heroSliderSection'}),
     defineArrayMember({type: 'heroSection'}),
     defineArrayMember({type: 'productShowcaseSection'}),
     defineArrayMember({type: 'featureGridSection'}),

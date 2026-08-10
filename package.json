@@ -19,9 +19,11 @@
     "migrate:extract": "tsx migration/scripts/extract.ts",
     "migrate:transform": "tsx migration/scripts/transform.ts",
     "migrate:validate": "tsx migration/scripts/validate.ts",
-    "migrate:import": "tsx migration/scripts/import.ts"
+    "migrate:import": "tsx migration/scripts/import.ts",
+    "fix:grout-filler": "tsx migration/scripts/fix-grout-filler-product.ts"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1106.0",
     "@sanity/client": "^7.20.0",
     "@sanity/document-internationalization": "^6.2.27",
     "@sanity/icons": "^3.7.4",

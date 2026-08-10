@@ -2,6 +2,7 @@ import type {Metadata} from 'next'
 import {notFound} from 'next/navigation'
 
 import {Breadcrumbs} from '@/components/content/breadcrumbs'
+import {PageHero} from '@/components/content/page-hero'
 import {PortableTextRenderer} from '@/components/content/portable-text'
 import {SanityImage} from '@/components/content/sanity-image'
 import {SetLocaleAlternates} from '@/components/i18n/set-locale-alternates'
@@ -12,7 +13,8 @@ import {isLocale, type Locale} from '@/lib/i18n/locales'
 import type {ProductCardData} from '@/lib/products/types'
 import {buildPageMetadata} from '@/lib/seo/metadata'
 import {buildPostLocaleHrefs, getPostBySlug, getPublishedPostParams} from '@/sanity/lib/content'
-import {urlFor} from '@/sanity/lib/image'
+import {cdnUrlFor} from '@/sanity/lib/image'
+import {ensureR2Image} from '@/lib/r2/ensure-image'
 
 type PageProps = {
   params: Promise<{locale: string; postSlug: string}>
@@ -97,9 +99,14 @@ export default async function BlogPostPage({params}: PageProps) {
 
   const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL || 'https://polumatkimya.com').replace(/\/$/, '')
   const pageUrl = `${siteUrl}/${locale}/blog/${post.slug || postSlug}`
-  const imageUrl = post.coverImage?.asset
-    ? urlFor(post.coverImage).width(1200).height(630).fit('crop').auto('format').url()
-    : undefined
+  let imageUrl: string | undefined
+  if (post.coverImage?.asset) {
+    try {
+      imageUrl = (await ensureR2Image(post.coverImage)) || cdnUrlFor(post.coverImage)
+    } catch {
+      imageUrl = cdnUrlFor(post.coverImage, {width: 1200, height: 630, fit: 'crop'})
+    }
+  }
 
   const jsonLd = {
     '@context': 'https://schema.org',
@@ -135,10 +142,11 @@ export default async function BlogPostPage({params}: PageProps) {
       <JsonLd data={jsonLd} />
 
       <article>
-        <header className="border-b border-border section-space">
-          <div className="container-site grid gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+        <PageHero>
+          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
             <div className="flex flex-col gap-5">
               <Breadcrumbs
+                className="mb-0"
                 label={dictionary.blog.breadcrumbs}
                 items={[
                   {href: `/${locale}`, label: dictionary.common.home},
@@ -160,7 +168,7 @@ export default async function BlogPostPage({params}: PageProps) {
               </div>
               {post.excerpt ? <p className="max-w-2xl text-base text-muted">{post.excerpt}</p> : null}
             </div>
-            <div className="relative min-h-72 overflow-hidden border border-border bg-surface lg:min-h-96">
+            <div className="relative min-h-72 overflow-hidden border border-white/10 bg-surface lg:min-h-96">
               <SanityImage
                 image={post.coverImage}
                 fill
@@ -170,7 +178,7 @@ export default async function BlogPostPage({params}: PageProps) {
               />
             </div>
           </div>
-        </header>
+        </PageHero>
 
         {post.body ? (
           <section className="border-b border-border section-space">

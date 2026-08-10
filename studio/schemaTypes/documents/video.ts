@@ -27,6 +27,7 @@ export const videoType = defineType({
           {title: 'YouTube', value: 'youtube'},
           {title: 'Vimeo', value: 'vimeo'},
           {title: 'Mux', value: 'mux'},
+          {title: 'Cloudflare Stream', value: 'cloudflare'},
         ],
         layout: 'radio',
       },
@@ -36,13 +37,17 @@ export const videoType = defineType({
       name: 'externalUrl',
       title: 'External URL',
       type: 'url',
+      description:
+        'YouTube/Vimeo link, or full Cloudflare Stream URL (e.g. https://customer-xxx.cloudflarestream.com/{uid}/iframe).',
       hidden: ({parent}) => parent?.provider === 'mux',
     }),
     defineField({
       name: 'playbackId',
       title: 'Playback ID',
       type: 'string',
-      hidden: ({parent}) => parent?.provider !== 'mux',
+      description:
+        'Mux playback ID, or Cloudflare Stream video UID when using NEXT_PUBLIC_CLOUDFLARE_STREAM_CUSTOMER_CODE.',
+      hidden: ({parent}) => parent?.provider !== 'mux' && parent?.provider !== 'cloudflare',
     }),
     defineField({
       name: 'coverImage',

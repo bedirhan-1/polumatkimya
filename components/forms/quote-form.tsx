@@ -8,12 +8,19 @@ type QuoteFormProps = {
   labels: Dictionary['forms']
   locale: string
   defaultProductInterest?: string
+  /** When true, shows brand name and posts as a private-label quote. */
+  privateLabel?: boolean
 }
 
 const fieldClassName =
   'min-h-11 border border-border bg-background px-3 py-2 text-foreground outline-none transition focus:border-accent'
 
-export function QuoteForm({labels, locale, defaultProductInterest}: QuoteFormProps) {
+export function QuoteForm({
+  labels,
+  locale,
+  defaultProductInterest,
+  privateLabel = false,
+}: QuoteFormProps) {
   const [status, setStatus] = useState<'idle' | 'success' | 'error'>('idle')
   const [pending, setPending] = useState(false)
 
@@ -37,10 +44,12 @@ export function QuoteForm({labels, locale, defaultProductInterest}: QuoteFormPro
         headers: {'Content-Type': 'application/json'},
         body: JSON.stringify({
           locale,
+          type: privateLabel ? 'private-label' : 'quote',
           name: formData.get('name'),
           email: formData.get('email'),
           phone: formData.get('phone'),
           company: formData.get('company'),
+          brandName: formData.get('brandName'),
           productInterest: formData.get('productInterest'),
           message: formData.get('message'),
           consent: formData.get('consent') === 'on',
@@ -71,13 +80,18 @@ export function QuoteForm({labels, locale, defaultProductInterest}: QuoteFormPro
         <Field label={labels.email} name="email" type="email" required dir="ltr" />
         <Field label={labels.phone} name="phone" type="tel" dir="ltr" />
         <Field label={labels.company} name="company" />
+        {privateLabel ? (
+          <Field label={labels.brandName} name="brandName" required />
+        ) : null}
+        <Field
+          label={labels.productInterest}
+          name="productInterest"
+          defaultValue={
+            defaultProductInterest ||
+            (privateLabel ? labels.privateLabelInterestDefault : undefined)
+          }
+        />
       </div>
-
-      <Field
-        label={labels.productInterest}
-        name="productInterest"
-        defaultValue={defaultProductInterest}
-      />
 
       <label className="flex flex-col gap-2 text-sm text-muted">
         <span className="font-medium text-foreground">{labels.message}</span>
@@ -104,7 +118,7 @@ export function QuoteForm({labels, locale, defaultProductInterest}: QuoteFormPro
         disabled={pending}
         className="inline-flex min-h-12 items-center justify-center bg-accent px-6 py-3 text-sm font-semibold tracking-wide text-white transition hover:brightness-110 disabled:opacity-60"
       >
-        {labels.submitQuote}
+        {privateLabel ? labels.submitPrivateLabel : labels.submitQuote}
       </button>
 
       {status === 'success' ? (

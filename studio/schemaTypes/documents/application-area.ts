@@ -36,11 +36,15 @@ export const applicationAreaType = defineType({
       name: 'coverImage',
       title: 'Cover image',
       type: 'imageWithAlt',
+      description: 'Homepage card photo and detail page hero.',
     }),
     defineField({
       name: 'icon',
       title: 'Icon',
       type: 'image',
+      description:
+        'Homepage card icon. Prefer a white/light monochrome SVG or PNG on transparent background.',
+      options: {accept: 'image/svg+xml,image/png,image/webp'},
     }),
     defineField({
       name: 'benefits',

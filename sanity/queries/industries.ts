@@ -3,13 +3,13 @@ import {defineQuery} from 'next-sanity'
 import {imageWithAltProjection, seoProjection} from '@/sanity/fragments/page-builder'
 
 export const APPLICATION_AREAS_QUERY = defineQuery(`
-  *[_type == "applicationArea" && defined(slug.current)] | order(title[0].value asc) {
+  *[_type == "applicationArea" && defined(slug.current)] | order(sortOrder asc, title[language == $locale || _key == $locale][0].value asc) {
     _id,
     "title": title[language == $locale || _key == $locale][0].value,
     "slug": slug.current,
     "summary": summary[language == $locale || _key == $locale][0].value,
     coverImage{${imageWithAltProjection}},
-    icon
+    icon{${imageWithAltProjection}}
   }
 `)
 
@@ -32,8 +32,27 @@ export const APPLICATION_AREA_BY_SLUG_QUERY = defineQuery(`
       _id,
       "title": title[language == $locale || _key == $locale][0].value,
       "slug": slug.current,
+      sku,
       "shortDescription": shortDescription[language == $locale || _key == $locale][0].value,
-      cardImage{asset, alt}
+      "badge": badge[language == $locale || _key == $locale][0].value,
+      featured,
+      cardImage{
+        asset,
+        hotspot,
+        crop,
+        "alt": alt[language == $locale || _key == $locale][0].value
+      },
+      packshot{
+        asset,
+        hotspot,
+        crop,
+        "alt": alt[language == $locale || _key == $locale][0].value
+      },
+      primaryCategory->{
+        _id,
+        "title": title[language == $locale || _key == $locale][0].value,
+        "slug": slug.current
+      }
     },
     cta{
       variant,

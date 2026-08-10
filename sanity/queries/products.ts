@@ -49,22 +49,48 @@ export const PRODUCT_CATEGORY_BY_SLUG_QUERY = defineQuery(`
   }
 `)
 
+const productListFilter = /* groq */ `
+  status == "published" &&
+  defined(slug.current) &&
+  ($category == "" || primaryCategory->slug.current == $category || $category in categories[]->slug.current) &&
+  ($industry == "" || $industry in applicationAreas[]->slug.current) &&
+  (
+    $q == "" ||
+    title[language == $locale || _key == $locale][0].value match $qWildcard ||
+    shortDescription[language == $locale || _key == $locale][0].value match $qWildcard ||
+    sku match $qWildcard
+  )
+`
+
+/** Catalog order comes from the `productOrder` singleton (drag & drop in Studio). */
 export const PRODUCTS_QUERY = defineQuery(`
-  *[
-    _type == "product" &&
-    status == "published" &&
-    defined(slug.current) &&
-    ($category == "" || primaryCategory->slug.current == $category || $category in categories[]->slug.current) &&
-    ($industry == "" || $industry in applicationAreas[]->slug.current) &&
-    (
-      $q == "" ||
-      title[language == $locale || _key == $locale][0].value match $qWildcard ||
-      shortDescription[language == $locale || _key == $locale][0].value match $qWildcard ||
-      sku match $qWildcard
+  (
+    coalesce(
+      *[_id == "productOrder"][0].products[
+        @->status == "published" &&
+        defined(@->slug.current) &&
+        ($category == "" || @->primaryCategory->slug.current == $category || $category in @->categories[]->slug.current) &&
+        ($industry == "" || $industry in @->applicationAreas[]->slug.current) &&
+        (
+          $q == "" ||
+          @->title[language == $locale || _key == $locale][0].value match $qWildcard ||
+          @->shortDescription[language == $locale || _key == $locale][0].value match $qWildcard ||
+          @->sku match $qWildcard
+        )
+      ]->{
+        ${productCardProjection}
+      },
+      []
     )
-  ] | order(sortOrder asc, title[language == $locale || _key == $locale][0].value asc) {
-    ${productCardProjection}
-  }
+    +
+    *[
+      _type == "product" &&
+      ${productListFilter} &&
+      !(_id in coalesce(*[_id == "productOrder"][0].products[]._ref, []))
+    ] | order(title[language == $locale || _key == $locale][0].value asc) {
+      ${productCardProjection}
+    }
+  )
 `)
 
 export const PRODUCT_BY_SLUG_QUERY = defineQuery(`
