@@ -34,6 +34,7 @@ type HomeCopy = {
     title: string
     description: string
     detail: string
+    viewAll: string
   }
   privateLabel: {
     eyebrow: string
@@ -51,12 +52,14 @@ type HomeCopy = {
     description: string
     action: string
     imageAlt: string
+    videoPlayLabel: string
     stats: Array<{value: string; label: string}>
   }
   quality: {
     eyebrow: string
     title: string
-    items: string[]
+    items: Array<{label: string}>
+    badges: Array<{label: string}>
   }
   cta: {
     eyebrow: string
@@ -110,6 +113,7 @@ const copy: Record<Locale, HomeCopy> = {
       title: 'Her sektör için güvenilir bakım çözümleri',
       description: 'Sektöre özel ürün önerileri ve uygulama senaryolarını keşfedin.',
       detail: 'Çözümleri keşfet',
+      viewAll: 'Tüm uygulama alanları',
     },
     privateLabel: {
       eyebrow: 'Private label',
@@ -137,20 +141,34 @@ const copy: Record<Locale, HomeCopy> = {
       eyebrow: 'Hakkımızda',
       title: 'Kimya ve aerosol çözümlerinde güvenilir iş ortağınız',
       description:
-        'Polumat, profesyonel kullanıcıların ihtiyacı duyduğu yüksek performanslı kimyasal ürünleri modern üretim altyapısı, kalite odaklı yaklaşımı ve ihracat tecrübesiyle geliştirir.',
+        'Polumat, profesyonel kullanıcıların ihtiyacı duyduğu yüksek performanslı aerosol ürünleri modern üretim altyapısı, kalite odaklı yaklaşımı ve uzun vadeli iş ortaklıklarıyla geliştirir.',
       action: 'Hakkımızda daha fazla bilgi',
-      imageAlt: 'Polumat’ın modern üretim ve endüstriyel bakım altyapısı',
+      imageAlt: 'Polumat üretim tesisi ve lojistik alanı',
+      videoPlayLabel: 'Tanıtım videosunu izle',
       stats: [
         {value: '50+', label: 'Ülkeye ihracat'},
-        {value: '5', label: 'Kıtada iş ortaklığı'},
+        {value: '5', label: "Kıta'da iş ortaklığı"},
         {value: 'Modern', label: 'Üretim tesisi'},
-        {value: 'Pro', label: 'Ürün gamı'},
+        {value: 'Profesyonel', label: 'Ürün gamı'},
+        {value: 'Private Label', label: 'Üretim desteği'},
       ],
     },
     quality: {
       eyebrow: 'Kalite ve güven',
       title: 'Her aşamada kontrol, her üründe güven',
-      items: ['Seçilmiş hammadde', 'Kontrollü üretim', 'Performans testleri', 'Kalite kontrol süreçleri', 'Müşteri odaklı hizmet'],
+      items: [
+        {label: 'Seçilmiş hammadde'},
+        {label: 'Kontrollü üretim'},
+        {label: 'Performans testleri'},
+        {label: 'Kalite kontrol süreçleri'},
+        {label: 'Müşteri memnuniyeti odaklı hizmet'},
+      ],
+      badges: [
+        {label: '9001:2015'},
+        {label: '14001:2015'},
+        {label: '45001:2018'},
+        {label: 'Made in Türkiye'},
+      ],
     },
     cta: {
       eyebrow: 'Doğru çözümü birlikte bulalım',
@@ -201,6 +219,7 @@ const copy: Record<Locale, HomeCopy> = {
       title: 'Reliable maintenance solutions for every sector',
       description: 'Discover sector-specific product recommendations and application scenarios.',
       detail: 'Explore solutions',
+      viewAll: 'All application areas',
     },
     privateLabel: {
       eyebrow: 'Private label',
@@ -226,20 +245,35 @@ const copy: Record<Locale, HomeCopy> = {
     about: {
       eyebrow: 'About us',
       title: 'Your trusted partner in chemical and aerosol solutions',
-      description: 'Polumat develops high-performance chemical products with modern production infrastructure, a quality-first approach and international experience.',
+      description:
+        'Polumat develops high-performance aerosol products with modern production infrastructure, a quality-first approach and long-term partnerships.',
       action: 'Learn more about us',
-      imageAlt: 'Polumat modern production and industrial maintenance infrastructure',
+      imageAlt: 'Polumat production facility and logistics area',
+      videoPlayLabel: 'Watch the promo video',
       stats: [
         {value: '50+', label: 'Export countries'},
-        {value: '5', label: 'Continents'},
+        {value: '5', label: 'Continents in partnership'},
         {value: 'Modern', label: 'Production facility'},
-        {value: 'Pro', label: 'Product range'},
+        {value: 'Professional', label: 'Product range'},
+        {value: 'Private Label', label: 'Production support'},
       ],
     },
     quality: {
       eyebrow: 'Quality & trust',
       title: 'Controlled at every stage, trusted in every product',
-      items: ['Selected raw materials', 'Controlled production', 'Performance tests', 'Quality processes', 'Customer-focused service'],
+      items: [
+        {label: 'Selected raw materials'},
+        {label: 'Controlled production'},
+        {label: 'Performance tests'},
+        {label: 'Quality control processes'},
+        {label: 'Customer satisfaction focused service'},
+      ],
+      badges: [
+        {label: '9001:2015'},
+        {label: '14001:2015'},
+        {label: '45001:2018'},
+        {label: 'Made in Türkiye'},
+      ],
     },
     cta: {
       eyebrow: 'Let’s find the right solution',
@@ -290,6 +324,7 @@ const copy: Record<Locale, HomeCopy> = {
       title: 'حلول صيانة موثوقة لكل قطاع',
       description: 'اكتشف توصيات المنتجات وسيناريوهات التطبيق لكل قطاع.',
       detail: 'استكشف الحلول',
+      viewAll: 'كل مجالات التطبيق',
     },
     privateLabel: {
       eyebrow: 'العلامة الخاصة',
@@ -315,20 +350,35 @@ const copy: Record<Locale, HomeCopy> = {
     about: {
       eyebrow: 'من نحن',
       title: 'شريكك الموثوق في حلول الكيمياء والهباء الجوي',
-      description: 'تطور بولومات منتجات كيميائية عالية الأداء ببنية إنتاج حديثة ونهج يركز على الجودة وخبرة دولية.',
+      description:
+        'تطور بولومات منتجات الهباء الجوي عالية الأداء ببنية إنتاج حديثة ونهج يركز على الجودة وشراكات طويلة الأمد.',
       action: 'اعرف المزيد عنا',
-      imageAlt: 'بنية بولومات الحديثة للإنتاج والصيانة الصناعية',
+      imageAlt: 'منشأة إنتاج بولومات ومنطقة الخدمات اللوجستية',
+      videoPlayLabel: 'شاهد فيديو التعريف',
       stats: [
         {value: '+50', label: 'دولة تصدير'},
-        {value: '5', label: 'قارات'},
+        {value: '5', label: 'قارات للشراكة'},
         {value: 'حديث', label: 'مرفق الإنتاج'},
-        {value: 'Pro', label: 'مجموعة المنتجات'},
+        {value: 'احترافي', label: 'مجموعة المنتجات'},
+        {value: 'Private Label', label: 'دعم الإنتاج'},
       ],
     },
     quality: {
       eyebrow: 'الجودة والثقة',
       title: 'رقابة في كل مرحلة، ثقة في كل منتج',
-      items: ['مواد خام مختارة', 'إنتاج مراقب', 'اختبارات أداء', 'عمليات جودة', 'خدمة تركز على العميل'],
+      items: [
+        {label: 'مواد خام مختارة'},
+        {label: 'إنتاج مراقب'},
+        {label: 'اختبارات أداء'},
+        {label: 'عمليات مراقبة الجودة'},
+        {label: 'خدمة تركز على رضا العملاء'},
+      ],
+      badges: [
+        {label: '9001:2015'},
+        {label: '14001:2015'},
+        {label: '45001:2018'},
+        {label: 'Made in Türkiye'},
+      ],
     },
     cta: {
       eyebrow: 'لنجد الحل المناسب',

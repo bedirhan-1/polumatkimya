@@ -1,12 +1,10 @@
 import type {Metadata} from 'next'
-import Image from 'next/image'
-import Link from 'next/link'
 import {notFound} from 'next/navigation'
 
+import {Breadcrumbs} from '@/components/content/breadcrumbs'
+import {IndustryCards, type IndustryCardItem} from '@/components/content/industry-cards'
 import {MarketingFallback} from '@/components/content/marketing-fallback'
-import {SanityImage} from '@/components/content/sanity-image'
-import {SectionHeading} from '@/components/content/section-heading'
-import {getApplicationAreaFallbackImage} from '@/lib/application-area-images'
+import {PageHero} from '@/components/content/page-hero'
 import {getDictionary} from '@/lib/i18n/get-dictionary'
 import {isLocale, locales, type Locale} from '@/lib/i18n/locales'
 import {buildPageMetadata} from '@/lib/seo/metadata'
@@ -38,73 +36,48 @@ export default async function IndustriesPage({params}: PageProps) {
 
   const locale = localeParam as Locale
   const dictionary = await getDictionary(locale)
-  const areas = await getApplicationAreas(locale)
+  const areasRaw = await getApplicationAreas(locale)
+  const areas = (Array.isArray(areasRaw) ? areasRaw : []) as IndustryCardItem[]
+  const hasAreas = areas.some((area) => area.slug && area.title)
 
   return (
     <main id="main-content">
-      <section className="border-b border-border section-space">
-        <div className="container-site flex flex-col gap-10">
-          <SectionHeading
-            as="h1"
-            heading={dictionary.pages.industriesTitle}
-            description={dictionary.pages.industriesDescription}
-          />
-
-          {Array.isArray(areas) && areas.length > 0 ? (
-            <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {areas.map((area) => {
-                const item = area as {
-                  _id: string
-                  title?: string | null
-                  slug?: string | null
-                  summary?: string | null
-                  coverImage?: {asset?: {_ref?: string}; alt?: string | null} | null
-                }
-                if (!item.slug || !item.title) return null
-                const fallbackImage = getApplicationAreaFallbackImage(item.slug)
-                return (
-                  <li key={item._id}>
-                    <Link
-                      href={`/${locale}/industries/${item.slug}`}
-                      className="group relative flex min-h-48 flex-col justify-end overflow-hidden border border-border bg-surface p-5 no-underline transition hover:border-accent"
-                    >
-                      {item.coverImage?.asset ? (
-                        <SanityImage
-                          image={item.coverImage}
-                          fill
-                          className="object-cover opacity-35 transition group-hover:opacity-50"
-                          sizes="(max-width: 768px) 100vw, 33vw"
-                        />
-                      ) : fallbackImage ? (
-                        <Image
-                          src={fallbackImage}
-                          alt=""
-                          fill
-                          className="object-cover opacity-35 transition group-hover:opacity-50"
-                          sizes="(max-width: 768px) 100vw, 33vw"
-                        />
-                      ) : null}
-                      <div className="relative z-10">
-                        <h2 className="font-display text-2xl text-foreground">{item.title}</h2>
-                        {item.summary ? (
-                          <p className="mt-2 line-clamp-3 text-sm text-muted">{item.summary}</p>
-                        ) : null}
-                      </div>
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
-          ) : (
-            <MarketingFallback
-              locale={locale}
-              dictionary={dictionary}
-              title={dictionary.pages.industriesTitle}
-              description={dictionary.pages.industriesDescription}
-            />
-          )}
+      <PageHero compact>
+        <Breadcrumbs
+          className="mb-0"
+          label={dictionary.products.breadcrumbs}
+          items={[
+            {href: `/${locale}`, label: dictionary.common.home},
+            {label: dictionary.pages.industriesTitle},
+          ]}
+        />
+        <div className="mt-5 max-w-3xl">
+          <p className="text-xs font-semibold tracking-[0.22em] text-accent uppercase">
+            Polumat
+          </p>
+          <h1 className="mt-2 font-display text-3xl text-foreground sm:text-4xl lg:text-5xl">
+            {dictionary.pages.industriesTitle}
+          </h1>
+          <p className="mt-3 text-sm text-muted sm:text-base">
+            {dictionary.pages.industriesDescription}
+          </p>
         </div>
-      </section>
+      </PageHero>
+
+      {hasAreas ? (
+        <section className="border-b border-border bg-[#08090b]">
+          <div className="container-site py-10 sm:py-14">
+            <IndustryCards locale={locale} areas={areas} />
+          </div>
+        </section>
+      ) : (
+        <MarketingFallback
+          locale={locale}
+          dictionary={dictionary}
+          title={dictionary.pages.industriesTitle}
+          description={dictionary.pages.industriesDescription}
+        />
+      )}
     </main>
   )
 }

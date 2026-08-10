@@ -129,8 +129,13 @@ function pageBuilderFromText(title: string, bodyText?: string) {
 }
 
 function industrySlugForCategory(categorySlug: string) {
-  if (categorySlug === 'industrial-sprays') return ['automotive', 'industrial-maintenance']
-  return ['construction']
+  if (categorySlug === 'industrial-sprays') {
+    return ['automotive', 'industry', 'maintenance-technical-service']
+  }
+  if (categorySlug === 'construction-chemicals') {
+    return ['industry', 'maintenance-technical-service']
+  }
+  return []
 }
 
 function featureItems(lines: string[] | undefined) {

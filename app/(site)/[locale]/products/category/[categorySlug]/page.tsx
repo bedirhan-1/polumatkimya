@@ -2,6 +2,7 @@ import type {Metadata} from 'next'
 import {notFound} from 'next/navigation'
 
 import {Breadcrumbs} from '@/components/content/breadcrumbs'
+import {PageHero} from '@/components/content/page-hero'
 import {PortableTextRenderer} from '@/components/content/portable-text'
 import {SectionHeading} from '@/components/content/section-heading'
 import {MobileProductFilters} from '@/components/product/mobile-product-filters'
@@ -92,24 +93,30 @@ export default async function ProductCategoryPage({params, searchParams}: PagePr
 
   return (
     <main id="main-content">
+      <PageHero>
+        <Breadcrumbs
+          className="mb-0"
+          label={dictionary.products.breadcrumbs}
+          items={[
+            {href: `/${locale}`, label: dictionary.common.home},
+            {href: `/${locale}/products`, label: dictionary.products.title},
+            {label: data.title},
+          ]}
+        />
+        <div className="animate-product-rise mt-6">
+          <SectionHeading as="h1" heading={data.title} description={data.summary} />
+        </div>
+      </PageHero>
+
       <section className="border-b border-border section-space">
         <div className="container-site">
-          <Breadcrumbs
-            label={dictionary.products.breadcrumbs}
-            items={[
-              {href: `/${locale}`, label: dictionary.common.home},
-              {href: `/${locale}/products`, label: dictionary.products.title},
-              {label: data.title},
-            ]}
-          />
-          <SectionHeading as="h1" heading={data.title} description={data.summary} />
           {data.body ? (
-            <div className="mt-8 max-w-3xl">
+            <div className="mb-10 max-w-3xl">
               <PortableTextRenderer value={data.body} />
             </div>
           ) : null}
 
-          <div className="mt-10 grid gap-8 lg:grid-cols-[280px_1fr]">
+          <div className="grid gap-8 lg:grid-cols-[240px_1fr]">
             <aside className="hidden lg:block">
               <div className="sticky top-[var(--sticky-offset)] z-10 max-h-[calc(100vh-var(--sticky-offset)-1rem)] overflow-y-auto">
                 <ProductFilters
@@ -132,7 +139,12 @@ export default async function ProductCategoryPage({params, searchParams}: PagePr
                 current={filters}
                 basePath={basePath}
               />
-              <p className="text-sm text-muted">{resultsLabel}</p>
+              <div className="flex items-end justify-between gap-4 border-b border-border pb-3">
+                <p className="text-sm font-medium tracking-wide text-foreground">{resultsLabel}</p>
+                {filters.industry || filters.q ? (
+                  <p className="text-xs text-muted">{dictionary.filters.activeFilters}</p>
+                ) : null}
+              </div>
               <ProductGrid
                 locale={locale}
                 products={productList}

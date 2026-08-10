@@ -4,6 +4,8 @@ import type {Dictionary} from '@/lib/i18n/get-dictionary'
 import type {Locale} from '@/lib/i18n/locales'
 import type {FilterOption} from '@/lib/products/types'
 
+import styles from './product-filters.module.css'
+
 type ProductFiltersProps = {
   locale: Locale
   dictionary: Dictionary
@@ -36,38 +38,85 @@ export function ProductFilters({
 }: ProductFiltersProps) {
   const listPath = `/${locale}/products`
   const formAction = `/${locale}${basePath}`
-  const clearHref = withQuery(formAction, {})
-  const hasFilters = Boolean(
-    current.industry || current.q || (basePath === '/products' && current.category),
-  )
+  // Always reset category + industry (+ search) back to the unfiltered catalog.
+  const clearHref = listPath
+  const activeCategory = categories.find((item) => item.slug === current.category)
+  const activeIndustry = industries.find((item) => item.slug === current.industry)
+  const hasFilters = Boolean(current.industry || current.q || current.category)
 
   return (
-    <aside className="border border-border bg-surface p-5">
-      <div className="flex items-center justify-between gap-3">
-        <h2 className="font-display text-lg text-foreground">{dictionary.filters.title}</h2>
+    <aside className={styles.panel}>
+      <div className={styles.head}>
+        <h2 className={styles.title}>{dictionary.filters.title}</h2>
         {hasFilters ? (
-          <Link href={clearHref} className="text-xs font-semibold text-accent no-underline">
+          <Link href={clearHref} className={styles.clear}>
             {dictionary.filters.clearFilters}
           </Link>
         ) : null}
       </div>
 
-      <form method="get" action={formAction} className="mt-5 flex flex-col gap-5">
-        <label className="flex flex-col gap-2 text-sm">
+      {hasFilters ? (
+        <div className={styles.activeRow} aria-label={dictionary.filters.activeFilters}>
+          {activeCategory?.title && basePath === '/products' ? (
+            <Link
+              href={withQuery(listPath, {industry: current.industry, q: current.q})}
+              className={styles.chip}
+            >
+              <span>{activeCategory.title}</span>
+              <span className={styles.chipX} aria-hidden>
+                ×
+              </span>
+            </Link>
+          ) : null}
+          {activeIndustry?.title ? (
+            <Link href={withQuery(formAction, {q: current.q})} className={styles.chip}>
+              <span>{activeIndustry.title}</span>
+              <span className={styles.chipX} aria-hidden>
+                ×
+              </span>
+            </Link>
+          ) : null}
+          {current.q ? (
+            <Link
+              href={withQuery(formAction, {industry: current.industry})}
+              className={styles.chip}
+            >
+              <span>“{current.q}”</span>
+              <span className={styles.chipX} aria-hidden>
+                ×
+              </span>
+            </Link>
+          ) : null}
+        </div>
+      ) : null}
+
+      <form method="get" action={formAction} className={styles.form}>
+        <label className={styles.searchLabel}>
           <span>{dictionary.filters.search}</span>
-          <input
-            type="search"
-            name="q"
-            defaultValue={current.q || ''}
-            placeholder={dictionary.filters.searchPlaceholder}
-            className="min-h-11 border border-border bg-background px-3 py-2 text-foreground"
-          />
+          <span className={styles.searchBox}>
+            <input
+              type="search"
+              name="q"
+              defaultValue={current.q || ''}
+              placeholder={dictionary.filters.searchPlaceholder}
+              className={styles.searchInput}
+            />
+            <button
+              type="submit"
+              className={styles.searchSubmit}
+              aria-label={dictionary.filters.apply}
+            >
+              <SearchIcon />
+            </button>
+          </span>
         </label>
 
-        <fieldset className="flex flex-col gap-2">
-          <legend className="text-sm font-medium text-foreground">{dictionary.filters.category}</legend>
-          <div className="flex flex-col gap-1">
-            <FilterLink
+        {current.industry ? <input type="hidden" name="industry" value={current.industry} /> : null}
+
+        <fieldset className={styles.group}>
+          <legend className={styles.legend}>{dictionary.filters.category}</legend>
+          <div className={styles.options}>
+            <FilterOptionLink
               href={withQuery(listPath, {industry: current.industry, q: current.q})}
               active={!current.category}
               label={dictionary.filters.all}
@@ -75,7 +124,7 @@ export function ProductFilters({
             {categories.map((category) => {
               if (!category.slug || !category.title) return null
               return (
-                <FilterLink
+                <FilterOptionLink
                   key={category._id}
                   href={withQuery(`/${locale}/products/category/${category.slug}`, {
                     industry: current.industry,
@@ -89,10 +138,10 @@ export function ProductFilters({
           </div>
         </fieldset>
 
-        <fieldset className="flex flex-col gap-2">
-          <legend className="text-sm font-medium text-foreground">{dictionary.filters.industry}</legend>
-          <div className="flex flex-col gap-1">
-            <FilterLink
+        <fieldset className={styles.group}>
+          <legend className={styles.legend}>{dictionary.filters.industry}</legend>
+          <div className={styles.options}>
+            <FilterOptionLink
               href={withQuery(formAction, {q: current.q})}
               active={!current.industry}
               label={dictionary.filters.all}
@@ -100,7 +149,7 @@ export function ProductFilters({
             {industries.map((industry) => {
               if (!industry.slug || !industry.title) return null
               return (
-                <FilterLink
+                <FilterOptionLink
                   key={industry._id}
                   href={withQuery(formAction, {
                     industry: industry.slug,
@@ -112,33 +161,47 @@ export function ProductFilters({
               )
             })}
           </div>
-          {current.industry ? <input type="hidden" name="industry" value={current.industry} /> : null}
-          {basePath === '/products' && current.category ? (
-            <input type="hidden" name="category" value={current.category} />
-          ) : null}
         </fieldset>
-
-        <button
-          type="submit"
-          className="inline-flex min-h-11 items-center justify-center border border-border bg-background px-4 text-sm font-semibold text-foreground"
-        >
-          {dictionary.filters.apply}
-        </button>
       </form>
     </aside>
   )
 }
 
-function FilterLink({href, active, label}: {href: string; active: boolean; label: string}) {
+function FilterOptionLink({
+  href,
+  active,
+  label,
+}: {
+  href: string
+  active: boolean
+  label: string
+}) {
   return (
     <Link
       href={href}
-      className={`min-h-10 px-2 py-2 text-sm no-underline transition ${
-        active ? 'bg-accent text-white' : 'text-muted hover:bg-surface-elevated hover:text-foreground'
-      }`}
+      className={`${styles.option}${active ? ` ${styles.optionActive}` : ''}`}
       aria-current={active ? 'true' : undefined}
     >
-      {label}
+      <span>{label}</span>
+      <span className={styles.optionMark} aria-hidden />
     </Link>
+  )
+}
+
+function SearchIcon() {
+  return (
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden>
+      <path
+        d="M7.25 12.5a5.25 5.25 0 1 1 0-10.5 5.25 5.25 0 0 1 0 10.5Z"
+        stroke="currentColor"
+        strokeWidth="1.5"
+      />
+      <path
+        d="M11.1 11.1 14 14"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+      />
+    </svg>
   )
 }

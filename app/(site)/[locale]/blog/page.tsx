@@ -2,6 +2,7 @@ import type {Metadata} from 'next'
 import {notFound} from 'next/navigation'
 
 import {Breadcrumbs} from '@/components/content/breadcrumbs'
+import {PageHero} from '@/components/content/page-hero'
 import {PostCard, type PostCardData} from '@/components/content/post-card'
 import {SectionHeading} from '@/components/content/section-heading'
 import {getDictionary} from '@/lib/i18n/get-dictionary'
@@ -41,21 +42,26 @@ export default async function BlogIndexPage({params}: PageProps) {
 
   return (
     <main id="main-content">
-      <section className="border-b border-border section-space">
-        <div className="container-site flex flex-col gap-10">
-          <Breadcrumbs
-            label={dictionary.blog.breadcrumbs}
-            items={[
-              {href: `/${locale}`, label: dictionary.common.home},
-              {label: dictionary.blog.title},
-            ]}
-          />
+      <PageHero>
+        <Breadcrumbs
+          className="mb-0"
+          label={dictionary.blog.breadcrumbs}
+          items={[
+            {href: `/${locale}`, label: dictionary.common.home},
+            {label: dictionary.blog.title},
+          ]}
+        />
+        <div className="animate-product-rise mt-6">
           <SectionHeading
             as="h1"
             heading={dictionary.blog.title}
             description={dictionary.blog.description}
           />
+        </div>
+      </PageHero>
 
+      <section className="border-b border-border section-space">
+        <div className="container-site">
           {posts.length ? (
             <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {posts.map((post) => (

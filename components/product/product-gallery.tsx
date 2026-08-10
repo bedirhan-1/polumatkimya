@@ -4,6 +4,8 @@ import {useState} from 'react'
 
 import {SanityImage} from '@/components/content/sanity-image'
 
+import styles from './product-gallery.module.css'
+
 type GalleryImage = {
   asset?: {_ref?: string} | null
   alt?: string | null
@@ -19,28 +21,21 @@ export function ProductGallery({images, className = ''}: ProductGalleryProps) {
   const [active, setActive] = useState(0)
 
   if (!valid.length) {
-    return (
-      <div
-        className={`relative aspect-[4/5] overflow-hidden border border-border bg-surface-elevated ${className}`}
-      >
-        <div className="product-mesh absolute inset-0 opacity-40" aria-hidden />
-      </div>
-    )
+    return <div className={`${styles.stage} ${className}`} aria-hidden />
   }
 
   const current = valid[Math.min(active, valid.length - 1)]!
 
   return (
     <div className={`flex flex-col gap-3 ${className}`}>
-      <div className="relative aspect-[4/5] overflow-hidden border border-border bg-surface-elevated sm:aspect-[3/4]">
-        <div className="product-mesh absolute inset-0 opacity-20" aria-hidden />
+      <div className={styles.stage}>
         <SanityImage
           image={current}
           fill
           fit="max"
           width={900}
           priority
-          className="object-contain object-center p-3 sm:p-4"
+          className={styles.image}
           sizes="(max-width: 1024px) 100vw, 40vw"
         />
       </div>
@@ -52,16 +47,14 @@ export function ProductGallery({images, className = ''}: ProductGalleryProps) {
                 type="button"
                 onClick={() => setActive(index)}
                 aria-current={index === active ? 'true' : undefined}
-                className={`relative aspect-square w-full overflow-hidden border bg-surface-elevated transition ${
-                  index === active ? 'border-accent' : 'border-border hover:border-muted'
-                }`}
+                className={`${styles.thumb}${index === active ? ` ${styles.thumbActive}` : ''}`}
               >
                 <SanityImage
                   image={image}
                   fill
                   fit="max"
                   width={200}
-                  className="object-contain p-1.5"
+                  className={styles.thumbImage}
                   sizes="96px"
                 />
               </button>

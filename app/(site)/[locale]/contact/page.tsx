@@ -3,6 +3,8 @@ import type {ReactNode} from 'react'
 import {notFound} from 'next/navigation'
 
 import {PageBuilder} from '@/components/content/page-builder'
+import {PageHero} from '@/components/content/page-hero'
+import {ContactMap} from '@/components/content/contact-map'
 import {ContactForm} from '@/components/forms/contact-form'
 import {ButtonLink} from '@/components/ui/button-link'
 import {getDictionary} from '@/lib/i18n/get-dictionary'
@@ -31,7 +33,9 @@ const CONTACT = {
     {label: 'Export', value: 'export@polumat.com', href: 'mailto:export@polumat.com'},
   ],
   mapEmbed:
-    'https://maps.google.com/maps?q=Velio%C4%9Flu%20OSB%20Mahallesi%2011%20Nolu%20Sokak%20No:3%20%C3%87aycuma%20Zonguldak&z=14&output=embed',
+    'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d24969.54637002056!2d32.134079!3d41.404388!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x409c9df2982d432d%3A0x199446ced2931174!2sPolumat%20Kimya%20San.Tic.Ltd.%C5%9Eti!5e1!3m2!1str!2sus!4v1786290800135!5m2!1str!2sus',
+  mapsUrl:
+    'https://www.google.com/maps/search/?api=1&query=Polumat%20Kimya%20San.Tic.Ltd.%C5%9Eti%20%C3%87aycuma',
 }
 
 export function generateStaticParams() {
@@ -81,18 +85,15 @@ export default async function ContactPage({params}: PageProps) {
     <main id="main-content">
       {blocks ? <PageBuilder locale={locale} dictionary={dictionary} blocks={blocks} /> : null}
 
-      <section className="product-hero-panel relative overflow-hidden border-b border-border">
-        <div className="product-mesh absolute inset-0 opacity-30" aria-hidden />
-        <div className="container-site relative py-14 sm:py-20">
-          <p className="text-xs font-semibold tracking-[0.22em] text-accent uppercase">
-            {dictionary.meta.siteName}
-          </p>
-          <h1 className="mt-4 max-w-3xl font-display text-4xl text-foreground sm:text-5xl lg:text-6xl">
-            {title}
-          </h1>
-          <p className="mt-4 max-w-2xl text-base text-muted sm:text-lg">{intro}</p>
-        </div>
-      </section>
+      <PageHero>
+        <p className="text-xs font-semibold tracking-[0.22em] text-accent uppercase">
+          {dictionary.meta.siteName}
+        </p>
+        <h1 className="mt-4 max-w-3xl font-display text-4xl text-foreground sm:text-5xl lg:text-6xl">
+          {title}
+        </h1>
+        <p className="mt-4 max-w-2xl text-base text-muted sm:text-lg">{intro}</p>
+      </PageHero>
 
       {/* MIT-style facts + narrative */}
       <section className="border-b border-border">
@@ -130,7 +131,6 @@ export default async function ContactPage({params}: PageProps) {
                 items={[
                   channelPhone || DEFAULT_CONTACT.phone,
                   channelEmail || DEFAULT_CONTACT.email,
-                  dictionary.contactPage.employees,
                 ]}
               />
             </dl>
@@ -165,15 +165,12 @@ export default async function ContactPage({params}: PageProps) {
       </section>
 
       <section className="border-b border-border">
-        <div className="relative min-h-[320px] w-full overflow-hidden bg-surface sm:min-h-[420px]">
-          <iframe
-            title={dictionary.contactPage.map}
-            src={CONTACT.mapEmbed}
-            className="absolute inset-0 h-full w-full border-0 grayscale contrast-125"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          />
-        </div>
+        <ContactMap
+          src={CONTACT.mapEmbed}
+          title={dictionary.contactPage.map}
+          mapsUrl={CONTACT.mapsUrl}
+          openInMapsLabel={dictionary.contactPage.openInMaps}
+        />
       </section>
     </main>
   )

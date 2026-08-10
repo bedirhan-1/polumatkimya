@@ -2,6 +2,7 @@ import type {Metadata} from 'next'
 import {notFound} from 'next/navigation'
 
 import {Breadcrumbs} from '@/components/content/breadcrumbs'
+import {PageHero} from '@/components/content/page-hero'
 import {SectionHeading} from '@/components/content/section-heading'
 import {VideoCard, type VideoCardData} from '@/components/content/video-card'
 import {getDictionary} from '@/lib/i18n/get-dictionary'
@@ -40,21 +41,26 @@ export default async function VideosPage({params}: PageProps) {
 
   return (
     <main id="main-content">
-      <section className="border-b border-border section-space">
-        <div className="container-site flex flex-col gap-10">
-          <Breadcrumbs
-            label={dictionary.videos.breadcrumbs}
-            items={[
-              {href: `/${locale}`, label: dictionary.common.home},
-              {label: dictionary.videos.title},
-            ]}
-          />
+      <PageHero>
+        <Breadcrumbs
+          className="mb-0"
+          label={dictionary.videos.breadcrumbs}
+          items={[
+            {href: `/${locale}`, label: dictionary.common.home},
+            {label: dictionary.videos.title},
+          ]}
+        />
+        <div className="animate-product-rise mt-6">
           <SectionHeading
             as="h1"
             heading={dictionary.videos.title}
             description={dictionary.videos.description}
           />
+        </div>
+      </PageHero>
 
+      <section className="border-b border-border section-space">
+        <div className="container-site">
           {videos.length ? (
             <ul className="grid gap-6 sm:grid-cols-2">
               {videos.map((video) => (

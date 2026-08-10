@@ -1,6 +1,6 @@
 import type {Locale} from '@/lib/i18n/locales'
 import type {ProductDetailData} from '@/lib/products/types'
-import {urlFor} from '@/sanity/lib/image'
+import {cdnUrlFor} from '@/sanity/lib/image'
 
 export function buildWhatsAppHref(
   phone?: string | null,
@@ -30,7 +30,7 @@ export function buildProductJsonLd({
   const url = `${siteUrl}/${locale}${path}`
   const imageSource = product.packshot?.asset ? product.packshot : product.cardImage
   const imageUrl = imageSource?.asset
-    ? urlFor(imageSource).width(1200).height(1200).fit('crop').auto('format').url()
+    ? cdnUrlFor(imageSource, {width: 1200, height: 1200, fit: 'crop'})
     : undefined
 
   const breadcrumbItems: Array<{

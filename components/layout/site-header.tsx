@@ -89,7 +89,7 @@ export function SiteHeader({locale, dictionary, items, phone, email}: SiteHeader
     {href: homeHref, label: dictionary.common.home},
     findNav(`/${locale}/products`),
     findNav(`/${locale}/industries`),
-    {href: `${homeHref}#private-label`, label: 'Private Label'},
+    {href: `/${locale}/private-label`, label: 'Private Label'},
     findNav(`/${locale}/about`),
     findNav(`/${locale}/contact`),
   ].filter((item): item is NavItem => Boolean(item))

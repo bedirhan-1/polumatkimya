@@ -43,9 +43,12 @@ export const productType = defineType({
     }),
     defineField({
       name: 'sortOrder',
-      title: 'Sort order',
+      title: 'Sort order (legacy)',
       type: 'number',
       initialValue: 0,
+      hidden: true,
+      description:
+        'Deprecated — use Studio → Product order (drag & drop) to control catalog sequence.',
     }),
     defineField({
       name: 'shortDescription',

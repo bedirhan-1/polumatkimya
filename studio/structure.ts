@@ -10,6 +10,7 @@ import {
   EnvelopeIcon,
   HomeIcon,
   PlayIcon,
+  SortIcon,
   TagIcon,
   TranslateIcon,
 } from '@sanity/icons'
@@ -21,6 +22,7 @@ const SINGLETON_TYPES = new Set([
   'siteSettings',
   'homePage',
   'contactPage',
+  'productOrder',
 ])
 
 /** Document types with explicit sidebar list items — hide from auto-generated list. */
@@ -90,6 +92,15 @@ export const structure: StructureResolver = (S) =>
         .title('Products')
         .icon(CubeIcon)
         .child(S.documentTypeList('product').title('Products')),
+      S.listItem()
+        .title('Product order')
+        .icon(SortIcon)
+        .child(
+          S.document()
+            .schemaType('productOrder')
+            .documentId('productOrder')
+            .title('Product order'),
+        ),
       S.listItem()
         .title('Product categories')
         .icon(TagIcon)

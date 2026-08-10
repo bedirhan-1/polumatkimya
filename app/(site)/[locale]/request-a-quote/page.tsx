@@ -1,6 +1,7 @@
 import type {Metadata} from 'next'
 import {notFound} from 'next/navigation'
 
+import {PageHero} from '@/components/content/page-hero'
 import {QuoteForm} from '@/components/forms/quote-form'
 import {getDictionary} from '@/lib/i18n/get-dictionary'
 import {isLocale, locales, type Locale} from '@/lib/i18n/locales'
@@ -62,30 +63,23 @@ export default async function RequestQuotePage({params, searchParams}: PageProps
 
   return (
     <main id="main-content">
-      <section className="product-hero-panel relative overflow-hidden border-b border-border">
-        <div className="product-mesh absolute inset-0 opacity-30" aria-hidden />
-        <div
-          className="pointer-events-none absolute -end-24 top-0 h-72 w-72 rounded-full bg-accent/10 blur-3xl"
-          aria-hidden
-        />
-        <div className="container-site relative py-14 sm:py-20">
-          <p className="animate-product-rise text-xs font-semibold tracking-[0.22em] text-accent uppercase">
-            {dictionary.quotePage.eyebrow}
-          </p>
-          <h1
-            className="animate-product-rise mt-4 max-w-3xl font-display text-4xl text-foreground sm:text-5xl lg:text-6xl"
-            style={{animationDelay: '60ms'}}
-          >
-            {dictionary.pages.quoteTitle}
-          </h1>
-          <p
-            className="animate-product-rise mt-4 max-w-2xl text-base text-muted sm:text-lg"
-            style={{animationDelay: '120ms'}}
-          >
-            {dictionary.pages.quoteDescription}
-          </p>
-        </div>
-      </section>
+      <PageHero>
+        <p className="animate-product-rise text-xs font-semibold tracking-[0.22em] text-accent uppercase">
+          {dictionary.quotePage.eyebrow}
+        </p>
+        <h1
+          className="animate-product-rise mt-4 max-w-3xl font-display text-4xl text-foreground sm:text-5xl lg:text-6xl"
+          style={{animationDelay: '60ms'}}
+        >
+          {dictionary.pages.quoteTitle}
+        </h1>
+        <p
+          className="animate-product-rise mt-4 max-w-2xl text-base text-muted sm:text-lg"
+          style={{animationDelay: '120ms'}}
+        >
+          {dictionary.pages.quoteDescription}
+        </p>
+      </PageHero>
 
       <section className="border-b border-border">
         <div className="container-site grid lg:grid-cols-[0.9fr_1.1fr]">

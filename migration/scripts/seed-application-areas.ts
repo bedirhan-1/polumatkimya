@@ -192,64 +192,6 @@ const AREA_SEEDS: AreaSeed[] = [
       },
     ],
   },
-  {
-    slug: 'construction',
-    coverUrl: 'https://polumatkimya.com/images/product-category/1740174232.webp',
-    categorySlug: 'construction-chemicals',
-    productSlugs: [
-      'siliconized-sealant',
-      'acrylic-sealant',
-      'universal-silicone',
-      'high-temperature-rtv-silicone',
-      'high-tack-adhesive',
-      'grout-filler',
-      'aquarium-silicone',
-      'shower-enclosure-silicone',
-    ],
-    body: {
-      tr: 'Yapı ve inşaat uygulamalarında sızdırmazlık, yapıştırma ve derz dolgu ürünleri uzun ömürlü performans gerektirir. Polumat yapı kimyasalları; silikon, mastik ve yapıştırıcı çözümleriyle iç-dış mekan derzleri, doğrama montajı ve özel yüzey uygulamalarını destekler.\n\nEsneklik, yapışma gücü ve hava şartlarına dayanım odaklı ürün ailesi, şantiye ve atölye ekiplerinin standart iş kalitesini yükseltir.',
-      en: 'Construction sealing, bonding and grouting applications need durable performance. Polumat construction chemicals support interior/exterior joints, joinery installation and specialty surfaces with silicones, sealants and adhesives.\n\nFocused on flexibility, adhesion and weather resistance, the range helps jobsite and workshop teams raise everyday work quality.',
-      ar: 'تتطلب تطبيقات السدم واللصق وحشو الفواصل في البناء أداءً طويل الأمد. تدعم كيماويات بولومات للبناء المفاصل الداخلية والخارجية وتركيب النجارة والأسطح الخاصة بالسيليكون والمانعات واللاصقات.\n\nتركّز المجموعة على المرونة والالتصاق ومقاومة العوامل الجوية لمساعدة فرق الموقع والورشة على رفع جودة العمل اليومية.',
-    },
-    benefits: [
-      {
-        title: {
-          tr: 'İç ve dış mekan dayanımı',
-          en: 'Indoor and outdoor durability',
-          ar: 'متانة للاستخدام الداخلي والخارجي',
-        },
-        description: {
-          tr: 'Hava, nem ve sıcaklık değişimlerine uygun formüller.',
-          en: 'Formulas suited to weather, moisture and temperature swings.',
-          ar: 'تركيبات مناسبة للطقس والرطوبة وتقلبات الحرارة.',
-        },
-      },
-      {
-        title: {
-          tr: 'Güçlü yapışma',
-          en: 'Strong adhesion',
-          ar: 'التصاق قوي',
-        },
-        description: {
-          tr: 'PVC, alüminyum, cam, ahşap ve beton yüzeylerde güvenli tutunma.',
-          en: 'Reliable grip on PVC, aluminum, glass, wood and concrete.',
-          ar: 'تماسك موثوق على PVC والألمنيوم والزجاج والخشب والخرسانة.',
-        },
-      },
-      {
-        title: {
-          tr: 'Uygulama kolaylığı',
-          en: 'Easy application',
-          ar: 'سهولة التطبيق',
-        },
-        description: {
-          tr: 'Kartuş ve tabanca ile hızlı, temiz uygulama.',
-          en: 'Fast, clean application with cartridge and gun.',
-          ar: 'تطبيق سريع ونظيف بالخرطوشة والمسدس.',
-        },
-      },
-    ],
-  },
 ]
 
 async function uploadImage(client: SanityClient, url: string, filenameHint: string) {
@@ -331,19 +273,9 @@ async function seedDataset(dataset: string) {
         seo: {
           _type: 'localizedSeo',
           title: localizedString({
-            tr: seed.slug === 'automotive' ? 'Otomotiv' : seed.slug === 'construction' ? 'Yapı ve inşaat' : 'Endüstriyel bakım',
-            en:
-              seed.slug === 'automotive'
-                ? 'Automotive'
-                : seed.slug === 'construction'
-                  ? 'Construction'
-                  : 'Industrial maintenance',
-            ar:
-              seed.slug === 'automotive'
-                ? 'السيارات'
-                : seed.slug === 'construction'
-                  ? 'البناء والتشييد'
-                  : 'الصيانة الصناعية',
+            tr: seed.slug === 'automotive' ? 'Otomotiv' : 'Endüstriyel bakım',
+            en: seed.slug === 'automotive' ? 'Automotive' : 'Industrial maintenance',
+            ar: seed.slug === 'automotive' ? 'السيارات' : 'الصيانة الصناعية',
           }),
           description: localizedText({
             tr: seed.body.tr.slice(0, 155),

@@ -3,7 +3,6 @@ import { CertificateSection } from "@/components/sections/certificate-section";
 import { CtaSection } from "@/components/sections/cta-section";
 import { FeatureGridSection } from "@/components/sections/feature-grid-section";
 import { HeroSection } from "@/components/sections/hero-section";
-import { HeroSliderSection } from "@/components/sections/hero-slider-section";
 import { ImageTextSection } from "@/components/sections/image-text-section";
 import { LatestContentSection } from "@/components/sections/latest-content-section";
 import { ProductShowcaseSection } from "@/components/sections/product-showcase-section";
@@ -34,13 +33,8 @@ export async function PageBuilder({
       {blocks.map((block) => {
         switch (block._type) {
           case "heroSliderSection":
-            return (
-              <HeroSliderSection
-                key={block._key}
-                locale={locale}
-                block={block as never}
-              />
-            );
+            // Deprecated — homepage hero lives on homePage.hero.
+            return null;
           case "heroSection":
             return (
               <HeroSection

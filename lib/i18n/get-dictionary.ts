@@ -47,9 +47,25 @@ export type Dictionary = {
     contactDescription: string
     quoteTitle: string
     quoteDescription: string
+    privateLabelTitle: string
+    privateLabelDescription: string
     emptyIndustry: string
+    recommendedProducts: string
   }
   quotePage: {
+    eyebrow: string
+    formTitle: string
+    formHint: string
+    responseTime: string
+    step1Title: string
+    step1Body: string
+    step2Title: string
+    step2Body: string
+    step3Title: string
+    step3Body: string
+    directContact: string
+  }
+  privateLabelPage: {
     eyebrow: string
     formTitle: string
     formHint: string
@@ -67,20 +83,23 @@ export type Dictionary = {
     phone: string
     email: string
     channels: string
-    employees: string
     writeUs: string
     writeUsDescription: string
     map: string
+    openInMaps: string
   }
   forms: {
     name: string
     email: string
     phone: string
     company: string
+    brandName: string
     message: string
     productInterest: string
+    privateLabelInterestDefault: string
     submitContact: string
     submitQuote: string
+    submitPrivateLabel: string
     consent: string
     success: string
     error: string
@@ -114,6 +133,9 @@ export type Dictionary = {
     industry: string
     resultsCount: string
     noResults: string
+    activeFilters: string
+    activeCount: string
+    refine: string
   }
   products: {
     title: string

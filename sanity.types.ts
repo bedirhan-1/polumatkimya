@@ -1053,3 +1053,199 @@ export type AllSanitySchemaTypes =
   | SanityAssetSourceData
   | SanityImageAsset
   | Geopoint;
+
+// Source: ../sanity/queries/content.ts
+// Variable: POST_SLUGS_QUERY
+// Query: *[    _type == "post" &&    translationStatus == "complete" &&    defined(slug.current) &&    defined(language)  ]{    "slug": slug.current,    language  }
+export type POST_SLUGS_QUERY_RESULT = Array<{
+  slug: string | null;
+  language: string | null;
+}>;
+
+// Source: ../sanity/queries/industries.ts
+// Variable: APPLICATION_AREA_SLUGS_QUERY
+// Query: *[_type == "applicationArea" && defined(slug.current)]{"slug": slug.current}
+export type APPLICATION_AREA_SLUGS_QUERY_RESULT = Array<{
+  slug: string | null;
+}>;
+
+// Source: ../sanity/queries/products.ts
+// Variable: PRODUCTS_QUERY
+// Query: *[    _type == "product" &&    status == "published" &&    defined(slug.current) &&    ($category == "" || primaryCategory->slug.current == $category || $category in categories[]->slug.current) &&    ($industry == "" || $industry in applicationAreas[]->slug.current) &&    (      $q == "" ||      title[language == $locale || _key == $locale][0].value match $qWildcard ||      shortDescription[language == $locale || _key == $locale][0].value match $qWildcard ||      sku match $qWildcard    )  ] | order(sortOrder asc, title[language == $locale || _key == $locale][0].value asc) {      _id,  "title": title[language == $locale || _key == $locale][0].value,  "slug": slug.current,  sku,  "shortDescription": shortDescription[language == $locale || _key == $locale][0].value,  "badge": badge[language == $locale || _key == $locale][0].value,  featured,  cardImage{  asset,  hotspot,  crop,  "alt": alt[language == $locale || _key == $locale][0].value},  packshot{  asset,  hotspot,  crop,  "alt": alt[language == $locale || _key == $locale][0].value},  primaryCategory->{    _id,    "title": title[language == $locale || _key == $locale][0].value,    "slug": slug.current  }  }
+export type PRODUCTS_QUERY_RESULT = Array<{
+  _id: string;
+  title: string | null;
+  slug: string | null;
+  sku: string | null;
+  shortDescription: string | null;
+  badge: string | null;
+  featured: boolean | null;
+  cardImage: {
+    asset: SanityImageAssetReference | null;
+    hotspot: SanityImageHotspot | null;
+    crop: SanityImageCrop | null;
+    alt: string | null;
+  } | null;
+  packshot: {
+    asset: SanityImageAssetReference | null;
+    hotspot: SanityImageHotspot | null;
+    crop: SanityImageCrop | null;
+    alt: string | null;
+  } | null;
+  primaryCategory: {
+    _id: string;
+    title: string | null;
+    slug: string | null;
+  } | null;
+}>;
+
+// Source: ../sanity/queries/products.ts
+// Variable: PRODUCT_SLUGS_QUERY
+// Query: *[_type == "product" && status == "published" && defined(slug.current)]{"slug": slug.current}
+export type PRODUCT_SLUGS_QUERY_RESULT = Array<{
+  slug: string | null;
+}>;
+
+// Source: ../sanity/queries/products.ts
+// Variable: PRODUCT_CATEGORY_SLUGS_QUERY
+// Query: *[_type == "productCategory" && defined(slug.current)]{"slug": slug.current}
+export type PRODUCT_CATEGORY_SLUGS_QUERY_RESULT = Array<{
+  slug: string | null;
+}>;
+
+// Source: ../sanity/queries/products.ts
+// Variable: FILTER_INDUSTRIES_QUERY
+// Query: *[_type == "applicationArea" && defined(slug.current)] | order(title[language == $locale || _key == $locale][0].value asc) {    _id,    "title": title[language == $locale || _key == $locale][0].value,    "slug": slug.current  }
+export type FILTER_INDUSTRIES_QUERY_RESULT = Array<{
+  _id: string;
+  title: string | null;
+  slug: string | null;
+}>;
+
+// Source: ../sanity/queries/site-settings.ts
+// Variable: SITE_SETTINGS_QUERY
+// Query: *[_type == "siteSettings"][0]{    _id,    companyName,    siteUrl,    whatsappNumber,    "whatsappMessage": whatsappMessage[language == $locale || _key == $locale][0].value,    "shortDescription": shortDescription[language == $locale || _key == $locale][0].value,    "address": address[language == $locale || _key == $locale][0].value,    "workingHours": workingHours[language == $locale || _key == $locale][0].value,    "footerLegalText": footerLegalText[language == $locale || _key == $locale][0].value,    logoLight{      asset,      alt    },    logoDark{      asset,      alt    },    headerNavigation[]{      _key,      _type,      linkType,      internalPath,      externalUrl,      openInNewTab,      "label": label[language == $locale || _key == $locale][0].value,      reference->{        _type,        "slug": slug.current,        language      }    },    quoteCta{      variant,      "label": label[language == $locale || _key == $locale][0].value,      link{        linkType,        internalPath,        externalUrl,        openInNewTab,        "label": label[language == $locale || _key == $locale][0].value,        reference->{          _type,          "slug": slug.current,          language        }      }    },    contactChannels[]{      _key,      phone,      email,      "department": department[language == $locale || _key == $locale][0].value    },    socialLinks[]{      _key,      platform,      url    },    uiLabels{      "requestQuote": requestQuote[language == $locale || _key == $locale][0].value,      "viewProducts": viewProducts[language == $locale || _key == $locale][0].value,      "readMore": readMore[language == $locale || _key == $locale][0].value,      "download": download[language == $locale || _key == $locale][0].value    }  }
+export type SITE_SETTINGS_QUERY_RESULT = {
+  _id: string;
+  companyName: string | null;
+  siteUrl: string | null;
+  whatsappNumber: string | null;
+  whatsappMessage: string | null;
+  shortDescription: string | null;
+  address: string | null;
+  workingHours: string | null;
+  footerLegalText: string | null;
+  logoLight: {
+    asset: SanityImageAssetReference | null;
+    alt: string | null;
+  } | null;
+  logoDark: {
+    asset: SanityImageAssetReference | null;
+    alt: string | null;
+  } | null;
+  headerNavigation: Array<{
+    _key: string;
+    _type: "internalOrExternalLink";
+    linkType: "external" | "internal" | "reference" | null;
+    internalPath: string | null;
+    externalUrl: string | null;
+    openInNewTab: boolean | null;
+    label: string | null;
+    reference:
+      | {
+          _type: "applicationArea";
+          slug: string | null;
+          language: null;
+        }
+      | {
+          _type: "page";
+          slug: string | null;
+          language: string | null;
+        }
+      | {
+          _type: "post";
+          slug: string | null;
+          language: string | null;
+        }
+      | {
+          _type: "product";
+          slug: string | null;
+          language: null;
+        }
+      | {
+          _type: "productCategory";
+          slug: string | null;
+          language: null;
+        }
+      | null;
+  }> | null;
+  quoteCta: {
+    variant: "ghost" | "primary" | "secondary" | null;
+    label: string | null;
+    link: {
+      linkType: "external" | "internal" | "reference" | null;
+      internalPath: string | null;
+      externalUrl: string | null;
+      openInNewTab: boolean | null;
+      label: string | null;
+      reference:
+        | {
+            _type: "applicationArea";
+            slug: string | null;
+            language: null;
+          }
+        | {
+            _type: "page";
+            slug: string | null;
+            language: string | null;
+          }
+        | {
+            _type: "post";
+            slug: string | null;
+            language: string | null;
+          }
+        | {
+            _type: "product";
+            slug: string | null;
+            language: null;
+          }
+        | {
+            _type: "productCategory";
+            slug: string | null;
+            language: null;
+          }
+        | null;
+    } | null;
+  } | null;
+  contactChannels: Array<{
+    _key: string;
+    phone: string | null;
+    email: string | null;
+    department: string | null;
+  }> | null;
+  socialLinks: Array<{
+    _key: string;
+    platform: "facebook" | "instagram" | "linkedin" | "x" | "youtube" | null;
+    url: string | null;
+  }> | null;
+  uiLabels: {
+    requestQuote: string | null;
+    viewProducts: string | null;
+    readMore: string | null;
+    download: string | null;
+  } | null;
+} | null;
+
+// Query TypeMap
+import "@sanity/client";
+declare module "@sanity/client" {
+  interface SanityQueries {
+    '\n  *[\n    _type == "post" &&\n    translationStatus == "complete" &&\n    defined(slug.current) &&\n    defined(language)\n  ]{\n    "slug": slug.current,\n    language\n  }\n': POST_SLUGS_QUERY_RESULT;
+    '\n  *[_type == "applicationArea" && defined(slug.current)]{"slug": slug.current}\n': APPLICATION_AREA_SLUGS_QUERY_RESULT;
+    '\n  *[\n    _type == "product" &&\n    status == "published" &&\n    defined(slug.current) &&\n    ($category == "" || primaryCategory->slug.current == $category || $category in categories[]->slug.current) &&\n    ($industry == "" || $industry in applicationAreas[]->slug.current) &&\n    (\n      $q == "" ||\n      title[language == $locale || _key == $locale][0].value match $qWildcard ||\n      shortDescription[language == $locale || _key == $locale][0].value match $qWildcard ||\n      sku match $qWildcard\n    )\n  ] | order(sortOrder asc, title[language == $locale || _key == $locale][0].value asc) {\n    \n  _id,\n  "title": title[language == $locale || _key == $locale][0].value,\n  "slug": slug.current,\n  sku,\n  "shortDescription": shortDescription[language == $locale || _key == $locale][0].value,\n  "badge": badge[language == $locale || _key == $locale][0].value,\n  featured,\n  cardImage{\n  asset,\n  hotspot,\n  crop,\n  "alt": alt[language == $locale || _key == $locale][0].value\n},\n  packshot{\n  asset,\n  hotspot,\n  crop,\n  "alt": alt[language == $locale || _key == $locale][0].value\n},\n  primaryCategory->{\n    _id,\n    "title": title[language == $locale || _key == $locale][0].value,\n    "slug": slug.current\n  }\n\n  }\n': PRODUCTS_QUERY_RESULT;
+    '\n  *[_type == "product" && status == "published" && defined(slug.current)]{"slug": slug.current}\n': PRODUCT_SLUGS_QUERY_RESULT;
+    '\n  *[_type == "productCategory" && defined(slug.current)]{"slug": slug.current}\n': PRODUCT_CATEGORY_SLUGS_QUERY_RESULT;
+    '\n  *[_type == "applicationArea" && defined(slug.current)] | order(title[language == $locale || _key == $locale][0].value asc) {\n    _id,\n    "title": title[language == $locale || _key == $locale][0].value,\n    "slug": slug.current\n  }\n': FILTER_INDUSTRIES_QUERY_RESULT;
+    '\n  *[_type == "siteSettings"][0]{\n    _id,\n    companyName,\n    siteUrl,\n    whatsappNumber,\n    "whatsappMessage": whatsappMessage[language == $locale || _key == $locale][0].value,\n    "shortDescription": shortDescription[language == $locale || _key == $locale][0].value,\n    "address": address[language == $locale || _key == $locale][0].value,\n    "workingHours": workingHours[language == $locale || _key == $locale][0].value,\n    "footerLegalText": footerLegalText[language == $locale || _key == $locale][0].value,\n    logoLight{\n      asset,\n      alt\n    },\n    logoDark{\n      asset,\n      alt\n    },\n    headerNavigation[]{\n      _key,\n      _type,\n      linkType,\n      internalPath,\n      externalUrl,\n      openInNewTab,\n      "label": label[language == $locale || _key == $locale][0].value,\n      reference->{\n        _type,\n        "slug": slug.current,\n        language\n      }\n    },\n    quoteCta{\n      variant,\n      "label": label[language == $locale || _key == $locale][0].value,\n      link{\n        linkType,\n        internalPath,\n        externalUrl,\n        openInNewTab,\n        "label": label[language == $locale || _key == $locale][0].value,\n        reference->{\n          _type,\n          "slug": slug.current,\n          language\n        }\n      }\n    },\n    contactChannels[]{\n      _key,\n      phone,\n      email,\n      "department": department[language == $locale || _key == $locale][0].value\n    },\n    socialLinks[]{\n      _key,\n      platform,\n      url\n    },\n    uiLabels{\n      "requestQuote": requestQuote[language == $locale || _key == $locale][0].value,\n      "viewProducts": viewProducts[language == $locale || _key == $locale][0].value,\n      "readMore": readMore[language == $locale || _key == $locale][0].value,\n      "download": download[language == $locale || _key == $locale][0].value\n    }\n  }\n': SITE_SETTINGS_QUERY_RESULT;
+  }
+}

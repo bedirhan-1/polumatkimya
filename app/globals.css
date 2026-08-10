@@ -145,16 +145,22 @@
 }
 
 @utility product-mesh {
-  background-image:
-    linear-gradient(color-mix(in srgb, #ffffff 8%, transparent) 1px, transparent 1px),
-    linear-gradient(90deg, color-mix(in srgb, #ffffff 8%, transparent) 1px, transparent 1px);
-  background-size: 28px 28px;
+  background:
+    radial-gradient(ellipse 55% 70% at 12% 0%, color-mix(in srgb, #ffffff 7%, transparent), transparent 55%),
+    radial-gradient(ellipse 45% 55% at 92% 100%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%),
+    linear-gradient(
+      115deg,
+      transparent 0%,
+      color-mix(in srgb, #ffffff 3.5%, transparent) 42%,
+      transparent 58%
+    );
 }
 
 @utility product-hero-panel {
   background:
-    radial-gradient(ellipse 70% 80% at 80% 20%, var(--accent-soft), transparent 50%),
-    linear-gradient(135deg, #12151a 0%, #0b0c0e 55%, #151820 100%);
+    radial-gradient(ellipse 80% 90% at 100% 0%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 52%),
+    radial-gradient(ellipse 50% 60% at 0% 100%, color-mix(in srgb, #ffffff 4%, transparent), transparent 55%),
+    linear-gradient(180deg, #12151a 0%, #0b0c0e 100%);
 }
 
 @keyframes product-rise {
