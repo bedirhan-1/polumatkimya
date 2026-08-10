@@ -130,6 +130,10 @@ function buildSettingsPayload(images: {
         {linkType: 'internal', internalPath: '/industries'},
       ),
       navLink(
+        {tr: 'İhracat', en: 'Export', ar: 'التصدير'},
+        {linkType: 'internal', internalPath: '/export'},
+      ),
+      navLink(
         {tr: 'Hakkımızda', en: 'About', ar: 'من نحن'},
         {linkType: 'internal', internalPath: '/about'},
       ),
@@ -178,6 +182,10 @@ function buildSettingsPayload(images: {
           navLink(
             {tr: 'Uygulama alanları', en: 'Industries', ar: 'مجالات التطبيق'},
             {linkType: 'internal', internalPath: '/industries'},
+          ),
+          navLink(
+            {tr: 'İhracat', en: 'Export', ar: 'التصدير'},
+            {linkType: 'internal', internalPath: '/export'},
           ),
           navLink(
             {tr: 'Blog', en: 'Blog', ar: 'المدونة'},

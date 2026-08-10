@@ -37,13 +37,13 @@ export function ProductCard({
           </span>
         ) : null}
       </div>
-      <div className="flex flex-1 flex-col gap-2 p-5">
+      <div className="flex flex-1 flex-col gap-2 p-4 sm:p-5">
         {product.primaryCategory?.title ? (
           <p className="text-xs tracking-[0.2em] text-accent uppercase">
             {product.primaryCategory.title}
           </p>
         ) : null}
-        <h2 className="font-display text-xl text-foreground">
+        <h2 className="font-display text-lg text-foreground sm:text-xl">
           {product.title}
         </h2>
         {product.shortDescription ? (

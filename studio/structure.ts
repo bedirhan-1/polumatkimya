@@ -22,6 +22,7 @@ const SINGLETON_TYPES = new Set([
   'siteSettings',
   'homePage',
   'contactPage',
+  'exportPage',
   'productOrder',
 ])
 
@@ -87,6 +88,15 @@ export const structure: StructureResolver = (S) =>
         ),
       createLocalizedSingleton(S, 'homePage', 'Home page', HomeIcon),
       createLocalizedSingleton(S, 'contactPage', 'Contact page', EnvelopeIcon),
+      S.listItem()
+        .title('Export page')
+        .icon(EarthGlobeIcon)
+        .child(
+          S.document()
+            .schemaType('exportPage')
+            .documentId('exportPage')
+            .title('Export page'),
+        ),
       S.divider(),
       S.listItem()
         .title('Products')

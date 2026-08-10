@@ -27,6 +27,7 @@ export type Dictionary = {
     ohs: string
     customerSatisfaction: string
     humanResources: string
+    export: string
     blog: string
     contact: string
     requestQuote: string
@@ -78,6 +79,28 @@ export type Dictionary = {
     step3Title: string
     step3Body: string
     directContact: string
+  }
+  exportPage: {
+    eyebrow: string
+    title: string
+    intro: string
+    countryLabel: string
+    activityEyebrow: string
+    activityTitle: string
+    activityDescription: string
+    initiative1Title: string
+    initiative1Body: string
+    initiative2Title: string
+    initiative2Body: string
+    initiative3Title: string
+    initiative3Body: string
+    contactEyebrow: string
+    contactTitle: string
+    contactDescription: string
+    contact1Name: string
+    contact2Name: string
+    contactRole: string
+    phoneLabel: string
   }
   contactPage: {
     address: string

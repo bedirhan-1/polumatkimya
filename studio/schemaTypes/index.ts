@@ -15,6 +15,11 @@ import {applicationAreaType} from './documents/application-area'
 import {certificateType} from './documents/certificate'
 import {contactPageType} from './documents/contact-page'
 import {downloadableDocumentType} from './documents/downloadable-document'
+import {
+  exportActivityType,
+  exportContactType,
+  exportPageType,
+} from './documents/export-page'
 import {homePageType} from './documents/home-page'
 import {localeType} from './documents/locale'
 import {pageType} from './documents/page'
@@ -58,6 +63,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   // Documents
   localeType,
   siteSettingsType,
+  exportPageType,
   productType,
   productCategoryType,
   productOrderType,
@@ -98,6 +104,8 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   documentReferenceType,
   portableTextType,
   packagingVariantType,
+  exportActivityType,
+  exportContactType,
   pageBuilderType,
 
   // Blocks

@@ -39,6 +39,7 @@
 }
 
 .current {
+  max-width: min(100%, 18rem);
   overflow: hidden;
   color: #f5f5f2;
   font-size: 0.72rem;
@@ -48,4 +49,20 @@
   text-overflow: ellipsis;
   text-transform: uppercase;
   white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .current {
+    max-width: min(58vw, 14rem);
+  }
+
+  .sep {
+    margin-inline: 0.35rem;
+  }
+
+  .link,
+  .current {
+    font-size: 0.65rem;
+    letter-spacing: 0.06em;
+  }
 }

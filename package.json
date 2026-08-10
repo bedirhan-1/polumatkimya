@@ -20,7 +20,8 @@
     "migrate:transform": "tsx migration/scripts/transform.ts",
     "migrate:validate": "tsx migration/scripts/validate.ts",
     "migrate:import": "tsx migration/scripts/import.ts",
-    "fix:grout-filler": "tsx migration/scripts/fix-grout-filler-product.ts"
+    "fix:grout-filler": "tsx migration/scripts/fix-grout-filler-product.ts",
+    "seed:export-page": "tsx migration/scripts/seed-export-page.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1106.0",

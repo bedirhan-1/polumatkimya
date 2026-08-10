@@ -1,6 +1,6 @@
 import {defineQuery} from 'next-sanity'
 
-import {imageWithAltProjection, seoProjection} from '@/sanity/fragments/page-builder'
+import {imageWithAltProjection, seoProjection} from '../fragments/page-builder'
 
 export const APPLICATION_AREAS_QUERY = defineQuery(`
   *[_type == "applicationArea" && defined(slug.current)] | order(sortOrder asc, title[language == $locale || _key == $locale][0].value asc) {

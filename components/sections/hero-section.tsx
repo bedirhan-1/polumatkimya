@@ -60,7 +60,7 @@ export function HeroSection({locale, block}: HeroSectionProps) {
           ) : null}
         </div>
 
-        <div className="frame-accent relative min-h-72 overflow-hidden bg-surface sm:min-h-96">
+        <div className="frame-accent relative min-h-56 overflow-hidden bg-surface sm:min-h-72 lg:min-h-96">
           {block.media?.asset ? (
             <SanityImage
               image={block.media}

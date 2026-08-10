@@ -139,7 +139,7 @@ export default async function ProductCategoryPage({params, searchParams}: PagePr
                 current={filters}
                 basePath={basePath}
               />
-              <div className="flex items-end justify-between gap-4 border-b border-border pb-3">
+              <div className="flex flex-col gap-1 border-b border-border pb-3 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
                 <p className="text-sm font-medium tracking-wide text-foreground">{resultsLabel}</p>
                 {filters.industry || filters.q ? (
                   <p className="text-xs text-muted">{dictionary.filters.activeFilters}</p>

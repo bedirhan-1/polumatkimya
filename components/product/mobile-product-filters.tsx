@@ -1,6 +1,6 @@
 'use client'
 
-import {useState} from 'react'
+import {useEffect, useId, useState} from 'react'
 
 import {ProductFilters} from '@/components/product/product-filters'
 import type {Dictionary} from '@/lib/i18n/get-dictionary'
@@ -24,11 +24,26 @@ type MobileProductFiltersProps = {
 
 export function MobileProductFilters(props: MobileProductFiltersProps) {
   const [open, setOpen] = useState(false)
+  const panelId = useId()
   const activeCount = [
     props.basePath === '/products' ? props.current.category : undefined,
     props.current.industry,
     props.current.q,
   ].filter(Boolean).length
+
+  useEffect(() => {
+    if (!open) return
+    const previousOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setOpen(false)
+    }
+    document.addEventListener('keydown', onKeyDown)
+    return () => {
+      document.body.style.overflow = previousOverflow
+      document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [open])
 
   return (
     <div className="lg:hidden">
@@ -36,6 +51,7 @@ export function MobileProductFilters(props: MobileProductFiltersProps) {
         type="button"
         className={styles.mobileBar}
         aria-expanded={open}
+        aria-controls={panelId}
         onClick={() => setOpen((value) => !value)}
       >
         <span>
@@ -52,10 +68,31 @@ export function MobileProductFilters(props: MobileProductFiltersProps) {
           )}
         </span>
       </button>
+
       {open ? (
-        <div className={styles.mobilePanel}>
-          <ProductFilters {...props} />
-        </div>
+        <>
+          <button
+            type="button"
+            aria-label={props.dictionary.filters.closeFilters}
+            className={styles.mobileBackdrop}
+            onClick={() => setOpen(false)}
+          />
+          <div id={panelId} className={styles.mobileSheet} role="dialog" aria-modal="true">
+            <div className={styles.mobileSheetHead}>
+              <p className={styles.mobileSheetTitle}>{props.dictionary.filters.title}</p>
+              <button
+                type="button"
+                className={styles.mobileSheetClose}
+                onClick={() => setOpen(false)}
+              >
+                {props.dictionary.filters.closeFilters}
+              </button>
+            </div>
+            <div className={styles.mobileSheetBody}>
+              <ProductFilters {...props} />
+            </div>
+          </div>
+        </>
       ) : null}
     </div>
   )

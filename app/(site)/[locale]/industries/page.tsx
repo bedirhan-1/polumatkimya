@@ -55,7 +55,7 @@ export default async function IndustriesPage({params}: PageProps) {
           <p className="text-xs font-semibold tracking-[0.22em] text-accent uppercase">
             Polumat
           </p>
-          <h1 className="mt-2 font-display text-3xl text-foreground sm:text-4xl lg:text-5xl">
+          <h1 className="mt-2 font-display text-[clamp(1.85rem,7vw,3.25rem)] leading-[1.08] text-foreground">
             {dictionary.pages.industriesTitle}
           </h1>
           <p className="mt-3 text-sm text-muted sm:text-base">

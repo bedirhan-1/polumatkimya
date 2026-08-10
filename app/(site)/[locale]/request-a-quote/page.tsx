@@ -68,7 +68,7 @@ export default async function RequestQuotePage({params, searchParams}: PageProps
           {dictionary.quotePage.eyebrow}
         </p>
         <h1
-          className="animate-product-rise mt-4 max-w-3xl font-display text-4xl text-foreground sm:text-5xl lg:text-6xl"
+          className="animate-product-rise mt-4 max-w-3xl font-display text-[clamp(1.85rem,7vw,3.75rem)] leading-[1.05] text-foreground"
           style={{animationDelay: '60ms'}}
         >
           {dictionary.pages.quoteTitle}
@@ -83,7 +83,7 @@ export default async function RequestQuotePage({params, searchParams}: PageProps
 
       <section className="border-b border-border">
         <div className="container-site grid lg:grid-cols-[0.9fr_1.1fr]">
-          <aside className="border-border py-12 lg:border-e lg:py-16 lg:pe-12">
+          <aside className="border-border py-8 sm:py-12 lg:border-e lg:py-16 lg:pe-12">
             <ol className="space-y-8">
               {steps.map((step, index) => (
                 <li
@@ -131,7 +131,7 @@ export default async function RequestQuotePage({params, searchParams}: PageProps
             </div>
           </aside>
 
-          <div className="py-12 lg:py-16 lg:ps-12">
+          <div className="border-t border-border py-8 sm:border-t-0 sm:py-12 lg:py-16 lg:ps-12">
             <div
               className="animate-product-rise"
               style={{animationDelay: '180ms'}}

@@ -22,7 +22,7 @@ export function PageHero({children, className = '', compact = false}: PageHeroPr
         aria-hidden
       />
       <div
-        className={`container-site relative ${compact ? 'py-8 sm:py-10' : 'py-10 sm:py-14'}`}
+        className={`container-site relative ${compact ? 'py-6 sm:py-8 lg:py-10' : 'py-8 sm:py-10 lg:py-14'}`}
       >
         {children}
       </div>

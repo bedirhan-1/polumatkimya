@@ -261,6 +261,65 @@
   margin-top: 0.75rem;
 }
 
+.mobileBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 55;
+  border: 0;
+  background: rgba(0, 0, 0, 0.55);
+  cursor: pointer;
+}
+
+.mobileSheet {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 60;
+  display: flex;
+  max-height: min(88dvh, 40rem);
+  flex-direction: column;
+  border: 1px solid var(--border);
+  border-bottom: 0;
+  background: #0b0c0e;
+  box-shadow: 0 -18px 48px rgba(0, 0, 0, 0.45);
+}
+
+.mobileSheetHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid var(--border);
+  padding: 0.9rem 1rem;
+}
+
+.mobileSheetTitle {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.mobileSheetClose {
+  border: 0;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.mobileSheetClose:hover {
+  color: var(--foreground);
+}
+
+.mobileSheetBody {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 0.85rem 1rem max(1.25rem, env(safe-area-inset-bottom));
+}
+
 @media (min-width: 1024px) {
   .panel {
     padding: 1rem;

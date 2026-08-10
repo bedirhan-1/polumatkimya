@@ -1,34 +1,6 @@
 .stage {
   position: relative;
   aspect-ratio: 4 / 5;
-  overflow: hidden;
-  border: 1px solid var(--border);
-  background:
-    radial-gradient(
-      ellipse 70% 55% at 50% 42%,
-      color-mix(in srgb, #ffffff 10%, transparent) 0%,
-      transparent 62%
-    ),
-    radial-gradient(
-      ellipse 90% 70% at 50% 100%,
-      color-mix(in srgb, var(--accent) 12%, transparent) 0%,
-      transparent 55%
-    ),
-    linear-gradient(165deg, #1c2027 0%, #14171d 48%, #101318 100%);
-}
-
-.stage::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      180deg,
-      color-mix(in srgb, #ffffff 4%, transparent) 0%,
-      transparent 28%
-    ),
-    linear-gradient(180deg, transparent 62%, color-mix(in srgb, #000 28%, transparent) 100%);
-  pointer-events: none;
 }
 
 .image {
@@ -36,7 +8,7 @@
   z-index: 1;
   object-fit: contain;
   object-position: center;
-  padding: 1.25rem;
+  padding: 0.85rem;
 }
 
 .thumb {

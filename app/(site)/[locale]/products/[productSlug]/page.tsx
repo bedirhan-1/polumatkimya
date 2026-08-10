@@ -142,7 +142,7 @@ export default async function ProductDetailPage({params}: PageProps) {
               {[product.badge, product.primaryCategory?.title].filter(Boolean).join(' · ')}
             </p>
           ) : null}
-          <h1 className="font-display text-4xl text-foreground sm:text-5xl lg:text-6xl">
+          <h1 className="font-display text-[clamp(1.85rem,7vw,3.75rem)] leading-[1.05] text-foreground">
             {product.title}
           </h1>
           {product.sku ? (
@@ -156,13 +156,13 @@ export default async function ProductDetailPage({params}: PageProps) {
       {/* One composition: packshot + technical summary */}
       <section className="border-b border-border">
         <div className="container-site py-10 sm:py-14">
-          <div className="grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
-            <div className="animate-product-rise lg:sticky lg:top-24">
+          <div className="grid min-w-0 items-start gap-8 sm:gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] lg:gap-14">
+            <div className="animate-product-rise min-w-0 lg:sticky lg:top-24">
               <ProductGallery images={galleryImages} />
             </div>
 
             <div
-              className="animate-product-rise flex flex-col gap-8"
+              className="animate-product-rise flex min-w-0 flex-col gap-8"
               style={{animationDelay: '80ms'}}
             >
               {product.shortDescription ? (
@@ -272,7 +272,7 @@ export default async function ProductDetailPage({params}: PageProps) {
 
       {hasGuidance ? (
         <section className="border-b border-border section-space">
-          <div className="container-site grid gap-10 lg:grid-cols-3">
+          <div className="container-site grid gap-8 sm:gap-10 md:grid-cols-2 lg:grid-cols-3">
             {product.usageAreas ? (
               <GuidanceBlock heading={dictionary.products.usageAreas} value={product.usageAreas} />
             ) : null}

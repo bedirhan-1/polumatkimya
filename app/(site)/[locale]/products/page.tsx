@@ -77,7 +77,7 @@ export default async function ProductsPage({params, searchParams}: PageProps) {
           <p className="text-xs font-semibold tracking-[0.22em] text-accent uppercase">
             Polumat
           </p>
-          <h1 className="mt-3 font-display text-4xl text-foreground sm:text-5xl lg:text-6xl">
+          <h1 className="mt-3 font-display text-[clamp(1.85rem,7vw,3.75rem)] leading-[1.05] text-foreground">
             {dictionary.products.title}
           </h1>
           <p className="mt-4 max-w-2xl text-base text-muted sm:text-lg">
@@ -109,7 +109,7 @@ export default async function ProductsPage({params, searchParams}: PageProps) {
                 industries={industryOptions}
                 current={filters}
               />
-              <div className="flex items-end justify-between gap-4 border-b border-border pb-3">
+              <div className="flex flex-col gap-1 border-b border-border pb-3 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
                 <p className="text-sm font-medium tracking-wide text-foreground">{resultsLabel}</p>
                 {filters.category || filters.industry || filters.q ? (
                   <p className="text-xs text-muted">{dictionary.filters.activeFilters}</p>

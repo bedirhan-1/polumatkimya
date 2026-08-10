@@ -43,15 +43,15 @@ export function DocumentDownloads({
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex min-h-12 items-center justify-between gap-3 border border-border bg-surface px-4 py-3 no-underline transition hover:border-accent"
+              className="group flex min-h-12 flex-col gap-2 border border-border bg-surface px-4 py-3 no-underline transition hover:border-accent sm:flex-row sm:items-center sm:justify-between sm:gap-3"
             >
-              <span>
-                <span className="block text-sm font-medium text-foreground">{label}</span>
+              <span className="min-w-0">
+                <span className="block text-sm font-medium text-foreground break-words">{label}</span>
                 <span className="text-[0.7rem] tracking-[0.14em] text-muted uppercase" dir="ltr">
                   {[doc.documentType, doc.version].filter(Boolean).join(' · ')}
                 </span>
               </span>
-              <span className="text-sm font-semibold text-accent transition group-hover:underline">
+              <span className="shrink-0 text-sm font-semibold text-accent transition group-hover:underline">
                 {downloadLabel}
               </span>
             </a>

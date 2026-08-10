@@ -5,9 +5,11 @@ import {HomeLanding} from '@/components/home/home-landing'
 import {asHomePageContent} from '@/lib/home/content'
 import {getDictionary} from '@/lib/i18n/get-dictionary'
 import {isLocale, type Locale} from '@/lib/i18n/locales'
+import type {ProductDetailData} from '@/lib/products/types'
 import {asSeo} from '@/lib/sanity/content'
 import {buildPageMetadata} from '@/lib/seo/metadata'
 import {getHomePage} from '@/sanity/lib/pages'
+import {getProductBySlug} from '@/sanity/lib/products'
 
 type HomePageProps = {
   params: Promise<{locale: string}>
@@ -32,11 +34,25 @@ export default async function HomePage({params}: HomePageProps) {
   if (!isLocale(localeParam)) notFound()
 
   const locale = localeParam as Locale
-  const page = await getHomePage(locale)
+  const [page, spotlightProductRaw] = await Promise.all([
+    getHomePage(locale),
+    getProductBySlug(locale, 'mdf-kit-activator'),
+  ])
+  const spotlightProduct =
+    spotlightProductRaw &&
+    typeof spotlightProductRaw === 'object' &&
+    '_id' in spotlightProductRaw &&
+    'title' in spotlightProductRaw
+      ? (spotlightProductRaw as ProductDetailData)
+      : null
 
   return (
     <main id="main-content">
-      <HomeLanding locale={locale} content={asHomePageContent(page)} />
+      <HomeLanding
+        locale={locale}
+        content={asHomePageContent(page)}
+        spotlightProduct={spotlightProduct}
+      />
     </main>
   )
 }

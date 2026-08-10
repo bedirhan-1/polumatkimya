@@ -30,7 +30,8 @@ export function RelatedProductsSlider(props: RelatedProductsSliderProps) {
   const scrollBy = (direction: -1 | 1) => {
     const node = scrollerRef.current
     if (!node) return
-    const amount = Math.min(360, node.clientWidth * 0.85) * direction
+    const rtl = getComputedStyle(node).direction === 'rtl'
+    const amount = Math.min(360, node.clientWidth * 0.85) * direction * (rtl ? -1 : 1)
     node.scrollBy({left: amount, behavior: 'smooth'})
   }
 
@@ -39,12 +40,12 @@ export function RelatedProductsSlider(props: RelatedProductsSliderProps) {
   return (
     <section className="border-b border-border section-space">
       <div className="container-site flex flex-col gap-6">
-        <div className="flex items-end justify-between gap-4 border-b border-border pb-4">
+        <div className="flex flex-col gap-3 border-b border-border pb-4 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
           <h2 className="font-display text-3xl text-foreground sm:text-4xl">{heading}</h2>
           <div className="flex items-center gap-2">
             <Link
               href={allProductsHref}
-              className="hidden text-sm font-semibold text-accent no-underline hover:underline sm:inline"
+              className="me-auto text-sm font-semibold text-accent no-underline hover:underline sm:me-0"
             >
               {allProductsLabel}
             </Link>
@@ -69,12 +70,12 @@ export function RelatedProductsSlider(props: RelatedProductsSliderProps) {
 
         <ul
           ref={scrollerRef}
-          className="flex snap-x snap-mandatory gap-5 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] sm:gap-5 [&::-webkit-scrollbar]:hidden"
         >
           {products.map((product) => (
             <li
               key={product._id}
-              className="w-[min(80vw,280px)] shrink-0 snap-start sm:w-[300px]"
+              className="w-[min(78vw,260px)] shrink-0 snap-start sm:w-[300px]"
             >
               <ProductCard locale={locale} product={product} detailLabel={detailLabel} />
             </li>

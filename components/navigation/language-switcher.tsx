@@ -109,7 +109,7 @@ export function LanguageSwitcher({locale, label}: LanguageSwitcherProps) {
     <div ref={rootRef} className="relative">
       <button
         type="button"
-        className="inline-flex min-h-9 items-center gap-1.5 px-2 text-xs font-semibold tracking-[0.14em] text-muted transition hover:text-foreground"
+        className="inline-flex min-h-11 items-center gap-1.5 px-1.5 text-xs font-semibold tracking-[0.14em] text-muted transition hover:text-foreground sm:px-2"
         aria-label={label}
         aria-haspopup="listbox"
         aria-expanded={open}

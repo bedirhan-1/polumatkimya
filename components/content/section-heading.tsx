@@ -23,7 +23,9 @@ export function SectionHeading({
         <p className="text-xs font-semibold tracking-[0.28em] text-accent uppercase">{eyebrow}</p>
       ) : null}
       {heading ? (
-        <HeadingTag className="text-3xl text-foreground sm:text-4xl lg:text-5xl">{heading}</HeadingTag>
+        <HeadingTag className="text-[clamp(1.85rem,7vw,3.25rem)] text-foreground leading-[1.08]">
+          {heading}
+        </HeadingTag>
       ) : null}
       {description ? <p className="text-base text-muted sm:text-lg">{description}</p> : null}
     </div>

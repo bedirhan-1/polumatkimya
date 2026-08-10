@@ -1,6 +1,6 @@
 import {defineQuery} from 'next-sanity'
 
-import {imageWithAltProjection, seoProjection} from '@/sanity/fragments/page-builder'
+import {imageWithAltProjection, seoProjection} from '../fragments/page-builder'
 
 const localizedImageProjection = /* groq */ `
   asset,

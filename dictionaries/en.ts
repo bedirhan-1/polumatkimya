@@ -30,6 +30,7 @@ const en: Dictionary = {
     ohs: 'Occupational health and safety',
     customerSatisfaction: 'Customer satisfaction',
     humanResources: 'Human resources',
+    export: 'Export',
     blog: 'Blog',
     contact: 'Contact',
     requestQuote: 'Request a quote',
@@ -87,6 +88,34 @@ const en: Dictionary = {
     step3Title: 'Quote & production',
     step3Body: 'Our team reviews fit and sends a manufacturing quote.',
     directContact: 'Direct line',
+  },
+  exportPage: {
+    eyebrow: 'International sales',
+    title: 'Export Department',
+    intro:
+      'We bring Polumat products to global markets through strong distribution partnerships, flexible manufacturing and market-specific support.',
+    countryLabel: 'export countries',
+    activityEyebrow: 'Our active work',
+    activityTitle: 'Growing partnerships in international markets',
+    activityDescription:
+      'We strengthen our current distribution network while actively developing new markets and long-term partnerships.',
+    initiative1Title: 'Distributor network',
+    initiative1Body:
+      'We build sustainable growth plans with our sales and distribution partners in established markets.',
+    initiative2Title: 'New markets',
+    initiative2Body:
+      'We continue country and channel discussions across Europe, the Middle East and North Africa.',
+    initiative3Title: 'Private Label projects',
+    initiative3Body:
+      'We support brands with market-ready products, packaging and labelling options.',
+    contactEyebrow: 'Direct contact',
+    contactTitle: 'Get information from our export department',
+    contactDescription:
+      'Speak with our export team about products, distribution, target markets and private-label manufacturing.',
+    contact1Name: 'Export Contact 1',
+    contact2Name: 'Export Contact 2',
+    contactRole: 'Export Department',
+    phoneLabel: 'Phone',
   },
   contactPage: {
     address: 'Address',

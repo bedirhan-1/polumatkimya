@@ -89,7 +89,7 @@ export default async function ContactPage({params}: PageProps) {
         <p className="text-xs font-semibold tracking-[0.22em] text-accent uppercase">
           {dictionary.meta.siteName}
         </p>
-        <h1 className="mt-4 max-w-3xl font-display text-4xl text-foreground sm:text-5xl lg:text-6xl">
+        <h1 className="mt-4 max-w-3xl font-display text-[clamp(1.85rem,7vw,3.75rem)] leading-[1.05] text-foreground">
           {title}
         </h1>
         <p className="mt-4 max-w-2xl text-base text-muted sm:text-lg">{intro}</p>
@@ -98,7 +98,7 @@ export default async function ContactPage({params}: PageProps) {
       {/* MIT-style facts + narrative */}
       <section className="border-b border-border">
         <div className="container-site grid lg:grid-cols-[0.95fr_1.05fr]">
-          <aside className="border-border py-12 lg:border-e lg:py-16 lg:pe-12">
+          <aside className="border-border py-8 sm:py-12 lg:border-e lg:py-16 lg:pe-12">
             <dl className="space-y-8">
               <Fact
                 title={dictionary.contactPage.address}
@@ -150,7 +150,7 @@ export default async function ContactPage({params}: PageProps) {
             </div>
           </aside>
 
-          <div className="py-12 lg:py-16 lg:ps-12">
+          <div className="border-t border-border py-8 sm:border-t-0 sm:py-12 lg:py-16 lg:ps-12">
             <h2 className="font-display text-3xl text-foreground">
               {dictionary.contactPage.writeUs}
             </h2>

@@ -119,13 +119,13 @@ export default async function IndustryDetailPage({params}: PageProps) {
           </div>
 
           {data.coverImage?.asset ? (
-            <div className="relative hidden aspect-[16/10] overflow-hidden border border-white/10 bg-surface sm:block lg:aspect-[5/3]">
+            <div className="relative aspect-[16/10] overflow-hidden border border-white/10 bg-surface lg:aspect-[5/3]">
               <SanityImage
                 image={data.coverImage}
                 fill
                 priority
                 className="object-cover"
-                sizes="(max-width: 1024px) 40vw, 28vw"
+                sizes="(max-width: 1024px) 100vw, 28vw"
               />
             </div>
           ) : null}

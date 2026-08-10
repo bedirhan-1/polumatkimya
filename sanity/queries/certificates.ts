@@ -1,6 +1,6 @@
 import {defineQuery} from 'next-sanity'
 
-import {imageWithAltProjection} from '@/sanity/fragments/page-builder'
+import {imageWithAltProjection} from '../fragments/page-builder'
 
 export const CERTIFICATES_QUERY = defineQuery(`
   *[_type == "certificate"] | order(sortOrder asc) {

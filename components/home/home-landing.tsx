@@ -5,10 +5,11 @@ import {IndustryCards} from '@/components/content/industry-cards'
 import {ButtonLink} from '@/components/ui/button-link'
 import type {HomeImage, HomePageContent} from '@/lib/home/content'
 import type {Locale} from '@/lib/i18n/locales'
-import type {ProductCardData} from '@/lib/products/types'
+import type {ProductCardData, ProductDetailData} from '@/lib/products/types'
 import {resolveSimpleCta} from '@/sanity/lib/link-resolver'
 
 import {AboutVideo} from './about-video'
+import {FeaturedProductShowcase} from './featured-product-showcase'
 import {getHomeCopy} from './home-copy'
 import styles from './home-landing.module.css'
 import {
@@ -21,6 +22,7 @@ import {
 type HomeLandingProps = {
   locale: Locale
   content?: HomePageContent | null
+  spotlightProduct?: ProductDetailData | null
 }
 
 type IconName =
@@ -38,7 +40,7 @@ const strengthIcons: IconName[] = ['bolt', 'diamond', 'factory', 'globe', 'shiel
 const trustIcons: IconName[] = ['shield', 'bolt', 'diamond', 'globe']
 const aboutStatIcons: IconName[] = ['shield', 'globe', 'factory', 'list', 'package']
 
-export function HomeLanding({locale, content}: HomeLandingProps) {
+export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProps) {
   const copy = getHomeCopy(locale)
   const hero = content?.hero
   const productsSection = content?.productsSection
@@ -224,7 +226,7 @@ export function HomeLanding({locale, content}: HomeLandingProps) {
   return (
     <div className={styles.home}>
       <section
-        className="relative isolate min-h-[50rem] w-full overflow-hidden border-b border-white/10 bg-[#050607] sm:min-h-[48rem] lg:aspect-[21/9] lg:min-h-0"
+        className="relative isolate min-h-[min(100svh,42rem)] w-full overflow-hidden border-b border-white/10 bg-[#050607] sm:min-h-[min(100svh,46rem)] lg:aspect-[21/9] lg:min-h-0"
         aria-labelledby="home-hero-title"
       >
         <div className="absolute inset-0">
@@ -263,8 +265,8 @@ export function HomeLanding({locale, content}: HomeLandingProps) {
           aria-hidden
         />
 
-        <div className="container relative z-[2] mx-auto flex min-h-[50rem] flex-col justify-center px-4 pt-14 pb-56 sm:min-h-[48rem] sm:px-6 lg:min-h-full lg:justify-center lg:px-8 lg:pt-0 lg:pb-20">
-          <div className="max-w-[31rem] lg:w-[36%] lg:min-w-[28rem]">
+        <div className="container relative z-[2] mx-auto flex min-h-[min(100svh,42rem)] flex-col justify-end px-4 pt-12 pb-6 sm:min-h-[min(100svh,46rem)] sm:justify-center sm:px-6 sm:pb-44 lg:min-h-full lg:justify-center lg:px-8 lg:pt-0 lg:pb-20">
+          <div className="max-w-[31rem] lg:w-[36%] lg:min-w-0 lg:max-w-[31rem] xl:min-w-[28rem]">
             {heroEyebrow ? (
               <p className="flex items-center gap-3 text-[0.68rem] font-bold leading-none tracking-[0.2em] text-accent uppercase before:h-px before:w-7 before:shrink-0 before:bg-current before:content-['']">
                 {heroEyebrow}
@@ -272,7 +274,7 @@ export function HomeLanding({locale, content}: HomeLandingProps) {
             ) : null}
             <h1
               id="home-hero-title"
-              className="mt-3 max-w-[11ch] font-[family-name:var(--font-display)] text-[clamp(3rem,4vw,4.65rem)] leading-[0.92] font-bold tracking-[-0.015em] text-[#f8f8f5] uppercase"
+              className="mt-3 max-w-[11ch] font-[family-name:var(--font-display)] text-[clamp(2.55rem,11vw,4.65rem)] leading-[0.92] font-bold tracking-[-0.015em] text-[#f8f8f5] uppercase"
             >
               <span className="block">{heroLead}</span>
               <span className="mt-1 block text-accent drop-shadow-[0_0_32px_rgba(227,28,35,0.2)]">
@@ -289,7 +291,7 @@ export function HomeLanding({locale, content}: HomeLandingProps) {
               <ButtonLink
                 href={primaryCta.href}
                 variant={primaryCta.variant}
-                className="min-w-40 no-underline uppercase"
+                className="min-w-36 no-underline uppercase sm:min-w-40"
               >
                 {primaryCta.label}
                 <ArrowIcon />
@@ -297,7 +299,7 @@ export function HomeLanding({locale, content}: HomeLandingProps) {
               <ButtonLink
                 href={secondaryCta.href}
                 variant={secondaryCta.variant}
-                className="min-w-36 border-white/20 bg-black/20 no-underline uppercase backdrop-blur-sm"
+                className="min-w-32 border-white/20 bg-black/20 no-underline uppercase backdrop-blur-sm sm:min-w-36"
               >
                 {secondaryCta.label}
                 <ArrowIcon />
@@ -306,17 +308,17 @@ export function HomeLanding({locale, content}: HomeLandingProps) {
           </div>
 
           {trustItems.length ? (
-            <div className="absolute inset-x-4 bottom-0 grid grid-cols-2 overflow-hidden border border-b-0 border-white/10 bg-[#08090b]/85 shadow-2xl backdrop-blur-xl sm:inset-x-6 lg:inset-x-auto lg:bottom-4 lg:left-8 lg:w-[calc(100%_-_4rem)] lg:max-w-[50rem] lg:grid-cols-4 lg:border-white/10 lg:bg-black/20 lg:shadow-none lg:backdrop-blur-sm">
+            <div className="relative mt-8 grid grid-cols-2 overflow-hidden border border-white/10 bg-[#08090b]/85 shadow-2xl backdrop-blur-xl sm:absolute sm:inset-x-6 sm:bottom-0 sm:mt-0 sm:border-b-0 lg:inset-x-auto lg:inset-inline-start-8 lg:bottom-4 lg:w-[calc(100%_-_4rem)] lg:max-w-[50rem] lg:grid-cols-4 lg:border-white/10 lg:bg-black/20 lg:shadow-none lg:backdrop-blur-sm">
               {trustItems.map((item, index) => (
                 <div
-                  className="grid min-h-24 grid-cols-[auto_1fr] items-center gap-3 px-4 py-4 lg:min-h-16 lg:px-3 lg:py-2"
+                  className="grid min-h-[4.75rem] grid-cols-[auto_1fr] items-center gap-2.5 px-3 py-3 sm:min-h-24 sm:gap-3 sm:px-4 sm:py-4 lg:min-h-16 lg:px-3 lg:py-2"
                   key={item._key || item.title || index}
                 >
-                  <span className="flex size-10 shrink-0 rotate-45 items-center justify-center border border-accent/45 bg-accent/5 text-accent lg:size-9 [&>svg]:size-5 [&>svg]:-rotate-45 lg:[&>svg]:size-4">
+                  <span className="flex size-9 shrink-0 rotate-45 items-center justify-center border border-accent/45 bg-accent/5 text-accent sm:size-10 lg:size-9 [&>svg]:size-4 [&>svg]:-rotate-45 sm:[&>svg]:size-5 lg:[&>svg]:size-4">
                     <HomeIcon name={trustIcons[index % trustIcons.length]} />
                   </span>
-                  <span>
-                    <strong className="block font-[family-name:var(--font-display)] text-sm leading-tight font-semibold text-[#f3f3f0] uppercase">
+                  <span className="min-w-0">
+                    <strong className="block font-[family-name:var(--font-display)] text-[0.78rem] leading-tight font-semibold text-[#f3f3f0] uppercase sm:text-sm">
                       {item.title}
                     </strong>
                     {item.description ? (
@@ -331,6 +333,8 @@ export function HomeLanding({locale, content}: HomeLandingProps) {
           ) : null}
         </div>
       </section>
+
+      <FeaturedProductShowcase locale={locale} product={spotlightProduct} />
 
       {featuredProducts.length ? (
         <section className={styles.section} aria-labelledby="home-products-title">

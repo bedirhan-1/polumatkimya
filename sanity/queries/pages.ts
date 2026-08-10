@@ -5,7 +5,7 @@ import {
   pageBuilderProjection,
   seoProjection,
   simpleCtaProjection,
-} from '@/sanity/fragments/page-builder'
+} from '../fragments/page-builder'
 
 export const homeHeroProjection = /* groq */ `
   eyebrow,

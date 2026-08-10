@@ -30,6 +30,7 @@ const tr: Dictionary = {
     ohs: 'İş Sağlığı ve Güvenliği',
     customerSatisfaction: 'Müşteri Memnuniyeti',
     humanResources: 'İnsan Kaynakları',
+    export: 'İhracat',
     blog: 'Blog',
     contact: 'İletişim',
     requestQuote: 'Teklif Al',
@@ -88,6 +89,34 @@ const tr: Dictionary = {
     step3Title: 'Teklif ve üretim',
     step3Body: 'Ekibimiz uygunluğu değerlendirir ve üretim teklifini iletir.',
     directContact: 'Acil hattımız',
+  },
+  exportPage: {
+    eyebrow: 'Uluslararası satış',
+    title: 'İhracat Departmanı',
+    intro:
+      'Polumat ürünlerini güçlü dağıtım ortaklıkları, esnek üretim çözümleri ve hedef pazara özel destekle dünya pazarlarına ulaştırıyoruz.',
+    countryLabel: 'ülkeye ihracat',
+    activityEyebrow: 'Aktif çalışmalarımız',
+    activityTitle: 'Uluslararası pazarlarda büyüyen iş birlikleri',
+    activityDescription:
+      'Mevcut dağıtım ağımızı güçlendirirken yeni pazarlar ve uzun vadeli iş ortaklıkları için aktif olarak çalışıyoruz.',
+    initiative1Title: 'Distribütör ağı',
+    initiative1Body:
+      'Mevcut pazarlarda satış ve dağıtım ortaklarımızla sürdürülebilir büyüme planları yürütüyoruz.',
+    initiative2Title: 'Yeni pazarlar',
+    initiative2Body:
+      'Avrupa, Orta Doğu ve Kuzey Afrika’da yeni ülke ve kanal görüşmelerimizi sürdürüyoruz.',
+    initiative3Title: 'Private Label projeleri',
+    initiative3Body:
+      'Hedef pazara uygun ürün, ambalaj ve etiket seçenekleriyle markalara özel üretim desteği sunuyoruz.',
+    contactEyebrow: 'Doğrudan iletişim',
+    contactTitle: 'İhracat departmanımızdan bilgi alın',
+    contactDescription:
+      'Ürünler, distribütörlük, hedef pazarlar ve özel marka üretimi hakkında ihracat ekibimizle görüşün.',
+    contact1Name: 'İhracat Yetkilisi 1',
+    contact2Name: 'İhracat Yetkilisi 2',
+    contactRole: 'İhracat Departmanı',
+    phoneLabel: 'Telefon',
   },
   contactPage: {
     address: 'Adres',

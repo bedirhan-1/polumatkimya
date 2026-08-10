@@ -53,6 +53,7 @@ export function getDefaultNavItems(locale: Locale, dictionary: Dictionary): NavI
   return [
     {href: `/${locale}/products`, label: dictionary.nav.products},
     {href: `/${locale}/industries`, label: dictionary.nav.industries},
+    {href: `/${locale}/export`, label: dictionary.nav.export},
     {
       href: `/${locale}/about`,
       label: dictionary.nav.corporate,
@@ -98,6 +99,7 @@ export function getDefaultFooterColumns(locale: Locale, dictionary: Dictionary) 
       links: [
         {href: `/${locale}/products`, label: dictionary.nav.products},
         {href: `/${locale}/industries`, label: dictionary.nav.industries},
+        {href: `/${locale}/export`, label: dictionary.nav.export},
         {href: `/${locale}/blog`, label: dictionary.nav.blog},
         {href: `/${locale}/videos`, label: dictionary.footer.videos},
       ],

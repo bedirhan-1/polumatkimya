@@ -25,16 +25,18 @@ export function ProductSpecifications({
   if (!groups.length) return null
 
   const content = (
-    <div className="flex flex-col gap-6">
+    <div className="flex min-w-0 flex-col gap-6">
       {groups.map((group) => {
         const items = (group.items || []).filter((item) => item.label || item.value)
         if (!items.length) return null
 
         // Old-site style: single horizontal technical table when item count is manageable.
         const useHorizontal = items.length <= 8
+        const horizontalTableWidth =
+          items.length > 4 ? 'min-w-[52rem]' : 'min-w-[32rem]'
 
         return (
-          <div key={group._key}>
+          <div key={group._key} className="min-w-0 max-w-full">
             {group.title && !embedded ? (
               <h3 className="mb-3 font-display text-xl text-foreground">{group.title}</h3>
             ) : null}
@@ -45,15 +47,15 @@ export function ProductSpecifications({
             ) : null}
 
             {useHorizontal ? (
-              <div className="overflow-x-auto border border-border bg-surface">
-                <table className="min-w-full text-sm">
+              <div className="w-full max-w-full overflow-x-auto overscroll-x-contain border border-border bg-surface [scrollbar-gutter:stable] [-webkit-overflow-scrolling:touch]">
+                <table className={`w-full table-auto text-sm ${horizontalTableWidth}`}>
                   <thead>
                     <tr className="border-b border-border bg-surface-elevated">
                       {items.map((item) => (
                         <th
                           key={item._key}
                           scope="col"
-                          className="px-3 py-2.5 text-start text-[0.7rem] font-semibold tracking-[0.12em] text-muted uppercase whitespace-nowrap"
+                          className="border-s border-border px-4 py-2.5 text-start text-[0.7rem] leading-5 font-semibold tracking-[0.12em] text-muted uppercase whitespace-nowrap first:border-s-0"
                         >
                           {item.label}
                         </th>
@@ -81,7 +83,7 @@ export function ProductSpecifications({
                 </table>
               </div>
             ) : (
-              <div className="overflow-x-auto border border-border">
+              <div className="w-full max-w-full overflow-x-auto overscroll-x-contain border border-border [scrollbar-gutter:stable] [-webkit-overflow-scrolling:touch]">
                 <table className="min-w-full text-sm">
                   <tbody>
                     {items.map((item) => (

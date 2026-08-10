@@ -157,7 +157,9 @@ export default async function BlogPostPage({params}: PageProps) {
               {post.category ? (
                 <p className="text-xs tracking-[0.2em] text-accent uppercase">{post.category}</p>
               ) : null}
-              <h1 className="font-display text-4xl text-foreground sm:text-5xl">{post.title}</h1>
+              <h1 className="font-display text-[clamp(1.75rem,6.5vw,3.25rem)] leading-[1.08] text-foreground">
+                {post.title}
+              </h1>
               <div className="flex flex-wrap gap-3 text-sm text-muted">
                 {dateLabel ? <span dir="ltr">{dateLabel}</span> : null}
                 {post.author ? (
@@ -168,7 +170,7 @@ export default async function BlogPostPage({params}: PageProps) {
               </div>
               {post.excerpt ? <p className="max-w-2xl text-base text-muted">{post.excerpt}</p> : null}
             </div>
-            <div className="relative min-h-72 overflow-hidden border border-white/10 bg-surface lg:min-h-96">
+            <div className="relative min-h-52 overflow-hidden border border-white/10 bg-surface sm:min-h-72 lg:min-h-96">
               <SanityImage
                 image={post.coverImage}
                 fill

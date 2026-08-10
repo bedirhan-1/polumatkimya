@@ -116,6 +116,7 @@ export function SiteHeader({
     findNav(`/${locale}/products`),
     findNav(`/${locale}/industries`),
     {href: `/${locale}/private-label`, label: 'Private Label'},
+    findNav(`/${locale}/export`) || {href: `/${locale}/export`, label: dictionary.nav.export},
     findNav(`/${locale}/about`),
     findNav(`/${locale}/contact`),
   ].filter((item): item is NavItem => Boolean(item))
@@ -130,23 +131,23 @@ export function SiteHeader({
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#070809]/96 shadow-[0_10px_30px_rgba(0,0,0,0.22)]">
-      <div className="container-site flex h-[var(--header-height)] items-center justify-between gap-5">
+      <div className="container-site flex h-[var(--header-height)] items-center justify-between gap-2 sm:gap-4 xl:gap-5">
         <Link
           href={homeHref}
           aria-label={dictionary.meta.siteName}
-          className="inline-flex shrink-0 items-center no-underline"
+          className="inline-flex min-w-0 shrink items-center no-underline"
         >
           <PolumatLogo
             alt={dictionary.meta.siteName}
             size="small"
             surface="dark"
-            className="h-8 w-auto xl:h-9"
+            className="h-7 w-auto max-w-[9.5rem] sm:h-8 sm:max-w-none xl:h-9"
             eager
           />
         </Link>
 
-        <nav aria-label={dictionary.a11y.mainNavigation} className="hidden lg:block">
-          <ul className="flex items-center gap-0.5 xl:gap-1">
+        <nav aria-label={dictionary.a11y.mainNavigation} className="hidden xl:block">
+          <ul className="flex items-center gap-0.5">
             {primaryNav.map((item) => {
               const active = isNavItemActive(pathname, item)
               if (item.children?.length) {
@@ -154,7 +155,7 @@ export function SiteHeader({
                   <li key={`${item.href}-${item.label}`} className="group relative">
                     <Link
                       href={item.href}
-                      className={`inline-flex min-h-11 items-center gap-1.5 border-b px-2.5 text-[0.7rem] font-semibold tracking-[0.06em] uppercase no-underline transition xl:px-3 ${
+                      className={`inline-flex min-h-11 items-center gap-1.5 border-b px-2.5 text-[0.7rem] font-semibold tracking-[0.06em] uppercase no-underline transition 2xl:px-3 ${
                         active
                           ? 'border-accent text-foreground'
                           : 'border-transparent text-muted hover:text-foreground'
@@ -198,7 +199,7 @@ export function SiteHeader({
                 <li key={`${item.href}-${item.label}`}>
                   <NavAnchor
                     item={item}
-                    className={`inline-flex min-h-11 items-center border-b px-2.5 text-[0.7rem] font-semibold tracking-[0.06em] uppercase no-underline transition xl:px-3 ${
+                    className={`inline-flex min-h-11 items-center border-b px-2.5 text-[0.7rem] font-semibold tracking-[0.06em] uppercase no-underline transition 2xl:px-3 ${
                       active
                         ? 'border-accent text-foreground'
                         : 'border-transparent text-muted hover:text-foreground'
@@ -210,7 +211,7 @@ export function SiteHeader({
           </ul>
         </nav>
 
-        <div className="flex items-center gap-2 sm:gap-3">
+        <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
           <LanguageSwitcher locale={locale} label={dictionary.a11y.languageSwitcher} />
           {catalogHref ? (
             <a
@@ -227,7 +228,7 @@ export function SiteHeader({
           ) : null}
           <ButtonLink
             href={quoteHref}
-            className="hidden min-h-10 px-4 py-2 text-xs uppercase no-underline sm:inline-flex xl:px-5"
+            className="hidden min-h-10 px-4 py-2 text-xs uppercase no-underline md:inline-flex xl:px-5"
           >
             {dictionary.nav.requestQuote}
             <span aria-hidden>→</span>
