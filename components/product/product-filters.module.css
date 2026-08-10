@@ -122,7 +122,11 @@
 }
 
 .searchSubmit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-width: 2.35rem;
+  padding: 0;
   border: 0;
   border-inline-start: 1px solid var(--border);
   background: color-mix(in srgb, var(--surface-elevated) 80%, transparent);
