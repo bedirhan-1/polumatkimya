@@ -60,9 +60,16 @@ export const exportContactType = defineType({
           return phone.replace(/\D/g, '').length >= 10 || 'Enter a valid phone number'
         }),
     }),
+    defineField({
+      name: 'email',
+      title: 'Email',
+      type: 'string',
+      description: 'Displayed publicly and used as a mailto link.',
+      validation: (rule) => rule.required().email(),
+    }),
   ],
   preview: {
-    select: {title: 'name', subtitle: 'phone'},
+    select: {title: 'name', subtitle: 'email'},
   },
 })
 

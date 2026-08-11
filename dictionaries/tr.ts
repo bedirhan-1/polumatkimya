@@ -117,6 +117,7 @@ const tr: Dictionary = {
     contact2Name: 'İhracat Yetkilisi 2',
     contactRole: 'İhracat Departmanı',
     phoneLabel: 'Telefon',
+    emailLabel: 'E-posta',
   },
   contactPage: {
     address: 'Adres',

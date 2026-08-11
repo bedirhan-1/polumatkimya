@@ -54,7 +54,7 @@ function activity(
   }
 }
 
-function contact(name: string, phone: string) {
+function contact(name: string, phone: string, email: string) {
   return {
     _key: key(),
     _type: 'exportContact',
@@ -65,6 +65,7 @@ function contact(name: string, phone: string) {
       ar: 'قسم التصدير',
     }),
     phone,
+    email,
   }
 }
 
@@ -150,8 +151,8 @@ function buildDocument() {
       ar: 'تواصل مع فريق التصدير بخصوص المنتجات والتوزيع والأسواق المستهدفة وتصنيع العلامات الخاصة.',
     }),
     contacts: [
-      contact('İhracat Yetkilisi 1', '+90 555 555 55 55'),
-      contact('İhracat Yetkilisi 2', '+90 555 555 55 56'),
+      contact('İhracat Yetkilisi 1', '+90 555 555 55 55', 'export@polumat.com'),
+      contact('İhracat Yetkilisi 2', '+90 555 555 55 56', 'export@polumat.com'),
     ],
     seo: {
       _type: 'localizedSeo',

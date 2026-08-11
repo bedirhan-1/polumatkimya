@@ -35,6 +35,7 @@ type ExportPageData = {
     name?: string | null
     role?: string | null
     phone?: string | null
+    email?: string | null
   } | null> | null
   seo?: unknown
 }
@@ -107,12 +108,14 @@ export default async function ExportPage({params}: PageProps) {
       name: dictionary.exportPage.contact1Name,
       role: dictionary.exportPage.contactRole,
       phone: '+90 555 555 55 55',
+      email: 'export@polumat.com',
     },
     {
       _key: 'export-contact-2',
       name: dictionary.exportPage.contact2Name,
       role: dictionary.exportPage.contactRole,
       phone: '+90 555 555 55 56',
+      email: 'export@polumat.com',
     },
   ]
   const contacts =
@@ -124,6 +127,7 @@ export default async function ExportPage({params}: PageProps) {
           name: contact.name,
           role: contact.role || dictionary.exportPage.contactRole,
           phone: contact.phone,
+          email: contact.email?.trim() || '',
         }]
       }) || fallbackContacts
 
@@ -219,17 +223,36 @@ export default async function ExportPage({params}: PageProps) {
                   <h2 className="mt-3 font-display text-2xl text-foreground sm:text-3xl">
                     {contact.name}
                   </h2>
-                  <p className="mt-8 text-xs font-semibold tracking-[0.16em] text-muted uppercase">
-                    {dictionary.exportPage.phoneLabel}
-                  </p>
-                  <a
-                    href={phoneHref}
-                    className="mt-2 inline-flex min-h-11 items-center border border-accent bg-accent px-5 py-2.5 text-base font-semibold text-white no-underline shadow-[0_0_24px_var(--accent-glow)] transition hover:brightness-110"
-                    dir="ltr"
-                  >
-                    {contact.phone}
-                    <span aria-hidden>→</span>
-                  </a>
+                  <div className="mt-8 grid gap-5">
+                    <div>
+                      <p className="text-xs font-semibold tracking-[0.16em] text-muted uppercase">
+                        {dictionary.exportPage.phoneLabel}
+                      </p>
+                      <a
+                        href={phoneHref}
+                        className="mt-2 inline-flex min-h-11 items-center border border-accent bg-accent px-5 py-2.5 text-base font-semibold text-white no-underline shadow-[0_0_24px_var(--accent-glow)] transition hover:brightness-110"
+                        dir="ltr"
+                      >
+                        {contact.phone}
+                        <span aria-hidden>→</span>
+                      </a>
+                    </div>
+                    {contact.email ? (
+                      <div>
+                        <p className="text-xs font-semibold tracking-[0.16em] text-muted uppercase">
+                          {dictionary.exportPage.emailLabel}
+                        </p>
+                        <a
+                          href={`mailto:${contact.email}`}
+                          className="mt-2 inline-flex min-h-11 items-center border border-border bg-surface px-5 py-2.5 text-base font-semibold text-foreground no-underline transition hover:border-accent hover:text-accent"
+                          dir="ltr"
+                        >
+                          {contact.email}
+                          <span aria-hidden>→</span>
+                        </a>
+                      </div>
+                    ) : null}
+                  </div>
                 </article>
               )
             })}

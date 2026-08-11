@@ -116,7 +116,6 @@ export function SiteHeader({
     findNav(`/${locale}/products`),
     findNav(`/${locale}/industries`),
     {href: `/${locale}/private-label`, label: 'Private Label'},
-    findNav(`/${locale}/export`) || {href: `/${locale}/export`, label: dictionary.nav.export},
     findNav(`/${locale}/about`),
     findNav(`/${locale}/contact`),
   ].filter((item): item is NavItem => Boolean(item))
@@ -146,21 +145,19 @@ export function SiteHeader({
           />
         </Link>
 
-        <nav aria-label={dictionary.a11y.mainNavigation} className="hidden xl:block">
-          <ul className="flex items-center gap-0.5">
+        <nav aria-label={dictionary.a11y.mainNavigation} className="hidden min-w-0 xl:block">
+          <ul className="flex flex-nowrap items-center gap-0">
             {primaryNav.map((item) => {
               const active = isNavItemActive(pathname, item)
+              const linkClassName = `inline-flex min-h-11 shrink-0 items-center whitespace-nowrap border-b px-2 text-[0.65rem] font-semibold tracking-[0.04em] uppercase no-underline transition 2xl:px-2.5 2xl:text-[0.7rem] 2xl:tracking-[0.06em] ${
+                active
+                  ? 'border-accent text-foreground'
+                  : 'border-transparent text-muted hover:text-foreground'
+              }`
               if (item.children?.length) {
                 return (
-                  <li key={`${item.href}-${item.label}`} className="group relative">
-                    <Link
-                      href={item.href}
-                      className={`inline-flex min-h-11 items-center gap-1.5 border-b px-2.5 text-[0.7rem] font-semibold tracking-[0.06em] uppercase no-underline transition 2xl:px-3 ${
-                        active
-                          ? 'border-accent text-foreground'
-                          : 'border-transparent text-muted hover:text-foreground'
-                      }`}
-                    >
+                  <li key={`${item.href}-${item.label}`} className="group relative shrink-0">
+                    <Link href={item.href} className={`${linkClassName} gap-1`}>
                       <span>{item.label}</span>
                       <svg
                         aria-hidden="true"
@@ -184,7 +181,7 @@ export function SiteHeader({
                           <li key={`${child.href}-${child.label}`}>
                             <NavAnchor
                               item={child}
-                              className={`block px-4 py-2.5 text-sm no-underline transition hover:bg-background hover:text-accent ${
+                              className={`block whitespace-nowrap px-4 py-2.5 text-sm no-underline transition hover:bg-background hover:text-accent ${
                                 childIsActive ? 'text-accent' : 'text-foreground'
                               }`}
                             />
@@ -196,15 +193,8 @@ export function SiteHeader({
                 )
               }
               return (
-                <li key={`${item.href}-${item.label}`}>
-                  <NavAnchor
-                    item={item}
-                    className={`inline-flex min-h-11 items-center border-b px-2.5 text-[0.7rem] font-semibold tracking-[0.06em] uppercase no-underline transition 2xl:px-3 ${
-                      active
-                        ? 'border-accent text-foreground'
-                        : 'border-transparent text-muted hover:text-foreground'
-                    }`}
-                  />
+                <li key={`${item.href}-${item.label}`} className="shrink-0">
+                  <NavAnchor item={item} className={linkClassName} />
                 </li>
               )
             })}

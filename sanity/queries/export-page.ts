@@ -26,6 +26,7 @@ export const EXPORT_PAGE_QUERY = defineQuery(/* groq */ `
       _key,
       name,
       phone,
+      email,
       "role": ${localeValue('role')}
     },
     ${seoProjection}
