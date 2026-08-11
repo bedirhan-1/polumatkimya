@@ -21,6 +21,7 @@ export type NavItem = {
 
 export function getCorporateNavItems(locale: Locale, dictionary: Dictionary): NavItem[] {
   return [
+    {href: `/${locale}/export`, label: dictionary.nav.export},
     {href: `/${locale}/about`, label: dictionary.nav.about},
     {
       href: `/${locale}/company/mission-and-vision`,
@@ -53,7 +54,6 @@ export function getDefaultNavItems(locale: Locale, dictionary: Dictionary): NavI
   return [
     {href: `/${locale}/products`, label: dictionary.nav.products},
     {href: `/${locale}/industries`, label: dictionary.nav.industries},
-    {href: `/${locale}/export`, label: dictionary.nav.export},
     {
       href: `/${locale}/about`,
       label: dictionary.nav.corporate,
