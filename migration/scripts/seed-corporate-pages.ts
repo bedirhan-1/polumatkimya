@@ -9,6 +9,7 @@ import {createClient, type SanityClient} from '@sanity/client'
 import {createHash, randomBytes} from 'node:crypto'
 import {existsSync, readFileSync} from 'node:fs'
 import path from 'node:path'
+import {fileURLToPath} from 'node:url'
 
 import {textToPortableText} from './lib'
 
@@ -38,9 +39,9 @@ function key() {
   return randomBytes(4).toString('hex')
 }
 
-type Locale = 'tr' | 'en' | 'ar'
+export type Locale = 'tr' | 'en' | 'ar'
 
-type PageSeed = {
+export type PageSeed = {
   slug: string
   legacyUrl: string
   /** Unique hero/content image from the live corporate page. */
@@ -51,7 +52,7 @@ type PageSeed = {
   eyebrow?: Record<Locale, string>
 }
 
-const PAGES: PageSeed[] = [
+export const PAGES: PageSeed[] = [
   {
     slug: 'about',
     legacyUrl: '/sayfa/hakkimizda',
@@ -130,17 +131,29 @@ Polumat Kimya, misyon ve vizyonunu hayata geçirirken, etik değerlerden ödün 
 Our mission is to develop reliable, environmentally friendly products that contribute to a sustainable future. In this spirit we focus on:
 
 Customer satisfaction: Exceeding expectations with high-quality products and services.
-Innovation: Continuous R&D so we can improve our offering.
-Environmental care: Manufacturing respectfully and sustainably.
+Innovation: Continuous R&D so we can follow sector developments and keep improving our products and services.
+Environmental care: We manufacture respectfully and sustainably, conscious of our environmental responsibilities.
 
-Our vision is to become a globally recognized and respected chemistry company — a sector leader known for innovation, international growth and social contribution.
+Our vision is to become a globally recognized and respected chemistry company and a sector leader. In this direction we pursue:
+
+Leadership: Taking a pioneering role with innovative products and services.
+Global growth: Building a strong international presence and a global brand.
+Social contribution: Adding value through social responsibility projects and working toward a more livable world.
 
 Polumat Kimya pursues this mission and vision with ethical, transparent and responsible business practices.`,
       ar: `نهدف إلى تلبية احتياجات عملائنا وإضافة قيمة عبر حلول مبتكرة في البخاخات الصناعية وكيماويات البناء.
 
-رسالتنا تطوير منتجات موثوقة وصديقة للبيئة تساهم في مستقبل مستدام، مع التركيز على رضا العملاء والابتكار والمسؤولية البيئية.
+رسالتنا تطوير منتجات موثوقة وصديقة للبيئة تساهم في مستقبل مستدام. وفي هذا الإطار نركز على:
 
-رؤيتنا أن نصبح شركة كيمياء معروفة ومحترمة عالمياً، رائدة في القطاع من خلال الابتكار والنمو الدولي والمساهمة المجتمعية.
+رضا العملاء: تجاوز التوقعات بمنتجات وخدمات عالية الجودة.
+الابتكار: بحث وتطوير مستمر لتتبع مستجدات القطاع وتحسين منتجاتنا وخدماتنا باستمرار.
+النهج الصديق للبيئة: ننتج باحترام للطبيعة واستدامة، مدركين لمسؤولياتنا البيئية.
+
+رؤيتنا أن نصبح شركة كيمياء معروفة ومحترمة عالمياً ورائدة في القطاع. وفي هذا الاتجاه نسعى إلى:
+
+الريادة: تولي دور رائد بمنتجات وخدمات مبتكرة.
+النمو العالمي: حضور قوي في الأسواق الدولية وبناء علامة عالمية.
+المساهمة المجتمعية: إضافة قيمة عبر مشاريع المسؤولية الاجتماعية والعمل من أجل عالم أكثر قابلية للعيش.
 
 تعمل بولومات كيميا بشفافية ومسؤولية وأخلاق دون المساومة على قيمها.`,
     },
@@ -175,22 +188,35 @@ Dürüstlük, şeffaflık ve yasal uyuma bağlı kalırız. Bu çerçevede ürü
       en: `Quality is the cornerstone of our work. Our policy aims for top-tier customer satisfaction and continuous improvement that keeps us ahead in the sector.
 
 Customer focus
-We listen carefully, deliver fitting solutions and act on feedback.
+We listen carefully to customer needs and deliver fitting solutions. We evaluate feedback and take measures that raise satisfaction.
 
 Continuous improvement
-We operate a quality management system aligned with ISO 9001 and regularly review our processes.
+We operate a quality management system aligned with ISO 9001. We regularly review our processes and act on opportunities to improve.
 
 Employee involvement
-Ongoing training and active participation in quality processes.
+We run ongoing training to raise knowledge and skills, and we encourage active participation in quality processes.
 
 Environment & safety
-Environmentally conscious production and a safe, healthy workplace.
+We develop environmentally conscious production processes and take the measures needed for a safe, healthy workplace.
 
 Ethical practice
-Honesty, transparency and legal compliance — we commit to continually raising product and service quality.`,
-      ar: `الجودة حجر أساس عملنا. تهدف سياستنا إلى أعلى مستويات رضا العملاء والتحسين المستمر.
+We stay committed to honesty, transparency and legal compliance. In this framework we commit to continually raising product and service quality.`,
+      ar: `الجودة حجر أساس عملنا. تهدف سياستنا إلى أعلى مستويات رضا العملاء والتحسين المستمر الذي يبقينا في مقدمة القطاع.
 
-التركيز على العميل، التحسين المستمر وفق ISO 9001، مشاركة الموظفين، المسؤولية البيئية والسلامة، والممارسات الأخلاقية الشفافة — نلتزم برفع جودة منتجاتنا وخدماتنا باستمرار.`,
+التركيز على العميل
+نستمع بعناية إلى احتياجات العملاء ونقدم حلولاً ملائمة. نقيّم الملاحظات ونتخذ إجراءات ترفع مستوى الرضا.
+
+التحسين المستمر
+نطبّق نظام إدارة جودة متوافقاً مع ISO 9001. نراجع عملياتنا بانتظام ونستثمر فرص التطوير.
+
+مشاركة الموظفين
+ننظم تدريبات مستمرة لرفع المعرفة والمهارات ونشجع المشاركة الفاعلة في عمليات الجودة.
+
+البيئة والسلامة
+نطور عمليات إنتاج تراعي البيئة ونتخذ الإجراءات اللازمة لبيئة عمل آمنة وصحية.
+
+الممارسات الأخلاقية
+نلتزم بالصدق والشفافية والامتثال القانوني. وفي هذا الإطار نتعهد برفع جودة منتجاتنا وخدماتنا باستمرار.`,
     },
   },
   {
@@ -228,12 +254,40 @@ Yasal Uygunluk
 Polumat Kimya olarak çevre politikamızı sürekli gözden geçirerek daha sürdürülebilir bir gelecek için çalışmaya devam edeceğiz.`,
       en: `We take environmental responsibility seriously and act on sustainability principles.
 
-Efficient resource use, waste minimization and recycling, pollution prevention, renewable energy where possible, employee awareness, and compliance with environmental law and ISO 14001 — these define our environmental policy.
+Efficient use of resources
+Efficient use of energy and natural resources is encouraged, and measures are taken to prevent waste.
 
-Polumat Kimya will keep reviewing and improving this policy for a more sustainable future.`,
-      ar: `نأخذ مسؤوليتنا البيئية بجدية ونعمل وفق مبادئ الاستدامة: كفاءة الموارد، إدارة النفايات، منع التلوث، الطاقة المتجددة، التوعية، والامتثال للأنظمة وISO 14001.
+Waste management
+Effective waste-management systems are applied to minimize waste and increase recycling rates.
 
-سنواصل مراجعة سياستنا البيئية من أجل مستقبل أكثر استدامة.`,
+Pollution prevention
+Pollution-prevention technologies and process improvements are continually reviewed to minimize environmental impact in production.
+
+Sustainability practices
+We aim to reduce our carbon footprint by increasing renewable energy use. We run regular training to build environmental awareness among employees and stakeholders.
+
+Legal compliance
+We comply with relevant environmental legislation and develop processes aligned with international standards, starting with the ISO 14001 Environmental Management System.
+
+Polumat Kimya will keep reviewing and improving this environmental policy for a more sustainable future.`,
+      ar: `نأخذ مسؤوليتنا البيئية بجدية ونعمل وفق مبادئ الاستدامة.
+
+الاستخدام الفعّال للموارد
+يُشجَّع الاستخدام الكفء للطاقة والموارد الطبيعية، وتُتخذ الإجراءات اللازمة لمنع الهدر.
+
+إدارة النفايات
+تُطبَّق أنظمة فعّالة لإدارة النفايات بهدف تقليل النفايات وزيادة معدلات إعادة التدوير.
+
+منع التلوث
+تُراجع باستمرار تقنيات منع التلوث وتحسين العمليات لتقليل الأثر البيئي في الإنتاج.
+
+ممارسات الاستدامة
+نهدف إلى تقليص بصمتنا الكربونية عبر زيادة استخدام الطاقة المتجددة. ننفذ تدريبات منتظمة لبناء الوعي البيئي لدى الموظفين وأصحاب المصلحة.
+
+الامتثال القانوني
+نلتزم بالتشريعات البيئية ذات الصلة ونطور عمليات متوافقة مع المعايير الدولية، بدءاً بنظام الإدارة البيئية ISO 14001.
+
+سنواصل في بولومات كيميا مراجعة سياستنا البيئية من أجل مستقبل أكثر استدامة.`,
     },
   },
   {
@@ -267,16 +321,32 @@ Sorumluluklarımız
 Polumat Kimya olarak İSG alanında örnek bir şirket olmayı hedefliyoruz. Çalışanlarımızın ve iş ortaklarımızın güvenliği bizim için en büyük önceliktir.`,
       en: `Occupational health and safety (OHS) is among our top priorities. We work decisively to protect employees, customers and our surroundings.
 
-Core principles: safety first, legal compliance, continuous improvement, training and awareness, risk management, and participatory engagement.
+Our core principles
+Safety first: We put safety first in all activities and develop proactive approaches to prevent workplace accidents and occupational disease.
+Legal compliance: We comply with national and international OHS requirements.
+Continuous improvement: We regularly review OHS performance and minimize risks with technological innovation.
+Training and awareness: Regular training promotes a culture of safe work.
+Risk management: We assess risk in work processes and take preventive measures.
+Participatory approach: We encourage employees and relevant parties to take part in OHS processes.
 
-Management owns policy delivery; every employee owns personal and peer safety; our OHS team provides guidance.
+Our responsibilities
+Senior management is responsible for implementing the policy; every employee is responsible for their own safety and that of those around them; the OHS team provides guidance and support.
 
-Polumat Kimya aims to be an exemplary company in OHS — the safety of our people and partners comes first.`,
-      ar: `الصحة والسلامة المهنية من أولوياتنا القصوى. نعمل لحماية موظفينا وعملائنا ومحيطنا عبر الامتثال القانوني وإدارة المخاطر والتدريب والتحسين المستمر.
+Polumat Kimya aims to be an exemplary company in OHS. The safety of our people and partners is our highest priority.`,
+      ar: `الصحة والسلامة المهنية من أولوياتنا القصوى. نعمل بحزم لحماية موظفينا وعملائنا ومحيطنا.
 
-الإدارة مسؤولة عن تنفيذ السياسة، وكل موظف عن سلامته وسلامة من حوله، وفريق السلامة عن الإرشاد والدعم.
+مبادئنا الأساسية
+السلامة أولاً: نضع السلامة في مقدمة كل أنشطتنا ونطور نهجاً استباقياً لمنع حوادث العمل والأمراض المهنية.
+الامتثال القانوني: نلتزم بمتطلبات الصحة والسلامة المهنية الوطنية والدولية.
+التحسين المستمر: نراجع أداء السلامة بانتظام ونقلل المخاطر بالابتكار التقني.
+التدريب والتوعية: تعزز التدريبات المنتظمة ثقافة العمل الآمن.
+إدارة المخاطر: نقيّم المخاطر في عمليات العمل ونتخذ تدابير وقائية.
+النهج التشاركي: نشجع الموظفين والأطراف المعنية على المشاركة في عمليات السلامة.
 
-سلامة موظفينا وشركائنا هي أولويتنا الكبرى.`,
+مسؤولياتنا
+الإدارة العليا مسؤولة عن تنفيذ السياسة؛ وكل موظف مسؤول عن سلامته وسلامة من حوله؛ وفريق السلامة يقدم الإرشاد والدعم.
+
+تهدف بولومات كيميا إلى أن تكون شركة نموذجية في الصحة والسلامة المهنية. سلامة موظفينا وشركائنا هي أولويتنا الكبرى.`,
     },
   },
   {
@@ -314,12 +384,40 @@ Uzun vadeli ilişkiler kurar, sadakati destekleyen teşvik programları sunarız
 Polumat Kimya olarak siz değerli müşterilerimize en iyi hizmeti sunmayı taahhüt ediyoruz.`,
       en: `We pursue a policy that keeps customer satisfaction at the highest level.
 
-Customer focus, quality assurance, clear communication, long-term loyalty and social responsibility guide how we work.
+Customer-focused approach
+We analyze needs and aim to exceed expectations with tailored solutions.
 
-Polumat Kimya commits to delivering the best possible service to our customers.`,
-      ar: `نتبع سياسة تضع رضا العملاء في أعلى مستوى عبر التركيز على الاحتياجات وضمان الجودة والتواصل الواضح والعلاقات طويلة الأمد والمسؤولية المجتمعية.
+Quality assurance
+We apply rigorous control processes for products that meet high quality standards, and we continually improve products and services.
 
-نلتزم بتقديم أفضل خدمة لعملائنا الكرام.`,
+Effective communication
+We take feedback seriously and provide regular, accurate information about products and services.
+
+Customer loyalty
+We build long-term relationships and offer incentive programs that support loyalty.
+
+Environment and social responsibility
+We contribute to society through environmentally conscious production and social responsibility projects.
+
+Polumat Kimya commits to delivering the best possible service to our valued customers.`,
+      ar: `نتبع سياسة تضع رضا العملاء في أعلى مستوى.
+
+نهج يركز على العميل
+نحلل الاحتياجات ونهدف إلى تجاوز التوقعات بحلول مخصصة.
+
+ضمان الجودة
+نطبّق عمليات رقابة دقيقة لمنتجات وفق معايير جودة عالية، ونحسّن المنتجات والخدمات باستمرار.
+
+تواصل فعّال
+نأخذ الملاحظات على محمل الجد ونقدم معلومات منتظمة ودقيقة عن المنتجات والخدمات.
+
+ولاء العملاء
+نبني علاقات طويلة الأمد ونقدم برامج تحفيز تدعم الولاء.
+
+المسؤولية البيئية والمجتمعية
+نساهم في المجتمع عبر إنتاج يراعي البيئة ومشاريع المسؤولية الاجتماعية.
+
+نلتزم في بولومات كيميا بتقديم أفضل خدمة لعملائنا الكرام.`,
     },
   },
   {
@@ -350,12 +448,34 @@ Açık iletişimi teşvik eder; çalışanların görüşlerini ifade edebilece�
 Polumat Kimya İnsan Kaynakları politikası, yenilikçi ve sürdürülebilir bir iş ortamı yaratmayı hedefler.`,
       en: `Employee happiness and growth are foundations of our success.
 
-Fair, objective hiring; diversity and inclusion; career development, leadership training and mentorship; wellbeing and work-life balance; open communication and participatory management — these define our HR policy.
+Hiring process
+Equal opportunity is offered to all candidates; assessment is objective and based on talent and experience. Diversity and inclusion are encouraged.
 
-Polumat Kimya aims to build an innovative, sustainable workplace where people can thrive.`,
-      ar: `سعادة موظفينا وتطورهم من أسس نجاحنا.
+Learning and development
+We offer career development programs, leadership training, technical skills courses and mentorship. Regular performance reviews provide feedback.
 
-توظيف عادل وموضوعي، تنوع وشمول، تطوير مهني وتدريب ومرشدية، رفاه وتوازن بين العمل والحياة، وتواصل مفتوح ومشاركة في الإدارة — هذه هي سياسة مواردنا البشرية.`,
+Employee wellbeing
+Health and safety are treated as a top priority. Flexible practices are designed to support work-life balance.
+
+Communication and participation
+We encourage open communication, channels for employees to share their views, and a participatory management approach.
+
+Polumat Kimya’s human resources policy aims to create an innovative, sustainable workplace.`,
+      ar: `سعادة موظفينا وتطورهم من أسس نجاح شركتنا.
+
+عملية التوظيف
+تُتاح فرص متساوية لجميع المرشحين؛ ويكون التقييم موضوعياً ومركزاً على الموهبة والخبرة. يُشجَّع التنوع والشمول.
+
+التدريب والتطوير
+نقدم برامج تطوير مهني وتدريب قيادي ودورات مهارات تقنية وإرشاداً. وتوفر تقييمات الأداء المنتظمة تغذية راجعة.
+
+رفاه الموظفين
+تُعامل الصحة والسلامة بأولوية قصوى. صُممت ممارسات مرنة لدعم التوازن بين العمل والحياة.
+
+التواصل والمشاركة
+نشجع التواصل المفتوح والقنوات التي يعبر الموظفون من خلالها عن آرائهم ونهجاً إدارياً تشاركياً.
+
+تهدف سياسة الموارد البشرية في بولومات كيميا إلى بناء بيئة عمل مبتكرة ومستدامة.`,
     },
   },
 ]
@@ -536,7 +656,10 @@ async function main() {
   }
 }
 
-main().catch((error) => {
-  console.error(error)
-  process.exit(1)
-})
+const isDirectRun = process.argv[1] === fileURLToPath(import.meta.url)
+if (isDirectRun) {
+  main().catch((error) => {
+    console.error(error)
+    process.exit(1)
+  })
+}

@@ -55,7 +55,8 @@ export function SanityImage({
 }: SanityImageProps) {
   if (!image?.asset) return null
 
-  const altText = alt ?? image.alt ?? ''
+  const resolvedAlt = alt ?? image.alt
+  const altText = typeof resolvedAlt === 'string' ? resolvedAlt : ''
   const src = resolveImageSrc(image, width, height, fit)
 
   if (fill) {

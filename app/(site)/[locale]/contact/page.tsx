@@ -20,9 +20,6 @@ type PageProps = {
 }
 
 const CONTACT = {
-  address: 'Velioğlu OSB Mahallesi, 11 Nolu Sokak No: 3',
-  city: 'Çaycuma / Zonguldak',
-  postal: '67900',
   phones: [
     {label: 'Fabrika', value: '+90 372 615 77 70', href: 'tel:+903726157770'},
     {label: 'Mobil', value: '+90 533 897 28 24', href: 'tel:+905338972824'},
@@ -32,11 +29,30 @@ const CONTACT = {
     {label: 'Fabrika', value: 'fabrika@polumatkimya.com', href: 'mailto:fabrika@polumatkimya.com'},
     {label: 'Export', value: 'export@polumat.com', href: 'mailto:export@polumat.com'},
   ],
-  mapEmbed:
-    'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d24969.54637002056!2d32.134079!3d41.404388!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x409c9df2982d432d%3A0x199446ced2931174!2sPolumat%20Kimya%20San.Tic.Ltd.%C5%9Eti!5e1!3m2!1str!2sus!4v1786290800135!5m2!1str!2sus',
-  mapsUrl:
-    'https://www.google.com/maps/search/?api=1&query=Polumat%20Kimya%20San.Tic.Ltd.%C5%9Eti%20%C3%87aycuma',
 }
+
+const LOCATIONS = [
+  {
+    id: 'factory',
+    address: 'Velioğlu OSB Mahallesi, 11 Nolu Sokak No: 3',
+    city: 'Çaycuma / Zonguldak',
+    postal: '67900',
+    mapEmbed:
+      'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d24969.54637002056!2d32.134079!3d41.404388!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x409c9df2982d432d%3A0x199446ced2931174!2sPolumat%20Kimya%20San.Tic.Ltd.%C5%9Eti!5e1!3m2!1str!2sus!4v1786290800135!5m2!1str!2sus',
+    mapsUrl:
+      'https://www.google.com/maps/search/?api=1&query=Polumat%20Kimya%20San.Tic.Ltd.%C5%9Eti%20%C3%87aycuma',
+  },
+  {
+    id: 'istanbul',
+    address: 'İkitelli OSB, Pik Dökümcüler A4 Blok Sk No: 3',
+    city: 'Başakşehir / İstanbul',
+    postal: '34490',
+    mapEmbed:
+      'https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12026.965978698898!2d28.799019679427147!3d41.096494452493765!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14caaf6f18d96aa9%3A0x3f34d103a6f7ecb5!2zxLBraXRlbGxpIE9TQiwgUGlrIETDtmvDvG1jw7xsZXIgQTQgQmxvayBTayBObzozLCAzNDQ5MCBCYcWfYWvFn2VoaXIvxLBzdGFuYnVs!5e0!3m2!1str!2str!4v1786531849261!5m2!1str!2str',
+    mapsUrl:
+      'https://www.google.com/maps/search/?api=1&query=%C4%B0kitelli%20OSB%20Pik%20D%C3%B6k%C3%BCmc%C3%BCler%20A4%20Blok%20Sk%20No:3%20Ba%C5%9Fak%C5%9Fehir%20%C4%B0stanbul',
+  },
+] as const
 
 export function generateStaticParams() {
   return locales.map((locale) => ({locale}))
@@ -101,11 +117,19 @@ export default async function ContactPage({params}: PageProps) {
           <aside className="border-border py-8 sm:py-12 lg:border-e lg:py-16 lg:pe-12">
             <dl className="space-y-8">
               <Fact
-                title={dictionary.contactPage.address}
+                title={dictionary.contactPage.factory}
                 items={[
-                  CONTACT.address,
-                  CONTACT.city,
-                  CONTACT.postal,
+                  LOCATIONS[0].address,
+                  LOCATIONS[0].city,
+                  LOCATIONS[0].postal,
+                ]}
+              />
+              <Fact
+                title={dictionary.contactPage.istanbulOffice}
+                items={[
+                  LOCATIONS[1].address,
+                  LOCATIONS[1].city,
+                  LOCATIONS[1].postal,
                 ]}
               />
               <Fact
@@ -165,12 +189,25 @@ export default async function ContactPage({params}: PageProps) {
       </section>
 
       <section className="border-b border-border">
-        <ContactMap
-          src={CONTACT.mapEmbed}
-          title={dictionary.contactPage.map}
-          mapsUrl={CONTACT.mapsUrl}
-          openInMapsLabel={dictionary.contactPage.openInMaps}
-        />
+        <div className="grid lg:grid-cols-2">
+          {LOCATIONS.map((location, index) => {
+            const isFactory = location.id === 'factory'
+            return (
+              <div
+                key={location.id}
+                className={index > 0 ? 'border-t border-border lg:border-t-0 lg:border-s' : undefined}
+              >
+                <ContactMap
+                  src={location.mapEmbed}
+                  title={isFactory ? dictionary.contactPage.map : dictionary.contactPage.mapIstanbul}
+                  label={isFactory ? dictionary.contactPage.factory : dictionary.contactPage.istanbulOffice}
+                  mapsUrl={location.mapsUrl}
+                  openInMapsLabel={dictionary.contactPage.openInMaps}
+                />
+              </div>
+            )
+          })}
+        </div>
       </section>
     </main>
   )

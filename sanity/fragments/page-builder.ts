@@ -51,7 +51,12 @@ export const pageBuilderProjection = /* groq */ `
         "title": title[language == $locale || _key == $locale][0].value,
         "slug": slug.current,
         "shortDescription": shortDescription[language == $locale || _key == $locale][0].value,
-        cardImage{asset, alt},
+        cardImage{
+          asset,
+          hotspot,
+          crop,
+          "alt": alt[language == $locale || _key == $locale][0].value
+        },
         primaryCategory->{
           "title": title[language == $locale || _key == $locale][0].value,
           "slug": slug.current

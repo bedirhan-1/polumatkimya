@@ -464,7 +464,12 @@ async function seedDataset(dataset: string) {
     `*[_type=="applicationArea" && defined(slug.current)]|order(sortOrder asc)[0...6]._id`,
   )
   const featuredProductIds = await client.fetch<string[]>(
-    `*[_type=="product" && defined(slug.current)]|order(sortOrder asc)[0...6]._id`,
+    `{
+      "mdf": *[_type=="product" && slug.current=="mdf-kit-activator"][0]._id,
+      "rest": *[_type=="product" && defined(slug.current) && slug.current != "mdf-kit-activator"]|order(sortOrder asc)[0...5]._id
+    }`,
+  ).then((result: {mdf?: string; rest?: string[]}) =>
+    [result.mdf, ...(result.rest || [])].filter((id): id is string => Boolean(id)),
   )
 
   const sharedHeroImage = await uploadLocalImage(client, HERO_IMAGE, COPY.tr.hero.imageAlt)

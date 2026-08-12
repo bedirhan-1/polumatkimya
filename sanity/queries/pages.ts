@@ -25,14 +25,24 @@ const productCardProjection = /* groq */ `
   "title": title[language == $locale || _key == $locale][0].value,
   "slug": slug.current,
   "shortDescription": shortDescription[language == $locale || _key == $locale][0].value,
+  "badge": badge[language == $locale || _key == $locale][0].value,
   featured,
-  cardImage{asset, alt},
-  packshot{asset, alt},
-  "primaryCategory": categories[0]->{
-    _id,
-    "title": title[language == $locale || _key == $locale][0].value,
-    "slug": slug.current
-  }
+  cardImage{
+    asset,
+    hotspot,
+    crop,
+    "alt": alt[language == $locale || _key == $locale][0].value
+  },
+  packshot{
+    asset,
+    hotspot,
+    crop,
+    "alt": alt[language == $locale || _key == $locale][0].value
+  },
+  "primaryCategory": coalesce(
+    primaryCategory->{_id, "title": title[language == $locale || _key == $locale][0].value, "slug": slug.current},
+    categories[0]->{_id, "title": title[language == $locale || _key == $locale][0].value, "slug": slug.current}
+  )
 `
 
 const applicationAreaCardProjection = /* groq */ `

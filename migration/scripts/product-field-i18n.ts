@@ -21,6 +21,7 @@ export const specLabelI18n: Record<string, {en: string; ar: string}> = {
   VİSKOSİTE: {en: 'Viscosity', ar: 'اللزوجة'},
   VISKOSITE: {en: 'Viscosity', ar: 'اللزوجة'},
   'PARLAMA NOKTASI': {en: 'Flash point', ar: 'نقطة الوميض'},
+  'ALEVLENME NOKTASI': {en: 'Flash point', ar: 'نقطة الوميض'},
   'KAYNAMA NOKTASI': {en: 'Boiling point', ar: 'نقطة الغليان'},
   'DONMA NOKTASI': {en: 'Freezing point', ar: 'نقطة التجمد'},
   'KİMYASAL BAZ': {en: 'Chemical base', ar: 'القاعدة الكيميائية'},
@@ -29,6 +30,10 @@ export const specLabelI18n: Record<string, {en: string; ar: string}> = {
   'KATILASMA SURESI': {en: 'Curing time', ar: 'زمن التصلب'},
   'KURUMA SÜRESİ': {en: 'Drying time', ar: 'زمن الجفاف'},
   'KURUMA SURESI': {en: 'Drying time', ar: 'زمن الجفاف'},
+  VİZKOZİTE: {en: 'Viscosity', ar: 'اللزوجة'},
+  VIZKOZITE: {en: 'Viscosity', ar: 'اللزوجة'},
+  'KORUMA ÖZELLİĞİ': {en: 'Protective property', ar: 'خاصية الحماية'},
+  'KORUMA OZELLIGI': {en: 'Protective property', ar: 'خاصية الحماية'},
 }
 
 export const uiCopy = {

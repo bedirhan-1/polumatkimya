@@ -105,12 +105,15 @@ export type Dictionary = {
   }
   contactPage: {
     address: string
+    factory: string
+    istanbulOffice: string
     phone: string
     email: string
     channels: string
     writeUs: string
     writeUsDescription: string
     map: string
+    mapIstanbul: string
     openInMaps: string
   }
   forms: {

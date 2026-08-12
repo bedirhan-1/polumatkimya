@@ -18,6 +18,7 @@ export function ProductCard({
   if (!product.slug || !product.title) return null;
 
   const image = product.cardImage?.asset ? product.cardImage : product.packshot;
+  const badge = product.badge?.trim() || product.primaryCategory?.title?.trim();
 
   return (
     <Link
@@ -31,9 +32,9 @@ export function ProductCard({
           className="object-cover transition group-hover:scale-[1.02]"
           sizes="(max-width: 768px) 100vw, 33vw"
         />
-        {product.badge ? (
+        {badge ? (
           <span className="absolute inset-inline-start-3 top-3 border border-accent bg-background/90 px-2 py-1 text-[11px] font-semibold tracking-wide text-accent uppercase">
-            {product.badge}
+            {badge}
           </span>
         ) : null}
       </div>

@@ -48,11 +48,10 @@ export const APPLICATION_AREA_BY_SLUG_QUERY = defineQuery(`
         crop,
         "alt": alt[language == $locale || _key == $locale][0].value
       },
-      primaryCategory->{
-        _id,
-        "title": title[language == $locale || _key == $locale][0].value,
-        "slug": slug.current
-      }
+      "primaryCategory": coalesce(
+        primaryCategory->{_id, "title": title[language == $locale || _key == $locale][0].value, "slug": slug.current},
+        categories[0]->{_id, "title": title[language == $locale || _key == $locale][0].value, "slug": slug.current}
+      )
     },
     cta{
       variant,

@@ -40,7 +40,7 @@ const ar: Dictionary = {
     eyebrow: 'Polumat Kimya',
     headline: 'قوة تصنيع موثوقة في الكيمياء الصناعية',
     supporting: 'حلول تصنيع احترافية للبخاخات الصناعية وكيماويات البناء.',
-    panelLabel: 'Industrial sprays · Construction chemicals',
+    panelLabel: 'بخاخات صناعية · كيماويات البناء',
     panelText:
       'تجربة صناعية داكنة وراقية تركز على اكتشاف المنتجات وطلبات عروض الأسعار.',
   },
@@ -118,6 +118,8 @@ const ar: Dictionary = {
   },
   contactPage: {
     address: 'العنوان',
+    factory: 'المصنع',
+    istanbulOffice: 'إسطنبول',
     phone: 'الهاتف',
     email: 'البريد الإلكتروني',
     channels: 'الشركة',
@@ -125,6 +127,7 @@ const ar: Dictionary = {
     writeUsDescription:
       'استخدم النموذج للطلبات والأسئلة الفنية. مكتب التصدير يدعم الشركاء الدوليين.',
     map: 'خريطة موقع المصنع',
+    mapIstanbul: 'خريطة مكتب إسطنبول',
     openInMaps: 'افتح في خرائط Google',
   },
   forms: {

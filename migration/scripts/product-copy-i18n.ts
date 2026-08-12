@@ -64,7 +64,7 @@ export const productDescriptionI18n: Record<string, {en: string; ar: string}> = 
     ar: 'سيليكون سدم وحشو عام بمكون واحد (تصلب أسيتيك) واسع الاستخدام. يبقى مرناً دائماً بعد التصلب. التصاق ممتاز بالأسطح غير المسامية. لا يتشقق ولا يصفر. يحافظ على خصائصه في درجات الحرارة المنخفضة والعالية.',
   },
   'e-universal-silicone': {
-    en: 'One-component neutral-cure high-performance sealant and filler. UV resistant with high adhesion for aluminum and glass façades. Non-corrosive and highly weather resistant. Retains properties from about -60 °C to +180 °C. Suitable for wall, brick, concrete, PVC, aluminum, wood, glass and similar surfaces.',
+    en: 'One-component neutral-cure high-performance sealant and filler. UV resistant with high adhesion for aluminum and glass facades. Non-corrosive and highly weather resistant. Retains properties from about -60 °C to +180 °C. Suitable for wall, brick, concrete, PVC, aluminum, wood, glass and similar surfaces.',
     ar: 'مانع تسرب وحشو عالي الأداء بمكون واحد وتصلب محايد. مقاوم للأشعة فوق البنفسجية وذو التصاق عالٍ لواجهات الألمنيوم والزجاج. غير مسبب للتآكل ومقاوم جداً للعوامل الجوية. يحافظ على خصائصه من حوالي -60 °م إلى +180 °م. مناسب للجدار والطوب والخرسانة وPVC والألمنيوم والخشب والزجاج والأسطح المماثلة.',
   },
   'high-tack-adhesive': {

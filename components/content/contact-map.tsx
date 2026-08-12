@@ -5,13 +5,14 @@ import {useState} from 'react'
 type ContactMapProps = {
   src: string
   title: string
+  label?: string
   /** Opens the location in Google Maps (new tab). */
   mapsUrl?: string
   openInMapsLabel?: string
 }
 
 /** Grayscale by default; full color while the pointer is over the map area. */
-export function ContactMap({src, title, mapsUrl, openInMapsLabel}: ContactMapProps) {
+export function ContactMap({src, title, label, mapsUrl, openInMapsLabel}: ContactMapProps) {
   const [hot, setHot] = useState(false)
 
   return (
@@ -30,6 +31,11 @@ export function ContactMap({src, title, mapsUrl, openInMapsLabel}: ContactMapPro
         referrerPolicy="no-referrer-when-downgrade"
         allowFullScreen
       />
+      {label ? (
+        <p className="pointer-events-none absolute start-3 top-3 z-10 bg-background/95 px-3.5 py-2 text-xs font-semibold tracking-[0.14em] text-foreground uppercase shadow-sm ring-1 ring-border">
+          {label}
+        </p>
+      ) : null}
       {mapsUrl && openInMapsLabel ? (
         <a
           href={mapsUrl}

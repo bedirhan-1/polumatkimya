@@ -111,14 +111,22 @@ export function SiteHeader({
 
   const standardNav = navItems.filter((item) => item.href !== DEALER_PORTAL_URL)
   const findNav = (href: string) => standardNav.find((item) => item.href === href)
-  const primaryNav = [
-    {href: homeHref, label: dictionary.common.home},
+  const exportItem: NavItem = {
+    href: `/${locale}/export`,
+    label: dictionary.nav.export,
+  }
+  const desktopNav = [
     findNav(`/${locale}/products`),
     findNav(`/${locale}/industries`),
     {href: `/${locale}/private-label`, label: 'Private Label'},
     findNav(`/${locale}/about`),
+    exportItem,
     findNav(`/${locale}/contact`),
   ].filter((item): item is NavItem => Boolean(item))
+  const mobileNav: NavItem[] = [
+    {href: homeHref, label: dictionary.common.home},
+    ...desktopNav,
+  ]
   const dealerItem =
     navItems.find((item) => item.href === DEALER_PORTAL_URL) ||
     ({
@@ -130,26 +138,26 @@ export function SiteHeader({
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#070809]/96 shadow-[0_10px_30px_rgba(0,0,0,0.22)]">
-      <div className="container-site flex h-[var(--header-height)] items-center justify-between gap-2 sm:gap-4 xl:gap-5">
+      <div className="container-site flex h-[var(--header-height)] flex-nowrap items-center justify-between gap-2 sm:gap-3 xl:gap-3 2xl:gap-5">
         <Link
           href={homeHref}
           aria-label={dictionary.meta.siteName}
-          className="inline-flex min-w-0 shrink items-center no-underline"
+          className="inline-flex min-w-0 shrink-0 items-center no-underline"
         >
           <PolumatLogo
             alt={dictionary.meta.siteName}
             size="small"
             surface="dark"
-            className="h-7 w-auto max-w-[9.5rem] sm:h-8 sm:max-w-none xl:h-9"
+            className="h-7 w-auto max-w-[9.5rem] sm:h-8 sm:max-w-none xl:h-8 2xl:h-9"
             eager
           />
         </Link>
 
-        <nav aria-label={dictionary.a11y.mainNavigation} className="hidden min-w-0 xl:block">
-          <ul className="flex flex-nowrap items-center gap-0">
-            {primaryNav.map((item) => {
+        <nav aria-label={dictionary.a11y.mainNavigation} className="hidden min-w-0 flex-1 xl:block">
+          <ul className="flex flex-nowrap items-center justify-center">
+            {desktopNav.map((item) => {
               const active = isNavItemActive(pathname, item)
-              const linkClassName = `inline-flex min-h-11 shrink-0 items-center whitespace-nowrap border-b px-2 text-[0.65rem] font-semibold tracking-[0.04em] uppercase no-underline transition 2xl:px-2.5 2xl:text-[0.7rem] 2xl:tracking-[0.06em] ${
+              const linkClassName = `inline-flex min-h-11 shrink-0 items-center whitespace-nowrap leading-none border-b px-1.5 text-[0.62rem] font-semibold tracking-[0.02em] uppercase no-underline transition 2xl:px-2.5 2xl:text-[0.68rem] 2xl:tracking-[0.05em] ${
                 active
                   ? 'border-accent text-foreground'
                   : 'border-transparent text-muted hover:text-foreground'
@@ -207,18 +215,19 @@ export function SiteHeader({
             <a
               href={catalogHref}
               download
+              aria-label={dictionary.nav.downloadCatalog}
               className={buttonClassName(
                 'secondary',
-                'hidden min-h-10 px-4 py-2 text-xs uppercase no-underline lg:inline-flex xl:px-5',
+                'hidden min-h-10 px-3 py-2 text-xs uppercase no-underline xl:inline-flex 2xl:px-4',
               )}
             >
               <DownloadIcon />
-              {dictionary.nav.downloadCatalog}
+              <span className="hidden 2xl:inline">{dictionary.nav.downloadCatalog}</span>
             </a>
           ) : null}
           <ButtonLink
             href={quoteHref}
-            className="hidden min-h-10 px-4 py-2 text-xs uppercase no-underline md:inline-flex xl:px-5"
+            className="hidden min-h-10 px-3 py-2 text-xs uppercase no-underline md:inline-flex 2xl:px-5"
           >
             {dictionary.nav.requestQuote}
             <span aria-hidden>→</span>
@@ -226,7 +235,7 @@ export function SiteHeader({
           <MobileNavigation
             localeHome={homeHref}
             brand={dictionary.meta.siteName}
-            items={[...primaryNav, dealerItem]}
+            items={[...mobileNav, dealerItem]}
             quoteHref={quoteHref}
             quoteLabel={dictionary.nav.requestQuote}
             catalogHref={catalogHref}

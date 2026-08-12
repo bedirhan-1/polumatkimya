@@ -120,6 +120,8 @@ const en: Dictionary = {
   },
   contactPage: {
     address: 'Address',
+    factory: 'Factory',
+    istanbulOffice: 'Istanbul',
     phone: 'Phone',
     email: 'Email',
     channels: 'Company',
@@ -127,6 +129,7 @@ const en: Dictionary = {
     writeUsDescription:
       'Use the form for orders or technical questions. Our export desk supports international partners.',
     map: 'Factory location map',
+    mapIstanbul: 'Istanbul office map',
     openInMaps: 'Open in Google Maps',
   },
   forms: {

@@ -51,9 +51,13 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
   const quality = content?.qualitySection
   const cta = content?.ctaSection
 
-  const featuredProducts = (productsSection?.products || []).filter(
-    (product) => product?.slug && product?.title,
-  ) as ProductCardData[]
+  const featuredProducts = (productsSection?.products || [])
+    .filter((product) => product?.slug && product?.title)
+    .sort((left, right) => {
+      if (left.slug === 'mdf-kit-activator') return -1
+      if (right.slug === 'mdf-kit-activator') return 1
+      return 0
+    }) as ProductCardData[]
   const industryCards = (industriesSection?.areas || [])
     .map((entry) => {
       if (entry && typeof entry === 'object' && 'area' in entry) {
@@ -144,13 +148,7 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
       title: item.title,
       description: item.description,
     }))
-  const privateImage = privateLabel?.image?.asset
-    ? privateLabel.image
-    : featuredProducts[0]?.cardImage?.asset
-      ? featuredProducts[0].cardImage
-      : featuredProducts[0]?.packshot?.asset
-        ? featuredProducts[0].packshot
-        : null
+  const privateImage = privateLabel?.image?.asset ? privateLabel.image : null
 
   const aboutCta = resolveSimpleCta(locale, about?.cta) || {
     href: `/${locale}/about`,

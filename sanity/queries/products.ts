@@ -19,11 +19,10 @@ const productCardProjection = /* groq */ `
   featured,
   cardImage{${localizedImageProjection}},
   packshot{${localizedImageProjection}},
-  primaryCategory->{
-    _id,
-    "title": title[language == $locale || _key == $locale][0].value,
-    "slug": slug.current
-  }
+  "primaryCategory": coalesce(
+    primaryCategory->{_id, "title": title[language == $locale || _key == $locale][0].value, "slug": slug.current},
+    categories[0]->{_id, "title": title[language == $locale || _key == $locale][0].value, "slug": slug.current}
+  )
 `
 
 export const PRODUCT_CATEGORIES_QUERY = defineQuery(`

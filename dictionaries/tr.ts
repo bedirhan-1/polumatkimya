@@ -121,6 +121,8 @@ const tr: Dictionary = {
   },
   contactPage: {
     address: 'Adres',
+    factory: 'Fabrika',
+    istanbulOffice: 'İstanbul',
     phone: 'Telefon',
     email: 'E-posta',
     channels: 'Kurumsal',
@@ -128,6 +130,7 @@ const tr: Dictionary = {
     writeUsDescription:
       'Sipariş veya teknik bilgi talepleriniz için formu doldurun. Export hattımız uluslararası iş ortaklarına açıktır.',
     map: 'Fabrika konumu haritası',
+    mapIstanbul: 'İstanbul ofisi haritası',
     openInMaps: 'Google Maps’te aç',
   },
   forms: {
