@@ -157,7 +157,7 @@ export function SiteHeader({
           <ul className="flex flex-nowrap items-center justify-center">
             {desktopNav.map((item) => {
               const active = isNavItemActive(pathname, item)
-              const linkClassName = `inline-flex min-h-11 shrink-0 items-center whitespace-nowrap leading-none border-b px-1.5 text-[0.62rem] font-semibold tracking-[0.02em] uppercase no-underline transition 2xl:px-2.5 2xl:text-[0.68rem] 2xl:tracking-[0.05em] ${
+              const linkClassName = `inline-flex min-h-11 shrink-0 items-center whitespace-nowrap leading-none border-b px-2 text-xs font-semibold tracking-[0.04em] uppercase no-underline transition 2xl:px-2.5 2xl:tracking-[0.06em] ${
                 active
                   ? 'border-accent text-foreground'
                   : 'border-transparent text-muted hover:text-foreground'
