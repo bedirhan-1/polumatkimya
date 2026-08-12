@@ -22,6 +22,7 @@ import {industrySeeds, productLocaleTitles} from './locale-titles'
 import {productDescriptionI18n, translateFeature} from './product-copy-i18n'
 import {
   localizeSpecLabel,
+  localizeSpecValue,
   packagingLabelI18n,
   uiCopy,
 } from './product-field-i18n'
@@ -275,11 +276,12 @@ function main() {
       .filter((spec) => spec.labelTr?.trim() && spec.value?.trim())
       .map((spec) => {
         const label = localizeSpecLabel(spec.labelTr)
+        const value = localizeSpecValue(spec.value)
         return {
           _key: key(),
           _type: 'specificationItem',
           label: localizedString(label),
-          value: spec.value.replace(/\s+/g, ' ').trim(),
+          value: localizedString(value),
         }
       })
 

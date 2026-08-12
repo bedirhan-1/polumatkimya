@@ -73,7 +73,7 @@ export const productDescriptionI18n: Record<string, {en: string; ar: string}> = 
   },
   'mdf-kit-activator': {
     en: 'For assembly and repair of wood parts; MDF, rubber, leather and plastic surfaces. Preferred where fast curing is required. High bonding strength; suitable for vertical surfaces without run-off or splash. High viscosity improves adhesion on porous and difficult-to-bond surfaces.',
-    ar: 'لتركيب وإصلاح الأجزاء الخشبية وأسطح MDF والمطاط والجلد والبلاستيك. مفضل حيث يلزم التصلب السريع. قوة لصق عالية؛ مناسب للأسطح العمودية دون سيلان أو تطاير. اللزوجة العالية تحسّن الالتصاق على الأسطح المسامية وصعبة اللصق.',
+    ar: 'لتركيب وإصلاح الأجزاء الخشبية وأسطح MDF والمطاط والجلد والبلاستيك. مفضل حيث يلزم التصلب السريع. قوة لصق عالية؛ مناسب للأسطح العمودية دون سيلان أو تناثر. اللزوجة العالية تحسّن الالتصاق على الأسطح المسامية وصعبة اللصق.',
   },
   'grout-filler': {
     en: 'One-component acrylic ready-to-use grout filler. Resistant to mold and mildew; does not crack or sag. Water-resistant after curing. Suitable for indoor and outdoor use.',
@@ -337,7 +337,7 @@ export const featureI18n: Record<string, {en: string; ar: string}> = {
   'Yüksek yapışma gücü': {en: 'High adhesion strength', ar: 'قوة التصاق عالية'},
   'Dikey yüzeylerde kullanıma uygun, akma ve sıçrama yapmaz.': {
     en: 'Suitable for vertical surfaces; does not run or splash.',
-    ar: 'مناسب للأسطح العمودية؛ لا يسيل ولا يتطاير.',
+    ar: 'مناسب للأسطح العمودية؛ لا يسيل ولا يتناثر.',
   },
   'Yüksek viskoziteli olduğu için özellikle gözenekli ve yapıştırılması zor yüzeylerde, yapışma gücünün artmasını sağlar.': {
     en: 'High viscosity improves adhesion especially on porous and difficult-to-bond surfaces.',

@@ -13,7 +13,7 @@ import path from 'node:path'
 import {foldTr, textToPortableText} from './lib'
 import {productLocaleTitles} from './locale-titles'
 import {productDescriptionI18n} from './product-copy-i18n'
-import {specLabelI18n} from './product-field-i18n'
+import {specLabelI18n, localizeSpecValue, localizeSpecUnit} from './product-field-i18n'
 import {PAGES} from './seed-corporate-pages'
 
 function loadEnvFile(filePath: string) {
@@ -65,10 +65,10 @@ const QUALITY_ITEMS: Record<Locale, string[]> = {
   ],
   ar: [
     'مواد خام مختارة',
-    'إنتاج مراقب',
+    'إنتاج خاضع للرقابة',
     'اختبارات أداء',
     'عمليات مراقبة الجودة',
-    'خدمة تركز على العميل',
+    'خدمة تركز على رضا العملاء',
   ],
 }
 
@@ -88,11 +88,11 @@ const ABOUT_STATS: Record<Locale, Array<{value: string; label: string}>> = {
     {value: 'Private Label', label: 'Production support'},
   ],
   ar: [
-    {value: '+50', label: 'دولة تصدير'},
-    {value: '5', label: 'قارات للشراكة'},
+    {value: '+50', label: 'دول نصدر إليها'},
+    {value: '5', label: 'قارات بشراكات'},
     {value: 'حديث', label: 'مرفق الإنتاج'},
     {value: 'احترافي', label: 'مجموعة المنتجات'},
-    {value: 'Private Label', label: 'دعم الإنتاج'},
+    {value: 'العلامة الخاصة', label: 'دعم الإنتاج'},
   ],
 }
 
@@ -467,7 +467,7 @@ async function syncHomes(client: SanityClient) {
         tr?.hero?.desktopImage,
         language === 'en'
           ? 'Polumat professional aerosol product family'
-          : 'عائلة منتجات رذاذ بولومات المهنية',
+          : 'عائلة منتجات بخاخات بولومات المهنية',
       ),
       'privateLabelSection.image': imageWithAlt(
         tr?.privateLabelSection?.image,
@@ -582,7 +582,13 @@ async function syncProducts(client: SanityClient) {
       specificationGroups?: Array<{
         _key?: string
         title?: I18nItem[]
-        items?: Array<{_key?: string; label?: I18nItem[]; value?: string; unit?: string; note?: I18nItem[]}>
+        items?: Array<{
+          _key?: string
+          label?: I18nItem[]
+          value?: I18nItem[] | string
+          unit?: I18nItem[] | string
+          note?: I18nItem[]
+        }>
       }>
     }>
   >(
@@ -666,27 +672,76 @@ async function syncProducts(client: SanityClient) {
           },
           group.title || [],
         ),
-        items: (group.items || []).map((item) => ({
-          ...item,
-          label: ['en', 'ar'].reduce(
-            (acc, lang) => {
-              const current = String(
-                acc?.find((entry) => entry.language === lang || entry._key === lang)?.value || '',
-              )
-              const trLabel = String(
-                acc?.find((entry) => entry.language === 'tr' || entry._key === 'tr')?.value || current,
-              )
-              if (!needsTranslation(current, lang as 'en' | 'ar') && current) return acc
-              return upsertLocale(
-                acc,
-                lang as Locale,
-                translateSpecLabel(trLabel || current, lang as 'en' | 'ar'),
-                'internationalizedArrayStringValue',
-              )
-            },
-            item.label || [],
-          ),
-        })),
+        items: (group.items || []).map((item) => {
+          const toArray = (field: I18nItem[] | string | undefined): I18nItem[] => {
+            if (Array.isArray(field)) return field
+            if (typeof field === 'string' && field.trim()) {
+              return [
+                {
+                  _key: key(),
+                  _type: 'internationalizedArrayStringValue',
+                  language: 'tr',
+                  value: field,
+                },
+              ]
+            }
+            return []
+          }
+
+          const sourceValue = toArray(item.value)
+          const sourceUnit = toArray(item.unit)
+          const trValue = String(
+            sourceValue.find((entry) => entry.language === 'tr' || entry._key === 'tr')?.value ||
+              sourceValue[0]?.value ||
+              '',
+          )
+          const trUnit = String(
+            sourceUnit.find((entry) => entry.language === 'tr' || entry._key === 'tr')?.value ||
+              sourceUnit[0]?.value ||
+              '',
+          )
+          const localizedValue = trValue ? localizeSpecValue(trValue) : null
+          const localizedUnit = trUnit ? localizeSpecUnit(trUnit) : null
+
+          return {
+            ...item,
+            label: ['en', 'ar'].reduce(
+              (acc, lang) => {
+                const current = String(
+                  acc?.find((entry) => entry.language === lang || entry._key === lang)?.value || '',
+                )
+                const trLabel = String(
+                  acc?.find((entry) => entry.language === 'tr' || entry._key === 'tr')?.value ||
+                    current,
+                )
+                if (!needsTranslation(current, lang as 'en' | 'ar') && current) return acc
+                return upsertLocale(
+                  acc,
+                  lang as Locale,
+                  translateSpecLabel(trLabel || current, lang as 'en' | 'ar'),
+                  'internationalizedArrayStringValue',
+                )
+              },
+              item.label || [],
+            ),
+            value: localizedValue
+              ? (['tr', 'en', 'ar'] as const).reduce(
+                  (acc, lang) =>
+                    upsertLocale(acc, lang, localizedValue[lang], 'internationalizedArrayStringValue'),
+                  sourceValue,
+                )
+              : sourceValue,
+            unit: localizedUnit
+              ? (['tr', 'en', 'ar'] as const).reduce(
+                  (acc, lang) =>
+                    upsertLocale(acc, lang, localizedUnit[lang], 'internationalizedArrayStringValue'),
+                  sourceUnit,
+                )
+              : sourceUnit.length
+                ? sourceUnit
+                : undefined,
+          }
+        }),
       }))
     }
 

@@ -15,13 +15,13 @@ export const specificationItemType = defineType({
     defineField({
       name: 'value',
       title: 'Value',
-      type: 'string',
+      type: 'internationalizedArrayString',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'unit',
       title: 'Unit',
-      type: 'string',
+      type: 'internationalizedArrayString',
     }),
     defineField({
       name: 'note',
@@ -35,8 +35,19 @@ export const specificationItemType = defineType({
       unit: 'unit',
     },
     prepare({value, unit}) {
+      const pick = (field: unknown) => {
+        if (typeof field === 'string') return field
+        if (!Array.isArray(field)) return ''
+        const preferred =
+          field.find((entry) => entry?.language === 'tr' || entry?._key === 'tr') ||
+          field.find((entry) => entry?.language === 'en' || entry?._key === 'en') ||
+          field[0]
+        return typeof preferred?.value === 'string' ? preferred.value : ''
+      }
+      const valueText = pick(value)
+      const unitText = pick(unit)
       return {
-        title: unit ? `${value} ${unit}` : value,
+        title: unitText ? `${valueText} ${unitText}` : valueText || 'Specification',
       }
     },
   },

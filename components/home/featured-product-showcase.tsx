@@ -114,20 +114,20 @@ const SHOWCASE_COPY: Record<Locale, ShowcaseCopy> = {
   ar: {
     eyebrow: 'منتج مميز',
     focusLabel: 'تركيز المنتج · 01',
-    kicker: 'رابطة قوية خلال ثوانٍ',
+    kicker: 'التصاق قوي خلال ثوانٍ',
     fallbackDescription:
-      'أداء لصق سريع ومتحكم به على الخشب وMDF والمطاط والجلد والأسطح البلاستيكية.',
+      'أداء لصق سريع ومحكم على الخشب وMDF والمطاط والجلد والأسطح البلاستيكية.',
     benefitTag: 'ميزة المنتج',
     packagingTag: 'خيارات التعبئة',
-    packagingTitle: 'خياران احترافيان للطقم',
+    packagingTitle: 'خيارا طقم احترافيان',
     packagingDescription: 'اختر الطقم المناسب لتطبيقك.',
     sliderLabel: 'لماذا طقم MDF؟',
-    carouselLabel: 'عارض مزايا المنتج',
+    carouselLabel: 'عرض مزايا المنتج',
     previousLabel: 'الميزة السابقة',
     nextLabel: 'الميزة التالية',
     goToLabel: 'انتقل إلى الميزة',
     detailLabel: 'استكشف المنتج',
-    quoteLabel: 'اطلب عرضاً',
+    quoteLabel: 'اطلب عرض سعر',
     fallbackSlides: [
       {
         _key: 'fast-bond-ar',
@@ -138,8 +138,8 @@ const SHOWCASE_COPY: Record<Locale, ShowcaseCopy> = {
       {
         _key: 'vertical-ar',
         tag: 'ميزة المنتج',
-        title: 'تطبيق متحكم به على الأسطح العمودية',
-        description: 'يدعم تكوين رابطة قوية من دون سيلان أو تطاير.',
+        title: 'تطبيق محكم على الأسطح العمودية',
+        description: 'يدعم تكوين التصاق قوي من دون سيلان أو تناثر.',
       },
       {
         _key: 'surfaces-ar',

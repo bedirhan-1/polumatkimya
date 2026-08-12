@@ -117,15 +117,20 @@ function feature(title: LocalizedCopy, description: LocalizedCopy) {
 
 function specification(
   label: LocalizedCopy,
-  value: string,
-  options: {unit?: string; note?: LocalizedCopy} = {},
+  value: string | LocalizedCopy,
+  options: {unit?: string | LocalizedCopy; note?: LocalizedCopy} = {},
 ) {
+  const valueCopy = typeof value === 'string' ? {tr: value, en: value, ar: value} : value
+  const unitCopy =
+    typeof options.unit === 'string'
+      ? {tr: options.unit, en: options.unit, ar: options.unit}
+      : options.unit
   return {
     _key: arrayKey(),
     _type: 'specificationItem',
     label: localizedString(label),
-    value,
-    ...(options.unit ? {unit: options.unit} : {}),
+    value: localizedString(valueCopy),
+    ...(unitCopy ? {unit: localizedString(unitCopy)} : {}),
     ...(options.note ? {note: localizedString(options.note)} : {}),
   }
 }
@@ -323,7 +328,7 @@ function buildPatch(product: ProductDocument) {
           text: 'منشّط لاصق MDF هو طقم لاصق سريع طُوّر لتجميع وإصلاح الأجزاء الخشبية ولصق أسطح MDF والمطاط والجلد والبلاستيك. ويُفضّل خصوصاً في التطبيقات التي تتطلب تصلباً سريعاً.',
         },
         {
-          text: 'يساعد اللاصق عالي اللزوجة على التطبيق المتحكم به فوق الأسطح المسامية وصعبة اللصق. كما يدعم تكوين رابطة قوية على الأسطح العمودية من دون سيلان أو تطاير.',
+          text: 'يساعد اللاصق عالي اللزوجة على التطبيق المحكم فوق الأسطح المسامية وصعبة اللصق. كما يدعم تكوين التصاق قوي على الأسطح العمودية من دون سيلان أو تناثر.',
         },
         {
           text: 'بعد التطبيق، يساعد المنشّط على تقصير زمن الجفاف وزيادة قوة الالتصاق على السطح المعالج.',
@@ -344,19 +349,19 @@ function buildPatch(product: ProductDocument) {
         {
           tr: 'Montaj ve tamirat uygulamalarında güçlü ve kalıcı bir bağ oluşmasını destekler.',
           en: 'Supports a strong, durable bond in assembly and repair applications.',
-          ar: 'يدعم تكوين رابطة قوية ومتينة في أعمال التجميع والإصلاح.',
+          ar: 'يدعم تكوين التصاق قوي ومتين في أعمال التجميع والإصلاح.',
         },
       ),
       feature(
         {
           tr: 'Dikey yüzeylerde kontrollü uygulama',
           en: 'Controlled vertical application',
-          ar: 'تطبيق متحكم به على الأسطح العمودية',
+          ar: 'تطبيق محكم على الأسطح العمودية',
         },
         {
           tr: 'Akma ve sıçrama yapmadan uygulama kolaylığı sağlar.',
           en: 'Provides easier application without running or splashing.',
-          ar: 'يسهّل التطبيق من دون سيلان أو تطاير.',
+          ar: 'يسهّل التطبيق من دون سيلان أو تناثر.',
         },
       ),
       feature(
@@ -410,7 +415,7 @@ function buildPatch(product: ProductDocument) {
         {
           tr: '25 °C’de 1500 - 5000 cP viskozite aralığı ile kontrollü uygulamaya yardımcı olur.',
           en: 'A viscosity range of 1500 - 5000 cP at 25 °C supports controlled application.',
-          ar: 'يساعد نطاق لزوجة 1500 - 5000 cP عند 25 درجة مئوية على التطبيق المتحكم به.',
+          ar: 'يساعد نطاق لزوجة 1500 - 5000 cP عند 25 درجة مئوية على التطبيق المحكم.',
         },
       ),
     ],
@@ -456,7 +461,7 @@ function buildPatch(product: ProductDocument) {
       ar: [
         {text: 'تأكد من أن الأسطح جافة ونظيفة وخالية من الغبار والشحوم.', listItem: 'number'},
         {text: 'استخدم اللاصق والمنشّط معاً وفق تعليمات ملصق المنتج. قد تختلف كمية التطبيق ومدة الانتظار بحسب السطح والظروف المحيطة.', listItem: 'number'},
-        {text: 'حاذِ القطع واجمعها، ثم ثبّتها في مكانها حتى تتكوّن الرابطة.', listItem: 'number'},
+        {text: 'حاذِ القطع واجمعها، ثم ثبّتها في مكانها حتى يتكوّن الالتصاق.', listItem: 'number'},
         {text: 'اختبر المنتج أولاً على مساحة صغيرة من الأسطح الحساسة أو الظاهرة.', listItem: 'number'},
       ],
     }),
@@ -510,30 +515,41 @@ function buildPatch(product: ProductDocument) {
         items: [
           specification(
             {tr: 'Renk', en: 'Color', ar: 'اللون'},
-            'Transparent',
-            {note: {tr: 'Şeffaf', en: 'Transparent', ar: 'شفاف'}},
+            {tr: 'Şeffaf', en: 'Transparent', ar: 'شفاف'},
           ),
           specification(
             {tr: 'Koku', en: 'Odor', ar: 'الرائحة'},
-            'Characteristic',
-            {
-              note: {
-                tr: 'Genellikle düşük yoğunluklu veya hafif kimyasal koku',
-                en: 'Usually low odor or a mild chemical odor',
-                ar: 'عادةً رائحة خفيفة أو رائحة كيميائية معتدلة',
-              },
-            },
+            {tr: 'Karakteristik', en: 'Characteristic', ar: 'مميزة'},
           ),
-          specification({tr: 'Yoğunluk', en: 'Density', ar: 'الكثافة'}, '1.3', {unit: 'g/cm³'}),
+          specification(
+            {tr: 'Yoğunluk', en: 'Density', ar: 'الكثافة'},
+            '1.3',
+            {unit: {tr: 'g/cm³', en: 'g/cm³', ar: 'غ/سم³'}},
+          ),
           specification(
             {tr: 'Viskozite', en: 'Viscosity', ar: 'اللزوجة'},
             '1500 - 5000',
-            {unit: 'cP', note: {tr: '25 °C’de', en: 'At 25 °C', ar: 'عند 25 درجة مئوية'}},
+            {
+              unit: {tr: 'cP', en: 'cP', ar: 'سنتي بواز'},
+              note: {tr: '25 °C’de', en: 'At 25 °C', ar: 'عند 25 درجة مئوية'},
+            },
           ),
           specification({tr: 'pH değeri', en: 'pH value', ar: 'قيمة الأس الهيدروجيني'}, '8'),
-          specification({tr: 'Kuruma süresi', en: 'Drying time', ar: 'زمن الجفاف'}, '30 - 60', {unit: 'min'}),
-          specification({tr: 'Parlama noktası', en: 'Flash point', ar: 'نقطة الوميض'}, '> 60', {unit: '°C'}),
-          specification({tr: 'Donma noktası', en: 'Freezing point', ar: 'نقطة التجمد'}, '-15 to -5', {unit: '°C'}),
+          specification(
+            {tr: 'Kuruma süresi', en: 'Drying time', ar: 'زمن الجفاف'},
+            '30 - 60',
+            {unit: {tr: 'dk', en: 'min', ar: 'دقيقة'}},
+          ),
+          specification(
+            {tr: 'Parlama noktası', en: 'Flash point', ar: 'نقطة الوميض'},
+            '> 60',
+            {unit: {tr: '°C', en: '°C', ar: '°م'}},
+          ),
+          specification(
+            {tr: 'Donma noktası', en: 'Freezing point', ar: 'نقطة التجمد'},
+            {tr: '-15 ile -5', en: '-15 to -5', ar: '-15 إلى -5'},
+            {unit: {tr: '°C', en: '°C', ar: '°م'}},
+          ),
         ],
       },
       {
@@ -547,7 +563,7 @@ function buildPatch(product: ProductDocument) {
         items: [
           specification(
             {tr: 'Büyük set', en: 'Large set', ar: 'الطقم الكبير'},
-            '400ml + 80gr',
+            {tr: '400ml + 80gr', en: '400ml + 80g', ar: '400 مل + 80 غ'},
             {
               note: {
                 tr: '24 adet/koli · 80 koli/palet',
@@ -558,7 +574,7 @@ function buildPatch(product: ProductDocument) {
           ),
           specification(
             {tr: 'Küçük set', en: 'Small set', ar: 'الطقم الصغير'},
-            '200ml + 40gr',
+            {tr: '200ml + 40gr', en: '200ml + 40g', ar: '200 مل + 40 غ'},
             {
               note: {
                 tr: '24 adet/koli · 96 koli/palet',

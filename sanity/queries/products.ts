@@ -146,8 +146,8 @@ export const PRODUCT_BY_SLUG_QUERY = defineQuery(`
       "title": title[language == $locale || _key == $locale][0].value,
       items[]{
         _key,
-        value,
-        unit,
+        "value": value[language == $locale || _key == $locale][0].value,
+        "unit": unit[language == $locale || _key == $locale][0].value,
         "label": label[language == $locale || _key == $locale][0].value,
         "note": note[language == $locale || _key == $locale][0].value
       }

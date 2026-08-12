@@ -123,11 +123,11 @@ function buildDocument() {
         {
           tr: 'Avrupa, Orta Doğu ve Kuzey Afrika’da yeni ülke ve kanal görüşmelerimizi sürdürüyoruz.',
           en: 'We continue country and channel discussions across Europe, the Middle East and North Africa.',
-          ar: 'نواصل مباحثات الدول وقنوات البيع في أوروبا والشرق الأوسط وشمال أفريقيا.',
+          ar: 'نواصل مناقشات الأسواق الجديدة وقنوات البيع في أوروبا والشرق الأوسط وشمال أفريقيا.',
         },
       ),
       activity(
-        {tr: 'Private Label projeleri', en: 'Private Label projects', ar: 'مشاريع العلامات الخاصة'},
+        {tr: 'Private Label projeleri', en: 'Private Label projects', ar: 'مشاريع العلامة الخاصة'},
         {
           tr: 'Hedef pazara uygun ürün, ambalaj ve etiket seçenekleriyle markalara özel üretim desteği sunuyoruz.',
           en: 'We support brands with market-ready products, packaging and labelling options.',
@@ -148,7 +148,7 @@ function buildDocument() {
     contactDescription: localizedText({
       tr: 'Ürünler, distribütörlük, hedef pazarlar ve özel marka üretimi hakkında ihracat ekibimizle görüşün.',
       en: 'Speak with our export team about products, distribution, target markets and private-label manufacturing.',
-      ar: 'تواصل مع فريق التصدير بخصوص المنتجات والتوزيع والأسواق المستهدفة وتصنيع العلامات الخاصة.',
+      ar: 'تواصل مع فريق التصدير بخصوص المنتجات والتوزيع والأسواق المستهدفة وتصنيع العلامة الخاصة.',
     }),
     contacts: [
       contact('İhracat Yetkilisi 1', '+90 555 555 55 55', 'export@polumat.com'),

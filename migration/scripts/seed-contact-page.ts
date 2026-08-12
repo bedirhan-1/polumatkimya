@@ -188,7 +188,7 @@ function buildDocument() {
     formDescription: localizedText({
       tr: 'Sipariş veya teknik bilgi talepleriniz için formu doldurun. Export hattımız uluslararası iş ortaklarına açıktır.',
       en: 'Use the form for orders or technical questions. Our export desk supports international partners.',
-      ar: 'استخدم النموذج للطلبات والأسئلة الفنية. مكتب التصدير يدعم الشركاء الدوليين.',
+      ar: 'استخدم النموذج لطلباتك أو أسئلتك الفنية. مكتب التصدير يدعم الشركاء الدوليين.',
     }),
     openInMapsLabel: localizedString({
       tr: 'Google Maps’te aç',

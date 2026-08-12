@@ -22,7 +22,9 @@
     "migrate:import": "tsx migration/scripts/import.ts",
     "fix:grout-filler": "tsx migration/scripts/fix-grout-filler-product.ts",
     "seed:export-page": "tsx migration/scripts/seed-export-page.ts",
-    "seed:contact-page": "tsx migration/scripts/seed-contact-page.ts"
+    "seed:contact-page": "tsx migration/scripts/seed-contact-page.ts",
+    "migrate:spec-i18n": "tsx migration/scripts/migrate-spec-value-unit-i18n.ts",
+    "enrich:catalog": "tsx migration/scripts/enrich-products-from-catalog.ts"
   },
   "dependencies": {
     "@aws-sdk/client-s3": "^3.1106.0",

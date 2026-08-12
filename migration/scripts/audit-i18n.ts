@@ -326,7 +326,7 @@ async function main() {
       const specs =
         (product.specificationGroups as Array<{
           title?: I18nItem[]
-          items?: Array<{label?: I18nItem[]; note?: I18nItem[]; value?: string}>
+          items?: Array<{label?: I18nItem[]; note?: I18nItem[]; value?: I18nItem[] | string; unit?: I18nItem[] | string}>
         }> | undefined) || []
       specs.forEach((g, gi) => {
         const t = String(loc(g.title, lang) || '')
@@ -338,6 +338,24 @@ async function main() {
           const trL = String(loc(item.label, 'tr') || '')
           if (trL && !l) issues.push(`spec[${gi}][${ii}].label:empty`)
           issues.push(...langIssues(l, lang).filter((x) => x !== 'empty').map((x) => `spec[${gi}][${ii}].label:${x}`))
+          const valueItems = Array.isArray(item.value)
+            ? item.value
+            : typeof item.value === 'string'
+              ? ([{language: 'tr', value: item.value}] as I18nItem[])
+              : []
+          const unitItems = Array.isArray(item.unit)
+            ? item.unit
+            : typeof item.unit === 'string'
+              ? ([{language: 'tr', value: item.unit}] as I18nItem[])
+              : []
+          const v = String(loc(valueItems, lang) || '')
+          const trV = String(loc(valueItems, 'tr') || '')
+          if (trV && !v) issues.push(`spec[${gi}][${ii}].value:empty`)
+          issues.push(...langIssues(v, lang).filter((x) => x !== 'empty').map((x) => `spec[${gi}][${ii}].value:${x}`))
+          const u = String(loc(unitItems, lang) || '')
+          const trU = String(loc(unitItems, 'tr') || '')
+          if (trU && !u) issues.push(`spec[${gi}][${ii}].unit:empty`)
+          if (u) issues.push(...langIssues(u, lang).filter((x) => x !== 'empty').map((x) => `spec[${gi}][${ii}].unit:${x}`))
         })
       })
       if (issues.length) entry[lang] = issues

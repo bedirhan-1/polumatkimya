@@ -20,6 +20,7 @@ export const specLabelI18n: Record<string, {en: string; ar: string}> = {
   'PH DEGERI': {en: 'pH value', ar: 'قيمة الرقم الهيدروجيني'},
   VİSKOSİTE: {en: 'Viscosity', ar: 'اللزوجة'},
   VISKOSITE: {en: 'Viscosity', ar: 'اللزوجة'},
+  Viskozite: {en: 'Viscosity', ar: 'اللزوجة'},
   'PARLAMA NOKTASI': {en: 'Flash point', ar: 'نقطة الوميض'},
   'ALEVLENME NOKTASI': {en: 'Flash point', ar: 'نقطة الوميض'},
   'KAYNAMA NOKTASI': {en: 'Boiling point', ar: 'نقطة الغليان'},
@@ -34,6 +35,12 @@ export const specLabelI18n: Record<string, {en: string; ar: string}> = {
   VIZKOZITE: {en: 'Viscosity', ar: 'اللزوجة'},
   'KORUMA ÖZELLİĞİ': {en: 'Protective property', ar: 'خاصية الحماية'},
   'KORUMA OZELLIGI': {en: 'Protective property', ar: 'خاصية الحماية'},
+  'Büyük set': {en: 'Large set', ar: 'الطقم الكبير'},
+  'Küçük set': {en: 'Small set', ar: 'الطقم الصغير'},
+  'BUYUK SET': {en: 'Large set', ar: 'الطقم الكبير'},
+  'KUCUK SET': {en: 'Small set', ar: 'الطقم الصغير'},
+  'Shore A': {en: 'Shore A', ar: 'صلادة شور A'},
+  SHOREA: {en: 'Shore A', ar: 'صلادة شور A'},
 }
 
 export const uiCopy = {
@@ -138,6 +145,344 @@ export function localizeSpecLabel(labelTr: string): {tr: string; en: string; ar:
     if (foldTr(key) === folded) return {tr: raw, en: value.en, ar: value.ar}
   }
   return {tr: raw, en: raw, ar: raw}
+}
+
+/** Exact and patterned translations for specification values. */
+const specValueExact: Record<string, {en: string; ar: string; tr?: string}> = {
+  Şeffaf: {en: 'Transparent', ar: 'شفاف'},
+  Transparent: {tr: 'Şeffaf', en: 'Transparent', ar: 'شفاف'},
+  Renksiz: {en: 'Colorless', ar: 'عديم اللون'},
+  'Renksiz veya şeffaf': {en: 'Colorless or transparent', ar: 'عديم اللون أو شفاف'},
+  Sarı: {en: 'Yellow', ar: 'أصفر'},
+  Karakteristik: {en: 'Characteristic', ar: 'مميزة'},
+  Characteristic: {tr: 'Karakteristik', en: 'Characteristic', ar: 'مميزة'},
+  'Karakteristik (genellikle çözücü kokusu)': {
+    en: 'Characteristic (usually solvent odor)',
+    ar: 'مميزة (عادةً رائحة مذيب)',
+  },
+  'Karakteristik (genellikle güçlü, asidik veya çözücü koku)': {
+    en: 'Characteristic (usually strong acidic or solvent odor)',
+    ar: 'مميزة (عادةً رائحة قوية حمضية أو رائحة مذيب)',
+  },
+  'Çoğunlukla yağlı veya çözücü kokusu': {
+    en: 'Mostly oily or solvent odor',
+    ar: 'رائحة دهنية أو رائحة مذيب في الغالب',
+  },
+  'Karakteristik yağ veya solvent kokusu': {
+    en: 'Characteristic oily or solvent odor',
+    ar: 'رائحة مميزة دهنية أو رائحة مذيب',
+  },
+  'Karakteristik (Çoğunlukla solvent kokulu)': {
+    en: 'Characteristic (mostly solvent odor)',
+    ar: 'مميزة (رائحة مذيب في الغالب)',
+  },
+  'Orta (ortam sıcaklığına göre değişir)': {
+    en: 'Medium (varies depending on ambient temperature)',
+    ar: 'متوسط (يتغير حسب درجة حرارة المحيط)',
+  },
+  '100°C-250°C aralığında': {
+    en: 'Between 100°C and 250°C',
+    ar: 'بين 100°م و250°م',
+  },
+  '200°C ile 300°C arasında': {en: 'Between 200°C and 300°C', ar: 'بين 200°م و300°م'},
+  'Genellikle 30 dk.-1 sa. aralığında': {
+    en: 'Typically between 30 minutes and 1 hour',
+    ar: 'عادةً بين 30 دقيقة وساعة',
+  },
+  'Siyah / Kırmızı': {en: 'Black / Red', ar: 'أسود / أحمر'},
+  'Beyaz / Şeffaf': {en: 'White / Transparent', ar: 'أبيض / شفاف'},
+  Beyaz: {en: 'White', ar: 'أبيض'},
+  'Beyaz / Antrasit / Altın meşe / Gri': {
+    en: 'White / Anthracite / Golden Oak / Gray',
+    ar: 'أبيض / أنثراسايت / بلوط ذهبي / رمادي',
+  },
+  'Silan sonlandırılmış polimer': {
+    en: 'Silane terminated polymer',
+    ar: 'بوليمر منتهٍ بالسيلان',
+  },
+  '400 ml / 200 ml': {en: '400 ml / 200 ml', ar: '400 مل / 200 مل'},
+  '12 Adet / 24 Adet': {en: '12 pcs / 24 pcs', ar: '12 قطعة / 24 قطعة'},
+  '12 Adet': {en: '12 pcs', ar: '12 قطعة'},
+  '25 Adet': {en: '25 pcs', ar: '25 قطعة'},
+  '70 Koli': {en: '70 cases', ar: '70 كرتون'},
+  '100 Koli': {en: '100 cases', ar: '100 كرتون'},
+  '70 Koli / 96 Koli': {en: '70 cases / 96 cases', ar: '70 كرتون / 96 كرتون'},
+  '80 Koli (400 ml) / 96 Koli (200 ml)': {
+    en: '80 cases (400 ml) / 96 cases (200 ml)',
+    ar: '80 كرتون (400 مل) / 96 كرتون (200 مل)',
+  },
+  '400gr+80gr / 200gr+40gr': {
+    en: '400g+80g / 200g+40g',
+    ar: '400غ+80غ / 200غ+40غ',
+  },
+  '1500-5000 cP (25 °C)': {
+    tr: '1500-5000 cP (25 °C)',
+    en: '1500-5000 cP (25 °C)',
+    ar: '1500-5000 سنتي بواز (25 °م)',
+  },
+  '60 °C': {en: '60 °C', ar: '60 °م'},
+  'Genellikle hafif çözücü kokusu': {
+    en: 'Usually a mild solvent odor',
+    ar: 'عادةً رائحة مذيب خفيفة',
+  },
+  'Orta (Ortam sıcaklığına bağlı olarak değişmektedir)': {
+    en: 'Medium (varies with ambient temperature)',
+    ar: 'متوسط (يتغير حسب درجة حرارة المحيط)',
+  },
+  'Orta ila hızlı (ortam sıcaklığına bağlı olarak)': {
+    en: 'Medium to fast (depends on ambient temperature)',
+    ar: 'متوسط إلى سريع (حسب درجة حرارة المحيط)',
+  },
+  '-20°C ila +50°C, bazı ürünler daha geniş sıcaklığa sahip olabilir.': {
+    en: '-20°C to +50°C; some products may cover a wider range.',
+    ar: 'من -20°م إلى +50°م؛ قد تغطي بعض المنتجات نطاقاً أوسع.',
+  },
+  '200°C ile 350°C arasında': {en: 'Between 200°C and 350°C', ar: 'بين 200°م و350°م'},
+  '-20°C ile -30°C arasında': {en: 'Between -20°C and -30°C', ar: 'بين -20°م و-30°م'},
+  '-10°C ile -20°C arasında': {en: 'Between -10°C and -20°C', ar: 'بين -10°م و-20°م'},
+  '-5°C ile -15°C arasında': {en: 'Between -5°C and -15°C', ar: 'بين -5°م و-15°م'},
+  '-15 to -5': {tr: '-15 ile -5', en: '-15 to -5', ar: '-15 إلى -5'},
+  '-15 ile -5': {en: '-15 to -5', ar: '-15 إلى -5'},
+  'Yüksek koruma, pas ve korozyon önleme özellikleri sağlar': {
+    en: 'Provides high protection with rust and corrosion prevention',
+    ar: 'يوفر حماية عالية مع منع الصدأ والتآكل',
+  },
+  'Oksidasyona karşı korozyon direnciyle yüksek koruma sağlar.': {
+    en: 'Provides high protection with corrosion resistance against oxidation.',
+    ar: 'يوفر حماية عالية بمقاومة التآكل ضد الأكسدة.',
+  },
+  'Lastik yüzeyini UV ışınlarından korur': {
+    en: 'Protects tire surfaces from UV rays',
+    ar: 'يحمي سطح الإطارات من الأشعة فوق البنفسجية',
+  },
+  'Yüzeyde koruyucu bir tabaka bırakır': {
+    en: 'Leaves a protective layer on the surface',
+    ar: 'يترك طبقة واقية على السطح',
+  },
+  'Kalıp yüzeyinde ayrılma sağlar.': {
+    en: 'Provides release on the mold surface.',
+    ar: 'يوفر الفصل على سطح القالب.',
+  },
+  '< 30°C (çok sıcak) yanıcı, kullanılmalı (dikkatli olun)': {
+    en: '< 30°C — flammable; use with caution',
+    ar: '< 30°م — قابل للاشتعال؛ استخدم بحذر',
+  },
+  'Akrilik Dispersiyon': {en: 'Acrylic dispersion', ar: 'مبعثر أكريليك'},
+  Asetoksi: {en: 'Acetoxy', ar: 'أسيتوكسي'},
+  'Asetoksi veya Nötr': {en: 'Acetoxy or neutral', ar: 'أسيتوكسي أو محايد'},
+  'Nötr kürleme': {en: 'Neutral cure', ar: 'تصلب محايد'},
+  Poliüretan: {en: 'Polyurethane', ar: 'بولي يوريثان'},
+  'SMP polimer': {en: 'SMP polymer', ar: 'بوليمر SMP'},
+  '2 mm / 24 saat (23 °C ve %50 B.N.)': {
+    en: '2 mm / 24 hours (23 °C and 50% R.H.)',
+    ar: '2 مم / 24 ساعة (23 °م و50% رطوبة نسبية)',
+  },
+  '15-45 dk. (23 °C, % 50 RH)': {
+    en: '15-45 min. (23 °C, 50% R.H.)',
+    ar: '15-45 دقيقة (23 °م، 50% رطوبة نسبية)',
+  },
+  '15-45 min. (23 °C, % 50 R.H )': {
+    tr: '15-45 dk. (23 °C, %50 R.H.)',
+    en: '15-45 min. (23 °C, 50% R.H.)',
+    ar: '15-45 دقيقة (23 °م، 50% رطوبة نسبية)',
+  },
+  '3mm/24 hours (23 °C and 50% R.H)': {
+    tr: '3 mm / 24 saat (23 °C ve %50 R.H.)',
+    en: '3 mm / 24 hours (23 °C and 50% R.H.)',
+    ar: '3 مم / 24 ساعة (23 °م و50% رطوبة نسبية)',
+  },
+  '2mm/24 hours (23 °C and 50% R.H)': {
+    tr: '2 mm / 24 saat (23 °C ve %50 R.H.)',
+    en: '2 mm / 24 hours (23 °C and 50% R.H.)',
+    ar: '2 مم / 24 ساعة (23 °م و50% رطوبة نسبية)',
+  },
+  '10-20 min. (23 °C and 50% R.H)': {
+    tr: '10-20 dk. (23 °C ve %50 R.H.)',
+    en: '10-20 min. (23 °C and 50% R.H.)',
+    ar: '10-20 دقيقة (23 °م و50% رطوبة نسبية)',
+  },
+  '60-90 min. (23 °C and 50% R.H)': {
+    tr: '60-90 dk. (23 °C ve %50 R.H.)',
+    en: '60-90 min. (23 °C and 50% R.H.)',
+    ar: '60-90 دقيقة (23 °م و50% رطوبة نسبية)',
+  },
+  '10-15 min.': {tr: '10-15 dk.', en: '10-15 min.', ar: '10-15 دقيقة'},
+  '24 Adet': {en: '24 pcs', ar: '24 قطعة'},
+  '80 Koli': {en: '80 cases', ar: '80 كرتون'},
+  '96 Koli': {en: '96 cases', ar: '96 كرتون'},
+  '120 Koli': {en: '120 cases', ar: '120 كرتون'},
+  '400ml + 80gr': {tr: '400ml + 80gr', en: '400ml + 80g', ar: '400 مل + 80 غ'},
+  '200ml + 40gr': {tr: '200ml + 40gr', en: '200ml + 40g', ar: '200 مل + 40 غ'},
+  'Asidik veya nötr (su bazlı formülasyonlar daha nötr bir pH\'a sahip olabilir)': {
+    en: 'Acidic or neutral (water-based formulations may have a more neutral pH)',
+    ar: 'حمضي أو محايد (قد تكون التركيبات المائية أقرب إلى pH محايد)',
+  },
+  Viskozite: {en: 'Viscosity', ar: 'اللزوجة'},
+}
+
+const specValuePatterns: Array<{match: RegExp; localize: (raw: string) => {tr: string; en: string; ar: string}}> = [
+  {
+    match: /^(\d+(?:[.,]\d+)?)\s*g\/cm(?:³|&sup3;|&sup3)?$/i,
+    localize: (raw) => {
+      const num = raw.replace(/g\/cm.*/i, '').trim().replace(',', '.')
+      const display = raw.includes(',') ? raw.match(/[\d,]+/)?.[0] || num : num
+      return {
+        tr: `${display} g/cm³`,
+        en: `${num.replace(',', '.')} g/cm³`,
+        ar: `${num.replace(',', '.')} غ/سم³`,
+      }
+    },
+  },
+  {
+    match: /^(\d+(?:[.,]\d+)?)\s*\(\+\/-?\s*[\d.,]+\)(?:\s*gr?\/cm(?:³|&sup3;)?)?$/i,
+    localize: (raw) => {
+      const cleaned = raw.replace(/&sup3;/g, '³').replace(/\s+/g, ' ').trim()
+      const withUnit = /g\/cm|gr\/cm/i.test(cleaned) ? cleaned.replace(/gr?\s*\/\s*cm³?/i, 'g/cm³') : cleaned
+      return {
+        tr: withUnit,
+        en: withUnit.replace(',', '.'),
+        ar: withUnit.replace(',', '.').replace(/g\/cm³/i, 'غ/سم³'),
+      }
+    },
+  },
+  {
+    match: /(\d+)\s*-\s*(\d+)\s*cP?\s*\((?:at\s*)?25\s*°?C(?:'de)?\)/i,
+    localize: (raw) => {
+      const m = raw.match(/(\d+)\s*-\s*(\d+)/)
+      const range = m ? `${m[1]} - ${m[2]}` : raw
+      return {
+        tr: `${range} cP (25°C'de)`,
+        en: `${range} cP (at 25°C)`,
+        ar: `${range} سنتي بواز (عند 25°م)`,
+      }
+    },
+  },
+  {
+    match: /^-\s*(\d+)\s*cP\s*\(at\s*25°C\)$/i,
+    localize: (raw) => {
+      const m = raw.match(/(\d+)/)
+      const n = m?.[1] || raw
+      return {
+        tr: `${n} cP (25°C'de)`,
+        en: `${n} cP (at 25°C)`,
+        ar: `${n} سنتي بواز (عند 25°م)`,
+      }
+    },
+  },
+  {
+    match: /(\d+)\s*-\s*(\d+)\s*cSt\s*\(40°C'de\)/i,
+    localize: () => ({
+      tr: "150-250 cSt (40°C'de)",
+      en: '150-250 cSt (at 40°C)',
+      ar: '150-250 سنتي ستوك (عند 40°م)',
+    }),
+  },
+  {
+    match: /^(\d+)\s*-\s*(\d+)\s*cp\s*\(25°C'de\)$/i,
+    localize: (raw) => {
+      const m = raw.match(/(\d+)\s*-\s*(\d+)/i)
+      const range = m ? `${m[1]} - ${m[2]}` : raw
+      return {
+        tr: `${range} cP (25°C'de)`,
+        en: `${range} cP (at 25°C)`,
+        ar: `${range} سنتي بواز (عند 25°م)`,
+      }
+    },
+  },
+  {
+    match: /^(\d+(?:\.\d+)?)\s*g\/cm$/i,
+    localize: (raw) => {
+      const num = raw.replace(/\s*g\/cm.*/i, '').trim()
+      return {tr: `${num} g/cm³`, en: `${num} g/cm³`, ar: `${num} غ/سم³`}
+    },
+  },
+]
+
+function decodeHtmlEntities(value: string) {
+  return value
+    .replace(/&sup3;/gi, '³')
+    .replace(/&deg;/gi, '°')
+    .replace(/&nbsp;/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+}
+
+export function localizeSpecValue(rawValue: string): {tr: string; en: string; ar: string} {
+  const raw = decodeHtmlEntities(rawValue)
+  if (!raw) return {tr: '', en: '', ar: ''}
+
+  const exact = specValueExact[raw]
+  if (exact) {
+    return {
+      tr: exact.tr || raw,
+      en: exact.en,
+      ar: exact.ar,
+    }
+  }
+
+  for (const pattern of specValuePatterns) {
+    if (pattern.match.test(raw)) return pattern.localize(raw)
+  }
+
+  // Pure numeric / symbolic values stay shared across locales.
+  if (/^[\d\s.,+\-–—<>°%/()]+$/.test(raw) || /^[\d\s.,+\-–—<>]+$/.test(raw)) {
+    return {tr: raw, en: raw, ar: raw}
+  }
+
+  // Packaging-like values: keep volume tokens, translate unit words.
+  if (/\b(Adet|Koli|ml|gr|gr\.|g)\b/i.test(raw) && raw.length < 40) {
+    const en = raw
+      .replace(/\bAdet\b/gi, 'pcs')
+      .replace(/\bKoli\b/gi, 'cases')
+      .replace(/\bgr\b/gi, 'g')
+    const ar = raw
+      .replace(/\bAdet\b/gi, 'قطعة')
+      .replace(/\bKoli\b/gi, 'كرتون')
+      .replace(/\bml\b/gi, 'مل')
+      .replace(/\bgr\b/gi, 'غ')
+      .replace(/\bg\b/gi, 'غ')
+    return {tr: raw, en, ar}
+  }
+
+  // Temperature phrases already in English-ish form.
+  if (/hours|min\.|R\.H/i.test(raw) && !/[çğıöşüÇĞİÖŞÜ]/.test(raw)) {
+    return {
+      tr: raw
+        .replace(/hours/gi, 'saat')
+        .replace(/min\./gi, 'dk.')
+        .replace(/and/gi, 've'),
+      en: raw,
+      ar: raw
+        .replace(/mm/gi, 'مم')
+        .replace(/hours/gi, 'ساعة')
+        .replace(/min\./gi, 'دقيقة')
+        .replace(/and/gi, 'و')
+        .replace(/R\.H\.?/gi, 'رطوبة نسبية'),
+    }
+  }
+
+  return {tr: raw, en: raw, ar: raw}
+}
+
+export function localizeSpecUnit(rawUnit: string): {tr: string; en: string; ar: string} {
+  const raw = decodeHtmlEntities(rawUnit)
+  if (!raw) return {tr: '', en: '', ar: ''}
+
+  const map: Record<string, {tr: string; en: string; ar: string}> = {
+    'g/cm³': {tr: 'g/cm³', en: 'g/cm³', ar: 'غ/سم³'},
+    'g/cm3': {tr: 'g/cm³', en: 'g/cm³', ar: 'غ/سم³'},
+    cP: {tr: 'cP', en: 'cP', ar: 'سنتي بواز'},
+    cp: {tr: 'cP', en: 'cP', ar: 'سنتي بواز'},
+    cSt: {tr: 'cSt', en: 'cSt', ar: 'سنتي ستوك'},
+    min: {tr: 'dk', en: 'min', ar: 'دقيقة'},
+    dk: {tr: 'dk', en: 'min', ar: 'دقيقة'},
+    '°C': {tr: '°C', en: '°C', ar: '°م'},
+    ml: {tr: 'ml', en: 'ml', ar: 'مل'},
+    gr: {tr: 'g', en: 'g', ar: 'غ'},
+    g: {tr: 'g', en: 'g', ar: 'غ'},
+  }
+
+  return map[raw] || {tr: raw, en: raw, ar: raw}
 }
 
 export function localizeUsageCopy(tr: string): {tr: string; en: string; ar: string} {

@@ -263,8 +263,8 @@ export type SpecificationGroup = {
 export type SpecificationItem = {
   _type: "specificationItem";
   label?: InternationalizedArrayString;
-  value?: string;
-  unit?: string;
+  value?: InternationalizedArrayString;
+  unit?: InternationalizedArrayString;
   note?: InternationalizedArrayString;
 };
 

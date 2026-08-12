@@ -68,7 +68,7 @@ export function ProductSpecifications({
                         <td
                           key={item._key}
                           className="border-s border-border px-3 py-3 text-foreground first:border-s-0"
-                          dir="ltr"
+                          dir="auto"
                         >
                           <span className="font-medium">
                             {[item.value, item.unit].filter(Boolean).join(' ')}
@@ -94,7 +94,7 @@ export function ProductSpecifications({
                         >
                           {item.label}
                         </th>
-                        <td className="px-4 py-3 text-muted" dir="ltr">
+                        <td className="px-4 py-3 text-muted" dir="auto">
                           {[item.value, item.unit].filter(Boolean).join(' ')}
                           {item.note ? (
                             <span className="mt-1 block text-xs text-muted">{item.note}</span>
