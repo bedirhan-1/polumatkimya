@@ -53,6 +53,10 @@ function NavAnchor({
   className: string
   onClick?: () => void
 }) {
+  if (!item.href) {
+    return <span className={className}>{item.label}</span>
+  }
+
   if (item.external) {
     return (
       <a
@@ -74,7 +78,8 @@ function NavAnchor({
   )
 }
 
-function isActivePath(pathname: string, href: string) {
+function isActivePath(pathname: string, href?: string) {
+  if (!href) return false
   if (href.startsWith('http')) return false
   if (href.includes('#')) return false
   if (pathname === href) return true
@@ -109,20 +114,7 @@ export function SiteHeader({
     : DEFAULT_CONTACT.phoneHref
   const emailHref = `mailto:${emailValue}`
 
-  const standardNav = navItems.filter((item) => item.href !== DEALER_PORTAL_URL)
-  const findNav = (href: string) => standardNav.find((item) => item.href === href)
-  const exportItem: NavItem = {
-    href: `/${locale}/export`,
-    label: dictionary.nav.export,
-  }
-  const desktopNav = [
-    findNav(`/${locale}/products`),
-    findNav(`/${locale}/industries`),
-    {href: `/${locale}/private-label`, label: 'Private Label'},
-    findNav(`/${locale}/about`),
-    exportItem,
-    findNav(`/${locale}/contact`),
-  ].filter((item): item is NavItem => Boolean(item))
+  const desktopNav = navItems.filter((item) => item.href !== DEALER_PORTAL_URL)
   const mobileNav: NavItem[] = [
     {href: homeHref, label: dictionary.common.home},
     ...desktopNav,
@@ -157,31 +149,52 @@ export function SiteHeader({
           <ul className="flex flex-nowrap items-center justify-center">
             {desktopNav.map((item) => {
               const active = isNavItemActive(pathname, item)
-              const linkClassName = `inline-flex min-h-11 shrink-0 items-center whitespace-nowrap leading-none border-b px-2 text-xs font-semibold tracking-[0.04em] uppercase no-underline transition 2xl:px-2.5 2xl:tracking-[0.06em] ${
+              const itemKey = `${item.href || 'group'}-${item.label}`
+              const linkClassName = `inline-flex min-h-11 shrink-0 items-center whitespace-nowrap leading-none border-b px-2.5 text-xs font-semibold tracking-[0.04em] uppercase no-underline transition 2xl:px-3.5 2xl:tracking-[0.06em] ${
                 active
                   ? 'border-accent text-foreground'
                   : 'border-transparent text-muted hover:text-foreground'
               }`
               if (item.children?.length) {
                 return (
-                  <li key={`${item.href}-${item.label}`} className="group relative shrink-0">
-                    <Link href={item.href} className={`${linkClassName} gap-1`}>
-                      <span>{item.label}</span>
-                      <svg
-                        aria-hidden="true"
-                        viewBox="0 0 12 12"
-                        className="h-2.5 w-2.5 shrink-0 transition duration-200 ease-out group-hover:rotate-180 group-focus-within:rotate-180"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.75"
-                      >
-                        <path
-                          d="M2.5 4.5 6 8l3.5-3.5"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </Link>
+                  <li key={itemKey} className="group relative shrink-0">
+                    {item.href ? (
+                      <Link href={item.href} className={`${linkClassName} gap-1`}>
+                        <span>{item.label}</span>
+                        <svg
+                          aria-hidden="true"
+                          viewBox="0 0 12 12"
+                          className="h-2.5 w-2.5 shrink-0 transition duration-200 ease-out group-hover:rotate-180 group-focus-within:rotate-180"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.75"
+                        >
+                          <path
+                            d="M2.5 4.5 6 8l3.5-3.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </Link>
+                    ) : (
+                      <button type="button" className={`${linkClassName} gap-1`}>
+                        <span>{item.label}</span>
+                        <svg
+                          aria-hidden="true"
+                          viewBox="0 0 12 12"
+                          className="h-2.5 w-2.5 shrink-0 transition duration-200 ease-out group-hover:rotate-180 group-focus-within:rotate-180"
+                          fill="none"
+                          stroke="currentColor"
+                          strokeWidth="1.75"
+                        >
+                          <path
+                            d="M2.5 4.5 6 8l3.5-3.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </button>
+                    )}
                     <ul className="pointer-events-none absolute start-0 top-full z-50 min-w-64 origin-top border border-border bg-surface py-2 opacity-0 shadow-[0_12px_40px_rgba(0,0,0,0.35)] transition duration-200 ease-out translate-y-1 group-hover:pointer-events-auto group-hover:translate-y-0 group-hover:opacity-100 group-focus-within:pointer-events-auto group-focus-within:translate-y-0 group-focus-within:opacity-100">
                       {item.children.map((child) => {
                         const childIsActive = isActivePath(pathname, child.href)
@@ -201,7 +214,7 @@ export function SiteHeader({
                 )
               }
               return (
-                <li key={`${item.href}-${item.label}`} className="shrink-0">
+                <li key={itemKey} className="shrink-0">
                   <NavAnchor item={item} className={linkClassName} />
                 </li>
               )

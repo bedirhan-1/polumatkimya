@@ -125,6 +125,18 @@
   html[lang='ar'] h4 {
     font-family: var(--font-arabic), var(--font-display), system-ui, sans-serif;
     letter-spacing: 0;
+    line-height: 1.4;
+  }
+
+  /* Arabic display titles need more leading than Latin; override tight utilities/modules */
+  html[lang='ar'] :is(h1, h2, h3, h4),
+  html[lang='ar'] .font-display,
+  html[lang='ar'] [class*='font-[family-name:var(--font-display)]'] {
+    line-height: 1.45 !important;
+  }
+
+  html[lang='ar'] h1 span {
+    line-height: inherit;
   }
 
   a {

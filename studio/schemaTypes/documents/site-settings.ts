@@ -57,7 +57,7 @@ export const siteSettingsType = defineType({
       name: 'headerNavigation',
       title: 'Header navigation',
       type: 'array',
-      of: [defineArrayMember({type: 'internalOrExternalLink'})],
+      of: [defineArrayMember({type: 'navigationItem'})],
     }),
     defineField({
       name: 'footerColumns',

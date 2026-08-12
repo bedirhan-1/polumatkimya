@@ -31,6 +31,38 @@ export const SITE_SETTINGS_QUERY = defineQuery(`
         _type,
         "slug": slug.current,
         language
+      },
+      children[]{
+        _key,
+        _type,
+        linkType,
+        internalPath,
+        externalUrl,
+        openInNewTab,
+        "label": label[language == $locale || _key == $locale][0].value,
+        reference->{
+          _type,
+          "slug": slug.current,
+          language
+        }
+      }
+    },
+    footerColumns[]{
+      _key,
+      "title": title[language == $locale || _key == $locale][0].value,
+      links[]{
+        _key,
+        _type,
+        linkType,
+        internalPath,
+        externalUrl,
+        openInNewTab,
+        "label": label[language == $locale || _key == $locale][0].value,
+        reference->{
+          _type,
+          "slug": slug.current,
+          language
+        }
       }
     },
     quoteCta{

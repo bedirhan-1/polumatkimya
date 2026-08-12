@@ -263,10 +263,11 @@ export default async function ContactPage({params}: PageProps) {
                     key={item._key}
                     href={toTelHref(item.phone)}
                     className="text-foreground no-underline hover:text-accent"
-                    dir="ltr"
                   >
                     {item.label ? <span className="text-muted">{item.label}: </span> : null}
-                    {item.phone}
+                    <span dir="ltr" className="inline-block [unicode-bidi:isolate]">
+                      {item.phone}
+                    </span>
                   </a>
                 ))}
               />
@@ -277,14 +278,35 @@ export default async function ContactPage({params}: PageProps) {
                     key={item._key}
                     href={`mailto:${item.email}`}
                     className="text-foreground no-underline hover:text-accent"
-                    dir="ltr"
                   >
                     {item.label ? <span className="text-muted">{item.label}: </span> : null}
-                    {item.email}
+                    <span dir="ltr" className="inline-block [unicode-bidi:isolate]">
+                      {item.email}
+                    </span>
                   </a>
                 ))}
               />
-              <Fact title={corporateSectionTitle} items={[corporatePhone, corporateEmail]} />
+              <Fact
+                title={corporateSectionTitle}
+                items={[
+                  <a
+                    key="corporate-phone"
+                    href={toTelHref(corporatePhone)}
+                    className="inline-block text-foreground no-underline hover:text-accent [unicode-bidi:isolate]"
+                    dir="ltr"
+                  >
+                    {corporatePhone}
+                  </a>,
+                  <a
+                    key="corporate-email"
+                    href={`mailto:${corporateEmail}`}
+                    className="inline-block text-foreground no-underline hover:text-accent [unicode-bidi:isolate]"
+                    dir="ltr"
+                  >
+                    {corporateEmail}
+                  </a>,
+                ]}
+              />
             </dl>
 
             <div className="mt-10 flex flex-wrap gap-3">

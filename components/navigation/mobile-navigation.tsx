@@ -36,6 +36,10 @@ function MobileLink({
     ? 'flex min-h-11 items-center border-b border-border/50 py-2.5 ps-4 text-[0.95rem] text-muted no-underline transition hover:text-foreground'
     : 'flex min-h-12 items-center border-b border-border py-3 text-base font-medium text-foreground no-underline'
 
+  if (!item.href) {
+    return <span className={className}>{item.label}</span>
+  }
+
   if (item.external) {
     return (
       <a
@@ -168,7 +172,7 @@ export function MobileNavigation({
               </Link>
 
               {items.map((item) => {
-                const key = `${item.href}-${item.label}`
+                const key = `${item.href || 'group'}-${item.label}`
                 const hasChildren = Boolean(item.children?.length)
                 const isExpanded = expanded === key
 
@@ -183,13 +187,24 @@ export function MobileNavigation({
                 return (
                   <div key={key}>
                     <div className="flex items-stretch border-b border-border">
-                      <Link
-                        href={item.href}
-                        className="flex min-h-12 flex-1 items-center py-3 text-base font-medium text-foreground no-underline"
-                        onClick={close}
-                      >
-                        {item.label}
-                      </Link>
+                      {item.href ? (
+                        <Link
+                          href={item.href}
+                          className="flex min-h-12 flex-1 items-center py-3 text-base font-medium text-foreground no-underline"
+                          onClick={close}
+                        >
+                          {item.label}
+                        </Link>
+                      ) : (
+                        <button
+                          type="button"
+                          className="flex min-h-12 flex-1 items-center py-3 text-start text-base font-medium text-foreground"
+                          aria-expanded={isExpanded}
+                          onClick={() => setExpanded(isExpanded ? null : key)}
+                        >
+                          {item.label}
+                        </button>
+                      )}
                       <button
                         type="button"
                         className="inline-flex min-h-12 min-w-12 items-center justify-center text-muted"

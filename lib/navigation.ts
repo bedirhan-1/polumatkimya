@@ -12,7 +12,7 @@ export const DEFAULT_CONTACT = {
 } as const
 
 export type NavItem = {
-  href: string
+  href?: string
   label: string
   external?: boolean
   openInNewTab?: boolean
@@ -55,12 +55,14 @@ export function getDefaultNavItems(locale: Locale, dictionary: Dictionary): NavI
     {href: `/${locale}/products`, label: dictionary.nav.products},
     {href: `/${locale}/industries`, label: dictionary.nav.industries},
     {
-      href: `/${locale}/about`,
+      href: `/${locale}/private-label`,
+      label: locale === 'ar' ? 'العلامة الخاصة' : 'Private Label',
+    },
+    {
       label: dictionary.nav.corporate,
       children: getCorporateNavItems(locale, dictionary),
     },
-    {href: `/${locale}/blog`, label: dictionary.nav.blog},
-    {href: `/${locale}/videos`, label: dictionary.footer.videos},
+    {href: `/${locale}/export`, label: dictionary.nav.export},
     {href: `/${locale}/contact`, label: dictionary.nav.contact},
     {
       href: DEALER_PORTAL_URL,
@@ -74,7 +76,9 @@ export function getDefaultNavItems(locale: Locale, dictionary: Dictionary): NavI
 /** Ensure dealer portal is always available even when Sanity overrides nav. */
 export function withDealerLogin(items: NavItem[], dictionary: Dictionary): NavItem[] {
   const alreadyPresent = items.some(
-    (item) => item.href === DEALER_PORTAL_URL || /bayi|dealer|netahsilat/i.test(item.href),
+    (item) =>
+      Boolean(item.href) &&
+      (item.href === DEALER_PORTAL_URL || /bayi|dealer|netahsilat/i.test(item.href || '')),
   )
   if (alreadyPresent) return items
   return [

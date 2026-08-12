@@ -44,15 +44,37 @@ function navLink(
   opts:
     | {linkType: 'internal'; internalPath: string}
     | {linkType: 'external'; externalUrl: string; openInNewTab?: boolean},
+  children?: ReturnType<typeof navLink>[],
 ) {
   return {
     _key: key(),
-    _type: 'internalOrExternalLink',
+    _type: children ? 'navigationItem' : 'internalOrExternalLink',
     label: localizedString(labels),
     linkType: opts.linkType,
     internalPath: opts.linkType === 'internal' ? opts.internalPath : undefined,
     externalUrl: opts.linkType === 'external' ? opts.externalUrl : undefined,
     openInNewTab: opts.linkType === 'external' ? Boolean(opts.openInNewTab) : false,
+    ...(children?.length ? {children} : {}),
+  }
+}
+
+function navItem(
+  labels: {tr: string; en: string; ar: string},
+  opts:
+    | {linkType: 'none'}
+    | {linkType: 'internal'; internalPath: string}
+    | {linkType: 'external'; externalUrl: string; openInNewTab?: boolean},
+  children?: ReturnType<typeof navLink>[],
+) {
+  return {
+    _key: key(),
+    _type: 'navigationItem',
+    label: localizedString(labels),
+    linkType: opts.linkType,
+    internalPath: opts.linkType === 'internal' ? opts.internalPath : undefined,
+    externalUrl: opts.linkType === 'external' ? opts.externalUrl : undefined,
+    openInNewTab: opts.linkType === 'external' ? Boolean(opts.openInNewTab) : false,
+    ...(children?.length ? {children} : {}),
   }
 }
 
@@ -121,31 +143,65 @@ function buildSettingsPayload(images: {
       noIndex: false,
     },
     headerNavigation: [
-      navLink(
+      navItem(
         {tr: 'Ürünler', en: 'Products', ar: 'المنتجات'},
         {linkType: 'internal', internalPath: '/products'},
       ),
-      navLink(
+      navItem(
         {tr: 'Uygulama alanları', en: 'Industries', ar: 'مجالات التطبيق'},
         {linkType: 'internal', internalPath: '/industries'},
       ),
-      navLink(
+      navItem(
+        {tr: 'Private Label', en: 'Private Label', ar: 'العلامة الخاصة'},
+        {linkType: 'internal', internalPath: '/private-label'},
+      ),
+      navItem(
+        {tr: 'Kurumsal', en: 'Corporate', ar: 'الشركة'},
+        {linkType: 'none'},
+        [
+          navLink(
+            {tr: 'İhracat', en: 'Export', ar: 'التصدير'},
+            {linkType: 'internal', internalPath: '/export'},
+          ),
+          navLink(
+            {tr: 'Hakkımızda', en: 'About us', ar: 'من نحن'},
+            {linkType: 'internal', internalPath: '/about'},
+          ),
+          navLink(
+            {tr: 'Misyon ve Vizyonumuz', en: 'Mission and vision', ar: 'الرسالة والرؤية'},
+            {linkType: 'internal', internalPath: '/company/mission-and-vision'},
+          ),
+          navLink(
+            {tr: 'Polumat Kalitesi', en: 'Polumat quality', ar: 'جودة بولومات'},
+            {linkType: 'internal', internalPath: '/quality-certificates'},
+          ),
+          navLink(
+            {tr: 'Çevreye Duyarlılık', en: 'Environmental responsibility', ar: 'المسؤولية البيئية'},
+            {linkType: 'internal', internalPath: '/company/environmental-responsibility'},
+          ),
+          navLink(
+            {tr: 'İş Sağlığı ve Güvenliği', en: 'Occupational health and safety', ar: 'الصحة والسلامة المهنية'},
+            {linkType: 'internal', internalPath: '/company/occupational-health-and-safety'},
+          ),
+          navLink(
+            {tr: 'Müşteri Memnuniyeti', en: 'Customer satisfaction', ar: 'رضا العملاء'},
+            {linkType: 'internal', internalPath: '/company/customer-satisfaction'},
+          ),
+          navLink(
+            {tr: 'İnsan Kaynakları', en: 'Human resources', ar: 'الموارد البشرية'},
+            {linkType: 'internal', internalPath: '/company/human-resources'},
+          ),
+        ],
+      ),
+      navItem(
         {tr: 'İhracat', en: 'Export', ar: 'التصدير'},
         {linkType: 'internal', internalPath: '/export'},
       ),
-      navLink(
-        {tr: 'Hakkımızda', en: 'About', ar: 'من نحن'},
-        {linkType: 'internal', internalPath: '/about'},
-      ),
-      navLink(
-        {tr: 'Blog', en: 'Blog', ar: 'المدونة'},
-        {linkType: 'internal', internalPath: '/blog'},
-      ),
-      navLink(
+      navItem(
         {tr: 'İletişim', en: 'Contact', ar: 'اتصل بنا'},
         {linkType: 'internal', internalPath: '/contact'},
       ),
-      navLink(
+      navItem(
         {tr: 'Bayi Girişi', en: 'Dealer login', ar: 'دخول الوكيل'},
         {linkType: 'external', externalUrl: dealerUrl, openInNewTab: true},
       ),
@@ -157,16 +213,36 @@ function buildSettingsPayload(images: {
         title: localizedString({tr: 'Kurumsal', en: 'Company', ar: 'الشركة'}),
         links: [
           navLink(
-            {tr: 'Hakkımızda', en: 'About', ar: 'من نحن'},
+            {tr: 'İhracat', en: 'Export', ar: 'التصدير'},
+            {linkType: 'internal', internalPath: '/export'},
+          ),
+          navLink(
+            {tr: 'Hakkımızda', en: 'About us', ar: 'من نحن'},
             {linkType: 'internal', internalPath: '/about'},
           ),
           navLink(
-            {tr: 'Kalite ve belgeler', en: 'Quality & certificates', ar: 'الجودة والشهادات'},
+            {tr: 'Misyon ve Vizyonumuz', en: 'Mission and vision', ar: 'الرسالة والرؤية'},
+            {linkType: 'internal', internalPath: '/company/mission-and-vision'},
+          ),
+          navLink(
+            {tr: 'Polumat Kalitesi', en: 'Polumat quality', ar: 'جودة بولومات'},
             {linkType: 'internal', internalPath: '/quality-certificates'},
           ),
           navLink(
-            {tr: 'İletişim', en: 'Contact', ar: 'اتصل بنا'},
-            {linkType: 'internal', internalPath: '/contact'},
+            {tr: 'Çevreye Duyarlılık', en: 'Environmental responsibility', ar: 'المسؤولية البيئية'},
+            {linkType: 'internal', internalPath: '/company/environmental-responsibility'},
+          ),
+          navLink(
+            {tr: 'İş Sağlığı ve Güvenliği', en: 'Occupational health and safety', ar: 'الصحة والسلامة المهنية'},
+            {linkType: 'internal', internalPath: '/company/occupational-health-and-safety'},
+          ),
+          navLink(
+            {tr: 'Müşteri Memnuniyeti', en: 'Customer satisfaction', ar: 'رضا العملاء'},
+            {linkType: 'internal', internalPath: '/company/customer-satisfaction'},
+          ),
+          navLink(
+            {tr: 'İnsan Kaynakları', en: 'Human resources', ar: 'الموارد البشرية'},
+            {linkType: 'internal', internalPath: '/company/human-resources'},
           ),
         ],
       },

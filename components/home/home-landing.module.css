@@ -1181,3 +1181,12 @@
     transition: none;
   }
 }
+
+:global(html[lang='ar']) .sectionTitle,
+:global(html[lang='ar']) .privateIntro .sectionTitle,
+:global(html[lang='ar']) .productTitle,
+:global(html[lang='ar']) .processTitle,
+:global(html[lang='ar']) .ctaTitle,
+:global(html[lang='ar']) .industryBody h3 {
+  line-height: 1.35;
+}

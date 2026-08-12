@@ -7,7 +7,7 @@ import {SITE_SETTINGS_QUERY} from '@/sanity/queries/site-settings'
 type HeaderNavItem = {
   _key?: string
   label?: string | null
-  linkType?: 'internal' | 'external' | 'reference' | null
+  linkType?: 'none' | 'internal' | 'external' | 'reference' | null
   internalPath?: string | null
   externalUrl?: string | null
   openInNewTab?: boolean | null
@@ -16,6 +16,13 @@ type HeaderNavItem = {
     slug?: string | null
     language?: string | null
   } | null
+  children?: HeaderNavItem[] | null
+}
+
+type FooterColumnData = {
+  _key?: string
+  title?: string | null
+  links?: HeaderNavItem[] | null
 }
 
 type CatalogDocument = {
@@ -27,9 +34,12 @@ type CatalogDocument = {
 
 type SiteSettingsData = {
   companyName?: string | null
+  shortDescription?: string | null
   whatsappNumber?: string | null
   whatsappMessage?: string | null
+  footerLegalText?: string | null
   headerNavigation?: HeaderNavItem[] | null
+  footerColumns?: FooterColumnData[] | null
   contactChannels?: Array<{
     _key?: string
     phone?: string | null
@@ -43,6 +53,29 @@ type SiteSettingsData = {
     readMore?: string | null
     download?: string | null
   } | null
+}
+
+function mapNavLink(locale: Locale, item: HeaderNavItem): NavItem | null {
+  if (!item.label) return null
+
+  const children = (item.children || [])
+    .map((child) => mapNavLink(locale, child))
+    .filter((child): child is NavItem => Boolean(child))
+
+  const href =
+    item.linkType && item.linkType !== 'none' ? resolveHref(locale, item) : null
+
+  if (!href && !children.length) return null
+
+  const external = Boolean(href && (item.linkType === 'external' || /^https?:\/\//i.test(href)))
+
+  return {
+    ...(href ? {href} : {}),
+    label: item.label,
+    external,
+    openInNewTab: Boolean(item.openInNewTab ?? external),
+    ...(children.length ? {children} : {}),
+  }
 }
 
 export async function getSiteSettings(locale: Locale): Promise<SiteSettingsData | null> {
@@ -89,15 +122,24 @@ export function mapHeaderNavigation(
 
   const items: NavItem[] = []
   for (const item of navigation) {
-    const href = resolveHref(locale, item)
-    if (!href || !item.label) continue
-    const external = item.linkType === 'external' || /^https?:\/\//i.test(href)
-    items.push({
-      href,
-      label: item.label,
-      external,
-      openInNewTab: Boolean(item.openInNewTab ?? external),
-    })
+    const mapped = mapNavLink(locale, item)
+    if (mapped) items.push(mapped)
   }
   return items
+}
+
+export function mapFooterColumns(
+  locale: Locale,
+  columns: FooterColumnData[] | null | undefined,
+): Array<{title: string; links: NavItem[]}> {
+  if (!columns?.length) return []
+
+  return columns.flatMap((column) => {
+    if (!column.title) return []
+    const links = (column.links || [])
+      .map((link) => mapNavLink(locale, link))
+      .filter((link): link is NavItem => Boolean(link))
+    if (!links.length) return []
+    return [{title: column.title, links}]
+  })
 }

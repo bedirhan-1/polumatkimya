@@ -7,7 +7,7 @@ type LinkReference = {
 }
 
 type ResolvableLink = {
-  linkType?: 'internal' | 'external' | 'reference' | null
+  linkType?: 'none' | 'internal' | 'external' | 'reference' | null
   internalPath?: string | null
   externalUrl?: string | null
   reference?: LinkReference | null
@@ -22,7 +22,7 @@ function stripLocalePrefix(path: string): string {
 }
 
 export function resolveHref(locale: Locale, link?: ResolvableLink | null): string | null {
-  if (!link?.linkType) return null
+  if (!link?.linkType || link.linkType === 'none') return null
 
   if (link.linkType === 'external') {
     return link.externalUrl || null

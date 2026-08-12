@@ -567,3 +567,13 @@
     transition: none;
   }
 }
+
+:global(html[lang='ar']) .watermark {
+  line-height: 1.05;
+}
+
+:global(html[lang='ar']) .title,
+:global(html[lang='ar']) .kicker,
+:global(html[lang='ar']) .slide h3 {
+  line-height: 1.35;
+}

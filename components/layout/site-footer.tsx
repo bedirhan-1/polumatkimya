@@ -7,19 +7,46 @@ import {
   DEFAULT_CONTACT,
   DEALER_PORTAL_URL,
   getDefaultFooterColumns,
+  type NavItem,
 } from '@/lib/navigation'
+
+type FooterColumn = {
+  title: string
+  links: NavItem[]
+}
 
 type SiteFooterProps = {
   locale: Locale
   dictionary: Dictionary
+  columns?: FooterColumn[] | null
+  description?: string | null
+  phone?: string | null
+  email?: string | null
+  legalText?: string | null
 }
 
-export function SiteFooter({locale, dictionary}: SiteFooterProps) {
-  const columns = getDefaultFooterColumns(locale, dictionary).map((column) => ({
-    ...column,
-    links: column.links.filter((link) => link.href !== DEALER_PORTAL_URL),
-  }))
+export function SiteFooter({
+  locale,
+  dictionary,
+  columns,
+  description,
+  phone,
+  email,
+  legalText,
+}: SiteFooterProps) {
+  const resolvedColumns = (columns?.length ? columns : getDefaultFooterColumns(locale, dictionary)).map(
+    (column) => ({
+      ...column,
+      links: column.links.filter((link) => link.href !== DEALER_PORTAL_URL),
+    }),
+  )
   const year = new Date().getFullYear()
+  const phoneValue = phone?.trim() || DEFAULT_CONTACT.phone
+  const emailValue = email?.trim() || DEFAULT_CONTACT.email
+  const phoneHref = phoneValue.replace(/[^\d+]/g, '').startsWith('+')
+    ? `tel:${phoneValue.replace(/[^\d+]/g, '')}`
+    : DEFAULT_CONTACT.phoneHref
+  const emailHref = `mailto:${emailValue}`
 
   return (
     <footer className="mt-auto border-t border-border">
@@ -44,22 +71,22 @@ export function SiteFooter({locale, dictionary}: SiteFooterProps) {
               />
             </Link>
             <p className="mt-4 max-w-sm text-[0.8125rem] leading-6 text-muted sm:mt-5 sm:text-sm">
-              {dictionary.meta.defaultDescription}
+              {description?.trim() || dictionary.meta.defaultDescription}
             </p>
             <div className="mt-5 grid overflow-hidden border border-white/10 bg-white/5 text-sm sm:mt-6 sm:max-w-lg sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
               <a
-                href={DEFAULT_CONTACT.phoneHref}
+                href={phoneHref}
                 className="px-4 py-3.5 text-foreground no-underline transition hover:bg-white/5 hover:text-accent"
                 dir="ltr"
               >
-                {DEFAULT_CONTACT.phone}
+                {phoneValue}
               </a>
               <a
-                href={DEFAULT_CONTACT.emailHref}
+                href={emailHref}
                 className="min-w-0 border-t border-white/10 px-4 py-3.5 text-muted no-underline transition hover:bg-white/5 hover:text-foreground sm:border-t-0 sm:border-s lg:border-t lg:border-s-0 xl:border-t-0 xl:border-s"
                 dir="ltr"
               >
-                {DEFAULT_CONTACT.email}
+                {emailValue}
               </a>
             </div>
             <a
@@ -74,7 +101,7 @@ export function SiteFooter({locale, dictionary}: SiteFooterProps) {
           </div>
 
           <div className="grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3 sm:gap-x-8 lg:gap-10">
-            {columns.map((column, columnIndex) => (
+            {resolvedColumns.map((column, columnIndex) => (
               <div
                 key={column.title}
                 className={`min-w-0 ${columnIndex === 0 ? 'col-span-2 sm:col-span-1' : ''}`}
@@ -88,7 +115,8 @@ export function SiteFooter({locale, dictionary}: SiteFooterProps) {
                   }`}
                 >
                   {column.links.map((link) => {
-                    const external = 'external' in link && Boolean(link.external)
+                    if (!link.href) return null
+                    const external = Boolean(link.external)
                     return (
                       <li
                         key={`${column.title}-${link.href}`}
@@ -124,7 +152,8 @@ export function SiteFooter({locale, dictionary}: SiteFooterProps) {
       <div className="border-t border-border bg-background">
         <div className="container-site grid grid-cols-[1fr_auto] items-end gap-4 py-5 text-[0.6875rem] leading-5 text-muted sm:flex sm:items-center sm:justify-between sm:py-4 sm:text-xs">
           <p className="max-w-[15rem] sm:max-w-none">
-            © {year} {dictionary.meta.siteName}. {dictionary.footer.rights}
+            © {year} {dictionary.meta.siteName}.{' '}
+            {legalText?.trim() || dictionary.footer.rights}
           </p>
           <p
             className="border border-white/10 px-2.5 py-1 tracking-[0.14em] whitespace-nowrap uppercase"

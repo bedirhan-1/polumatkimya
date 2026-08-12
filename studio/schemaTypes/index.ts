@@ -54,6 +54,7 @@ import {imageWithAltType} from './objects/image-with-alt'
 import {internalOrExternalLinkType} from './objects/internal-or-external-link'
 import {localizedImageWithAltType} from './objects/localized-image-with-alt'
 import {localizedSeoType} from './objects/localized-seo'
+import {navigationItemType} from './objects/navigation-item'
 import {packagingVariantType} from './objects/packaging-variant'
 import {pageBuilderType} from './objects/page-builder'
 import {portableTextType} from './objects/portable-text'
@@ -87,6 +88,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   imageWithAltType,
   localizedImageWithAltType,
   internalOrExternalLinkType,
+  navigationItemType,
   callToActionType,
   simpleCallToActionType,
   simpleFeatureItemType,
