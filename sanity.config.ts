@@ -17,7 +17,6 @@ import {structure} from './studio/structure'
 
 const DOCUMENT_I18N_TYPES = [
   'homePage',
-  'contactPage',
   'page',
   'post',
 ]

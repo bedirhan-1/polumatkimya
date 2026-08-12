@@ -483,19 +483,19 @@ function buildPatch(product: ProductDocument) {
     packagingVariants: [
       packagingVariant(
         {
-          tr: '400 ml aktivatör + 100 g yapıştırıcı',
-          en: '400 ml activator + 100 g adhesive',
-          ar: '400 مل منشّط + 100 غ لاصق',
+          tr: '400ml + 80gr',
+          en: '400ml + 80gr',
+          ar: '400ml + 80gr',
         },
-        '400 ml + 100 g',
+        '400ml + 80gr',
       ),
       packagingVariant(
         {
-          tr: '200 ml aktivatör + 50 g yapıştırıcı',
-          en: '200 ml activator + 50 g adhesive',
-          ar: '200 مل منشّط + 50 غ لاصق',
+          tr: '200ml + 40gr',
+          en: '200ml + 40gr',
+          ar: '200ml + 40gr',
         },
-        '200 ml + 50 g',
+        '200ml + 40gr',
       ),
     ],
     specificationGroups: [
@@ -547,7 +547,7 @@ function buildPatch(product: ProductDocument) {
         items: [
           specification(
             {tr: 'Büyük set', en: 'Large set', ar: 'الطقم الكبير'},
-            '400 ml + 100 g',
+            '400ml + 80gr',
             {
               note: {
                 tr: '24 adet/koli · 80 koli/palet',
@@ -558,7 +558,7 @@ function buildPatch(product: ProductDocument) {
           ),
           specification(
             {tr: 'Küçük set', en: 'Small set', ar: 'الطقم الصغير'},
-            '200 ml + 50 g',
+            '200ml + 40gr',
             {
               note: {
                 tr: '24 adet/koli · 96 koli/palet',

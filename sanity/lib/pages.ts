@@ -1,7 +1,7 @@
 import type {Locale} from '@/lib/i18n/locales'
 import {sanityFetch} from '@/sanity/lib/live'
+import {CONTACT_PAGE_QUERY} from '@/sanity/queries/contact-page'
 import {
-  CONTACT_PAGE_QUERY,
   HOME_PAGE_QUERY,
   PAGE_BY_SLUG_QUERY,
 } from '@/sanity/queries/pages'

@@ -218,11 +218,11 @@ export function SiteHeader({
               aria-label={dictionary.nav.downloadCatalog}
               className={buttonClassName(
                 'secondary',
-                'hidden min-h-10 px-3 py-2 text-xs uppercase no-underline xl:inline-flex 2xl:px-4',
+                'hidden min-h-10 gap-2 px-3 py-2 text-xs uppercase no-underline xl:inline-flex 2xl:px-4',
               )}
             >
               <DownloadIcon />
-              <span className="hidden 2xl:inline">{dictionary.nav.downloadCatalog}</span>
+              <span>{dictionary.nav.downloadCatalog}</span>
             </a>
           ) : null}
           <ButtonLink

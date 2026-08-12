@@ -126,20 +126,6 @@ export const HOME_PAGE_QUERY = defineQuery(`
   }
 `)
 
-export const CONTACT_PAGE_QUERY = defineQuery(`
-  *[_type == "contactPage" && language == $locale && translationStatus == "complete"][0]{
-    _id,
-    title,
-    intro,
-    formSuccessMessage,
-    formErrorMessage,
-    language,
-    translationStatus,
-    ${seoProjection},
-    ${pageBuilderProjection}
-  }
-`)
-
 export const PAGE_BY_SLUG_QUERY = defineQuery(`
   *[_type == "page" && language == $locale && slug.current == $slug && translationStatus == "complete"][0]{
     _id,

@@ -13,7 +13,12 @@ import {statsSectionType} from './blocks/stats-section'
 import {videoSectionType} from './blocks/video-section'
 import {applicationAreaType} from './documents/application-area'
 import {certificateType} from './documents/certificate'
-import {contactPageType} from './documents/contact-page'
+import {
+  contactEmailType,
+  contactLocationType,
+  contactPageType,
+  contactPhoneType,
+} from './documents/contact-page'
 import {downloadableDocumentType} from './documents/downloadable-document'
 import {
   exportActivityType,
@@ -98,6 +103,9 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   homeQualitySectionType,
   homeCtaSectionType,
   contactChannelType,
+  contactLocationType,
+  contactPhoneType,
+  contactEmailType,
   socialLinkType,
   specificationItemType,
   specificationGroupType,

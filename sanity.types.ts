@@ -1288,6 +1288,41 @@ export type CERTIFICATES_QUERY_RESULT = Array<{
   } | null;
 }>;
 
+// Source: ../sanity/queries/contact-page.ts
+// Variable: CONTACT_PAGE_QUERY
+// Query: *[_id == "contactPage" && _type == "contactPage"][0]{    _id,    "eyebrow": eyebrow[language == $locale || _key == $locale][0].value,    "title": title[language == $locale || _key == $locale][0].value,    "intro": intro[language == $locale || _key == $locale][0].value,    "phonesSectionTitle": phonesSectionTitle[language == $locale || _key == $locale][0].value,    "emailsSectionTitle": emailsSectionTitle[language == $locale || _key == $locale][0].value,    "corporateSectionTitle": corporateSectionTitle[language == $locale || _key == $locale][0].value,    corporatePhone,    corporateEmail,    phones[]{      _key,      phone,      "label": label[language == $locale || _key == $locale][0].value    },    emails[]{      _key,      email,      "label": label[language == $locale || _key == $locale][0].value    },    locations[]{      _key,      locationId,      postalCode,      mapEmbedUrl,      mapsUrl,      "label": label[language == $locale || _key == $locale][0].value,      "addressLine": addressLine[language == $locale || _key == $locale][0].value,      "city": city[language == $locale || _key == $locale][0].value,      "mapTitle": mapTitle[language == $locale || _key == $locale][0].value    },    "formTitle": formTitle[language == $locale || _key == $locale][0].value,    "formDescription": formDescription[language == $locale || _key == $locale][0].value,    "openInMapsLabel": openInMapsLabel[language == $locale || _key == $locale][0].value,    "formSuccessMessage": formSuccessMessage[language == $locale || _key == $locale][0].value,    "formErrorMessage": formErrorMessage[language == $locale || _key == $locale][0].value,      seo{    noIndex,    ogImage,    "title": coalesce(      title[language == $locale || _key == $locale][0].value,      title    ),    "description": coalesce(      description[language == $locale || _key == $locale][0].value,      description    )  }  }
+export type CONTACT_PAGE_QUERY_RESULT = {
+  _id: "contactPage";
+  eyebrow: null;
+  title: null;
+  intro: null;
+  phonesSectionTitle: null;
+  emailsSectionTitle: null;
+  corporateSectionTitle: null;
+  corporatePhone: null;
+  corporateEmail: null;
+  phones: null;
+  emails: null;
+  locations: null;
+  formTitle: null;
+  formDescription: null;
+  openInMapsLabel: null;
+  formSuccessMessage: null;
+  formErrorMessage: null;
+  seo: {
+    noIndex: boolean | null;
+    ogImage: {
+      asset?: SanityImageAssetReference;
+      media?: unknown;
+      hotspot?: SanityImageHotspot;
+      crop?: SanityImageCrop;
+      _type: "image";
+    } | null;
+    title: string | null;
+    description: string | null;
+  } | null;
+} | null;
+
 // Source: ../sanity/queries/content.ts
 // Variable: POSTS_QUERY
 // Query: *[    _type == "post" &&    language == $locale &&    translationStatus == "complete" &&    defined(slug.current)  ] | order(publishedAt desc) {      _id,  title,  "slug": slug.current,  excerpt,  publishedAt,  category,  author,  language,  coverImage{  asset,  alt,  hotspot,  crop}  }
@@ -1891,216 +1926,6 @@ export type HOME_PAGE_QUERY_RESULT = {
       variant: "ghost" | "primary" | "secondary" | null;
     } | null;
   } | null;
-} | null;
-
-// Source: ../sanity/queries/pages.ts
-// Variable: CONTACT_PAGE_QUERY
-// Query: *[_type == "contactPage" && language == $locale && translationStatus == "complete"][0]{    _id,    title,    intro,    formSuccessMessage,    formErrorMessage,    language,    translationStatus,      seo{    noIndex,    ogImage,    "title": coalesce(      title[language == $locale || _key == $locale][0].value,      title    ),    "description": coalesce(      description[language == $locale || _key == $locale][0].value,      description    )  },      pageBuilder[]{    _key,    _type,    ...,    _type == "heroSliderSection" => {      accessibilityLabel,      rotationMode,      interval,      slides[]{        _key,        eyebrow,        heading,        description,        desktopImage{  asset,  alt,  hotspot,  crop},        mobileImage{  asset,  alt,  hotspot,  crop},        primaryCta{  label,  linkType,  internalPath,  externalUrl,  variant},        secondaryCta{  label,  linkType,  internalPath,  externalUrl,  variant}      }    },    _type == "heroSection" => {      eyebrow,      heading,      description,      primaryCta{  label,  linkType,  internalPath,  externalUrl,  variant},      secondaryCta{  label,  linkType,  internalPath,  externalUrl,  variant},      media{  asset,  alt,  hotspot,  crop},      trustItems[]{_key, label}    },    _type == "productShowcaseSection" => {      heading,      description,      products[]->{        _id,        "title": title[language == $locale || _key == $locale][0].value,        "slug": slug.current,        "shortDescription": shortDescription[language == $locale || _key == $locale][0].value,        cardImage{          asset,          hotspot,          crop,          "alt": alt[language == $locale || _key == $locale][0].value        },        primaryCategory->{          "title": title[language == $locale || _key == $locale][0].value,          "slug": slug.current        }      }    },    _type == "featureGridSection" => {      heading,      description,      features[]{_key, title, description, icon}    },    _type == "applicationGridSection" => {      heading,      description,      applicationAreas[]->{        _id,        "title": title[language == $locale || _key == $locale][0].value,        "slug": slug.current,        "summary": summary[language == $locale || _key == $locale][0].value,        coverImage{  asset,  alt,  hotspot,  crop},        icon      }    },    _type == "imageTextSection" => {      heading,      body,      image{  asset,  alt,  hotspot,  crop},      cta{  label,  linkType,  internalPath,  externalUrl,  variant}    },    _type == "statsSection" => {      heading,      stats[]{_key, value, label}    },    _type == "certificateSection" => {      heading,      description,      certificates[]->{        _id,        "name": name[language == $locale || _key == $locale][0].value,        issuer,        certificateNumber,        logo{  asset,  alt,  hotspot,  crop}      }    },    _type == "videoSection" => {      heading,      description,      videos[]->{        _id,        "title": title[language == $locale || _key == $locale][0].value,        "description": description[language == $locale || _key == $locale][0].value,        provider,        externalUrl,        playbackId,        coverImage{  asset,  alt,  hotspot,  crop}      }    },    _type == "latestContentSection" => {      heading,      description,      source    },    _type == "ctaSection" => {      heading,      description,      cta{  label,  linkType,  internalPath,  externalUrl,  variant}    }  }  }
-export type CONTACT_PAGE_QUERY_RESULT = {
-  _id: string;
-  title: string | null;
-  intro: string | null;
-  formSuccessMessage: string | null;
-  formErrorMessage: string | null;
-  language: string | null;
-  translationStatus: "complete" | "draft" | "inReview" | null;
-  seo: {
-    noIndex: boolean | null;
-    ogImage: {
-      asset?: SanityImageAssetReference;
-      media?: unknown;
-      hotspot?: SanityImageHotspot;
-      crop?: SanityImageCrop;
-      _type: "image";
-    } | null;
-    title: string | null;
-    description: string | null;
-  } | null;
-  pageBuilder: Array<
-    | {
-        _key: string;
-        _type: "applicationGridSection";
-        heading: string | null;
-        description: string | null;
-        applicationAreas: Array<{
-          _id: string;
-          title: string | null;
-          slug: string | null;
-          summary: string | null;
-          coverImage: {
-            asset: SanityImageAssetReference | null;
-            alt: string | null;
-            hotspot: SanityImageHotspot | null;
-            crop: SanityImageCrop | null;
-          } | null;
-          icon: {
-            asset?: SanityImageAssetReference;
-            media?: unknown;
-            hotspot?: SanityImageHotspot;
-            crop?: SanityImageCrop;
-            _type: "image";
-          } | null;
-        }> | null;
-      }
-    | {
-        _key: string;
-        _type: "certificateSection";
-        heading: string | null;
-        description: string | null;
-        certificates: Array<{
-          _id: string;
-          name: string | null;
-          issuer: string | null;
-          certificateNumber: string | null;
-          logo: {
-            asset: SanityImageAssetReference | null;
-            alt: string | null;
-            hotspot: SanityImageHotspot | null;
-            crop: SanityImageCrop | null;
-          } | null;
-        }> | null;
-      }
-    | {
-        _key: string;
-        _type: "ctaSection";
-        heading: string | null;
-        description: string | null;
-        cta: {
-          label: string | null;
-          linkType: "external" | "internal" | null;
-          internalPath: string | null;
-          externalUrl: string | null;
-          variant: "ghost" | "primary" | "secondary" | null;
-        } | null;
-      }
-    | {
-        _key: string;
-        _type: "featureGridSection";
-        heading: string | null;
-        description: string | null;
-        features: Array<{
-          _key: string;
-          title: string | null;
-          description: string | null;
-          icon: {
-            asset?: SanityImageAssetReference;
-            media?: unknown;
-            hotspot?: SanityImageHotspot;
-            crop?: SanityImageCrop;
-            _type: "image";
-          } | null;
-        }> | null;
-      }
-    | {
-        _key: string;
-        _type: "heroSection";
-        eyebrow: string | null;
-        heading: string | null;
-        description: string | null;
-        primaryCta: {
-          label: string | null;
-          linkType: "external" | "internal" | null;
-          internalPath: string | null;
-          externalUrl: string | null;
-          variant: "ghost" | "primary" | "secondary" | null;
-        } | null;
-        secondaryCta: {
-          label: string | null;
-          linkType: "external" | "internal" | null;
-          internalPath: string | null;
-          externalUrl: string | null;
-          variant: "ghost" | "primary" | "secondary" | null;
-        } | null;
-        media: {
-          asset: SanityImageAssetReference | null;
-          alt: string | null;
-          hotspot: SanityImageHotspot | null;
-          crop: SanityImageCrop | null;
-        } | null;
-        trustItems: Array<{
-          _key: string;
-          label: string | null;
-        }> | null;
-      }
-    | {
-        _key: string;
-        _type: "imageTextSection";
-        heading: string | null;
-        body: PortableText | null;
-        image: {
-          asset: SanityImageAssetReference | null;
-          alt: string | null;
-          hotspot: SanityImageHotspot | null;
-          crop: SanityImageCrop | null;
-        } | null;
-        cta: {
-          label: string | null;
-          linkType: "external" | "internal" | null;
-          internalPath: string | null;
-          externalUrl: string | null;
-          variant: "ghost" | "primary" | "secondary" | null;
-        } | null;
-      }
-    | {
-        _key: string;
-        _type: "latestContentSection";
-        heading: string | null;
-        description: string | null;
-        source: "both" | "posts" | "videos" | null;
-      }
-    | {
-        _key: string;
-        _type: "productShowcaseSection";
-        heading: string | null;
-        description: string | null;
-        products: Array<{
-          _id: string;
-          title: string | null;
-          slug: string | null;
-          shortDescription: string | null;
-          cardImage: {
-            asset: SanityImageAssetReference | null;
-            hotspot: SanityImageHotspot | null;
-            crop: SanityImageCrop | null;
-            alt: string | null;
-          } | null;
-          primaryCategory: {
-            title: string | null;
-            slug: string | null;
-          } | null;
-        }> | null;
-      }
-    | {
-        _key: string;
-        _type: "statsSection";
-        heading: string | null;
-        stats: Array<{
-          _key: string;
-          value: string | null;
-          label: string | null;
-        }> | null;
-      }
-    | {
-        _key: string;
-        _type: "videoSection";
-        heading: string | null;
-        description: string | null;
-        videos: Array<{
-          _id: string;
-          title: string | null;
-          description: string | null;
-          provider: "cloudflare" | "mux" | "vimeo" | "youtube" | null;
-          externalUrl: string | null;
-          playbackId: string | null;
-          coverImage: {
-            asset: SanityImageAssetReference | null;
-            alt: string | null;
-            hotspot: SanityImageHotspot | null;
-            crop: SanityImageCrop | null;
-          } | null;
-        }> | null;
-      }
-  > | null;
 } | null;
 
 // Source: ../sanity/queries/pages.ts
@@ -2748,6 +2573,7 @@ import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     '\n  *[_type == "certificate"] | order(sortOrder asc) {\n    _id,\n    "name": name[language == $locale || _key == $locale][0].value,\n    issuer,\n    certificateNumber,\n    issuedAt,\n    expiresAt,\n    logo{\n  asset,\n  alt,\n  hotspot,\n  crop\n},\n    file{asset->{url, originalFilename}}\n  }\n': CERTIFICATES_QUERY_RESULT;
+    '\n  *[_id == "contactPage" && _type == "contactPage"][0]{\n    _id,\n    "eyebrow": eyebrow[language == $locale || _key == $locale][0].value,\n    "title": title[language == $locale || _key == $locale][0].value,\n    "intro": intro[language == $locale || _key == $locale][0].value,\n    "phonesSectionTitle": phonesSectionTitle[language == $locale || _key == $locale][0].value,\n    "emailsSectionTitle": emailsSectionTitle[language == $locale || _key == $locale][0].value,\n    "corporateSectionTitle": corporateSectionTitle[language == $locale || _key == $locale][0].value,\n    corporatePhone,\n    corporateEmail,\n    phones[]{\n      _key,\n      phone,\n      "label": label[language == $locale || _key == $locale][0].value\n    },\n    emails[]{\n      _key,\n      email,\n      "label": label[language == $locale || _key == $locale][0].value\n    },\n    locations[]{\n      _key,\n      locationId,\n      postalCode,\n      mapEmbedUrl,\n      mapsUrl,\n      "label": label[language == $locale || _key == $locale][0].value,\n      "addressLine": addressLine[language == $locale || _key == $locale][0].value,\n      "city": city[language == $locale || _key == $locale][0].value,\n      "mapTitle": mapTitle[language == $locale || _key == $locale][0].value\n    },\n    "formTitle": formTitle[language == $locale || _key == $locale][0].value,\n    "formDescription": formDescription[language == $locale || _key == $locale][0].value,\n    "openInMapsLabel": openInMapsLabel[language == $locale || _key == $locale][0].value,\n    "formSuccessMessage": formSuccessMessage[language == $locale || _key == $locale][0].value,\n    "formErrorMessage": formErrorMessage[language == $locale || _key == $locale][0].value,\n    \n  seo{\n    noIndex,\n    ogImage,\n    "title": coalesce(\n      title[language == $locale || _key == $locale][0].value,\n      title\n    ),\n    "description": coalesce(\n      description[language == $locale || _key == $locale][0].value,\n      description\n    )\n  }\n\n  }\n': CONTACT_PAGE_QUERY_RESULT;
     '\n  *[\n    _type == "post" &&\n    language == $locale &&\n    translationStatus == "complete" &&\n    defined(slug.current)\n  ] | order(publishedAt desc) {\n    \n  _id,\n  title,\n  "slug": slug.current,\n  excerpt,\n  publishedAt,\n  category,\n  author,\n  language,\n  coverImage{\n  asset,\n  alt,\n  hotspot,\n  crop\n}\n\n  }\n': POSTS_QUERY_RESULT;
     '\n  *[\n    _type == "post" &&\n    language == $locale &&\n    slug.current == $slug &&\n    translationStatus == "complete"\n  ][0]{\n    \n  _id,\n  title,\n  "slug": slug.current,\n  excerpt,\n  publishedAt,\n  category,\n  author,\n  language,\n  coverImage{\n  asset,\n  alt,\n  hotspot,\n  crop\n}\n,\n    body,\n    relatedProducts[]->{\n      \n  _id,\n  "title": title[language == $locale || _key == $locale][0].value,\n  "slug": slug.current,\n  "shortDescription": shortDescription[language == $locale || _key == $locale][0].value,\n  cardImage{\n    asset,\n    hotspot,\n    crop,\n    "alt": alt[language == $locale || _key == $locale][0].value\n  },\n  packshot{\n    asset,\n    hotspot,\n    crop,\n    "alt": alt[language == $locale || _key == $locale][0].value\n  },\n  "primaryCategory": coalesce(\n    primaryCategory->{_id, "title": title[language == $locale || _key == $locale][0].value, "slug": slug.current},\n    categories[0]->{_id, "title": title[language == $locale || _key == $locale][0].value, "slug": slug.current}\n  )\n\n    },\n    \n  seo{\n    noIndex,\n    ogImage,\n    "title": coalesce(\n      title[language == $locale || _key == $locale][0].value,\n      title\n    ),\n    "description": coalesce(\n      description[language == $locale || _key == $locale][0].value,\n      description\n    )\n  }\n,\n    \n  "_translations": *[_type == "translation.metadata" && references(^._id)][0].translations[].value->{\n    language,\n    "slug": slug.current,\n    translationStatus\n  }\n\n  }\n': POST_BY_SLUG_QUERY_RESULT;
     '\n  *[\n    _type == "post" &&\n    translationStatus == "complete" &&\n    defined(slug.current) &&\n    defined(language)\n  ]{\n    "slug": slug.current,\n    language\n  }\n': POST_SLUGS_QUERY_RESULT;
@@ -2759,7 +2585,6 @@ declare module "@sanity/client" {
     '\n  *[_type == "applicationArea" && slug.current == $slug][0]{\n    _id,\n    "title": title[language == $locale || _key == $locale][0].value,\n    "slug": slug.current,\n    "summary": summary[language == $locale || _key == $locale][0].value,\n    "body": body[language == $locale || _key == $locale][0].value,\n    coverImage{\n  asset,\n  alt,\n  hotspot,\n  crop\n},\n    icon,\n    benefits[]{\n      _key,\n      "title": title[language == $locale || _key == $locale][0].value,\n      "description": description[language == $locale || _key == $locale][0].value,\n      icon\n    },\n    products[]->{\n      _id,\n      "title": title[language == $locale || _key == $locale][0].value,\n      "slug": slug.current,\n      sku,\n      "shortDescription": shortDescription[language == $locale || _key == $locale][0].value,\n      "badge": badge[language == $locale || _key == $locale][0].value,\n      featured,\n      cardImage{\n        asset,\n        hotspot,\n        crop,\n        "alt": alt[language == $locale || _key == $locale][0].value\n      },\n      packshot{\n        asset,\n        hotspot,\n        crop,\n        "alt": alt[language == $locale || _key == $locale][0].value\n      },\n      "primaryCategory": coalesce(\n        primaryCategory->{_id, "title": title[language == $locale || _key == $locale][0].value, "slug": slug.current},\n        categories[0]->{_id, "title": title[language == $locale || _key == $locale][0].value, "slug": slug.current}\n      )\n    },\n    cta{\n      variant,\n      "label": label[language == $locale || _key == $locale][0].value,\n      link{\n        linkType,\n        internalPath,\n        externalUrl,\n        openInNewTab,\n        reference->{_type, "slug": slug.current, language}\n      }\n    },\n    \n  seo{\n    noIndex,\n    ogImage,\n    "title": coalesce(\n      title[language == $locale || _key == $locale][0].value,\n      title\n    ),\n    "description": coalesce(\n      description[language == $locale || _key == $locale][0].value,\n      description\n    )\n  }\n\n  }\n': APPLICATION_AREA_BY_SLUG_QUERY_RESULT;
     '\n  *[_type == "applicationArea" && defined(slug.current)]{"slug": slug.current}\n': APPLICATION_AREA_SLUGS_QUERY_RESULT;
     '\n  *[_type == "homePage" && language == $locale && translationStatus == "complete"][0]{\n    _id,\n    title,\n    language,\n    translationStatus,\n    \n  seo{\n    noIndex,\n    ogImage,\n    "title": coalesce(\n      title[language == $locale || _key == $locale][0].value,\n      title\n    ),\n    "description": coalesce(\n      description[language == $locale || _key == $locale][0].value,\n      description\n    )\n  }\n,\n    hero{\n  eyebrow,\n  headingLead,\n  headingAccent,\n  headingTail,\n  description,\n  desktopImage{\n  asset,\n  alt,\n  hotspot,\n  crop\n},\n  mobileImage{\n  asset,\n  alt,\n  hotspot,\n  crop\n},\n  primaryCta{\n  label,\n  linkType,\n  internalPath,\n  externalUrl,\n  variant\n},\n  secondaryCta{\n  label,\n  linkType,\n  internalPath,\n  externalUrl,\n  variant\n},\n  trustItems[]{_key, title, description}\n},\n    productsSection{\n      eyebrow,\n      title,\n      description,\n      viewAllLabel,\n      detailLabel,\n      products[]->{\n  _id,\n  "title": title[language == $locale || _key == $locale][0].value,\n  "slug": slug.current,\n  "shortDescription": shortDescription[language == $locale || _key == $locale][0].value,\n  "badge": badge[language == $locale || _key == $locale][0].value,\n  featured,\n  cardImage{\n    asset,\n    hotspot,\n    crop,\n    "alt": alt[language == $locale || _key == $locale][0].value\n  },\n  packshot{\n    asset,\n    hotspot,\n    crop,\n    "alt": alt[language == $locale || _key == $locale][0].value\n  },\n  "primaryCategory": coalesce(\n    primaryCategory->{_id, "title": title[language == $locale || _key == $locale][0].value, "slug": slug.current},\n    categories[0]->{_id, "title": title[language == $locale || _key == $locale][0].value, "slug": slug.current}\n  )\n}\n    },\n    strengthsSection{\n      eyebrow,\n      title,\n      items[]{_key, title, description}\n    },\n    industriesSection{\n      eyebrow,\n      title,\n      description,\n      detailLabel,\n      viewAllCta{\n  label,\n  linkType,\n  internalPath,\n  externalUrl,\n  variant\n},\n      areas[]{\n        _key,\n        title,\n        summary,\n        "area": area->{\n  _id,\n  "title": title[language == $locale || _key == $locale][0].value,\n  "slug": slug.current,\n  "summary": summary[language == $locale || _key == $locale][0].value,\n  coverImage{\n  asset,\n  alt,\n  hotspot,\n  crop\n},\n  icon{asset}\n}\n      }\n    },\n    privateLabelSection{\n      eyebrow,\n      title,\n      description,\n      cta{\n  label,\n  linkType,\n  internalPath,\n  externalUrl,\n  variant\n},\n      image{\n  asset,\n  alt,\n  hotspot,\n  crop\n},\n      features[]{_key, title, description},\n      processTitle,\n      process[]{_key, title, description}\n    },\n    aboutSection{\n      eyebrow,\n      title,\n      description,\n      cta{\n  label,\n  linkType,\n  internalPath,\n  externalUrl,\n  variant\n},\n      image{\n  asset,\n  alt,\n  hotspot,\n  crop\n},\n      videoPlayLabel,\n      streamUrl,\n      streamVideoId,\n      stats[]{_key, value, label, icon{\n  asset,\n  alt,\n  hotspot,\n  crop\n}}\n    },\n    qualitySection{\n      eyebrow,\n      title,\n      link{\n  label,\n  linkType,\n  internalPath,\n  externalUrl,\n  variant\n},\n      items[]{_key, label, icon{\n  asset,\n  alt,\n  hotspot,\n  crop\n}},\n      badges[]{_key, label, image{\n  asset,\n  alt,\n  hotspot,\n  crop\n}}\n    },\n    ctaSection{\n      eyebrow,\n      title,\n      description,\n      primaryCta{\n  label,\n  linkType,\n  internalPath,\n  externalUrl,\n  variant\n},\n      secondaryCta{\n  label,\n  linkType,\n  internalPath,\n  externalUrl,\n  variant\n}\n    }\n  }\n': HOME_PAGE_QUERY_RESULT;
-    '\n  *[_type == "contactPage" && language == $locale && translationStatus == "complete"][0]{\n    _id,\n    title,\n    intro,\n    formSuccessMessage,\n    formErrorMessage,\n    language,\n    translationStatus,\n    \n  seo{\n    noIndex,\n    ogImage,\n    "title": coalesce(\n      title[language == $locale || _key == $locale][0].value,\n      title\n    ),\n    "description": coalesce(\n      description[language == $locale || _key == $locale][0].value,\n      description\n    )\n  }\n,\n    \n  pageBuilder[]{\n    _key,\n    _type,\n    ...,\n    _type == "heroSliderSection" => {\n      accessibilityLabel,\n      rotationMode,\n      interval,\n      slides[]{\n        _key,\n        eyebrow,\n        heading,\n        description,\n        desktopImage{\n  asset,\n  alt,\n  hotspot,\n  crop\n},\n        mobileImage{\n  asset,\n  alt,\n  hotspot,\n  crop\n},\n        primaryCta{\n  label,\n  linkType,\n  internalPath,\n  externalUrl,\n  variant\n},\n        secondaryCta{\n  label,\n  linkType,\n  internalPath,\n  externalUrl,\n  variant\n}\n      }\n    },\n    _type == "heroSection" => {\n      eyebrow,\n      heading,\n      description,\n      primaryCta{\n  label,\n  linkType,\n  internalPath,\n  externalUrl,\n  variant\n},\n      secondaryCta{\n  label,\n  linkType,\n  internalPath,\n  externalUrl,\n  variant\n},\n      media{\n  asset,\n  alt,\n  hotspot,\n  crop\n},\n      trustItems[]{_key, label}\n    },\n    _type == "productShowcaseSection" => {\n      heading,\n      description,\n      products[]->{\n        _id,\n        "title": title[language == $locale || _key == $locale][0].value,\n        "slug": slug.current,\n        "shortDescription": shortDescription[language == $locale || _key == $locale][0].value,\n        cardImage{\n          asset,\n          hotspot,\n          crop,\n          "alt": alt[language == $locale || _key == $locale][0].value\n        },\n        primaryCategory->{\n          "title": title[language == $locale || _key == $locale][0].value,\n          "slug": slug.current\n        }\n      }\n    },\n    _type == "featureGridSection" => {\n      heading,\n      description,\n      features[]{_key, title, description, icon}\n    },\n    _type == "applicationGridSection" => {\n      heading,\n      description,\n      applicationAreas[]->{\n        _id,\n        "title": title[language == $locale || _key == $locale][0].value,\n        "slug": slug.current,\n        "summary": summary[language == $locale || _key == $locale][0].value,\n        coverImage{\n  asset,\n  alt,\n  hotspot,\n  crop\n},\n        icon\n      }\n    },\n    _type == "imageTextSection" => {\n      heading,\n      body,\n      image{\n  asset,\n  alt,\n  hotspot,\n  crop\n},\n      cta{\n  label,\n  linkType,\n  internalPath,\n  externalUrl,\n  variant\n}\n    },\n    _type == "statsSection" => {\n      heading,\n      stats[]{_key, value, label}\n    },\n    _type == "certificateSection" => {\n      heading,\n      description,\n      certificates[]->{\n        _id,\n        "name": name[language == $locale || _key == $locale][0].value,\n        issuer,\n        certificateNumber,\n        logo{\n  asset,\n  alt,\n  hotspot,\n  crop\n}\n      }\n    },\n    _type == "videoSection" => {\n      heading,\n      description,\n      videos[]->{\n        _id,\n        "title": title[language == $locale || _key == $locale][0].value,\n        "description": description[language == $locale || _key == $locale][0].value,\n        provider,\n        externalUrl,\n        playbackId,\n        coverImage{\n  asset,\n  alt,\n  hotspot,\n  crop\n}\n      }\n    },\n    _type == "latestContentSection" => {\n      heading,\n      description,\n      source\n    },\n    _type == "ctaSection" => {\n      heading,\n      description,\n      cta{\n  label,\n  linkType,\n  internalPath,\n  externalUrl,\n  variant\n}\n    }\n  }\n\n  }\n': CONTACT_PAGE_QUERY_RESULT;
     '\n  *[_type == "page" && language == $locale && slug.current == $slug && translationStatus == "complete"][0]{\n    _id,\n    title,\n    "slug": slug.current,\n    language,\n    translationStatus,\n    \n  seo{\n    noIndex,\n    ogImage,\n    "title": coalesce(\n      title[language == $locale || _key == $locale][0].value,\n      title\n    ),\n    "description": coalesce(\n      description[language == $locale || _key == $locale][0].value,\n      description\n    )\n  }\n,\n    \n  pageBuilder[]{\n    _key,\n    _type,\n    ...,\n    _type == "heroSliderSection" => {\n      accessibilityLabel,\n      rotationMode,\n      interval,\n      slides[]{\n        _key,\n        eyebrow,\n        heading,\n        description,\n        desktopImage{\n  asset,\n  alt,\n  hotspot,\n  crop\n},\n        mobileImage{\n  asset,\n  alt,\n  hotspot,\n  crop\n},\n        primaryCta{\n  label,\n  linkType,\n  internalPath,\n  externalUrl,\n  variant\n},\n        secondaryCta{\n  label,\n  linkType,\n  internalPath,\n  externalUrl,\n  variant\n}\n      }\n    },\n    _type == "heroSection" => {\n      eyebrow,\n      heading,\n      description,\n      primaryCta{\n  label,\n  linkType,\n  internalPath,\n  externalUrl,\n  variant\n},\n      secondaryCta{\n  label,\n  linkType,\n  internalPath,\n  externalUrl,\n  variant\n},\n      media{\n  asset,\n  alt,\n  hotspot,\n  crop\n},\n      trustItems[]{_key, label}\n    },\n    _type == "productShowcaseSection" => {\n      heading,\n      description,\n      products[]->{\n        _id,\n        "title": title[language == $locale || _key == $locale][0].value,\n        "slug": slug.current,\n        "shortDescription": shortDescription[language == $locale || _key == $locale][0].value,\n        cardImage{\n          asset,\n          hotspot,\n          crop,\n          "alt": alt[language == $locale || _key == $locale][0].value\n        },\n        primaryCategory->{\n          "title": title[language == $locale || _key == $locale][0].value,\n          "slug": slug.current\n        }\n      }\n    },\n    _type == "featureGridSection" => {\n      heading,\n      description,\n      features[]{_key, title, description, icon}\n    },\n    _type == "applicationGridSection" => {\n      heading,\n      description,\n      applicationAreas[]->{\n        _id,\n        "title": title[language == $locale || _key == $locale][0].value,\n        "slug": slug.current,\n        "summary": summary[language == $locale || _key == $locale][0].value,\n        coverImage{\n  asset,\n  alt,\n  hotspot,\n  crop\n},\n        icon\n      }\n    },\n    _type == "imageTextSection" => {\n      heading,\n      body,\n      image{\n  asset,\n  alt,\n  hotspot,\n  crop\n},\n      cta{\n  label,\n  linkType,\n  internalPath,\n  externalUrl,\n  variant\n}\n    },\n    _type == "statsSection" => {\n      heading,\n      stats[]{_key, value, label}\n    },\n    _type == "certificateSection" => {\n      heading,\n      description,\n      certificates[]->{\n        _id,\n        "name": name[language == $locale || _key == $locale][0].value,\n        issuer,\n        certificateNumber,\n        logo{\n  asset,\n  alt,\n  hotspot,\n  crop\n}\n      }\n    },\n    _type == "videoSection" => {\n      heading,\n      description,\n      videos[]->{\n        _id,\n        "title": title[language == $locale || _key == $locale][0].value,\n        "description": description[language == $locale || _key == $locale][0].value,\n        provider,\n        externalUrl,\n        playbackId,\n        coverImage{\n  asset,\n  alt,\n  hotspot,\n  crop\n}\n      }\n    },\n    _type == "latestContentSection" => {\n      heading,\n      description,\n      source\n    },\n    _type == "ctaSection" => {\n      heading,\n      description,\n      cta{\n  label,\n  linkType,\n  internalPath,\n  externalUrl,\n  variant\n}\n    }\n  }\n\n  }\n': PAGE_BY_SLUG_QUERY_RESULT;
     '\n  *[_type == "productCategory" && defined(slug.current)] | order(sortOrder asc) {\n    _id,\n    "title": title[language == $locale || _key == $locale][0].value,\n    "slug": slug.current,\n    "summary": summary[language == $locale || _key == $locale][0].value,\n    image{\n  asset,\n  alt,\n  hotspot,\n  crop\n},\n    sortOrder\n  }\n': PRODUCT_CATEGORIES_QUERY_RESULT;
     '\n  *[_type == "productCategory" && slug.current == $slug][0]{\n    _id,\n    "title": title[language == $locale || _key == $locale][0].value,\n    "slug": slug.current,\n    "summary": summary[language == $locale || _key == $locale][0].value,\n    "body": body[language == $locale || _key == $locale][0].value,\n    image{\n  asset,\n  alt,\n  hotspot,\n  crop\n},\n    \n  seo{\n    noIndex,\n    ogImage,\n    "title": coalesce(\n      title[language == $locale || _key == $locale][0].value,\n      title\n    ),\n    "description": coalesce(\n      description[language == $locale || _key == $locale][0].value,\n      description\n    )\n  }\n\n  }\n': PRODUCT_CATEGORY_BY_SLUG_QUERY_RESULT;

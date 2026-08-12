@@ -12,7 +12,6 @@ import {structure} from './structure'
 
 const DOCUMENT_I18N_TYPES = [
   'homePage',
-  'contactPage',
   'page',
   'post',
 ]

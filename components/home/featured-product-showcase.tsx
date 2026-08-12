@@ -157,7 +157,7 @@ export function FeaturedProductShowcase({locale, product}: FeaturedProductShowca
   const copy = SHOWCASE_COPY[locale]
   const image = product.packshot?.asset ? product.packshot : product.cardImage
   const packaging = (product.packagingVariants || [])
-    .map((variant) => variant.label || variant.volume)
+    .map((variant) => variant.volume || variant.label)
     .filter((label): label is string => Boolean(label))
     .slice(0, 2)
   const seenTitles = new Set<string>()

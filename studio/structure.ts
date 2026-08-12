@@ -26,6 +26,19 @@ const SINGLETON_TYPES = new Set([
   'productOrder',
 ])
 
+function createSingleton(
+  S: StructureBuilder,
+  typeName: string,
+  title: string,
+  icon: ComponentType,
+  documentId = typeName,
+) {
+  return S.listItem()
+    .title(title)
+    .icon(icon)
+    .child(S.document().schemaType(typeName).documentId(documentId).title(title))
+}
+
 /** Document types with explicit sidebar list items — hide from auto-generated list. */
 const CURATED_LIST_TYPES = [
   'product',
@@ -87,16 +100,8 @@ export const structure: StructureResolver = (S) =>
             .title('Site settings')
         ),
       createLocalizedSingleton(S, 'homePage', 'Home page', HomeIcon),
-      createLocalizedSingleton(S, 'contactPage', 'Contact page', EnvelopeIcon),
-      S.listItem()
-        .title('Export page')
-        .icon(EarthGlobeIcon)
-        .child(
-          S.document()
-            .schemaType('exportPage')
-            .documentId('exportPage')
-            .title('Export page'),
-        ),
+      createSingleton(S, 'contactPage', 'Contact page', EnvelopeIcon),
+      createSingleton(S, 'exportPage', 'Export page', EarthGlobeIcon),
       S.divider(),
       S.listItem()
         .title('Products')

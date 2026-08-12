@@ -407,8 +407,8 @@ async function main() {
     videoIssues.push(entry)
   }
 
-  const contactPages = await client.fetch(
-    `*[_type=="contactPage"]{_id, language, translationStatus, title, intro}`,
+  const contactPage = await client.fetch(
+    `*[_id=="contactPage"][0]{eyebrow, title, intro, phones, emails, locations, formTitle}`,
   )
   const exportPage = await client.fetch(`*[_id=="exportPage"][0]{eyebrow, title, intro, activities, contacts}`)
 
@@ -419,7 +419,21 @@ async function main() {
   report.areas = areaIssues
   report.categories = categoryIssues
   report.videos = videoIssues
-  report.contactPages = contactPages
+  report.contactPage = {
+    title: {
+      tr: loc(contactPage?.title, 'tr'),
+      en: loc(contactPage?.title, 'en'),
+      ar: loc(contactPage?.title, 'ar'),
+    },
+    intro: {
+      tr: loc(contactPage?.intro, 'tr'),
+      en: loc(contactPage?.intro, 'en'),
+      ar: loc(contactPage?.intro, 'ar'),
+    },
+    phones: contactPage?.phones?.length || 0,
+    emails: contactPage?.emails?.length || 0,
+    locations: contactPage?.locations?.length || 0,
+  }
   report.exportPage = {
     title: {
       tr: loc(exportPage?.title, 'tr'),
@@ -448,7 +462,7 @@ async function main() {
   console.log('areas', JSON.stringify(areaIssues, null, 2))
   console.log('categories', JSON.stringify(categoryIssues, null, 2))
   console.log('videos', JSON.stringify(videoIssues, null, 2))
-  console.log('contact', JSON.stringify(contactPages, null, 2))
+  console.log('contact', JSON.stringify(report.contactPage, null, 2))
   console.log('export', JSON.stringify(report.exportPage, null, 2))
   console.log(
     'product issue counts',
