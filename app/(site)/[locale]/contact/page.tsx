@@ -335,10 +335,10 @@ export default async function ContactPage({params}: PageProps) {
             </div>
           </aside>
 
-          <div className="border-t border-border py-8 sm:border-t-0 sm:py-12 lg:py-16 lg:ps-12">
-            <h2 className="font-display text-3xl text-foreground">{formTitle}</h2>
+          <div className="border-t border-border py-8 sm:py-12 lg:border-t-0 lg:py-16 lg:ps-12">
+            <h2 className="font-display text-2xl text-foreground sm:text-3xl">{formTitle}</h2>
             <p className="mt-3 max-w-xl text-sm leading-relaxed text-muted">{formDescription}</p>
-            <div className="mt-8 border border-border bg-surface p-5 sm:p-7">
+            <div className="mt-8 border border-border bg-surface p-4 sm:p-7">
               <ContactForm labels={dictionary.forms} locale={locale} />
             </div>
           </div>
@@ -358,6 +358,7 @@ export default async function ContactPage({params}: PageProps) {
                 label={location.label}
                 mapsUrl={location.mapsUrl}
                 openInMapsLabel={openInMapsLabel}
+                enableMapLabel={dictionary.contactPage.enableMap}
               />
             </div>
           ))}

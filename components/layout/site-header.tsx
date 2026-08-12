@@ -223,29 +223,32 @@ export function SiteHeader({
         </nav>
 
         <div className="flex shrink-0 items-center gap-1.5 sm:gap-3">
-          <LanguageSwitcher locale={locale} label={dictionary.a11y.languageSwitcher} />
-          {catalogHref ? (
-            <a
-              href={catalogHref}
-              download
-              aria-label={dictionary.nav.downloadCatalog}
-              className={buttonClassName(
-                'secondary',
-                'hidden min-h-10 gap-2 px-3 py-2 text-xs uppercase no-underline xl:inline-flex 2xl:px-4',
-              )}
+          <div className="hidden items-center gap-3 xl:flex">
+            <LanguageSwitcher locale={locale} label={dictionary.a11y.languageSwitcher} />
+            {catalogHref ? (
+              <a
+                href={catalogHref}
+                download
+                aria-label={dictionary.nav.downloadCatalog}
+                className={buttonClassName(
+                  'secondary',
+                  'min-h-10 gap-2 px-3 py-2 text-xs uppercase no-underline 2xl:px-4',
+                )}
+              >
+                <DownloadIcon />
+                <span>{dictionary.nav.downloadCatalog}</span>
+              </a>
+            ) : null}
+            <ButtonLink
+              href={quoteHref}
+              className="min-h-10 px-3 py-2 text-xs uppercase no-underline 2xl:px-5"
             >
-              <DownloadIcon />
-              <span>{dictionary.nav.downloadCatalog}</span>
-            </a>
-          ) : null}
-          <ButtonLink
-            href={quoteHref}
-            className="hidden min-h-10 px-3 py-2 text-xs uppercase no-underline xl:inline-flex 2xl:px-5"
-          >
-            {dictionary.nav.requestQuote}
-            <span aria-hidden>→</span>
-          </ButtonLink>
+              {dictionary.nav.requestQuote}
+              <span aria-hidden>→</span>
+            </ButtonLink>
+          </div>
           <MobileNavigation
+            locale={locale}
             localeHome={homeHref}
             brand={dictionary.meta.siteName}
             items={[...mobileNav, dealerItem]}
@@ -257,6 +260,7 @@ export function SiteHeader({
             phoneLabel={phoneValue}
             emailHref={emailHref}
             emailLabel={emailValue}
+            languageLabel={dictionary.a11y.languageSwitcher}
             openLabel={dictionary.a11y.openMenu}
             closeLabel={dictionary.a11y.closeMenu}
             navLabel={dictionary.a11y.mainNavigation}

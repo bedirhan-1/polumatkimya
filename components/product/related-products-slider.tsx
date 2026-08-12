@@ -68,19 +68,25 @@ export function RelatedProductsSlider(props: RelatedProductsSliderProps) {
           </div>
         </div>
 
-        <ul
-          ref={scrollerRef}
-          className="flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-3 [scrollbar-width:thin] sm:gap-5 [-webkit-overflow-scrolling:touch]"
-        >
-          {products.map((product) => (
-            <li
-              key={product._id}
-              className="w-[min(82vw,260px)] shrink-0 snap-start sm:w-[300px]"
-            >
-              <ProductCard locale={locale} product={product} detailLabel={detailLabel} />
-            </li>
-          ))}
-        </ul>
+        <div className="relative">
+          <ul
+            ref={scrollerRef}
+            className="flex snap-x snap-mandatory gap-3 overflow-x-auto overscroll-x-contain pb-3 [scrollbar-width:thin] sm:gap-5 [-webkit-overflow-scrolling:touch]"
+          >
+            {products.map((product) => (
+              <li
+                key={product._id}
+                className="w-[min(78vw,240px)] shrink-0 snap-start sm:w-[280px] md:w-[300px]"
+              >
+                <ProductCard locale={locale} product={product} detailLabel={detailLabel} />
+              </li>
+            ))}
+          </ul>
+          <div
+            className="pointer-events-none absolute inset-y-0 end-0 w-8 bg-[linear-gradient(to_inline_start,var(--background),transparent)] sm:w-10"
+            aria-hidden
+          />
+        </div>
       </div>
     </section>
   )

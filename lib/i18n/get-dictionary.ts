@@ -115,6 +115,7 @@ export type Dictionary = {
     map: string
     mapIstanbul: string
     openInMaps: string
+    enableMap: string
     social: string
   }
   forms: {

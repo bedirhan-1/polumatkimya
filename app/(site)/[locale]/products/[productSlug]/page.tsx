@@ -249,18 +249,18 @@ export default async function ProductDetailPage({params}: PageProps) {
                 embedded
               />
 
-              <div className="flex flex-wrap gap-3 border-t border-border pt-6">
+              <div className="flex flex-col gap-3 border-t border-border pt-6 sm:flex-row sm:flex-wrap">
                 {ctaHref && product.productCta?.label ? (
-                  <ButtonLink href={ctaHref} className="min-w-44">
+                  <ButtonLink href={ctaHref} className="min-w-0 sm:min-w-44">
                     {product.productCta.label}
                   </ButtonLink>
                 ) : (
-                  <ButtonLink href={quoteHref} className="min-w-44">
+                  <ButtonLink href={quoteHref} className="min-w-0 sm:min-w-44">
                     {dictionary.nav.requestQuote}
                   </ButtonLink>
                 )}
                 {whatsappHref ? (
-                  <ButtonLink href={whatsappHref} variant="secondary" target="_blank" rel="noopener noreferrer">
+                  <ButtonLink href={whatsappHref} variant="secondary" target="_blank" rel="noopener noreferrer" className="min-w-0">
                     {dictionary.products.whatsapp}
                   </ButtonLink>
                 ) : null}

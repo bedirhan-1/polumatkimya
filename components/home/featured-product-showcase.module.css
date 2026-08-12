@@ -507,8 +507,8 @@
   .title {
     margin-top: 0.75rem;
     max-width: none;
-    font-size: clamp(2.1rem, 10.5vw, 3.15rem);
-    line-height: 1.02;
+    font-size: clamp(1.85rem, 9vw, 3rem);
+    line-height: 1.08;
   }
 
   .kicker {

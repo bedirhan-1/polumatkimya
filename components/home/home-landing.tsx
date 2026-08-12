@@ -272,7 +272,7 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
             ) : null}
             <h1
               id="home-hero-title"
-              className="mt-3 max-w-[14ch] font-[family-name:var(--font-display)] text-[clamp(2.2rem,9.5vw,4.65rem)] leading-[1.05] font-bold tracking-[-0.015em] text-[#f8f8f5] uppercase sm:max-w-[11ch] sm:leading-[0.96] lg:leading-[0.92]"
+              className="mt-3 max-w-[16ch] font-[family-name:var(--font-display)] text-[clamp(2rem,8.5vw,4.65rem)] leading-[1.12] font-bold tracking-[-0.015em] text-[#f8f8f5] uppercase sm:max-w-[12ch] sm:leading-[1.05] lg:max-w-[11ch] lg:leading-[0.95]"
             >
               <span className="block">{heroLead}</span>
               <span className="mt-1 block text-accent drop-shadow-[0_0_32px_rgba(227,28,35,0.2)]">
@@ -309,7 +309,11 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
             <div className="relative mt-8 grid grid-cols-2 overflow-hidden border border-white/10 bg-[#08090b]/85 shadow-2xl backdrop-blur-xl lg:absolute lg:inset-x-auto lg:inset-inline-start-8 lg:bottom-4 lg:mt-0 lg:w-[calc(100%_-_4rem)] lg:max-w-[50rem] lg:grid-cols-4 lg:border-white/10 lg:bg-black/20 lg:shadow-none lg:backdrop-blur-sm">
               {trustItems.map((item, index) => (
                 <div
-                  className="grid min-h-[4.75rem] grid-cols-[auto_1fr] items-center gap-2.5 px-3 py-3 sm:min-h-20 sm:gap-3 sm:px-4 sm:py-4 lg:min-h-16 lg:px-3 lg:py-2"
+                  className={`grid min-h-[4.75rem] grid-cols-[auto_1fr] items-center gap-2.5 px-3 py-3 sm:min-h-20 sm:gap-3 sm:px-4 sm:py-4 lg:min-h-16 lg:px-3 lg:py-2 ${
+                    index % 2 === 1 ? 'border-s border-white/10' : ''
+                  } ${index > 1 ? 'border-t border-white/10 lg:border-t-0' : ''} ${
+                    index > 0 ? 'lg:border-s lg:border-white/10' : ''
+                  }`}
                   key={item._key || item.title || index}
                 >
                   <span className="flex size-9 shrink-0 rotate-45 items-center justify-center border border-accent/45 bg-accent/5 text-accent sm:size-10 lg:size-9 [&>svg]:size-4 [&>svg]:-rotate-45 sm:[&>svg]:size-5 lg:[&>svg]:size-4">

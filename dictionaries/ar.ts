@@ -128,6 +128,7 @@ const ar: Dictionary = {
     map: 'خريطة موقع المصنع',
     mapIstanbul: 'خريطة مكتب إسطنبول',
     openInMaps: 'افتح في خرائط Google',
+    enableMap: 'المس لاستخدام الخريطة',
     social: 'وسائل التواصل',
   },
   forms: {

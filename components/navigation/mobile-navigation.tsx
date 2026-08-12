@@ -4,9 +4,12 @@ import Link from 'next/link'
 import {useEffect, useId, useRef, useState} from 'react'
 
 import {PolumatLogo} from '@/components/brand/polumat-logo'
+import {LanguageSwitcher} from '@/components/navigation/language-switcher'
+import type {Locale} from '@/lib/i18n/locales'
 import type {NavItem} from '@/lib/navigation'
 
 type MobileNavigationProps = {
+  locale: Locale
   localeHome: string
   brand: string
   items: NavItem[]
@@ -18,6 +21,7 @@ type MobileNavigationProps = {
   phoneLabel: string
   emailHref: string
   emailLabel: string
+  languageLabel: string
   openLabel: string
   closeLabel: string
   navLabel: string
@@ -62,6 +66,7 @@ function MobileLink({
 }
 
 export function MobileNavigation({
+  locale,
   localeHome,
   brand,
   items,
@@ -73,6 +78,7 @@ export function MobileNavigation({
   phoneLabel,
   emailHref,
   emailLabel,
+  languageLabel,
   openLabel,
   closeLabel,
   navLabel,
@@ -243,6 +249,9 @@ export function MobileNavigation({
               })}
 
               <div className="mt-4 flex flex-col gap-2 border-t border-border pt-4 text-sm">
+                <div className="-ms-1.5">
+                  <LanguageSwitcher locale={locale} label={languageLabel} />
+                </div>
                 <a
                   href={phoneHref}
                   className="inline-flex min-h-11 items-center text-muted no-underline hover:text-foreground"

@@ -279,10 +279,10 @@
   height: 2.5rem;
 }
 
-.benefit p {
+  .benefit p {
   margin-top: 0.65rem;
   color: rgba(242, 242, 240, 0.46);
-  font-size: 0.76rem;
+  font-size: 0.8rem;
   line-height: 1.45;
 }
 
@@ -1001,8 +1001,8 @@
   }
 
   .statsGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.75rem 0.55rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem 0.75rem;
   }
 
   .qualityRow {
@@ -1022,8 +1022,8 @@
   }
 
   .qualityGrid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.75rem 0.55rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem 0.75rem;
   }
 
   .qualityBadges {
@@ -1102,16 +1102,16 @@
   }
 
   .productTitle {
-    font-size: 1rem;
+    font-size: 1.05rem;
   }
 
   .productDescription {
-    font-size: 0.8rem;
+    font-size: 0.8125rem;
     -webkit-line-clamp: 3;
   }
 
   .productAction {
-    font-size: 0.72rem;
+    font-size: 0.75rem;
   }
 
   .benefitsGrid {

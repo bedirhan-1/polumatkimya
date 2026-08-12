@@ -63,19 +63,19 @@ export function ProductSpecifications({
               </p>
             ) : null}
 
-            {/* Mobile / narrow: stacked key-value rows */}
-            <div className={`w-full max-w-full overflow-hidden border border-border ${useHorizontal ? 'md:hidden' : ''}`}>
-              <table className="min-w-full text-sm">
+            {/* Mobile / tablet column: stacked key-value rows */}
+            <div className={`w-full max-w-full overflow-hidden border border-border ${useHorizontal ? (embedded ? 'lg:hidden' : 'md:hidden') : ''}`}>
+              <table className="min-w-full table-fixed text-sm">
                 <tbody>
                   {items.map((item) => (
                     <tr key={item._key} className="border-b border-border last:border-b-0">
                       <th
                         scope="row"
-                        className="w-[42%] bg-surface-elevated px-3 py-3 text-start text-[0.75rem] font-medium text-foreground sm:px-4 sm:text-sm"
+                        className="w-[42%] bg-surface-elevated px-3 py-3 text-start text-[0.75rem] font-medium break-words text-foreground sm:px-4 sm:text-sm"
                       >
                         {item.label}
                       </th>
-                      <td className="px-3 py-3 text-muted sm:px-4" dir="auto">
+                      <td className="min-w-0 px-3 py-3 break-words text-muted sm:px-4" dir="auto">
                         <SpecValue value={item.value} unit={item.unit} note={item.note} />
                       </td>
                     </tr>
@@ -84,9 +84,9 @@ export function ProductSpecifications({
               </table>
             </div>
 
-            {/* md+: horizontal technical table */}
+            {/* md+/lg+: horizontal technical table */}
             {useHorizontal ? (
-              <div className="hidden w-full max-w-full overflow-x-auto overscroll-x-contain border border-border bg-surface md:block [scrollbar-gutter:stable] [-webkit-overflow-scrolling:touch]">
+              <div className={`hidden w-full max-w-full overflow-x-auto overscroll-x-contain border border-border bg-surface [scrollbar-gutter:stable] [-webkit-overflow-scrolling:touch] ${embedded ? 'lg:block' : 'md:block'}`}>
                 <table
                   className={`w-full table-auto text-sm ${
                     items.length > 4 ? 'min-w-[40rem] lg:min-w-[52rem]' : 'min-w-[28rem] lg:min-w-[32rem]'

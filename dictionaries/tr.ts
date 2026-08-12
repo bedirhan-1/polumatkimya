@@ -132,6 +132,7 @@ const tr: Dictionary = {
     map: 'Fabrika konumu haritası',
     mapIstanbul: 'İstanbul ofisi haritası',
     openInMaps: 'Google Maps’te aç',
+    enableMap: 'Haritayı kullanmak için dokun',
     social: 'Sosyal medya',
   },
   forms: {

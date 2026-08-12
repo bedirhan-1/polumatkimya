@@ -131,6 +131,7 @@ const en: Dictionary = {
     map: 'Factory location map',
     mapIstanbul: 'Istanbul office map',
     openInMaps: 'Open in Google Maps',
+    enableMap: 'Tap to use the map',
     social: 'Social media',
   },
   forms: {
