@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import {SocialLinks, type SocialLinkItem} from '@/components/layout/social-links'
 import {PolumatLogo} from '@/components/brand/polumat-logo'
 import type {Dictionary} from '@/lib/i18n/get-dictionary'
 import type {Locale} from '@/lib/i18n/locales'
@@ -23,6 +24,8 @@ type SiteFooterProps = {
   phone?: string | null
   email?: string | null
   legalText?: string | null
+  metaItems?: Array<{_key?: string; label?: string | null}> | null
+  socialLinks?: SocialLinkItem[] | null
 }
 
 export function SiteFooter({
@@ -33,6 +36,8 @@ export function SiteFooter({
   phone,
   email,
   legalText,
+  metaItems,
+  socialLinks,
 }: SiteFooterProps) {
   const resolvedColumns = (columns?.length ? columns : getDefaultFooterColumns(locale, dictionary)).map(
     (column) => ({
@@ -47,6 +52,15 @@ export function SiteFooter({
     ? `tel:${phoneValue.replace(/[^\d+]/g, '')}`
     : DEFAULT_CONTACT.phoneHref
   const emailHref = `mailto:${emailValue}`
+  const resolvedMetaItems = (metaItems || [])
+    .map((item) => ({
+      key: item._key || item.label || '',
+      label: item.label?.trim() || '',
+    }))
+    .filter((item) => item.label)
+  const displayMetaItems = resolvedMetaItems.length
+    ? resolvedMetaItems
+    : [{key: 'default-location', label: 'Çaycuma · Zonguldak'}]
 
   return (
     <footer className="mt-auto border-t border-border">
@@ -98,6 +112,12 @@ export function SiteFooter({
               {dictionary.nav.dealerLogin}
               <span aria-hidden>↗</span>
             </a>
+            <SocialLinks
+              items={socialLinks}
+              label={dictionary.footer.social}
+              tone="dark"
+              className="mt-6"
+            />
           </div>
 
           <div className="grid grid-cols-2 gap-x-5 gap-y-8 sm:grid-cols-3 sm:gap-x-8 lg:gap-10">
@@ -150,17 +170,22 @@ export function SiteFooter({
       </div>
 
       <div className="border-t border-border bg-background">
-        <div className="container-site grid grid-cols-[1fr_auto] items-end gap-4 py-5 text-[0.6875rem] leading-5 text-muted sm:flex sm:items-center sm:justify-between sm:py-4 sm:text-xs">
-          <p className="max-w-[15rem] sm:max-w-none">
+        <div className="container-site flex flex-col gap-3 py-5 text-[0.6875rem] leading-5 text-muted sm:flex-row sm:items-center sm:justify-between sm:gap-4 sm:py-4 sm:text-xs">
+          <p className="max-w-full">
             © {year} {dictionary.meta.siteName}.{' '}
             {legalText?.trim() || dictionary.footer.rights}
           </p>
-          <p
-            className="border border-white/10 px-2.5 py-1 tracking-[0.14em] whitespace-nowrap uppercase"
-            dir="ltr"
-          >
-            Çaycuma · Zonguldak
-          </p>
+          <div className="flex flex-wrap items-center gap-2 sm:justify-end">
+            {displayMetaItems.map((item) => (
+              <p
+                key={item.key}
+                className="border border-white/10 px-2.5 py-1 tracking-[0.14em] uppercase"
+                dir="ltr"
+              >
+                {item.label}
+              </p>
+            ))}
+          </div>
         </div>
       </div>
     </footer>

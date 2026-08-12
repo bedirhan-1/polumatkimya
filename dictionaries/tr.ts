@@ -132,6 +132,7 @@ const tr: Dictionary = {
     map: 'Fabrika konumu haritası',
     mapIstanbul: 'İstanbul ofisi haritası',
     openInMaps: 'Google Maps’te aç',
+    social: 'Sosyal medya',
   },
   forms: {
     name: 'Ad Soyad',
@@ -159,6 +160,7 @@ const tr: Dictionary = {
     privacy: 'Gizlilik',
     kvkk: 'KVKK',
     cookies: 'Çerezler',
+    social: 'Sosyal medya',
   },
   errors: {
     generic: 'Bir hata oluştu. Lütfen tekrar deneyin.',

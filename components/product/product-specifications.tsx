@@ -17,6 +17,25 @@ type ProductSpecificationsProps = {
   embedded?: boolean
 }
 
+function SpecValue({
+  value,
+  unit,
+  note,
+}: {
+  value?: string | null
+  unit?: string | null
+  note?: string | null
+}) {
+  return (
+    <>
+      <span className="font-medium text-foreground">
+        {[value, unit].filter(Boolean).join(' ')}
+      </span>
+      {note ? <span className="mt-1 block text-xs text-muted">{note}</span> : null}
+    </>
+  )
+}
+
 export function ProductSpecifications({
   groups,
   heading,
@@ -30,10 +49,8 @@ export function ProductSpecifications({
         const items = (group.items || []).filter((item) => item.label || item.value)
         if (!items.length) return null
 
-        // Old-site style: single horizontal technical table when item count is manageable.
+        // Horizontal table only on md+ when item count stays manageable.
         const useHorizontal = items.length <= 8
-        const horizontalTableWidth =
-          items.length > 4 ? 'min-w-[52rem]' : 'min-w-[32rem]'
 
         return (
           <div key={group._key} className="min-w-0 max-w-full">
@@ -46,16 +63,42 @@ export function ProductSpecifications({
               </p>
             ) : null}
 
+            {/* Mobile / narrow: stacked key-value rows */}
+            <div className={`w-full max-w-full overflow-hidden border border-border ${useHorizontal ? 'md:hidden' : ''}`}>
+              <table className="min-w-full text-sm">
+                <tbody>
+                  {items.map((item) => (
+                    <tr key={item._key} className="border-b border-border last:border-b-0">
+                      <th
+                        scope="row"
+                        className="w-[42%] bg-surface-elevated px-3 py-3 text-start text-[0.75rem] font-medium text-foreground sm:px-4 sm:text-sm"
+                      >
+                        {item.label}
+                      </th>
+                      <td className="px-3 py-3 text-muted sm:px-4" dir="auto">
+                        <SpecValue value={item.value} unit={item.unit} note={item.note} />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* md+: horizontal technical table */}
             {useHorizontal ? (
-              <div className="w-full max-w-full overflow-x-auto overscroll-x-contain border border-border bg-surface [scrollbar-gutter:stable] [-webkit-overflow-scrolling:touch]">
-                <table className={`w-full table-auto text-sm ${horizontalTableWidth}`}>
+              <div className="hidden w-full max-w-full overflow-x-auto overscroll-x-contain border border-border bg-surface md:block [scrollbar-gutter:stable] [-webkit-overflow-scrolling:touch]">
+                <table
+                  className={`w-full table-auto text-sm ${
+                    items.length > 4 ? 'min-w-[40rem] lg:min-w-[52rem]' : 'min-w-[28rem] lg:min-w-[32rem]'
+                  }`}
+                >
                   <thead>
                     <tr className="border-b border-border bg-surface-elevated">
                       {items.map((item) => (
                         <th
                           key={item._key}
                           scope="col"
-                          className="border-s border-border px-4 py-2.5 text-start text-[0.7rem] leading-5 font-semibold tracking-[0.12em] text-muted uppercase whitespace-nowrap first:border-s-0"
+                          className="border-s border-border px-3 py-2.5 text-start text-[0.7rem] leading-5 font-semibold tracking-[0.12em] text-muted uppercase whitespace-nowrap first:border-s-0 lg:px-4"
                         >
                           {item.label}
                         </th>
@@ -70,42 +113,14 @@ export function ProductSpecifications({
                           className="border-s border-border px-3 py-3 text-foreground first:border-s-0"
                           dir="auto"
                         >
-                          <span className="font-medium">
-                            {[item.value, item.unit].filter(Boolean).join(' ')}
-                          </span>
-                          {item.note ? (
-                            <span className="mt-1 block text-xs text-muted">{item.note}</span>
-                          ) : null}
+                          <SpecValue value={item.value} unit={item.unit} note={item.note} />
                         </td>
                       ))}
                     </tr>
                   </tbody>
                 </table>
               </div>
-            ) : (
-              <div className="w-full max-w-full overflow-x-auto overscroll-x-contain border border-border [scrollbar-gutter:stable] [-webkit-overflow-scrolling:touch]">
-                <table className="min-w-full text-sm">
-                  <tbody>
-                    {items.map((item) => (
-                      <tr key={item._key} className="border-b border-border last:border-b-0">
-                        <th
-                          scope="row"
-                          className="bg-surface-elevated px-4 py-3 text-start font-medium text-foreground whitespace-nowrap"
-                        >
-                          {item.label}
-                        </th>
-                        <td className="px-4 py-3 text-muted" dir="auto">
-                          {[item.value, item.unit].filter(Boolean).join(' ')}
-                          {item.note ? (
-                            <span className="mt-1 block text-xs text-muted">{item.note}</span>
-                          ) : null}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            )}
+            ) : null}
           </div>
         )
       })}

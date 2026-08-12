@@ -70,12 +70,12 @@ export function RelatedProductsSlider(props: RelatedProductsSliderProps) {
 
         <ul
           ref={scrollerRef}
-          className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-2 [-ms-overflow-style:none] [scrollbar-width:none] sm:gap-5 [&::-webkit-scrollbar]:hidden"
+          className="flex snap-x snap-mandatory gap-4 overflow-x-auto overscroll-x-contain pb-3 [scrollbar-width:thin] sm:gap-5 [-webkit-overflow-scrolling:touch]"
         >
           {products.map((product) => (
             <li
               key={product._id}
-              className="w-[min(78vw,260px)] shrink-0 snap-start sm:w-[300px]"
+              className="w-[min(82vw,260px)] shrink-0 snap-start sm:w-[300px]"
             >
               <ProductCard locale={locale} product={product} detailLabel={detailLabel} />
             </li>

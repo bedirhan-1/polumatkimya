@@ -115,6 +115,7 @@ export type Dictionary = {
     map: string
     mapIstanbul: string
     openInMaps: string
+    social: string
   }
   forms: {
     name: string
@@ -142,6 +143,7 @@ export type Dictionary = {
     privacy: string
     kvkk: string
     cookies: string
+    social: string
   }
   errors: {
     generic: string

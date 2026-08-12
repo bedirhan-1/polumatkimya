@@ -726,7 +726,7 @@
   display: block;
   margin-top: 0.25rem;
   color: rgba(242, 242, 240, 0.72);
-  font-size: 0.58rem;
+  font-size: 0.68rem;
   font-weight: 600;
   letter-spacing: 0.04em;
   line-height: 1.25;
@@ -1043,7 +1043,7 @@
 
 @media (max-width: 640px) {
   .section {
-    padding-block: 4rem;
+    padding-block: 3.5rem;
   }
 
   .headingRow {
@@ -1052,38 +1052,66 @@
   }
 
   .sectionTitle {
-    font-size: clamp(2.2rem, 11vw, 3.1rem);
+    font-size: clamp(1.85rem, 9vw, 2.65rem);
+  }
+
+  .industryGrid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .industryCard {
+    min-height: 0;
+    grid-template-rows: minmax(10rem, auto) auto;
+  }
+
+  .industryBody {
+    padding: 1rem 0.85rem 1.1rem;
+  }
+
+  .industryBody h3 {
+    max-width: none;
+    font-size: 0.92rem;
   }
 
   .productsGrid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 0.5rem;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
   }
 
   .productCard {
-    min-height: 21rem;
+    min-height: 0;
+    flex-direction: row;
+    align-items: stretch;
   }
 
   .productMedia {
-    min-height: 11.5rem;
-    margin: 0.35rem;
+    flex: 0 0 38%;
+    min-height: 9.5rem;
+    margin: 0;
+    border-inline-end: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .productBody {
-    min-height: 8.5rem;
-    padding: 0.85rem 0.55rem 0.95rem;
+    flex: 1;
+    min-height: 0;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 1rem 0.9rem;
+    text-align: start;
   }
 
   .productTitle {
-    font-size: 0.95rem;
+    font-size: 1rem;
   }
 
   .productDescription {
-    font-size: 0.72rem;
+    font-size: 0.8rem;
+    -webkit-line-clamp: 3;
   }
 
   .productAction {
-    font-size: 0.65rem;
+    font-size: 0.72rem;
   }
 
   .benefitsGrid {
@@ -1108,22 +1136,22 @@
   .privateIntro,
   .privateFeatures,
   .privateProcess {
-    padding: 1.5rem;
+    padding: 1.25rem 1.15rem;
   }
 
   .privateIntro .sectionTitle {
-    max-width: 11ch;
-    font-size: clamp(2.5rem, 12vw, 3.6rem);
+    max-width: none;
+    font-size: clamp(1.9rem, 9vw, 2.85rem);
   }
 
   .privateVisual {
-    min-height: 22rem;
+    min-height: 16rem;
     border-inline: 0;
     border-top: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .privateFeatures {
-    padding-block: 2rem;
+    padding-block: 1.75rem;
   }
 
   .privateProcess {
@@ -1136,12 +1164,26 @@
 
   .statsGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: 1.35rem;
+    row-gap: 1.15rem;
+    column-gap: 0.65rem;
+  }
+
+  .stat strong {
+    font-size: 0.88rem;
+  }
+
+  .stat span {
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
   }
 
   .qualityGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    row-gap: 1.25rem;
+    row-gap: 1.15rem;
+  }
+
+  .qualityItem strong {
+    font-size: 0.78rem;
   }
 
   .qualityBadges {
@@ -1153,9 +1195,17 @@
     width: min(100%, 5.5rem);
   }
 
+  .qualityBadgeLabel {
+    font-size: 0.76rem;
+  }
+
   .qualityWatermark {
     width: min(70vw, 18rem);
     opacity: 0.07;
+  }
+
+  .ctaTitle {
+    font-size: clamp(1.65rem, 8vw, 2.4rem);
   }
 
   .ctaActions {
@@ -1165,12 +1215,26 @@
 }
 
 @media (max-width: 380px) {
-  .productsGrid {
-    grid-template-columns: 1fr;
+  .productCard {
+    flex-direction: column;
   }
 
-  .productCard {
-    min-height: 0;
+  .productMedia {
+    flex-basis: auto;
+    width: 100%;
+    min-height: 11rem;
+    border-inline-end: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .productBody {
+    align-items: center;
+    text-align: center;
+  }
+
+  .statsGrid,
+  .qualityGrid {
+    grid-template-columns: 1fr;
   }
 }
 

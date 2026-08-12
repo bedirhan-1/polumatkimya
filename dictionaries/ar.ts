@@ -128,6 +128,7 @@ const ar: Dictionary = {
     map: 'خريطة موقع المصنع',
     mapIstanbul: 'خريطة مكتب إسطنبول',
     openInMaps: 'افتح في خرائط Google',
+    social: 'وسائل التواصل',
   },
   forms: {
     name: 'الاسم الكامل',
@@ -155,6 +156,7 @@ const ar: Dictionary = {
     privacy: 'الخصوصية',
     kvkk: 'حماية البيانات الشخصية',
     cookies: 'ملفات تعريف الارتباط',
+    social: 'وسائل التواصل',
   },
   errors: {
     generic: 'حدث خطأ ما. يرجى المحاولة مرة أخرى.',

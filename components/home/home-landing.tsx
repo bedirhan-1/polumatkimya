@@ -263,7 +263,7 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
           aria-hidden
         />
 
-        <div className="container relative z-[2] mx-auto flex min-h-[min(100svh,42rem)] flex-col justify-end px-4 pt-12 pb-6 sm:min-h-[min(100svh,46rem)] sm:justify-center sm:px-6 sm:pb-44 lg:min-h-full lg:justify-center lg:px-8 lg:pt-0 lg:pb-20">
+        <div className="container-site relative z-[2] flex min-h-[min(100svh,42rem)] flex-col justify-end pt-12 pb-6 sm:min-h-[min(100svh,46rem)] sm:justify-center sm:pb-10 lg:min-h-full lg:justify-center lg:pt-0 lg:pb-20">
           <div className="max-w-[31rem] lg:w-[36%] lg:min-w-0 lg:max-w-[31rem] xl:min-w-[28rem]">
             {heroEyebrow ? (
               <p className="flex items-center gap-3 text-[0.68rem] font-bold leading-none tracking-[0.2em] text-accent uppercase before:h-px before:w-7 before:shrink-0 before:bg-current before:content-['']">
@@ -272,7 +272,7 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
             ) : null}
             <h1
               id="home-hero-title"
-              className="mt-3 max-w-[11ch] font-[family-name:var(--font-display)] text-[clamp(2.55rem,11vw,4.65rem)] leading-[0.92] font-bold tracking-[-0.015em] text-[#f8f8f5] uppercase"
+              className="mt-3 max-w-[14ch] font-[family-name:var(--font-display)] text-[clamp(2.2rem,9.5vw,4.65rem)] leading-[1.05] font-bold tracking-[-0.015em] text-[#f8f8f5] uppercase sm:max-w-[11ch] sm:leading-[0.96] lg:leading-[0.92]"
             >
               <span className="block">{heroLead}</span>
               <span className="mt-1 block text-accent drop-shadow-[0_0_32px_rgba(227,28,35,0.2)]">
@@ -281,15 +281,15 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
               <span className="mt-1 block">{heroTail}</span>
             </h1>
             {heroDescription ? (
-              <p className="mt-4 max-w-[28rem] text-[clamp(0.86rem,0.9vw,1rem)] leading-6 text-white/65">
+              <p className="mt-4 max-w-[28rem] text-[clamp(0.9rem,0.9vw,1rem)] leading-6 text-white/65">
                 {heroDescription}
               </p>
             ) : null}
-            <div className="mt-5 flex flex-wrap gap-3">
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
               <ButtonLink
                 href={primaryCta.href}
                 variant={primaryCta.variant}
-                className="min-w-36 no-underline uppercase sm:min-w-40"
+                className="min-w-0 no-underline uppercase sm:min-w-40"
               >
                 {primaryCta.label}
                 <ArrowIcon />
@@ -297,7 +297,7 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
               <ButtonLink
                 href={secondaryCta.href}
                 variant={secondaryCta.variant}
-                className="min-w-32 border-white/20 bg-black/20 no-underline uppercase backdrop-blur-sm sm:min-w-36"
+                className="min-w-0 border-white/20 bg-black/20 no-underline uppercase backdrop-blur-sm sm:min-w-36"
               >
                 {secondaryCta.label}
                 <ArrowIcon />
@@ -306,10 +306,10 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
           </div>
 
           {trustItems.length ? (
-            <div className="relative mt-8 grid grid-cols-2 overflow-hidden border border-white/10 bg-[#08090b]/85 shadow-2xl backdrop-blur-xl sm:absolute sm:inset-x-6 sm:bottom-0 sm:mt-0 sm:border-b-0 lg:inset-x-auto lg:inset-inline-start-8 lg:bottom-4 lg:w-[calc(100%_-_4rem)] lg:max-w-[50rem] lg:grid-cols-4 lg:border-white/10 lg:bg-black/20 lg:shadow-none lg:backdrop-blur-sm">
+            <div className="relative mt-8 grid grid-cols-2 overflow-hidden border border-white/10 bg-[#08090b]/85 shadow-2xl backdrop-blur-xl lg:absolute lg:inset-x-auto lg:inset-inline-start-8 lg:bottom-4 lg:mt-0 lg:w-[calc(100%_-_4rem)] lg:max-w-[50rem] lg:grid-cols-4 lg:border-white/10 lg:bg-black/20 lg:shadow-none lg:backdrop-blur-sm">
               {trustItems.map((item, index) => (
                 <div
-                  className="grid min-h-[4.75rem] grid-cols-[auto_1fr] items-center gap-2.5 px-3 py-3 sm:min-h-24 sm:gap-3 sm:px-4 sm:py-4 lg:min-h-16 lg:px-3 lg:py-2"
+                  className="grid min-h-[4.75rem] grid-cols-[auto_1fr] items-center gap-2.5 px-3 py-3 sm:min-h-20 sm:gap-3 sm:px-4 sm:py-4 lg:min-h-16 lg:px-3 lg:py-2"
                   key={item._key || item.title || index}
                 >
                   <span className="flex size-9 shrink-0 rotate-45 items-center justify-center border border-accent/45 bg-accent/5 text-accent sm:size-10 lg:size-9 [&>svg]:size-4 [&>svg]:-rotate-45 sm:[&>svg]:size-5 lg:[&>svg]:size-4">

@@ -368,6 +368,17 @@ function buildSettingsPayload(images: {
       en: 'Polumat Kimya San.Tic.Ltd.Şti. All rights reserved.',
       ar: 'بولومات كيميا. جميع الحقوق محفوظة.',
     }),
+    footerMetaItems: [
+      {
+        _key: key(),
+        _type: 'footerMetaItem',
+        label: localizedString({
+          tr: 'Çaycuma · Zonguldak',
+          en: 'Çaycuma · Zonguldak',
+          ar: 'تشايكوما · زونغولداق',
+        }),
+      },
+    ],
     uiLabels: {
       requestQuote: localizedString({
         tr: 'Teklif Al',

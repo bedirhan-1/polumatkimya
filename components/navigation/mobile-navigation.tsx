@@ -156,11 +156,11 @@ export function MobileNavigation({
             role="dialog"
             aria-modal="true"
             aria-label={navLabel}
-            className="fixed inset-x-0 top-[var(--header-height)] bottom-0 z-[60] border-t border-border bg-[#0b0c0e]"
+            className="fixed inset-x-0 top-[var(--header-height)] bottom-0 z-[60] flex flex-col border-t border-border bg-[#0b0c0e]"
           >
             <nav
               aria-label={navLabel}
-              className="container-site flex h-full max-h-[calc(100dvh-var(--header-height))] flex-col gap-1 overflow-y-auto overscroll-contain py-5 pb-[max(1.25rem,env(safe-area-inset-bottom))]"
+              className="container-site flex min-h-0 flex-1 flex-col gap-1 overflow-y-auto overscroll-contain py-5"
             >
               <Link
                 href={localeHome}
@@ -245,7 +245,7 @@ export function MobileNavigation({
               <div className="mt-4 flex flex-col gap-2 border-t border-border pt-4 text-sm">
                 <a
                   href={phoneHref}
-                  className="min-h-11 inline-flex items-center text-muted no-underline hover:text-foreground"
+                  className="inline-flex min-h-11 items-center text-muted no-underline hover:text-foreground"
                   dir="ltr"
                   onClick={close}
                 >
@@ -253,33 +253,37 @@ export function MobileNavigation({
                 </a>
                 <a
                   href={emailHref}
-                  className="min-h-11 inline-flex items-center break-all text-muted no-underline hover:text-foreground"
+                  className="inline-flex min-h-11 items-center break-all text-muted no-underline hover:text-foreground"
                   dir="ltr"
                   onClick={close}
                 >
                   {emailLabel}
                 </a>
               </div>
+            </nav>
 
-              <Link
-                href={quoteHref}
-                className="mt-4 inline-flex min-h-12 shrink-0 items-center justify-center bg-accent px-4 py-3 text-sm font-semibold tracking-wide text-white no-underline uppercase"
-                onClick={close}
-              >
-                {quoteLabel}
-              </Link>
-
-              {catalogHref ? (
-                <a
-                  href={catalogHref}
-                  download
-                  className="mt-2 inline-flex min-h-11 shrink-0 items-center justify-center border border-border px-4 py-3 text-sm font-semibold text-foreground no-underline"
+            <div className="shrink-0 border-t border-border bg-[#0b0c0e] pb-[max(1rem,env(safe-area-inset-bottom))]">
+              <div className="container-site flex flex-col gap-2 py-3">
+                <Link
+                  href={quoteHref}
+                  className="inline-flex min-h-12 items-center justify-center bg-accent px-4 py-3 text-sm font-semibold tracking-wide text-white no-underline uppercase"
                   onClick={close}
                 >
-                  {catalogLabel}
-                </a>
-              ) : null}
-            </nav>
+                  {quoteLabel}
+                </Link>
+
+                {catalogHref ? (
+                  <a
+                    href={catalogHref}
+                    download
+                    className="inline-flex min-h-11 items-center justify-center border border-border px-4 py-3 text-sm font-semibold text-foreground no-underline"
+                    onClick={close}
+                  >
+                    {catalogLabel}
+                  </a>
+                ) : null}
+              </div>
+            </div>
           </div>
         </>
       ) : null}

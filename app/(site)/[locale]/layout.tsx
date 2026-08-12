@@ -102,6 +102,8 @@ export default async function LocaleLayout({children, params}: LocaleLayoutProps
             phone={primaryChannel?.phone}
             email={primaryChannel?.email}
             legalText={siteSettings?.footerLegalText}
+            metaItems={siteSettings?.footerMetaItems}
+            socialLinks={siteSettings?.socialLinks}
           />
         </LocaleAlternatesProvider>
         <SanityLive />

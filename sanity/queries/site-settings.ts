@@ -11,6 +11,10 @@ export const SITE_SETTINGS_QUERY = defineQuery(`
     "address": address[language == $locale || _key == $locale][0].value,
     "workingHours": workingHours[language == $locale || _key == $locale][0].value,
     "footerLegalText": footerLegalText[language == $locale || _key == $locale][0].value,
+    footerMetaItems[]{
+      _key,
+      "label": label[language == $locale || _key == $locale][0].value
+    },
     logoLight{
       asset,
       alt

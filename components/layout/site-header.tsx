@@ -150,7 +150,7 @@ export function SiteHeader({
             {desktopNav.map((item) => {
               const active = isNavItemActive(pathname, item)
               const itemKey = `${item.href || 'group'}-${item.label}`
-              const linkClassName = `inline-flex min-h-11 shrink-0 items-center whitespace-nowrap leading-none border-b px-2.5 text-xs font-semibold tracking-[0.04em] uppercase no-underline transition 2xl:px-3.5 2xl:tracking-[0.06em] ${
+              const linkClassName = `inline-flex min-h-11 shrink-0 items-center whitespace-nowrap leading-none border-b px-2 text-[0.7rem] font-semibold tracking-[0.03em] uppercase no-underline transition 2xl:px-3.5 2xl:text-xs 2xl:tracking-[0.06em] ${
                 active
                   ? 'border-accent text-foreground'
                   : 'border-transparent text-muted hover:text-foreground'
@@ -240,7 +240,7 @@ export function SiteHeader({
           ) : null}
           <ButtonLink
             href={quoteHref}
-            className="hidden min-h-10 px-3 py-2 text-xs uppercase no-underline md:inline-flex 2xl:px-5"
+            className="hidden min-h-10 px-3 py-2 text-xs uppercase no-underline xl:inline-flex 2xl:px-5"
           >
             {dictionary.nav.requestQuote}
             <span aria-hidden>→</span>

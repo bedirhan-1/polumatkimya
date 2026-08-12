@@ -84,13 +84,13 @@
   margin: 0;
   max-width: 100%;
   color: rgba(242, 242, 240, 0.55);
-  font-size: 0.62rem;
-  line-height: 1.35;
+  font-size: 0.72rem;
+  line-height: 1.4;
 }
 
 .action {
   color: rgba(242, 242, 240, 0.78);
-  font-size: 0.58rem;
+  font-size: 0.68rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -126,15 +126,44 @@
   .card {
     min-height: 15rem;
   }
+
+  .body {
+    padding: 1rem 0.55rem 1.1rem;
+  }
+
+  .body h3 {
+    font-size: 0.82rem;
+  }
+
+  .summary {
+    font-size: 0.74rem;
+  }
+
+  .action {
+    font-size: 0.7rem;
+  }
 }
 
-@media (max-width: 420px) {
+@media (max-width: 640px) {
   .grid {
     grid-template-columns: 1fr;
+    gap: 0.65rem;
   }
 
   .card {
-    min-height: 14rem;
+    min-height: 0;
+    grid-template-columns: minmax(7.5rem, 42%) minmax(0, 1fr);
+    grid-template-rows: auto;
+  }
+
+  .media {
+    min-height: 8.5rem;
+  }
+
+  .body {
+    justify-items: start;
+    padding: 0.95rem 0.9rem;
+    text-align: start;
   }
 }
 

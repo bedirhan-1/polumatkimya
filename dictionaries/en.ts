@@ -131,6 +131,7 @@ const en: Dictionary = {
     map: 'Factory location map',
     mapIstanbul: 'Istanbul office map',
     openInMaps: 'Open in Google Maps',
+    social: 'Social media',
   },
   forms: {
     name: 'Full name',
@@ -158,6 +159,7 @@ const en: Dictionary = {
     privacy: 'Privacy',
     kvkk: 'Personal data',
     cookies: 'Cookies',
+    social: 'Social',
   },
   errors: {
     generic: 'Something went wrong. Please try again.',

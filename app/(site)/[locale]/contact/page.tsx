@@ -4,6 +4,7 @@ import {notFound} from 'next/navigation'
 
 import {PageHero} from '@/components/content/page-hero'
 import {ContactMap} from '@/components/content/contact-map'
+import {SocialLinks} from '@/components/layout/social-links'
 import {ContactForm} from '@/components/forms/contact-form'
 import {ButtonLink} from '@/components/ui/button-link'
 import {getDictionary} from '@/lib/i18n/get-dictionary'
@@ -12,6 +13,7 @@ import {DEFAULT_CONTACT, DEALER_PORTAL_URL} from '@/lib/navigation'
 import {asSeo, asString} from '@/lib/sanity/content'
 import {buildPageMetadata} from '@/lib/seo/metadata'
 import {getContactPage} from '@/sanity/lib/pages'
+import {getSiteSettings} from '@/sanity/lib/site-settings'
 
 type PageProps = {
   params: Promise<{locale: string}>
@@ -117,8 +119,9 @@ export default async function ContactPage({params}: PageProps) {
 
   const locale = localeParam as Locale
   const dictionary = await getDictionary(locale)
-  const page = await getContactPage(locale)
+  const [page, siteSettings] = await Promise.all([getContactPage(locale), getSiteSettings(locale)])
   const data = page && typeof page === 'object' ? (page as ContactPageData) : null
+  const socialLinks = siteSettings?.socialLinks || []
 
   const eyebrow = asString(data?.eyebrow, dictionary.meta.siteName)
   const title = asString(data?.title, dictionary.nav.contact)
@@ -292,7 +295,7 @@ export default async function ContactPage({params}: PageProps) {
                   <a
                     key="corporate-phone"
                     href={toTelHref(corporatePhone)}
-                    className="inline-block text-foreground no-underline hover:text-accent [unicode-bidi:isolate]"
+                    className="inline-flex text-foreground no-underline hover:text-accent [unicode-bidi:isolate]"
                     dir="ltr"
                   >
                     {corporatePhone}
@@ -300,13 +303,21 @@ export default async function ContactPage({params}: PageProps) {
                   <a
                     key="corporate-email"
                     href={`mailto:${corporateEmail}`}
-                    className="inline-block text-foreground no-underline hover:text-accent [unicode-bidi:isolate]"
+                    className="inline-flex text-foreground no-underline hover:text-accent [unicode-bidi:isolate]"
                     dir="ltr"
                   >
                     {corporateEmail}
                   </a>,
                 ]}
               />
+              {socialLinks.length ? (
+                <div>
+                  <p className="text-xs font-semibold tracking-[0.18em] text-accent uppercase">
+                    {dictionary.contactPage.social}
+                  </p>
+                  <SocialLinks items={socialLinks} tone="light" className="mt-3" />
+                </div>
+              ) : null}
             </dl>
 
             <div className="mt-10 flex flex-wrap gap-3">

@@ -1,6 +1,6 @@
 'use client'
 
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 
 type ContactMapProps = {
   src: string
@@ -14,10 +14,21 @@ type ContactMapProps = {
 /** Grayscale by default; full color while the pointer is over the map area. */
 export function ContactMap({src, title, label, mapsUrl, openInMapsLabel}: ContactMapProps) {
   const [hot, setHot] = useState(false)
+  const [coarse, setCoarse] = useState(false)
+
+  useEffect(() => {
+    const media = window.matchMedia('(hover: none), (pointer: coarse)')
+    const sync = () => setCoarse(media.matches)
+    sync()
+    media.addEventListener('change', sync)
+    return () => media.removeEventListener('change', sync)
+  }, [])
+
+  const vivid = hot || coarse
 
   return (
     <div
-      className="relative min-h-[320px] w-full overflow-hidden bg-surface sm:min-h-[420px]"
+      className="relative min-h-[240px] w-full overflow-hidden bg-surface sm:min-h-[320px] lg:min-h-[420px]"
       onMouseEnter={() => setHot(true)}
       onMouseLeave={() => setHot(false)}
     >
@@ -25,14 +36,14 @@ export function ContactMap({src, title, label, mapsUrl, openInMapsLabel}: Contac
         title={title}
         src={src}
         className={`absolute inset-0 h-full w-full border-0 transition-[filter] duration-300 ease-out ${
-          hot ? 'grayscale-0 contrast-100' : 'grayscale contrast-125'
+          vivid ? 'grayscale-0 contrast-100' : 'grayscale contrast-125'
         }`}
         loading="lazy"
         referrerPolicy="no-referrer-when-downgrade"
         allowFullScreen
       />
       {label ? (
-        <p className="pointer-events-none absolute start-3 top-3 z-10 bg-background/95 px-3.5 py-2 text-xs font-semibold tracking-[0.14em] text-foreground uppercase shadow-sm ring-1 ring-border">
+        <p className="pointer-events-none absolute start-3 top-3 z-10 max-w-[min(100%-1.5rem,16rem)] bg-background/95 px-3 py-1.5 text-[0.65rem] font-semibold tracking-[0.12em] text-foreground uppercase shadow-sm ring-1 ring-border sm:px-3.5 sm:py-2 sm:text-xs sm:tracking-[0.14em]">
           {label}
         </p>
       ) : null}
@@ -41,7 +52,7 @@ export function ContactMap({src, title, label, mapsUrl, openInMapsLabel}: Contac
           href={mapsUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="absolute end-3 bottom-3 z-10 inline-flex min-h-10 items-center bg-background/95 px-3.5 py-2 text-xs font-semibold tracking-wide text-foreground no-underline shadow-sm ring-1 ring-border transition hover:text-accent"
+          className="absolute end-3 bottom-3 z-10 inline-flex min-h-10 items-center bg-background/95 px-3 py-2 text-[0.7rem] font-semibold tracking-wide text-foreground no-underline shadow-sm ring-1 ring-border transition hover:text-accent sm:px-3.5 sm:text-xs"
         >
           {openInMapsLabel}
         </a>

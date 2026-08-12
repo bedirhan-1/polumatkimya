@@ -921,6 +921,11 @@ export type SiteSettings = {
   >;
   workingHours?: InternationalizedArrayText;
   footerLegalText?: InternationalizedArrayText;
+  footerMetaItems?: Array<{
+    label?: InternationalizedArrayString;
+    _type: "footerMetaItem";
+    _key: string;
+  }>;
   uiLabels?: {
     requestQuote?: InternationalizedArrayString;
     viewProducts?: InternationalizedArrayString;

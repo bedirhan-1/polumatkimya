@@ -38,6 +38,15 @@ type SiteSettingsData = {
   whatsappNumber?: string | null
   whatsappMessage?: string | null
   footerLegalText?: string | null
+  footerMetaItems?: Array<{
+    _key?: string
+    label?: string | null
+  }> | null
+  socialLinks?: Array<{
+    _key?: string
+    platform?: string | null
+    url?: string | null
+  }> | null
   headerNavigation?: HeaderNavItem[] | null
   footerColumns?: FooterColumnData[] | null
   contactChannels?: Array<{

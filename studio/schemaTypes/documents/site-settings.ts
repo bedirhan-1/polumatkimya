@@ -143,6 +143,47 @@ export const siteSettingsType = defineType({
       type: 'internationalizedArrayText',
     }),
     defineField({
+      name: 'footerMetaItems',
+      title: 'Footer bottom meta items',
+      description:
+        'Small badges shown at the bottom-right of the footer (e.g. Çaycuma · Zonguldak).',
+      type: 'array',
+      of: [
+        defineArrayMember({
+          type: 'object',
+          name: 'footerMetaItem',
+          fields: [
+            defineField({
+              name: 'label',
+              title: 'Label',
+              type: 'internationalizedArrayString',
+              validation: (rule) => rule.required(),
+            }),
+          ],
+          preview: {
+            select: {label: 'label'},
+            prepare({label}) {
+              const items = Array.isArray(label) ? label : []
+              const preferred =
+                items.find((entry: {_key?: string; language?: string; value?: string}) =>
+                  entry.language === 'tr' || entry._key === 'tr',
+                ) ||
+                items.find((entry: {_key?: string; language?: string; value?: string}) =>
+                  entry.language === 'en' || entry._key === 'en',
+                ) ||
+                items[0]
+              return {
+                title:
+                  typeof preferred?.value === 'string' && preferred.value.trim()
+                    ? preferred.value
+                    : 'Footer meta item',
+              }
+            },
+          },
+        }),
+      ],
+    }),
+    defineField({
       name: 'uiLabels',
       title: 'UI labels',
       type: 'object',
