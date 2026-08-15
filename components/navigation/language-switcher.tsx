@@ -2,12 +2,13 @@
 
 import Link from 'next/link'
 import {usePathname} from 'next/navigation'
-import {useEffect, useId, useRef, useState} from 'react'
+import {useEffect, useId, useLayoutEffect, useRef, useState} from 'react'
 
 import {useLocaleAlternates} from '@/components/i18n/locale-alternates'
 import {locales, type Locale} from '@/lib/i18n/locales'
 
 const LOCALE_COOKIE = 'polumat_locale'
+const DROPDOWN_VIEWPORT_PAD = 12
 
 const localeCodes: Record<Locale, string> = {
   tr: 'TR',
@@ -76,11 +77,31 @@ function replaceLocaleInPath(pathname: string, nextLocale: Locale): string {
   return `/${nextLocale}`
 }
 
+function keepDropdownInViewport(list: HTMLElement) {
+  list.style.maxWidth = ''
+  list.style.transform = ''
+
+  const available = Math.max(0, window.innerWidth - DROPDOWN_VIEWPORT_PAD * 2)
+  list.style.maxWidth = `${available}px`
+
+  const rect = list.getBoundingClientRect()
+  let shift = 0
+  if (rect.right > window.innerWidth - DROPDOWN_VIEWPORT_PAD) {
+    shift = window.innerWidth - DROPDOWN_VIEWPORT_PAD - rect.right
+  }
+  if (rect.left + shift < DROPDOWN_VIEWPORT_PAD) {
+    shift = DROPDOWN_VIEWPORT_PAD - rect.left
+  }
+
+  list.style.transform = shift ? `translateX(${shift}px)` : ''
+}
+
 export function LanguageSwitcher({locale, label}: LanguageSwitcherProps) {
   const pathname = usePathname() || `/${locale}`
   const alternates = useLocaleAlternates()
   const [open, setOpen] = useState(false)
   const rootRef = useRef<HTMLDivElement>(null)
+  const listRef = useRef<HTMLUListElement>(null)
   const listId = useId()
 
   useEffect(() => {
@@ -102,6 +123,21 @@ export function LanguageSwitcher({locale, label}: LanguageSwitcherProps) {
       document.removeEventListener('mousedown', onPointerDown)
       document.removeEventListener('touchstart', onPointerDown)
       document.removeEventListener('keydown', onKeyDown)
+    }
+  }, [open])
+
+  useLayoutEffect(() => {
+    if (!open) return
+    const list = listRef.current
+    if (!list) return
+
+    const clamp = () => keepDropdownInViewport(list)
+    clamp()
+    window.addEventListener('resize', clamp)
+    return () => {
+      window.removeEventListener('resize', clamp)
+      list.style.maxWidth = ''
+      list.style.transform = ''
     }
   }, [open])
 
@@ -132,10 +168,11 @@ export function LanguageSwitcher({locale, label}: LanguageSwitcherProps) {
 
       {open ? (
         <ul
+          ref={listRef}
           id={listId}
           role="listbox"
           aria-label={label}
-          className="absolute end-0 top-[calc(100%+0.35rem)] z-50 min-w-36 max-w-[calc(100vw-1.5rem)] border border-border bg-surface py-1 shadow-[0_12px_40px_rgba(0,0,0,0.35)]"
+          className="absolute end-0 top-[calc(100%+0.35rem)] z-50 w-max min-w-36 border border-border bg-surface py-1 shadow-[0_12px_40px_rgba(0,0,0,0.35)]"
         >
           {locales.map((item) => {
             const href = alternates?.hrefs?.[item] || replaceLocaleInPath(pathname, item)
