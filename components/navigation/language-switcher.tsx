@@ -135,7 +135,7 @@ export function LanguageSwitcher({locale, label}: LanguageSwitcherProps) {
           id={listId}
           role="listbox"
           aria-label={label}
-          className="absolute inset-inline-end-0 top-[calc(100%+0.35rem)] z-50 min-w-36 border border-border bg-surface py-1 shadow-[0_12px_40px_rgba(0,0,0,0.35)]"
+          className="absolute end-0 top-[calc(100%+0.35rem)] z-50 min-w-36 max-w-[calc(100vw-1.5rem)] border border-border bg-surface py-1 shadow-[0_12px_40px_rgba(0,0,0,0.35)]"
         >
           {locales.map((item) => {
             const href = alternates?.hrefs?.[item] || replaceLocaleInPath(pathname, item)
