@@ -19,21 +19,6 @@ export const pageBuilderProjection = /* groq */ `
     _key,
     _type,
     ...,
-    _type == "heroSliderSection" => {
-      accessibilityLabel,
-      rotationMode,
-      interval,
-      slides[]{
-        _key,
-        eyebrow,
-        heading,
-        description,
-        desktopImage{${imageWithAltProjection}},
-        mobileImage{${imageWithAltProjection}},
-        primaryCta{${simpleCtaProjection}},
-        secondaryCta{${simpleCtaProjection}}
-      }
-    },
     _type == "heroSection" => {
       eyebrow,
       heading,

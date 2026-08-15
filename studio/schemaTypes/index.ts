@@ -5,7 +5,6 @@ import {certificateSectionType} from './blocks/certificate-section'
 import {ctaSectionType} from './blocks/cta-section'
 import {featureGridSectionType} from './blocks/feature-grid-section'
 import {heroSectionType} from './blocks/hero-section'
-import {heroSliderSectionType} from './blocks/hero-slider-section'
 import {imageTextSectionType} from './blocks/image-text-section'
 import {latestContentSectionType} from './blocks/latest-content-section'
 import {productShowcaseSectionType} from './blocks/product-showcase-section'
@@ -38,7 +37,6 @@ import {callToActionType} from './objects/call-to-action'
 import {contactChannelType} from './objects/contact-channel'
 import {documentReferenceType} from './objects/document-reference'
 import {featureItemType} from './objects/feature-item'
-import {heroSlideType} from './objects/hero-slide'
 import {homeHeroType} from './objects/home-hero'
 import {
   homeAboutSectionType,
@@ -63,7 +61,6 @@ import {simpleCallToActionType} from './objects/simple-call-to-action'
 import {simpleFeatureItemType} from './objects/simple-feature-item'
 import {socialLinkType} from './objects/social-link'
 import {specificationGroupType, specificationItemType} from './objects/specification-group'
-import {statItemType} from './objects/stat-item'
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   // Documents
@@ -92,9 +89,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   callToActionType,
   simpleCallToActionType,
   simpleFeatureItemType,
-  statItemType,
   featureItemType,
-  heroSlideType,
   homeHeroType,
   homeProductsSectionType,
   homeStrengthsSectionType,
@@ -120,7 +115,6 @@ export const schemaTypes: SchemaTypeDefinition[] = [
 
   // Blocks
   heroSectionType,
-  heroSliderSectionType,
   productShowcaseSectionType,
   featureGridSectionType,
   applicationGridSectionType,

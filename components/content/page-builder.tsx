@@ -32,9 +32,6 @@ export async function PageBuilder({
     <>
       {blocks.map((block) => {
         switch (block._type) {
-          case "heroSliderSection":
-            // Deprecated — homepage hero lives on homePage.hero.
-            return null;
           case "heroSection":
             return (
               <HeroSection
