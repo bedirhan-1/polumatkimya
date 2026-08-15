@@ -120,7 +120,8 @@ export function MobileNavigation({
   }
 
   return (
-    <div className="xl:hidden">
+    <div className="flex items-center gap-1.5 xl:hidden">
+      <LanguageSwitcher locale={locale} label={languageLabel} />
       <button
         ref={openButtonRef}
         type="button"
