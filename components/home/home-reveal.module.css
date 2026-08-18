@@ -1,0 +1,100 @@
+.root {
+  --home-reveal-delay: 0ms;
+  --home-reveal-shift: 1.5rem;
+}
+
+.root:not(.stagger)[data-ready='true']:not([data-visible='true']) {
+  opacity: 0;
+  translate: 0 var(--home-reveal-shift);
+}
+
+.root:not(.stagger).start[data-ready='true']:not([data-visible='true']) {
+  translate: calc(var(--home-reveal-shift) * -1) 0;
+}
+
+.root:not(.stagger).end[data-ready='true']:not([data-visible='true']) {
+  translate: var(--home-reveal-shift) 0;
+}
+
+.root:not(.stagger).scale[data-ready='true']:not([data-visible='true']) {
+  scale: 0.96;
+  translate: 0 0.8rem;
+}
+
+.root:not(.stagger) {
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1) var(--home-reveal-delay),
+    translate 0.8s cubic-bezier(0.16, 1, 0.3, 1) var(--home-reveal-delay),
+    scale 0.8s cubic-bezier(0.16, 1, 0.3, 1) var(--home-reveal-delay);
+}
+
+.root:not(.stagger)[data-visible='true'] {
+  opacity: 1;
+  scale: 1;
+  translate: 0 0;
+}
+
+.stagger[data-ready='true']:not([data-visible='true']) > * {
+  opacity: 0;
+  translate: 0 1.35rem;
+}
+
+.stagger[data-visible='true'] > * {
+  animation: homeRevealUp 0.72s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.stagger[data-visible='true'] > *:nth-child(1) {
+  animation-delay: calc(var(--home-reveal-delay) + 0ms);
+}
+.stagger[data-visible='true'] > *:nth-child(2) {
+  animation-delay: calc(var(--home-reveal-delay) + 70ms);
+}
+.stagger[data-visible='true'] > *:nth-child(3) {
+  animation-delay: calc(var(--home-reveal-delay) + 140ms);
+}
+.stagger[data-visible='true'] > *:nth-child(4) {
+  animation-delay: calc(var(--home-reveal-delay) + 210ms);
+}
+.stagger[data-visible='true'] > *:nth-child(5) {
+  animation-delay: calc(var(--home-reveal-delay) + 280ms);
+}
+.stagger[data-visible='true'] > *:nth-child(6) {
+  animation-delay: calc(var(--home-reveal-delay) + 350ms);
+}
+.stagger[data-visible='true'] > *:nth-child(7) {
+  animation-delay: calc(var(--home-reveal-delay) + 420ms);
+}
+.stagger[data-visible='true'] > *:nth-child(n + 8) {
+  animation-delay: calc(var(--home-reveal-delay) + 490ms);
+}
+
+@keyframes homeRevealUp {
+  from {
+    opacity: 0;
+    translate: 0 1.35rem;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+:global(html[lang='ar']) .root:not(.stagger).start[data-ready='true']:not([data-visible='true']) {
+  translate: var(--home-reveal-shift) 0;
+}
+
+:global(html[lang='ar']) .root:not(.stagger).end[data-ready='true']:not([data-visible='true']) {
+  translate: calc(var(--home-reveal-shift) * -1) 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .root,
+  .root:not(.stagger),
+  .stagger[data-visible='true'] > * {
+    animation: none !important;
+    opacity: 1 !important;
+    scale: 1 !important;
+    translate: 0 0 !important;
+    transition: none !important;
+  }
+}
