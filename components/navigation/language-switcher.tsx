@@ -2,12 +2,14 @@
 
 import Link from 'next/link'
 import {usePathname} from 'next/navigation'
-import {useEffect, useId, useRef, useState} from 'react'
+import {useEffect, useId, useLayoutEffect, useRef, useState} from 'react'
+import {createPortal} from 'react-dom'
 
 import {useLocaleAlternates} from '@/components/i18n/locale-alternates'
 import {locales, type Locale} from '@/lib/i18n/locales'
 
 const LOCALE_COOKIE = 'polumat_locale'
+const VIEWPORT_PAD = 12
 
 const localeCodes: Record<Locale, string> = {
   tr: 'TR',
@@ -76,20 +78,51 @@ function replaceLocaleInPath(pathname: string, nextLocale: Locale): string {
   return `/${nextLocale}`
 }
 
+function clampMenuToViewport(menu: HTMLElement, trigger: HTMLElement) {
+  const triggerRect = trigger.getBoundingClientRect()
+  const viewportWidth = window.innerWidth
+  const maxWidth = Math.max(0, viewportWidth - VIEWPORT_PAD * 2)
+
+  menu.style.position = 'fixed'
+  menu.style.top = `${triggerRect.bottom + 6}px`
+  menu.style.left = `${VIEWPORT_PAD}px`
+  menu.style.right = 'auto'
+  menu.style.width = 'max-content'
+  menu.style.maxWidth = `${maxWidth}px`
+  menu.style.transform = 'none'
+
+  const menuWidth = Math.min(menu.getBoundingClientRect().width, maxWidth)
+  const rtl = document.documentElement.dir === 'rtl'
+  const preferredLeft = rtl ? triggerRect.left : triggerRect.right - menuWidth
+  const left = Math.min(
+    Math.max(preferredLeft, VIEWPORT_PAD),
+    Math.max(VIEWPORT_PAD, viewportWidth - VIEWPORT_PAD - menuWidth),
+  )
+
+  menu.style.left = `${left}px`
+}
+
 export function LanguageSwitcher({locale, label}: LanguageSwitcherProps) {
   const pathname = usePathname() || `/${locale}`
   const alternates = useLocaleAlternates()
   const [open, setOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
   const rootRef = useRef<HTMLDivElement>(null)
+  const buttonRef = useRef<HTMLButtonElement>(null)
+  const listRef = useRef<HTMLUListElement>(null)
   const listId = useId()
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   useEffect(() => {
     if (!open) return
 
     const onPointerDown = (event: MouseEvent | TouchEvent) => {
-      if (!rootRef.current?.contains(event.target as Node)) {
-        setOpen(false)
-      }
+      const target = event.target as Node
+      if (rootRef.current?.contains(target) || listRef.current?.contains(target)) return
+      setOpen(false)
     }
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') setOpen(false)
@@ -105,9 +138,66 @@ export function LanguageSwitcher({locale, label}: LanguageSwitcherProps) {
     }
   }, [open])
 
+  useLayoutEffect(() => {
+    if (!open) return
+    const menu = listRef.current
+    const trigger = buttonRef.current
+    if (!menu || !trigger) return
+
+    const place = () => clampMenuToViewport(menu, trigger)
+    place()
+    window.addEventListener('resize', place)
+    window.addEventListener('scroll', place, true)
+    return () => {
+      window.removeEventListener('resize', place)
+      window.removeEventListener('scroll', place, true)
+    }
+  }, [open, locale])
+
+  const menu = open ? (
+    <ul
+      ref={listRef}
+      id={listId}
+      role="listbox"
+      aria-label={label}
+      className="fixed z-[80] min-w-36 border border-border bg-surface py-1 shadow-[0_12px_40px_rgba(0,0,0,0.35)]"
+    >
+      {locales.map((item) => {
+        const href = alternates?.hrefs?.[item] || replaceLocaleInPath(pathname, item)
+        const isActive = item === locale
+        return (
+          <li key={item} role="option" aria-selected={isActive}>
+            <Link
+              href={href}
+              hrefLang={item}
+              lang={item}
+              aria-current={isActive ? 'true' : undefined}
+              onClick={() => {
+                document.cookie = `${LOCALE_COOKIE}=${item};path=/;max-age=31536000;samesite=lax`
+                setOpen(false)
+              }}
+              className={`flex items-center justify-between gap-3 px-3 py-2.5 text-sm no-underline transition ${
+                isActive
+                  ? 'bg-accent/15 font-semibold text-accent'
+                  : 'text-muted hover:bg-surface-elevated hover:text-foreground'
+              }`}
+            >
+              <span className="flex items-center gap-2">
+                <LocaleFlag locale={item} />
+                <span>{localeLabels[item]}</span>
+              </span>
+              <span className="text-[0.7rem] tracking-[0.14em] opacity-70">{localeCodes[item]}</span>
+            </Link>
+          </li>
+        )
+      })}
+    </ul>
+  ) : null
+
   return (
     <div ref={rootRef} className="relative">
       <button
+        ref={buttonRef}
         type="button"
         className="inline-flex min-h-11 items-center gap-1.5 px-1.5 text-xs font-semibold tracking-[0.14em] text-muted transition hover:text-foreground sm:px-2"
         aria-label={label}
@@ -130,44 +220,7 @@ export function LanguageSwitcher({locale, label}: LanguageSwitcherProps) {
         </svg>
       </button>
 
-      {open ? (
-        <ul
-          id={listId}
-          role="listbox"
-          aria-label={label}
-          className="absolute inset-inline-end-0 top-[calc(100%+0.35rem)] z-50 min-w-36 border border-border bg-surface py-1 shadow-[0_12px_40px_rgba(0,0,0,0.35)]"
-        >
-          {locales.map((item) => {
-            const href = alternates?.hrefs?.[item] || replaceLocaleInPath(pathname, item)
-            const isActive = item === locale
-            return (
-              <li key={item} role="option" aria-selected={isActive}>
-                <Link
-                  href={href}
-                  hrefLang={item}
-                  lang={item}
-                  aria-current={isActive ? 'true' : undefined}
-                  onClick={() => {
-                    document.cookie = `${LOCALE_COOKIE}=${item};path=/;max-age=31536000;samesite=lax`
-                    setOpen(false)
-                  }}
-                  className={`flex items-center justify-between gap-3 px-3 py-2.5 text-sm no-underline transition ${
-                    isActive
-                      ? 'bg-accent/15 font-semibold text-accent'
-                      : 'text-muted hover:bg-surface-elevated hover:text-foreground'
-                  }`}
-                >
-                  <span className="flex items-center gap-2">
-                    <LocaleFlag locale={item} />
-                    <span>{localeLabels[item]}</span>
-                  </span>
-                  <span className="text-[0.7rem] tracking-[0.14em] opacity-70">{localeCodes[item]}</span>
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
-      ) : null}
+      {mounted && menu ? createPortal(menu, document.body) : null}
     </div>
   )
 }
