@@ -8,6 +8,7 @@ import {
   FeaturedProductSlider,
   type FeaturedProductSlide,
 } from './featured-product-slider'
+import {HomeReveal} from './home-reveal'
 import styles from './featured-product-showcase.module.css'
 
 type FeaturedProductShowcaseProps = {
@@ -199,7 +200,7 @@ export function FeaturedProductShowcase({locale, product}: FeaturedProductShowca
             MDF KIT
           </span>
 
-          <div className={styles.mediaColumn}>
+          <HomeReveal className={styles.mediaColumn} variant="start">
             <div className={styles.focusLabel}>
               <span aria-hidden="true" />
               {copy.focusLabel}
@@ -221,9 +222,9 @@ export function FeaturedProductShowcase({locale, product}: FeaturedProductShowca
                 ))}
               </div>
             ) : null}
-          </div>
+          </HomeReveal>
 
-          <div className={styles.copyColumn}>
+          <HomeReveal className={styles.copyColumn} variant="end" delay={90}>
             <p className={styles.eyebrow}>{copy.eyebrow}</p>
             <h2 id="featured-product-title" className={styles.title}>
               {product.title}
@@ -252,7 +253,7 @@ export function FeaturedProductShowcase({locale, product}: FeaturedProductShowca
                 {copy.quoteLabel}
               </Link>
             </div>
-          </div>
+          </HomeReveal>
         </div>
       </div>
     </section>

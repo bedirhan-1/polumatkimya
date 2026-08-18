@@ -11,6 +11,7 @@ import {resolveSimpleCta} from '@/sanity/lib/link-resolver'
 import {AboutVideo} from './about-video'
 import {FeaturedProductShowcase} from './featured-product-showcase'
 import {getHomeCopy} from './home-copy'
+import {HomeReveal} from './home-reveal'
 import styles from './home-landing.module.css'
 import {
   inferQualityBadgeKind,
@@ -227,7 +228,7 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
         className="relative isolate min-h-[min(100svh,42rem)] w-full overflow-hidden border-b border-white/10 bg-[#050607] sm:min-h-[min(100svh,46rem)] lg:aspect-[21/9] lg:min-h-0"
         aria-labelledby="home-hero-title"
       >
-        <div className="absolute inset-0">
+        <div className={`absolute inset-0 ${styles.heroMedia}`}>
           {hero?.mobileImage?.asset ? (
             <>
               <SanityImage
@@ -259,12 +260,12 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
           ) : null}
         </div>
         <div
-          className="absolute inset-0 z-[1] bg-[linear-gradient(90deg,rgba(2,3,4,0.96)_0%,rgba(2,3,4,0.82)_52%,rgba(2,3,4,0.26)_100%)] lg:hidden"
+          className={`absolute inset-0 z-[1] bg-[linear-gradient(90deg,rgba(2,3,4,0.96)_0%,rgba(2,3,4,0.82)_52%,rgba(2,3,4,0.26)_100%)] lg:hidden ${styles.heroOverlay}`}
           aria-hidden
         />
 
         <div className="container-site relative z-[2] flex min-h-[min(100svh,42rem)] flex-col justify-end pt-12 pb-6 sm:min-h-[min(100svh,46rem)] sm:justify-center sm:pb-10 lg:min-h-full lg:justify-center lg:pt-0 lg:pb-20">
-          <div className="max-w-[31rem] lg:w-[36%] lg:min-w-0 lg:max-w-[31rem] xl:min-w-[28rem]">
+          <div className={`${styles.heroCopy} max-w-[31rem] lg:w-[36%] lg:min-w-0 lg:max-w-[31rem] xl:min-w-[28rem]`}>
             {heroEyebrow ? (
               <p className="flex items-center gap-3 text-[0.68rem] font-bold leading-none tracking-[0.2em] text-accent uppercase before:h-px before:w-7 before:shrink-0 before:bg-current before:content-['']">
                 {heroEyebrow}
@@ -306,7 +307,7 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
           </div>
 
           {trustItems.length ? (
-            <div className="relative mt-8 grid grid-cols-2 overflow-hidden border border-white/10 bg-[#08090b]/85 shadow-2xl backdrop-blur-xl lg:absolute lg:inset-x-auto lg:inset-inline-start-8 lg:bottom-4 lg:mt-0 lg:w-[calc(100%_-_4rem)] lg:max-w-[50rem] lg:grid-cols-4 lg:border-white/10 lg:bg-black/20 lg:shadow-none lg:backdrop-blur-sm">
+            <div className={`${styles.heroTrust} relative mt-8 grid grid-cols-2 overflow-hidden border border-white/10 bg-[#08090b]/85 shadow-2xl backdrop-blur-xl lg:absolute lg:inset-x-auto lg:inset-inline-start-8 lg:bottom-4 lg:mt-0 lg:w-[calc(100%_-_4rem)] lg:max-w-[50rem] lg:grid-cols-4 lg:border-white/10 lg:bg-black/20 lg:shadow-none lg:backdrop-blur-sm`}>
               {trustItems.map((item, index) => (
                 <div
                   className={`grid min-h-[4.75rem] grid-cols-[auto_1fr] items-center gap-2.5 px-3 py-3 sm:min-h-20 sm:gap-3 sm:px-4 sm:py-4 lg:min-h-16 lg:px-3 lg:py-2 ${
@@ -341,7 +342,7 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
       {featuredProducts.length ? (
         <section className={styles.section} aria-labelledby="home-products-title">
           <div className="container-site">
-            <div className={styles.headingRow}>
+            <HomeReveal className={styles.headingRow}>
               <div>
                 <p className={styles.eyebrow}>{productsEyebrow}</p>
                 <h2 id="home-products-title" className={styles.sectionTitle}>
@@ -352,8 +353,8 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
               <Link href={`/${locale}/products`} className={styles.textLink}>
                 {productsAll} <ArrowIcon />
               </Link>
-            </div>
-            <div className={styles.productsGrid}>
+            </HomeReveal>
+            <HomeReveal className={styles.productsGrid} stagger delay={80}>
               {featuredProducts.map((product) => (
                 <HomeProductCard
                   key={product._id}
@@ -362,7 +363,7 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
                   detailLabel={productsDetail}
                 />
               ))}
-            </div>
+            </HomeReveal>
           </div>
         </section>
       ) : null}
@@ -372,13 +373,13 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
         aria-labelledby="home-strengths-title"
       >
         <div className="container-site">
-          <div className={styles.centerHeading}>
+          <HomeReveal className={styles.centerHeading}>
             <p className={styles.eyebrow}>{strengthsEyebrow}</p>
             <h2 id="home-strengths-title" className={styles.sectionTitle}>
               {strengthsTitle}
             </h2>
-          </div>
-          <div className={styles.benefitsGrid}>
+          </HomeReveal>
+          <HomeReveal className={styles.benefitsGrid} stagger delay={60}>
             {strengthItems.map((item, index) => (
               <article className={styles.benefit} key={item._key || item.title}>
                 <span className={styles.benefitIcon}>
@@ -388,14 +389,14 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
                 <p>{item.description}</p>
               </article>
             ))}
-          </div>
+          </HomeReveal>
         </div>
       </section>
 
       {industryCards.length ? (
         <section className={styles.section} aria-labelledby="home-industries-title">
           <div className="container-site">
-            <div className={styles.centerHeading}>
+            <HomeReveal className={styles.centerHeading}>
               <p className={styles.eyebrow}>{industriesEyebrow}</p>
               <h2 id="home-industries-title" className={styles.sectionTitle}>
                 {industriesTitle}
@@ -408,11 +409,12 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
                   {industriesViewAll.label} <ArrowIcon />
                 </Link>
               ) : null}
-            </div>
+            </HomeReveal>
             <IndustryCards
               locale={locale}
               areas={industryCards}
               detailLabel={industriesDetailLabel}
+              reveal
             />
           </div>
         </section>
@@ -425,7 +427,7 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
       >
         <div className="container-site">
           <div className={styles.privatePanel}>
-            <div className={styles.privateIntro}>
+            <HomeReveal className={styles.privateIntro} variant="start">
               <p className={styles.eyebrow}>
                 {privateLabel?.eyebrow || copy.privateLabel.eyebrow}
               </p>
@@ -438,9 +440,9 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
               <ButtonLink href={privateCta.href} className={styles.privateAction}>
                 {privateCta.label} <ArrowIcon />
               </ButtonLink>
-            </div>
+            </HomeReveal>
 
-            <div className={styles.privateVisual} aria-hidden="true">
+            <HomeReveal className={styles.privateVisual} variant="scale" delay={80} aria-hidden="true">
               {privateImage ? (
                 <SanityImage
                   image={privateImage}
@@ -451,9 +453,9 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
                   className={styles.privateVisualImage}
                 />
               ) : null}
-            </div>
+            </HomeReveal>
 
-            <div className={styles.privateFeatures}>
+            <HomeReveal className={styles.privateFeatures} delay={120}>
               <div className={styles.featureList}>
                 {privateFeatures.map((item, index) => (
                   <div className={styles.featureItem} key={item._key || item.title}>
@@ -467,9 +469,9 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
                   </div>
                 ))}
               </div>
-            </div>
+            </HomeReveal>
 
-            <div className={styles.privateProcess}>
+            <HomeReveal className={styles.privateProcess} variant="end" delay={160}>
               <p className={styles.processTitle}>
                 {privateLabel?.processTitle || copy.privateLabel.processTitle}
               </p>
@@ -486,7 +488,7 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
                   </div>
                 ))}
               </div>
-            </div>
+            </HomeReveal>
           </div>
         </div>
       </section>
@@ -494,14 +496,16 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
       <section className={styles.section} aria-labelledby="home-about-title">
         <div className="container-site">
           <div className={styles.aboutGrid}>
-            <AboutVideo
-              poster={aboutImage}
-              posterAlt={about?.image?.alt || copy.about.imageAlt}
-              playLabel={aboutPlayLabel}
-              streamUrl={about?.streamUrl}
-              streamVideoId={about?.streamVideoId}
-            />
-            <div className={styles.aboutCopy}>
+            <HomeReveal variant="start">
+              <AboutVideo
+                poster={aboutImage}
+                posterAlt={about?.image?.alt || copy.about.imageAlt}
+                playLabel={aboutPlayLabel}
+                streamUrl={about?.streamUrl}
+                streamVideoId={about?.streamVideoId}
+              />
+            </HomeReveal>
+            <HomeReveal className={styles.aboutCopy} variant="end" delay={80}>
               <p className={styles.aboutEyebrow}>{about?.eyebrow || copy.about.eyebrow}</p>
               <h2 id="home-about-title" className={styles.sectionTitle}>
                 {about?.title || copy.about.title}
@@ -509,7 +513,7 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
               <p className={styles.sectionDescription}>
                 {about?.description || copy.about.description}
               </p>
-              <div className={styles.statsGrid}>
+              <HomeReveal className={styles.statsGrid} stagger delay={120}>
                 {aboutStats.map((stat, index) => (
                   <div className={styles.stat} key={stat._key || `${stat.value}-${stat.label}`}>
                     <span className={styles.statIcon}>
@@ -523,11 +527,11 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
                     <span>{stat.label}</span>
                   </div>
                 ))}
-              </div>
+              </HomeReveal>
               <Link href={aboutCta.href} className={styles.aboutOutlineCta}>
                 {aboutCta.label} <ArrowIcon />
               </Link>
-            </div>
+            </HomeReveal>
           </div>
         </div>
       </section>
@@ -540,15 +544,15 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
           className={styles.qualityWatermark}
         />
         <div className={`container-site ${styles.qualityInner}`}>
-          <div className={styles.qualityTop}>
+          <HomeReveal className={styles.qualityTop}>
             <p className={styles.eyebrow}>{quality?.eyebrow || copy.quality.eyebrow}</p>
             <h2 id="home-quality-title" className={styles.sectionTitle}>
               {quality?.title || copy.quality.title}
             </h2>
-          </div>
+          </HomeReveal>
 
           <div className={styles.qualityRow}>
-            <div className={styles.qualityGrid}>
+            <HomeReveal className={styles.qualityGrid} stagger delay={80}>
               {qualityItems.map((item, index) => (
                 <div className={styles.qualityItem} key={item._key || item.label}>
                   <span className={styles.qualityItemIcon}>
@@ -563,12 +567,12 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
                   <strong>{item.label}</strong>
                 </div>
               ))}
-            </div>
+            </HomeReveal>
 
             {qualityBadges.length ? (
               <>
                 <div className={styles.qualityDivider} aria-hidden="true" />
-                <div className={styles.qualityBadges}>
+                <HomeReveal className={styles.qualityBadges} stagger delay={160}>
                   {qualityBadges.map((badge) => {
                     const kind = inferQualityBadgeKind(badge.label || '')
                     const content = (
@@ -603,7 +607,7 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
                       </div>
                     )
                   })}
-                </div>
+                </HomeReveal>
               </>
             ) : null}
           </div>
@@ -612,7 +616,7 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
 
       <section className={styles.ctaBand} aria-labelledby="home-cta-title">
         <div className={`container-site ${styles.ctaInner}`}>
-          <div>
+          <HomeReveal>
             <p className={styles.eyebrow}>{cta?.eyebrow || copy.cta.eyebrow}</p>
             <h2 id="home-cta-title" className={styles.ctaTitle}>
               {cta?.title || copy.cta.title}
@@ -620,8 +624,8 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
             <p className={styles.ctaDescription}>
               {cta?.description || copy.cta.description}
             </p>
-          </div>
-          <div className={styles.ctaActions}>
+          </HomeReveal>
+          <HomeReveal className={styles.ctaActions} delay={100} variant="end">
             <ButtonLink href={bottomPrimary.href} className="no-underline uppercase">
               {bottomPrimary.label} <ArrowIcon />
             </ButtonLink>
@@ -632,7 +636,7 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
             >
               {bottomSecondary.label}
             </ButtonLink>
-          </div>
+          </HomeReveal>
         </div>
       </section>
     </div>
