@@ -1,10 +1,12 @@
 import {visionTool} from '@sanity/vision'
+import {createElement} from 'react'
 import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {documentInternationalization} from '@sanity/document-internationalization'
 import {internationalizedArray} from 'sanity-plugin-internationalized-array'
 import {defineField} from 'sanity'
 
+import {NormalizeLegacyI18nInput} from './components/normalize-legacy-i18n-input'
 import {apiVersion, dataset, projectId} from './env'
 import {LANGUAGE_IDS, SUPPORTED_LANGUAGES} from './lib/languages'
 import {schemaTypes} from './schemaTypes'
@@ -41,6 +43,16 @@ export default defineConfig({
       schemaTypes: DOCUMENT_I18N_TYPES,
     }),
   ],
+  form: {
+    components: {
+      input: (props) => {
+        if (props.schemaType.name === 'exportPage' || props.schemaType.name === 'contactPage') {
+          return createElement(NormalizeLegacyI18nInput, props)
+        }
+        return props.renderDefault(props)
+      },
+    },
+  },
   schema: {
     types: schemaTypes,
     templates: (templates) =>
