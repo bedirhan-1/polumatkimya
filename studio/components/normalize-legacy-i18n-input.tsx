@@ -1,7 +1,13 @@
 'use client'
 
 import {useEffect, useRef} from 'react'
-import {set, type InputProps, type ObjectInputProps} from 'sanity'
+import {
+  useDocumentOperation,
+  useEditState,
+  useFormValue,
+  type InputProps,
+  type ObjectInputProps,
+} from 'sanity'
 
 import {normalizeLegacyI18n} from '../lib/normalize-legacy-i18n'
 
@@ -10,15 +16,31 @@ function valuesEqual(left: unknown, right: unknown) {
 }
 
 function NormalizeObjectInput(props: ObjectInputProps) {
+  const rawId = String(useFormValue(['_id']) || '')
+  const typeName = String(useFormValue(['_type']) || props.schemaType.name)
+  const publishedId = rawId.replace(/^drafts\./, '')
+  const {patch} = useDocumentOperation(publishedId, typeName)
+  const editState = useEditState(publishedId, typeName)
   const applied = useRef(false)
 
   useEffect(() => {
-    if (applied.current || !props.value) return
-    const next = normalizeLegacyI18n(props.value)
-    if (valuesEqual(next, props.value)) return
+    if (applied.current || props.readOnly || !props.value || !publishedId) return
+    if (patch.disabled) return
+
+    const current = props.value as Record<string, unknown>
+    const next = normalizeLegacyI18n(current) as Record<string, unknown>
+    if (valuesEqual(next, current)) return
+
+    const patches = Object.keys(next)
+      .filter((key) => !key.startsWith('_'))
+      .filter((key) => !valuesEqual(next[key], current[key]))
+      .map((key) => ({set: {[key]: next[key]}}))
+
+    if (!patches.length) return
     applied.current = true
-    props.onChange(set(next))
-  }, [props.onChange, props.value])
+    const initial = editState.draft || editState.published
+    patch.execute(patches, initial || undefined)
+  }, [editState.draft, editState.published, patch, props.readOnly, props.value, publishedId])
 
   return props.renderDefault(props)
 }
