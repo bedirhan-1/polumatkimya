@@ -2,9 +2,9 @@
  * Convert product specification value/unit fields to internationalized arrays
  * and fill TR/EN/AR copy for every product (including missing spec groups).
  *
- *   npx tsx migration/scripts/migrate-spec-value-unit-i18n.ts
- *   npx tsx migration/scripts/migrate-spec-value-unit-i18n.ts --dataset=all
- *   npx tsx migration/scripts/migrate-spec-value-unit-i18n.ts --dataset=production
+ *   bun migration/scripts/migrate-spec-value-unit-i18n.ts
+ *   bun migration/scripts/migrate-spec-value-unit-i18n.ts --dataset=all
+ *   bun migration/scripts/migrate-spec-value-unit-i18n.ts --dataset=production
  */
 import {createClient, type SanityClient} from '@sanity/client'
 import {randomBytes} from 'node:crypto'

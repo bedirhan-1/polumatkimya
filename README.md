@@ -23,8 +23,8 @@ Schemas live in `studio/schemaTypes`. The authoring UI is mounted inside Next.js
 
 ```bash
 cp .env.example .env.local
-npm install
-npm run dev
+bun install
+bun run dev
 ```
 
 - Site: http://localhost:3000 → redirects to `/tr`
@@ -34,16 +34,16 @@ npm run dev
 
 | Script | Purpose |
 |---|---|
-| `npm run dev` | Next.js (site + `/admin`) |
-| `npm run build` | Production build |
-| `npm run lint` | ESLint |
-| `npm run typecheck` | TypeScript |
-| `npm run schema:extract` | Extract Sanity schema JSON |
-| `npm run typegen` | Generate `sanity.types.ts` |
-| `npm run migrate:extract` | Snapshot live site content |
-| `npm run migrate:transform` | Build Sanity-shaped JSON |
-| `npm run migrate:validate` | Count + redirect checks |
-| `npm run migrate:import` | Dry-run import (add `-- --write` to mutate) |
+| `bun run dev` | Next.js (site + `/admin`) |
+| `bun run build` | Production build |
+| `bun run lint` | ESLint |
+| `bun run typecheck` | TypeScript |
+| `bun run schema:extract` | Extract Sanity schema JSON |
+| `bun run typegen` | Generate `sanity.types.ts` |
+| `bun run migrate:extract` | Snapshot live site content |
+| `bun run migrate:transform` | Build Sanity-shaped JSON |
+| `bun run migrate:validate` | Count + redirect checks |
+| `bun run migrate:import` | Dry-run import (add `-- --write` to mutate) |
 
 See [migration/README.md](migration/README.md) for the full cutover checklist.
 

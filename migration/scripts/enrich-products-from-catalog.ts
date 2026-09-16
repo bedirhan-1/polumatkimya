@@ -3,9 +3,9 @@
  * Updates title, shortDescription, body, benefits, features, packaging, specs
  * in TR/EN/AR. Preserves images, categories, documents, status, slug.
  *
- *   npx tsx migration/scripts/enrich-products-from-catalog.ts
- *   npx tsx migration/scripts/enrich-products-from-catalog.ts --dataset=all
- *   npx tsx migration/scripts/enrich-products-from-catalog.ts --dry-run
+ *   bun migration/scripts/enrich-products-from-catalog.ts
+ *   bun migration/scripts/enrich-products-from-catalog.ts --dataset=all
+ *   bun migration/scripts/enrich-products-from-catalog.ts --dry-run
  */
 import {createClient, type SanityClient} from '@sanity/client'
 import {randomBytes} from 'node:crypto'

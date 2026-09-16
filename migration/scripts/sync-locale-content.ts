@@ -2,8 +2,8 @@
  * Aligns EN/AR CMS content with the Turkish originals:
  * shared homepage images/sections, full corporate copy, product i18n, blog.
  *
- *   npx tsx migration/scripts/sync-locale-content.ts
- *   npx tsx migration/scripts/sync-locale-content.ts --dataset=all
+ *   bun migration/scripts/sync-locale-content.ts
+ *   bun migration/scripts/sync-locale-content.ts --dataset=all
  */
 import {createClient, type SanityClient} from '@sanity/client'
 import {randomBytes} from 'node:crypto'

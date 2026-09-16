@@ -5,9 +5,9 @@
  * Requires SANITY_API_WRITE_TOKEN for --write.
  *
  * Usage:
- *   npm run migrate:import -- --dry-run
- *   npm run migrate:import -- --write
- *   npm run migrate:import -- --write --with-assets
+ *   bun run migrate:import -- --dry-run
+ *   bun run migrate:import -- --write
+ *   bun run migrate:import -- --write --with-assets
  */
 import {createClient, type SanityClient} from '@sanity/client'
 import {createHash} from 'node:crypto'
@@ -279,9 +279,9 @@ async function main() {
 
   console.log(`Migration import mode: ${summary.mode}${args.withAssets ? ' (with assets)' : ''}`)
   if (!args.write) {
-    console.log('Tip: real write needs both flags via npm:')
-    console.log('  npm run migrate:import -- --write')
-    console.log('  npm run migrate:import -- --write --with-assets')
+    console.log('Tip: real write needs both flags:')
+    console.log('  bun run migrate:import -- --write')
+    console.log('  bun run migrate:import -- --write --with-assets')
   }
 
   if (!args.write) {

@@ -2,8 +2,8 @@
  * Creates/updates the `productOrder` singleton from current product sortOrder.
  *
  * Usage:
- *   npx tsx migration/scripts/seed-product-order.ts
- *   npx tsx migration/scripts/seed-product-order.ts --dataset=all
+ *   bun migration/scripts/seed-product-order.ts
+ *   bun migration/scripts/seed-product-order.ts --dataset=all
  */
 import {createClient, type SanityClient} from '@sanity/client'
 import {randomBytes} from 'node:crypto'

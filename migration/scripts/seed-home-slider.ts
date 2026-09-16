@@ -2,8 +2,8 @@
  * Seeds homePage documents (TR/EN/AR) with homeHero + all homepage sections.
  *
  * Usage:
- *   npx tsx migration/scripts/seed-home-slider.ts
- *   npx tsx migration/scripts/seed-home-slider.ts --dataset=all
+ *   bun migration/scripts/seed-home-slider.ts
+ *   bun migration/scripts/seed-home-slider.ts --dataset=all
  */
 import {createClient, type SanityClient} from '@sanity/client'
 import {randomBytes} from 'node:crypto'

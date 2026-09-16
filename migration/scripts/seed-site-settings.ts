@@ -2,9 +2,9 @@
  * Fills the siteSettings singleton with Polumat company data, nav, contact, logos.
  *
  * Usage:
- *   npx tsx migration/scripts/seed-site-settings.ts
- *   npx tsx migration/scripts/seed-site-settings.ts --dataset=production
- *   npx tsx migration/scripts/seed-site-settings.ts --dataset=all
+ *   bun migration/scripts/seed-site-settings.ts
+ *   bun migration/scripts/seed-site-settings.ts --dataset=production
+ *   bun migration/scripts/seed-site-settings.ts --dataset=all
  */
 import {createClient, type SanityClient} from '@sanity/client'
 import {existsSync, readFileSync} from 'node:fs'

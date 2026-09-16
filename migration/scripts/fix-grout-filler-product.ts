@@ -9,9 +9,9 @@
  * Defaults to dry-run. Never writes unless --write is passed.
  *
  * Usage:
- *   npm run fix:grout-filler
- *   npm run fix:grout-filler -- --write
- *   npm run fix:grout-filler -- --write --dataset=development
+ *   bun run fix:grout-filler
+ *   bun run fix:grout-filler -- --write
+ *   bun run fix:grout-filler -- --write --dataset=development
  */
 import {createClient, type SanityClient} from '@sanity/client'
 import {existsSync, readFileSync} from 'node:fs'

@@ -3,9 +3,9 @@
  * Existing content is left untouched so editorial changes are never overwritten.
  *
  * Usage:
- *   npm run seed:export-page
- *   npm run seed:export-page -- --dataset=production
- *   npm run seed:export-page -- --dataset=all
+ *   bun run seed:export-page
+ *   bun run seed:export-page -- --dataset=production
+ *   bun run seed:export-page -- --dataset=all
  */
 import {createClient} from '@sanity/client'
 import {randomBytes} from 'node:crypto'

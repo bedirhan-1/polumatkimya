@@ -3,9 +3,9 @@
  * then syncs each applicationArea.products list from those assignments.
  *
  * Usage:
- *   npx tsx migration/scripts/assign-product-application-areas.ts
- *   npx tsx migration/scripts/assign-product-application-areas.ts --dataset=all
- *   npx tsx migration/scripts/assign-product-application-areas.ts --dataset=all --dry-run
+ *   bun migration/scripts/assign-product-application-areas.ts
+ *   bun migration/scripts/assign-product-application-areas.ts --dataset=all
+ *   bun migration/scripts/assign-product-application-areas.ts --dataset=all --dry-run
  */
 import {createClient, type SanityClient} from '@sanity/client'
 import {randomBytes} from 'node:crypto'

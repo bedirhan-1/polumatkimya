@@ -1,7 +1,7 @@
 /**
  * Transforms extracted snapshot into Sanity-shaped documents (no writes).
  *
- * Usage: npm run migrate:transform
+ * Usage: bun run migrate:transform
  */
 import path from 'node:path'
 import {randomBytes} from 'node:crypto'

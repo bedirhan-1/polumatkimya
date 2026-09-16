@@ -30,27 +30,21 @@ SANITY_API_WRITE_TOKEN=...   # Editor token with write access — only needed fo
 
 ## Commands
 
-Important: with npm, extra flags must come after `--` or npm swallows them.
+Extra flags go after `--` so they reach the script:
 
 ```bash
-npm run migrate:extract
-npm run migrate:transform
-npm run migrate:validate
+bun run migrate:extract
+bun run migrate:transform
+bun run migrate:validate
 
 # Dry-run (default) — does NOT write
-npm run migrate:import
+bun run migrate:import
 
 # Real write (needs SANITY_API_WRITE_TOKEN in .env.local)
-npm run migrate:import -- --write
+bun run migrate:import -- --write
 
 # Real write + download/upload first product image each
-npm run migrate:import -- --write --with-assets
-```
-
-Wrong (npm ignores `--write`, stays dry-run):
-
-```bash
-npm run migrate:import --write
+bun run migrate:import -- --write --with-assets
 ```
 
 ## Layout

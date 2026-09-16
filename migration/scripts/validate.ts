@@ -1,7 +1,7 @@
 /**
  * Validates snapshot counts, transform output, and legacy redirect coverage.
  *
- * Usage: npm run migrate:validate
+ * Usage: bun run migrate:validate
  */
 import path from 'node:path'
 

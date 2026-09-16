@@ -1,6 +1,6 @@
 /**
  * Read-only audit: compare TR vs EN/AR content and images.
- *   npx tsx migration/scripts/audit-i18n.ts
+ *   bun migration/scripts/audit-i18n.ts
  */
 import {createClient} from '@sanity/client'
 import {existsSync, readFileSync, writeFileSync} from 'node:fs'

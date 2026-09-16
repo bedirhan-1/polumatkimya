@@ -2,7 +2,7 @@
  * Re-extracts public content from the live Polumat site into a local snapshot.
  * Does not write to Sanity.
  *
- * Usage: npm run migrate:extract
+ * Usage: bun run migrate:extract
  */
 import {legacyBlogSlugMap, legacyProductSlugMap} from '../../lib/redirects/legacy'
 import {

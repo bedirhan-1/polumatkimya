@@ -2,8 +2,8 @@
  * Seeds missing applicationArea fields (body, benefits, products, cta, coverImage).
  *
  * Usage:
- *   npx tsx migration/scripts/seed-application-areas.ts
- *   npx tsx migration/scripts/seed-application-areas.ts --dataset=production
+ *   bun migration/scripts/seed-application-areas.ts
+ *   bun migration/scripts/seed-application-areas.ts --dataset=production
  */
 import {createClient, type SanityClient} from '@sanity/client'
 import {createHash, randomBytes} from 'node:crypto'

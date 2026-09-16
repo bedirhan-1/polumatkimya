@@ -2,8 +2,8 @@
  * Fills homePage.industriesSection text fields (TR/EN/AR) and card titles/summaries.
  *
  * Usage:
- *   npx tsx migration/scripts/fill-home-industries-copy.ts
- *   npx tsx migration/scripts/fill-home-industries-copy.ts --dataset=all
+ *   bun migration/scripts/fill-home-industries-copy.ts
+ *   bun migration/scripts/fill-home-industries-copy.ts --dataset=all
  */
 import {createClient, type SanityClient} from '@sanity/client'
 import {randomBytes} from 'node:crypto'

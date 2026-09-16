@@ -1,8 +1,8 @@
 /**
  * Puts MDF Kit Activator first in the homepage 6-product grid (TR/EN/AR).
  *
- *   npx tsx migration/scripts/pin-home-mdf-kit.ts
- *   npx tsx migration/scripts/pin-home-mdf-kit.ts --dataset=all
+ *   bun migration/scripts/pin-home-mdf-kit.ts
+ *   bun migration/scripts/pin-home-mdf-kit.ts --dataset=all
  */
 import {createClient} from '@sanity/client'
 import {existsSync, readFileSync} from 'node:fs'

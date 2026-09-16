@@ -1,9 +1,9 @@
 /**
  * Fills empty product badge fields from the primary category.
  *
- *   npx tsx migration/scripts/fill-product-badges.ts
- *   npx tsx migration/scripts/fill-product-badges.ts --write
- *   npx tsx migration/scripts/fill-product-badges.ts --write --dataset=all
+ *   bun migration/scripts/fill-product-badges.ts
+ *   bun migration/scripts/fill-product-badges.ts --write
+ *   bun migration/scripts/fill-product-badges.ts --write --dataset=all
  */
 import {createClient, type SanityClient} from '@sanity/client'
 import {randomBytes} from 'node:crypto'

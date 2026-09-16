@@ -3,8 +3,8 @@
  * Also normalizes badges and drops null entries.
  *
  * Usage:
- *   npx tsx migration/scripts/fix-home-quality-items.ts
- *   npx tsx migration/scripts/fix-home-quality-items.ts --dataset=all
+ *   bun migration/scripts/fix-home-quality-items.ts
+ *   bun migration/scripts/fix-home-quality-items.ts --dataset=all
  */
 import {createClient, type SanityClient} from '@sanity/client'
 import {randomBytes} from 'node:crypto'

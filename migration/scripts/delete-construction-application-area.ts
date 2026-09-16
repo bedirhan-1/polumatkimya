@@ -3,9 +3,9 @@
  * all references pointing at it.
  *
  * Usage:
- *   npx tsx migration/scripts/delete-construction-application-area.ts
- *   npx tsx migration/scripts/delete-construction-application-area.ts --dataset=all
- *   npx tsx migration/scripts/delete-construction-application-area.ts --dataset=production --dry-run
+ *   bun migration/scripts/delete-construction-application-area.ts
+ *   bun migration/scripts/delete-construction-application-area.ts --dataset=all
+ *   bun migration/scripts/delete-construction-application-area.ts --dataset=production --dry-run
  */
 import {createClient, type SanityClient} from '@sanity/client'
 import {existsSync, readFileSync} from 'node:fs'

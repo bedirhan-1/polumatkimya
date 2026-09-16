@@ -2,8 +2,8 @@
  * Fills corporate (Kurumsal) pages with content from the live Polumat site.
  *
  * Usage:
- *   npx tsx migration/scripts/seed-corporate-pages.ts
- *   npx tsx migration/scripts/seed-corporate-pages.ts --dataset=all
+ *   bun migration/scripts/seed-corporate-pages.ts
+ *   bun migration/scripts/seed-corporate-pages.ts --dataset=all
  */
 import {createClient, type SanityClient} from '@sanity/client'
 import {createHash, randomBytes} from 'node:crypto'

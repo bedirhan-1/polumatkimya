@@ -2,7 +2,7 @@
  * Removes duplicate imageTextSection images on corporate pages
  * (hero already shows the page photo).
  *
- *   npx tsx migration/scripts/fix-corporate-page-images.ts --dataset=all
+ *   bun migration/scripts/fix-corporate-page-images.ts --dataset=all
  */
 import {createClient} from '@sanity/client'
 import {existsSync, readFileSync} from 'node:fs'

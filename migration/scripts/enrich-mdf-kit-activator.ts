@@ -6,9 +6,9 @@
  * overwriting concurrent Studio edits.
  *
  * Usage:
- *   npx tsx migration/scripts/enrich-mdf-kit-activator.ts
- *   npx tsx migration/scripts/enrich-mdf-kit-activator.ts --write
- *   npx tsx migration/scripts/enrich-mdf-kit-activator.ts --verify
+ *   bun migration/scripts/enrich-mdf-kit-activator.ts
+ *   bun migration/scripts/enrich-mdf-kit-activator.ts --write
+ *   bun migration/scripts/enrich-mdf-kit-activator.ts --verify
  */
 import {createClient, type SanityClient} from '@sanity/client'
 import {randomBytes} from 'node:crypto'

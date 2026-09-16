@@ -2,8 +2,8 @@
  * Upload legacy cover images from polumatkimya.com into Sanity.
  *
  * Usage:
- *   npx tsx migration/scripts/seed-media.ts
- *   npx tsx migration/scripts/seed-media.ts --dataset production
+ *   bun migration/scripts/seed-media.ts
+ *   bun migration/scripts/seed-media.ts --dataset production
  */
 import {createClient, type SanityClient} from '@sanity/client'
 import {createHash, randomBytes} from 'node:crypto'

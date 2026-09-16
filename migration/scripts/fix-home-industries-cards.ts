@@ -3,8 +3,8 @@
  * to { area, title?, summary? } objects, and ensures text fields exist.
  *
  * Usage:
- *   npx tsx migration/scripts/fix-home-industries-cards.ts
- *   npx tsx migration/scripts/fix-home-industries-cards.ts --dataset=all
+ *   bun migration/scripts/fix-home-industries-cards.ts
+ *   bun migration/scripts/fix-home-industries-cards.ts --dataset=all
  */
 import {createClient, type SanityClient} from '@sanity/client'
 import {randomBytes} from 'node:crypto'

@@ -2,8 +2,8 @@
  * Repairs incomplete applicationArea.cta objects (empty i18n values, missing linkType).
  *
  * Usage:
- *   npx tsx migration/scripts/fix-application-area-ctas.ts
- *   npx tsx migration/scripts/fix-application-area-ctas.ts --dataset=production
+ *   bun migration/scripts/fix-application-area-ctas.ts
+ *   bun migration/scripts/fix-application-area-ctas.ts --dataset=production
  */
 import {createClient} from '@sanity/client'
 import {existsSync, readFileSync} from 'node:fs'

@@ -2,8 +2,8 @@
  * Convert leftover `{tr,en,ar}` objects (missing `_type`) into
  * sanity-plugin-internationalized-array values.
  *
- *   npx tsx migration/scripts/fix-legacy-locale-objects.ts
- *   npx tsx migration/scripts/fix-legacy-locale-objects.ts --dataset=production
+ *   bun migration/scripts/fix-legacy-locale-objects.ts
+ *   bun migration/scripts/fix-legacy-locale-objects.ts --dataset=production
  */
 import {createClient} from '@sanity/client'
 import {existsSync, readFileSync} from 'node:fs'

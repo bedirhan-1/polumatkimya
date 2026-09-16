@@ -14,9 +14,10 @@
     "@sanity/document-internationalization": "^6.2.27",
     "@sanity/icons": "^3.7.4",
     "@sanity/vision": "^5.31.1",
+    "next": "16.3.4",
     "react": "19.2.4",
     "react-dom": "19.2.4",
-    "sanity": "^5.31.1",
+    "sanity": "^5.14.1",
     "sanity-plugin-internationalized-array": "^5.1.24",
     "styled-components": "^6.4.4"
   },

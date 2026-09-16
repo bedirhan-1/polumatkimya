@@ -3,10 +3,10 @@
  * Existing content is left untouched so editorial changes are never overwritten.
  *
  * Usage:
- *   npm run seed:contact-page
- *   npm run seed:contact-page -- --dataset=production
- *   npm run seed:contact-page -- --dataset=all
- *   npm run seed:contact-page -- --force
+ *   bun run seed:contact-page
+ *   bun run seed:contact-page -- --dataset=production
+ *   bun run seed:contact-page -- --dataset=all
+ *   bun run seed:contact-page -- --force
  */
 import {createClient} from '@sanity/client'
 import {randomBytes} from 'node:crypto'

@@ -3,8 +3,8 @@
  * into homePage.industriesSection for every locale.
  *
  * Usage:
- *   npx tsx migration/scripts/seed-home-industry-cards-6.ts
- *   npx tsx migration/scripts/seed-home-industry-cards-6.ts --dataset=all
+ *   bun migration/scripts/seed-home-industry-cards-6.ts
+ *   bun migration/scripts/seed-home-industry-cards-6.ts --dataset=all
  */
 import {createClient, type SanityClient} from '@sanity/client'
 import {randomBytes} from 'node:crypto'
