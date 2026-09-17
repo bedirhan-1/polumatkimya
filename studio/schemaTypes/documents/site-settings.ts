@@ -3,66 +3,35 @@ import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export const siteSettingsType = defineType({
   name: 'siteSettings',
-  title: 'Site settings',
+  title: 'Site ayarları',
   type: 'document',
   icon: CogIcon,
   fields: [
     defineField({
       name: 'companyName',
-      title: 'Company name',
+      title: 'Şirket adı',
       type: 'string',
+      description: 'Site genelinde (üst menü, alt bilgi vb.) görünen şirket adını belirler.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'shortDescription',
-      title: 'Short description',
+      title: 'Kısa açıklama',
       type: 'internationalizedArrayText',
-    }),
-    defineField({
-      name: 'logoLight',
-      title: 'Logo (light backgrounds)',
-      type: 'imageWithAlt',
-    }),
-    defineField({
-      name: 'logoDark',
-      title: 'Logo (dark backgrounds)',
-      type: 'imageWithAlt',
-    }),
-    defineField({
-      name: 'favicon',
-      title: 'Favicon',
-      type: 'image',
-    }),
-    defineField({
-      name: 'defaultOgImage',
-      title: 'Default Open Graph image',
-      type: 'image',
-      options: {hotspot: true},
-    }),
-    defineField({
-      name: 'siteUrl',
-      title: 'Canonical site URL',
-      type: 'url',
-      validation: (rule) =>
-        rule.uri({
-          scheme: ['https'],
-        }),
-    }),
-    defineField({
-      name: 'defaultSeo',
-      title: 'Default SEO',
-      type: 'seo',
+      description: 'Alt bilgide veya genel tanıtım metinlerinde kullanılan kısa şirket özetini etkiler.',
     }),
     defineField({
       name: 'headerNavigation',
-      title: 'Header navigation',
+      title: 'Üst menü',
       type: 'array',
+      description: 'Sitenin en üstündeki navigasyon menüsündeki linkleri belirler.',
       of: [defineArrayMember({type: 'navigationItem'})],
     }),
     defineField({
       name: 'footerColumns',
-      title: 'Footer columns',
+      title: 'Alt bilgi sütunları',
       type: 'array',
+      description: 'Sayfanın altındaki footer’da görünen link sütunlarını düzenler.',
       of: [
         defineArrayMember({
           type: 'object',
@@ -70,83 +39,71 @@ export const siteSettingsType = defineType({
           fields: [
             defineField({
               name: 'title',
-              title: 'Title',
+              title: 'Başlık',
               type: 'internationalizedArrayString',
+              description: 'Footer sütununun üstünde görünen başlığı belirler.',
             }),
             defineField({
               name: 'links',
-              title: 'Links',
+              title: 'Bağlantılar',
               type: 'array',
+              description: 'Bu footer sütununda listelenen linkleri belirler.',
               of: [defineArrayMember({type: 'internalOrExternalLink'})],
             }),
           ],
           preview: {
             prepare() {
-              return {title: 'Footer column'}
+              return {title: 'Footer sütunu'}
             },
           },
         }),
       ],
     }),
     defineField({
-      name: 'quoteCta',
-      title: 'Quote CTA',
-      type: 'callToAction',
-    }),
-    defineField({
       name: 'contactChannels',
-      title: 'Contact channels',
+      title: 'İletişim kanalları',
       type: 'array',
+      description: 'Footer veya iletişim alanlarında gösterilen telefon, e-posta vb. kanalları belirler.',
       of: [defineArrayMember({type: 'contactChannel'})],
     }),
     defineField({
       name: 'whatsappNumber',
-      title: 'WhatsApp number',
+      title: 'WhatsApp numarası',
       type: 'string',
-      description: 'International format without spaces, e.g. 905xxxxxxxxx',
+      description:
+        'Sitedeki WhatsApp butonunun bağlandığı numarayı belirler. Uluslararası format, boşluksuz (örn. 905xxxxxxxxx).',
     }),
     defineField({
       name: 'whatsappMessage',
-      title: 'WhatsApp default message',
+      title: 'WhatsApp varsayılan mesajı',
       type: 'internationalizedArrayText',
-    }),
-    defineField({
-      name: 'address',
-      title: 'Address',
-      type: 'internationalizedArrayText',
-    }),
-    defineField({
-      name: 'mapUrl',
-      title: 'Map URL',
-      type: 'url',
+      description: 'WhatsApp sohbeti açıldığında hazır gelen mesaj metnini belirler.',
     }),
     defineField({
       name: 'socialLinks',
-      title: 'Social links',
+      title: 'Sosyal medya bağlantıları',
       type: 'array',
+      description: 'Footer’daki sosyal medya ikonlarının linklerini belirler.',
       of: [defineArrayMember({type: 'socialLink'})],
     }),
     defineField({
       name: 'catalogs',
-      title: 'PDF catalogs',
+      title: 'PDF kataloglar',
       type: 'array',
+      description: 'Siteden indirilebilen PDF katalog dosyalarını listeler.',
       of: [defineArrayMember({type: 'reference', to: [{type: 'downloadableDocument'}]})],
     }),
     defineField({
-      name: 'workingHours',
-      title: 'Working hours',
-      type: 'internationalizedArrayText',
-    }),
-    defineField({
       name: 'footerLegalText',
-      title: 'Footer legal text',
+      title: 'Footer yasal metin',
       type: 'internationalizedArrayText',
+      description: 'Sayfanın en altındaki telif / yasal uyarı metnini belirler.',
     }),
     defineField({
       name: 'footerMetaItems',
-      title: 'Footer bottom meta items',
+      title: 'Footer alt meta öğeleri',
       description:
-        'Small badges shown at the bottom-right of the footer (e.g. Çaycuma · Zonguldak).',
+        'Footer’ın sağ altında görünen küçük etiketleri belirler (örn. Çaycuma · Zonguldak).',
       type: 'array',
       of: [
         defineArrayMember({
@@ -155,8 +112,9 @@ export const siteSettingsType = defineType({
           fields: [
             defineField({
               name: 'label',
-              title: 'Label',
+              title: 'Etiket',
               type: 'internationalizedArrayString',
+              description: 'Footer altındaki küçük meta etiketinin metnini belirler.',
               validation: (rule) => rule.required(),
             }),
           ],
@@ -176,7 +134,7 @@ export const siteSettingsType = defineType({
                 title:
                   typeof preferred?.value === 'string' && preferred.value.trim()
                     ? preferred.value
-                    : 'Footer meta item',
+                    : 'Footer meta öğesi',
               }
             },
           },
@@ -185,28 +143,15 @@ export const siteSettingsType = defineType({
     }),
     defineField({
       name: 'uiLabels',
-      title: 'UI labels',
+      title: 'Arayüz etiketleri',
       type: 'object',
+      description: 'Sitede tekrar kullanılan buton ve arayüz yazılarını belirler.',
       fields: [
         defineField({
-          name: 'requestQuote',
-          title: 'Request a quote',
-          type: 'internationalizedArrayString',
-        }),
-        defineField({
-          name: 'viewProducts',
-          title: 'View products',
-          type: 'internationalizedArrayString',
-        }),
-        defineField({
-          name: 'readMore',
-          title: 'Read more',
-          type: 'internationalizedArrayString',
-        }),
-        defineField({
           name: 'download',
-          title: 'Download',
+          title: 'İndir',
           type: 'internationalizedArrayString',
+          description: 'İndirme butonlarında görünen yazıyı belirler.',
         }),
       ],
     }),

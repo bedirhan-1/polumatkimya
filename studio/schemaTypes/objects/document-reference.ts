@@ -3,21 +3,24 @@ import {defineField, defineType} from 'sanity'
 
 export const documentReferenceType = defineType({
   name: 'documentReference',
-  title: 'Document reference',
+  title: 'Belge referansı',
   type: 'object',
   icon: DocumentPdfIcon,
   fields: [
     defineField({
       name: 'document',
-      title: 'Document',
+      title: 'Belge',
       type: 'reference',
       to: [{type: 'downloadableDocument'}],
       validation: (rule) => rule.required(),
+      description: 'Ürün veya sayfada indirilebilir olarak sunulan belge (PDF vb.).',
     }),
     defineField({
       name: 'label',
-      title: 'Override label',
+      title: 'Özel etiket',
       type: 'internationalizedArrayString',
+      description:
+        'İsteğe bağlı. Sitede indirme bağlantısının metni; boşsa belgenin kendi başlığı kullanılır.',
     }),
   ],
   preview: {
@@ -26,7 +29,7 @@ export const documentReferenceType = defineType({
     },
     prepare({title}) {
       return {
-        title: title || 'Document',
+        title: title || 'Belge',
       }
     },
   },

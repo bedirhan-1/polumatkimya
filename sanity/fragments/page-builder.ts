@@ -61,8 +61,7 @@ export const pageBuilderProjection = /* groq */ `
         "title": title[language == $locale || _key == $locale][0].value,
         "slug": slug.current,
         "summary": summary[language == $locale || _key == $locale][0].value,
-        coverImage{${imageWithAltProjection}},
-        icon
+        coverImage{${imageWithAltProjection}}
       }
     },
     _type == "imageTextSection" => {
@@ -84,6 +83,16 @@ export const pageBuilderProjection = /* groq */ `
         issuer,
         certificateNumber,
         logo{${imageWithAltProjection}}
+      }
+    },
+    _type == "galleryShowcaseSection" => {
+      heading,
+      description,
+      showViewAll,
+      "images": *[_id == "gallery"][0].images[defined(image.asset)][0...coalesce(^.limit, 6)]{
+        _key,
+        "title": title[language == $locale || _key == $locale][0].value,
+        image{${imageWithAltProjection}}
       }
     },
     _type == "videoSection" => {

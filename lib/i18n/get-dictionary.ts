@@ -27,6 +27,7 @@ export type Dictionary = {
     ohs: string
     customerSatisfaction: string
     humanResources: string
+    gallery: string
     export: string
     blog: string
     contact: string
@@ -206,6 +207,13 @@ export type Dictionary = {
     play: string
     empty: string
     breadcrumbs: string
+  }
+  gallery: {
+    title: string
+    description: string
+    empty: string
+    breadcrumbs: string
+    viewAll: string
   }
 }
 

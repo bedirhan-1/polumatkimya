@@ -168,6 +168,10 @@ function buildSettingsPayload(images: {
             {linkType: 'internal', internalPath: '/about'},
           ),
           navLink(
+            {tr: 'Galeri', en: 'Gallery', ar: 'المعرض'},
+            {linkType: 'internal', internalPath: '/gallery'},
+          ),
+          navLink(
             {tr: 'Misyon ve Vizyonumuz', en: 'Mission and vision', ar: 'الرسالة والرؤية'},
             {linkType: 'internal', internalPath: '/company/mission-and-vision'},
           ),
@@ -221,6 +225,10 @@ function buildSettingsPayload(images: {
             {linkType: 'internal', internalPath: '/about'},
           ),
           navLink(
+            {tr: 'Galeri', en: 'Gallery', ar: 'المعرض'},
+            {linkType: 'internal', internalPath: '/gallery'},
+          ),
+          navLink(
             {tr: 'Misyon ve Vizyonumuz', en: 'Mission and vision', ar: 'الرسالة والرؤية'},
             {linkType: 'internal', internalPath: '/company/mission-and-vision'},
           ),
@@ -243,6 +251,10 @@ function buildSettingsPayload(images: {
           navLink(
             {tr: 'İnsan Kaynakları', en: 'Human resources', ar: 'الموارد البشرية'},
             {linkType: 'internal', internalPath: '/company/human-resources'},
+          ),
+          navLink(
+            {tr: 'İletişim', en: 'Contact', ar: 'اتصل بنا'},
+            {linkType: 'internal', internalPath: '/contact'},
           ),
         ],
       },

@@ -63,7 +63,8 @@ export default defineConfig({
           template.schemaType === 'contactPage' ||
           template.schemaType === 'exportPage' ||
           template.schemaType === 'siteSettings' ||
-          template.schemaType === 'productOrder'
+          template.schemaType === 'productOrder' ||
+          template.schemaType === 'gallery'
         ) {
           return false
         }

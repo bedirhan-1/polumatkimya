@@ -9,10 +9,10 @@ import {
   EarthGlobeIcon,
   EnvelopeIcon,
   HomeIcon,
+  ImagesIcon,
   PlayIcon,
   SortIcon,
   TagIcon,
-  TranslateIcon,
 } from '@sanity/icons'
 import type {StructureBuilder, StructureResolver} from 'sanity/structure'
 
@@ -24,6 +24,7 @@ const SINGLETON_TYPES = new Set([
   'contactPage',
   'exportPage',
   'productOrder',
+  'gallery',
 ])
 
 function createSingleton(
@@ -54,7 +55,6 @@ const CURATED_LIST_TYPES = [
 const HIDDEN_FROM_LIST = new Set([
   ...SINGLETON_TYPES,
   ...CURATED_LIST_TYPES,
-  'locale',
   'translation.metadata',
 ])
 
@@ -88,68 +88,72 @@ function createLocalizedSingleton(
 
 export const structure: StructureResolver = (S) =>
   S.list()
-    .title('Polumat Content')
+    .title('Polumat İçerik')
     .items([
       S.listItem()
-        .title('Site settings')
+        .title('Site ayarları')
         .icon(CogIcon)
         .child(
           S.document()
             .schemaType('siteSettings')
             .documentId('siteSettings')
-            .title('Site settings')
+            .title('Site ayarları')
         ),
-      createLocalizedSingleton(S, 'homePage', 'Home page', HomeIcon),
-      createSingleton(S, 'contactPage', 'Contact page', EnvelopeIcon),
-      createSingleton(S, 'exportPage', 'Export page', EarthGlobeIcon),
+      createLocalizedSingleton(S, 'homePage', 'Ana sayfa', HomeIcon),
+      createSingleton(S, 'contactPage', 'İletişim sayfası', EnvelopeIcon),
+      createSingleton(S, 'exportPage', 'İhracat sayfası', EarthGlobeIcon),
       S.divider(),
       S.listItem()
-        .title('Products')
+        .title('Ürünler')
         .icon(CubeIcon)
-        .child(S.documentTypeList('product').title('Products')),
+        .child(S.documentTypeList('product').title('Ürünler')),
       S.listItem()
-        .title('Product order')
+        .title('Ürün sırası')
         .icon(SortIcon)
         .child(
           S.document()
             .schemaType('productOrder')
             .documentId('productOrder')
-            .title('Product order'),
+            .title('Ürün sırası'),
         ),
       S.listItem()
-        .title('Product categories')
+        .title('Ürün kategorileri')
         .icon(TagIcon)
-        .child(S.documentTypeList('productCategory').title('Product categories')),
+        .child(S.documentTypeList('productCategory').title('Ürün kategorileri')),
       S.listItem()
-        .title('Application areas')
+        .title('Uygulama alanları')
         .icon(EarthGlobeIcon)
-        .child(S.documentTypeList('applicationArea').title('Application areas')),
+        .child(S.documentTypeList('applicationArea').title('Uygulama alanları')),
       S.divider(),
       S.listItem()
-        .title('Pages')
+        .title('Sayfalar')
         .icon(DocumentIcon)
-        .child(S.documentTypeList('page').title('Pages')),
+        .child(S.documentTypeList('page').title('Sayfalar')),
       S.listItem()
         .title('Blog')
         .icon(DocumentTextIcon)
-        .child(S.documentTypeList('post').title('Blog posts')),
+        .child(S.documentTypeList('post').title('Blog yazıları')),
       S.listItem()
-        .title('Videos')
+        .title('Videolar')
         .icon(PlayIcon)
-        .child(S.documentTypeList('video').title('Videos')),
+        .child(S.documentTypeList('video').title('Videolar')),
       S.listItem()
-        .title('Documents')
+        .title('Galeri')
+        .icon(ImagesIcon)
+        .child(
+          S.document()
+            .schemaType('gallery')
+            .documentId('gallery')
+            .title('Galeri'),
+        ),
+      S.listItem()
+        .title('Belgeler')
         .icon(DocumentPdfIcon)
-        .child(S.documentTypeList('downloadableDocument').title('Downloadable documents')),
+        .child(S.documentTypeList('downloadableDocument').title('İndirilebilir belgeler')),
       S.listItem()
-        .title('Certificates')
+        .title('Sertifikalar')
         .icon(CheckmarkCircleIcon)
-        .child(S.documentTypeList('certificate').title('Certificates')),
-      S.divider(),
-      S.listItem()
-        .title('Locales')
-        .icon(TranslateIcon)
-        .child(S.documentTypeList('locale').title('Locales')),
+        .child(S.documentTypeList('certificate').title('Sertifikalar')),
       ...S.documentTypeListItems().filter((item) => {
         const id = item.getId()
         return id ? !HIDDEN_FROM_LIST.has(id) : true

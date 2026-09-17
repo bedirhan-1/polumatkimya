@@ -15,7 +15,7 @@ type NavigationItemValue = {
 function validateNavigationItem(value: unknown): string | true {
   if (!value || typeof value !== 'object') return true
   const item = value as NavigationItemValue
-  if (!hasLocalizedStringValue(item.label)) return 'Label is required'
+  if (!hasLocalizedStringValue(item.label)) return 'Etiket zorunludur'
 
   const hasChildren = Array.isArray(item.children) && item.children.length > 0
   if (hasChildren || item.linkType === 'none' || !item.linkType) {
@@ -23,13 +23,13 @@ function validateNavigationItem(value: unknown): string | true {
   }
 
   if (item.linkType === 'internal' && !item.internalPath?.trim()) {
-    return 'Internal path is required for internal links'
+    return 'Site içi bağlantılar için yol zorunludur'
   }
   if (item.linkType === 'external' && !item.externalUrl) {
-    return 'External URL is required for external links'
+    return 'Dış bağlantılar için URL zorunludur'
   }
   if (item.linkType === 'reference' && !item.reference?._ref) {
-    return 'Document reference is required for reference links'
+    return 'Referans bağlantılar için belge seçimi zorunludur'
   }
 
   return true
@@ -37,42 +37,44 @@ function validateNavigationItem(value: unknown): string | true {
 
 export const navigationItemType = defineType({
   name: 'navigationItem',
-  title: 'Navigation item',
+  title: 'Menü öğesi',
   type: 'object',
   icon: LinkIcon,
   fields: [
     defineField({
       name: 'label',
-      title: 'Label',
+      title: 'Etiket',
       type: 'internationalizedArrayString',
+      description: 'Üst menüde veya alt menüde görünen bağlantı metni.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'linkType',
-      title: 'Link type',
+      title: 'Bağlantı türü',
       type: 'string',
       options: {
         list: [
-          {title: 'Dropdown only (no link)', value: 'none'},
-          {title: 'Internal path', value: 'internal'},
-          {title: 'External URL', value: 'external'},
-          {title: 'Document reference', value: 'reference'},
+          {title: 'Yalnızca açılır menü (bağlantı yok)', value: 'none'},
+          {title: 'Site içi yol', value: 'internal'},
+          {title: 'Dış URL', value: 'external'},
+          {title: 'Belge referansı', value: 'reference'},
         ],
         layout: 'radio',
       },
       initialValue: 'internal',
-      description: 'Parents with dropdown children can use “Dropdown only”.',
+      description:
+        'Üst menü öğesinin nereye gideceği. Alt menüsü olan üst öğelerde “Yalnızca açılır menü” kullanılabilir.',
     }),
     defineField({
       name: 'internalPath',
-      title: 'Internal path',
+      title: 'Site içi yol',
       type: 'string',
-      description: 'Path after locale prefix, e.g. /products or /about',
+      description: 'Dil önekinden sonraki yol, örn. /products veya /about',
       hidden: ({parent}) => parent?.linkType !== 'internal',
     }),
     defineField({
       name: 'externalUrl',
-      title: 'External URL',
+      title: 'Dış URL',
       type: 'url',
       hidden: ({parent}) => parent?.linkType !== 'external',
       validation: (rule) =>
@@ -82,8 +84,9 @@ export const navigationItemType = defineType({
     }),
     defineField({
       name: 'reference',
-      title: 'Reference',
+      title: 'Referans',
       type: 'reference',
+      description: 'Menü bağlantısının hedef sayfası, ürünü veya içeriği.',
       to: [
         {type: 'product'},
         {type: 'productCategory'},
@@ -95,15 +98,17 @@ export const navigationItemType = defineType({
     }),
     defineField({
       name: 'openInNewTab',
-      title: 'Open in new tab',
+      title: 'Yeni sekmede aç',
       type: 'boolean',
       initialValue: false,
+      description: 'Bağlantı tıklandığında yeni tarayıcı sekmesi açılır.',
       hidden: ({parent}) => parent?.linkType === 'none' || !parent?.linkType,
     }),
     defineField({
       name: 'children',
-      title: 'Dropdown links',
-      description: 'Optional nested links. Parents with children do not need their own path.',
+      title: 'Açılır menü bağlantıları',
+      description:
+        'İsteğe bağlı alt bağlantılar. Alt öğesi olan üst menü öğelerinin kendi yolu olması gerekmez.',
       type: 'array',
       of: [defineArrayMember({type: 'internalOrExternalLink'})],
     }),
@@ -119,14 +124,14 @@ export const navigationItemType = defineType({
     prepare({linkType, internalPath, externalUrl, children}) {
       const childCount = Array.isArray(children) ? children.length : 0
       return {
-        title: 'Navigation item',
+        title: 'Menü öğesi',
         subtitle: [
           linkType === 'none'
-            ? 'Dropdown only'
+            ? 'Yalnızca açılır menü'
             : linkType === 'external'
               ? externalUrl
               : internalPath || linkType,
-          childCount ? `${childCount} dropdown links` : null,
+          childCount ? `${childCount} alt bağlantı` : null,
         ]
           .filter(Boolean)
           .join(' · '),

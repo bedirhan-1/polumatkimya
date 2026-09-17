@@ -2,13 +2,14 @@ import {defineField} from 'sanity'
 
 export const translationStatusField = defineField({
   name: 'translationStatus',
-  title: 'Translation status',
+  title: 'Çeviri durumu',
   type: 'string',
+  description: 'Bu dil sürümünün çeviri sürecindeki durumunu belirler (Studio içi takip).',
   options: {
     list: [
-      {title: 'Draft', value: 'draft'},
-      {title: 'In review', value: 'inReview'},
-      {title: 'Complete', value: 'complete'},
+      {title: 'Taslak', value: 'draft'},
+      {title: 'İncelemede', value: 'inReview'},
+      {title: 'Tamamlandı', value: 'complete'},
     ],
     layout: 'radio',
   },

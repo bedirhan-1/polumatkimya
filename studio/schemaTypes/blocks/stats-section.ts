@@ -3,19 +3,21 @@ import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export const statsSectionType = defineType({
   name: 'statsSection',
-  title: 'Stats section',
+  title: 'İstatistik bölümü',
   type: 'object',
   icon: BoltIcon,
   fields: [
     defineField({
       name: 'heading',
-      title: 'Heading',
+      title: 'Başlık',
       type: 'string',
+      description: 'Sayfadaki istatistik bölümünün başlığı.',
     }),
     defineField({
       name: 'stats',
-      title: 'Statistics',
+      title: 'İstatistikler',
       type: 'array',
+      description: 'Bu bölümde sayı ve etiket olarak gösterilen maddeler.',
       of: [
         defineArrayMember({
           type: 'object',
@@ -23,14 +25,16 @@ export const statsSectionType = defineType({
           fields: [
             defineField({
               name: 'value',
-              title: 'Value',
+              title: 'Değer',
               type: 'string',
+              description: 'Sitede büyük yazıyla görünen sayı veya değer.',
               validation: (rule) => rule.required(),
             }),
             defineField({
               name: 'label',
-              title: 'Label',
+              title: 'Etiket',
               type: 'string',
+              description: 'Değerin altında görünen açıklama metni.',
               validation: (rule) => rule.required(),
             }),
           ],
@@ -47,7 +51,7 @@ export const statsSectionType = defineType({
   preview: {
     select: {title: 'heading'},
     prepare({title}) {
-      return {title: title || 'Stats section'}
+      return {title: title || 'İstatistik bölümü'}
     },
   },
 })

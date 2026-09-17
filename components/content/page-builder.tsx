@@ -2,6 +2,7 @@ import { ApplicationGridSection } from "@/components/sections/application-grid-s
 import { CertificateSection } from "@/components/sections/certificate-section";
 import { CtaSection } from "@/components/sections/cta-section";
 import { FeatureGridSection } from "@/components/sections/feature-grid-section";
+import { GalleryShowcaseSection } from "@/components/sections/gallery-showcase-section";
 import { HeroSection } from "@/components/sections/hero-section";
 import { ImageTextSection } from "@/components/sections/image-text-section";
 import { LatestContentSection } from "@/components/sections/latest-content-section";
@@ -73,6 +74,15 @@ export async function PageBuilder({
           case "certificateSection":
             return (
               <CertificateSection key={block._key} block={block as never} />
+            );
+          case "galleryShowcaseSection":
+            return (
+              <GalleryShowcaseSection
+                key={block._key}
+                locale={locale}
+                block={block as never}
+                viewAllLabel={dictionary.gallery.viewAll}
+              />
             );
           case "videoSection":
             return (

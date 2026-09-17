@@ -3,16 +3,17 @@ import {defineField, defineType} from 'sanity'
 
 export const localizedImageWithAltType = defineType({
   name: 'localizedImageWithAlt',
-  title: 'Localized image',
+  title: 'Çok dilli görsel',
   type: 'image',
   icon: ImageIcon,
   options: {hotspot: true},
   fields: [
     defineField({
       name: 'alt',
-      title: 'Alternative text',
+      title: 'Alternatif metin',
       type: 'internationalizedArrayString',
-      description: 'Localized alt text for accessibility and SEO.',
+      description:
+        'Dile göre alternatif metin. Sitede yazı olarak görünmez; erişilebilirlik ve SEO için kullanılır.',
     }),
   ],
 })

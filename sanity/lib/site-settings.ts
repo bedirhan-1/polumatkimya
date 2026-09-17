@@ -53,13 +53,9 @@ type SiteSettingsData = {
     _key?: string
     phone?: string | null
     email?: string | null
-    department?: string | null
   }> | null
   catalogs?: CatalogDocument[] | null
   uiLabels?: {
-    requestQuote?: string | null
-    viewProducts?: string | null
-    readMore?: string | null
     download?: string | null
   } | null
 }

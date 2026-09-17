@@ -3,7 +3,7 @@ import {defineQuery} from 'next-sanity'
 import {imageWithAltProjection, seoProjection} from '../fragments/page-builder'
 
 export const APPLICATION_AREAS_QUERY = defineQuery(`
-  *[_type == "applicationArea" && defined(slug.current)] | order(sortOrder asc, title[language == $locale || _key == $locale][0].value asc) {
+  *[_type == "applicationArea" && defined(slug.current)] | order(title[language == $locale || _key == $locale][0].value asc) {
     _id,
     "title": title[language == $locale || _key == $locale][0].value,
     "slug": slug.current,
@@ -21,12 +21,10 @@ export const APPLICATION_AREA_BY_SLUG_QUERY = defineQuery(`
     "summary": summary[language == $locale || _key == $locale][0].value,
     "body": body[language == $locale || _key == $locale][0].value,
     coverImage{${imageWithAltProjection}},
-    icon,
     benefits[]{
       _key,
       "title": title[language == $locale || _key == $locale][0].value,
-      "description": description[language == $locale || _key == $locale][0].value,
-      icon
+      "description": description[language == $locale || _key == $locale][0].value
     },
     products[]->{
       _id,
@@ -35,7 +33,6 @@ export const APPLICATION_AREA_BY_SLUG_QUERY = defineQuery(`
       sku,
       "shortDescription": shortDescription[language == $locale || _key == $locale][0].value,
       "badge": badge[language == $locale || _key == $locale][0].value,
-      featured,
       cardImage{
         asset,
         hotspot,
@@ -52,17 +49,6 @@ export const APPLICATION_AREA_BY_SLUG_QUERY = defineQuery(`
         primaryCategory->{_id, "title": title[language == $locale || _key == $locale][0].value, "slug": slug.current},
         categories[0]->{_id, "title": title[language == $locale || _key == $locale][0].value, "slug": slug.current}
       )
-    },
-    cta{
-      variant,
-      "label": label[language == $locale || _key == $locale][0].value,
-      link{
-        linkType,
-        internalPath,
-        externalUrl,
-        openInNewTab,
-        reference->{_type, "slug": slug.current, language}
-      }
     },
     ${seoProjection}
   }

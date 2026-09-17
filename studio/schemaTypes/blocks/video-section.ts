@@ -3,32 +3,35 @@ import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export const videoSectionType = defineType({
   name: 'videoSection',
-  title: 'Video section',
+  title: 'Video bölümü',
   type: 'object',
   icon: PlayIcon,
   fields: [
     defineField({
       name: 'heading',
-      title: 'Heading',
+      title: 'Başlık',
       type: 'string',
+      description: 'Sayfadaki video bölümünün başlığı.',
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'Açıklama',
       type: 'text',
       rows: 3,
+      description: 'Video bölümü başlığının altındaki kısa metin.',
     }),
     defineField({
       name: 'videos',
-      title: 'Videos',
+      title: 'Videolar',
       type: 'array',
+      description: 'Bu bölümde oynatılacak veya listelenecek videolar.',
       of: [defineArrayMember({type: 'reference', to: [{type: 'video'}]})],
     }),
   ],
   preview: {
     select: {title: 'heading'},
     prepare({title}) {
-      return {title: title || 'Video section'}
+      return {title: title || 'Video bölümü'}
     },
   },
 })

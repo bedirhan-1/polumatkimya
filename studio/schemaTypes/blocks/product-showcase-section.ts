@@ -3,25 +3,28 @@ import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export const productShowcaseSectionType = defineType({
   name: 'productShowcaseSection',
-  title: 'Product showcase',
+  title: 'Ürün vitrini',
   type: 'object',
   icon: ThLargeIcon,
   fields: [
     defineField({
       name: 'heading',
-      title: 'Heading',
+      title: 'Başlık',
       type: 'string',
+      description: 'Sayfadaki ürün vitrini bölümünün başlığı.',
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'Açıklama',
       type: 'text',
       rows: 3,
+      description: 'Ürün vitrini başlığının altındaki kısa metin.',
     }),
     defineField({
       name: 'products',
-      title: 'Products',
+      title: 'Ürünler',
       type: 'array',
+      description: 'Bu bölümde kart olarak gösterilecek ürünler (en fazla 6).',
       of: [defineArrayMember({type: 'reference', to: [{type: 'product'}]})],
       validation: (rule) => rule.max(6),
     }),
@@ -29,7 +32,7 @@ export const productShowcaseSectionType = defineType({
   preview: {
     select: {title: 'heading'},
     prepare({title}) {
-      return {title: title || 'Product showcase'}
+      return {title: title || 'Ürün vitrini'}
     },
   },
 })

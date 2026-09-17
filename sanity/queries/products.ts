@@ -16,7 +16,6 @@ const productCardProjection = /* groq */ `
   sku,
   "shortDescription": shortDescription[language == $locale || _key == $locale][0].value,
   "badge": badge[language == $locale || _key == $locale][0].value,
-  featured,
   cardImage{${localizedImageProjection}},
   packshot{${localizedImageProjection}},
   "primaryCategory": coalesce(
@@ -31,7 +30,6 @@ export const PRODUCT_CATEGORIES_QUERY = defineQuery(`
     "title": title[language == $locale || _key == $locale][0].value,
     "slug": slug.current,
     "summary": summary[language == $locale || _key == $locale][0].value,
-    image{${imageWithAltProjection}},
     sortOrder
   }
 `)
@@ -43,7 +41,6 @@ export const PRODUCT_CATEGORY_BY_SLUG_QUERY = defineQuery(`
     "slug": slug.current,
     "summary": summary[language == $locale || _key == $locale][0].value,
     "body": body[language == $locale || _key == $locale][0].value,
-    image{${imageWithAltProjection}},
     ${seoProjection}
   }
 `)
@@ -99,12 +96,10 @@ export const PRODUCT_BY_SLUG_QUERY = defineQuery(`
     "slug": slug.current,
     sku,
     "shortDescription": shortDescription[language == $locale || _key == $locale][0].value,
-    "body": body[language == $locale || _key == $locale][0].value,
     "badge": badge[language == $locale || _key == $locale][0].value,
     "usageAreas": usageAreas[language == $locale || _key == $locale][0].value,
     "applicationInstructions": applicationInstructions[language == $locale || _key == $locale][0].value,
     "warnings": warnings[language == $locale || _key == $locale][0].value,
-    externalVideoUrl,
     cardImage{${localizedImageProjection}},
     packshot{${localizedImageProjection}},
     gallery[]{${localizedImageProjection}},
@@ -126,14 +121,12 @@ export const PRODUCT_BY_SLUG_QUERY = defineQuery(`
     benefits[]{
       _key,
       "title": title[language == $locale || _key == $locale][0].value,
-      "description": description[language == $locale || _key == $locale][0].value,
-      icon
+      "description": description[language == $locale || _key == $locale][0].value
     },
     features[]{
       _key,
       "title": title[language == $locale || _key == $locale][0].value,
-      "description": description[language == $locale || _key == $locale][0].value,
-      icon
+      "description": description[language == $locale || _key == $locale][0].value
     },
     packagingVariants[]{
       _key,

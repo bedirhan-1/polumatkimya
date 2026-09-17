@@ -51,17 +51,17 @@ export function validateLinkValue(link: unknown): string | true {
   if (!isLinkConfigured(link)) return true
 
   const value = link as LinkValue
-  if (!value.linkType) return 'Link type is required when link details are provided'
-  if (!hasLocalizedStringValue(value.label)) return 'Label is required when link details are provided'
+  if (!value.linkType) return 'Bağlantı bilgisi girildiğinde bağlantı türü zorunludur'
+  if (!hasLocalizedStringValue(value.label)) return 'Bağlantı bilgisi girildiğinde etiket zorunludur'
 
   if (value.linkType === 'internal' && !value.internalPath?.trim()) {
-    return 'Internal path is required for internal links'
+    return 'Site içi bağlantılar için yol (path) zorunludur'
   }
   if (value.linkType === 'external' && !value.externalUrl) {
-    return 'External URL is required for external links'
+    return 'Harici bağlantılar için web adresi zorunludur'
   }
   if (value.linkType === 'reference' && !value.reference?._ref) {
-    return 'Document reference is required for reference links'
+    return 'İçerik referansı bağlantılarında bir belge seçilmelidir'
   }
 
   return true
@@ -73,7 +73,7 @@ export function validateCallToActionValue(value: unknown): string | true {
 
   const cta = value as CallToActionValue
   if (!hasLocalizedStringValue(cta.label)) {
-    return 'Label is required when CTA details are provided'
+    return 'Düğme bilgisi girildiğinde etiket zorunludur'
   }
 
   return validateLinkValue(cta.link)

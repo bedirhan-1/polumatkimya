@@ -3,32 +3,35 @@ import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export const applicationGridSectionType = defineType({
   name: 'applicationGridSection',
-  title: 'Application areas grid',
+  title: 'Uygulama alanları ızgarası',
   type: 'object',
   icon: EarthGlobeIcon,
   fields: [
     defineField({
       name: 'heading',
-      title: 'Heading',
+      title: 'Başlık',
       type: 'string',
+      description: 'Sayfadaki uygulama alanları bölümünün başlığı.',
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'Açıklama',
       type: 'text',
       rows: 3,
+      description: 'Uygulama alanları başlığının altındaki kısa metin.',
     }),
     defineField({
       name: 'applicationAreas',
-      title: 'Application areas',
+      title: 'Uygulama alanları',
       type: 'array',
+      description: 'Bu bölümde kart olarak gösterilecek uygulama alanları.',
       of: [defineArrayMember({type: 'reference', to: [{type: 'applicationArea'}]})],
     }),
   ],
   preview: {
     select: {title: 'heading'},
     prepare({title}) {
-      return {title: title || 'Application areas grid'}
+      return {title: title || 'Uygulama alanları ızgarası'}
     },
   },
 })

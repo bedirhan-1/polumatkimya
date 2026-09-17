@@ -10,6 +10,7 @@ import {
   POSTS_QUERY,
   VIDEOS_QUERY,
 } from '@/sanity/queries/content'
+import {GALLERY_QUERY} from '@/sanity/queries/gallery'
 
 async function safeFetch<T>(fn: () => Promise<{data: T}>): Promise<T | null> {
   try {
@@ -68,6 +69,21 @@ export function getLatestVideos(locale: Locale, limit = 3) {
       stega: false,
     }),
   )
+}
+
+export function getGalleryImages(locale: Locale) {
+  return safeFetch(async () => {
+    const {data} = await sanityFetch({
+      query: GALLERY_QUERY,
+      params: {locale},
+      stega: false,
+    })
+    const images =
+      data && typeof data === 'object' && 'images' in data && Array.isArray(data.images)
+        ? data.images
+        : []
+    return {data: images}
+  })
 }
 
 export async function getPublishedPostParams(): Promise<Array<{locale: string; postSlug: string}>> {

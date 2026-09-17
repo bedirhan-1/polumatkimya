@@ -30,6 +30,7 @@ const en: Dictionary = {
     ohs: 'Occupational health and safety',
     customerSatisfaction: 'Customer satisfaction',
     humanResources: 'Human resources',
+    gallery: 'Gallery',
     export: 'Export',
     blog: 'Blog',
     contact: 'Contact',
@@ -222,6 +223,13 @@ const en: Dictionary = {
     play: 'Play',
     empty: 'No published videos yet.',
     breadcrumbs: 'Breadcrumb',
+  },
+  gallery: {
+    title: 'Gallery',
+    description: 'Polumat facility, team and corporate imagery.',
+    empty: 'No gallery images yet.',
+    breadcrumbs: 'Breadcrumb',
+    viewAll: 'View full gallery',
   },
 }
 

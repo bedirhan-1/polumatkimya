@@ -3,7 +3,7 @@ import {defineArrayMember, defineType} from 'sanity'
 
 export const portableTextType = defineType({
   name: 'portableText',
-  title: 'Rich text',
+  title: 'Zengin metin',
   type: 'array',
   icon: BlockContentIcon,
   of: [
@@ -13,27 +13,28 @@ export const portableTextType = defineType({
         {title: 'Normal', value: 'normal'},
         {title: 'H2', value: 'h2'},
         {title: 'H3', value: 'h3'},
-        {title: 'Quote', value: 'blockquote'},
+        {title: 'Alıntı', value: 'blockquote'},
       ],
       lists: [
-        {title: 'Bullet', value: 'bullet'},
-        {title: 'Numbered', value: 'number'},
+        {title: 'Madde işaretli', value: 'bullet'},
+        {title: 'Numaralı', value: 'number'},
       ],
       marks: {
         decorators: [
-          {title: 'Strong', value: 'strong'},
-          {title: 'Emphasis', value: 'em'},
+          {title: 'Kalın', value: 'strong'},
+          {title: 'İtalik', value: 'em'},
         ],
         annotations: [
           {
             name: 'link',
             type: 'object',
-            title: 'Link',
+            title: 'Bağlantı',
             fields: [
               {
                 name: 'href',
                 type: 'url',
                 title: 'URL',
+                description: 'Seçili metnin tıklanınca gideceği adres.',
                 validation: (rule) =>
                   rule.uri({
                     allowRelative: true,
@@ -43,8 +44,9 @@ export const portableTextType = defineType({
               {
                 name: 'openInNewTab',
                 type: 'boolean',
-                title: 'Open in new tab',
+                title: 'Yeni sekmede aç',
                 initialValue: false,
+                description: 'Bağlantı tıklandığında yeni tarayıcı sekmesi açılır.',
               },
             ],
           },

@@ -3,46 +3,53 @@ import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export const heroSectionType = defineType({
   name: 'heroSection',
-  title: 'Hero section',
+  title: 'Üst tanıtım bölümü',
   type: 'object',
   icon: BoltIcon,
   fields: [
     defineField({
       name: 'eyebrow',
-      title: 'Eyebrow',
+      title: 'Üst etiket',
       type: 'string',
+      description: 'Sayfanın en üstünde, büyük başlığın hemen üzerinde küçük satır olarak görünür.',
     }),
     defineField({
       name: 'heading',
-      title: 'Heading',
+      title: 'Başlık',
       type: 'string',
+      description: 'Sayfanın en üstündeki ana başlık.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'Açıklama',
       type: 'text',
       rows: 3,
+      description: 'Sayfanın en üstünde, başlığın altında görünen kısa metin.',
     }),
     defineField({
       name: 'primaryCta',
-      title: 'Primary CTA',
+      title: 'Birincil düğme',
       type: 'simpleCallToAction',
+      description: 'Sayfanın en üstündeki ana eylem düğmesi.',
     }),
     defineField({
       name: 'secondaryCta',
-      title: 'Secondary CTA',
+      title: 'İkincil düğme',
       type: 'simpleCallToAction',
+      description: 'Sayfanın en üstündeki ikinci eylem düğmesi.',
     }),
     defineField({
       name: 'media',
-      title: 'Media',
+      title: 'Görsel',
       type: 'imageWithAlt',
+      description: 'Sayfanın en üstünde görünen ana görsel.',
     }),
     defineField({
       name: 'trustItems',
-      title: 'Trust indicators',
+      title: 'Güven göstergeleri',
       type: 'array',
+      description: 'Sayfanın en üstünde listelenen kısa güven maddeleri (örn. “ISO belgeli”).',
       of: [
         defineArrayMember({
           type: 'object',
@@ -50,8 +57,9 @@ export const heroSectionType = defineType({
           fields: [
             defineField({
               name: 'label',
-              title: 'Label',
+              title: 'Etiket',
               type: 'string',
+              description: 'Güven maddesinde görünen kısa metin.',
               validation: (rule) => rule.required(),
             }),
           ],
@@ -65,7 +73,7 @@ export const heroSectionType = defineType({
   preview: {
     select: {title: 'heading'},
     prepare({title}) {
-      return {title: title || 'Hero section'}
+      return {title: title || 'Üst tanıtım bölümü'}
     },
   },
 })

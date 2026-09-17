@@ -3,25 +3,28 @@ import {defineField, defineType} from 'sanity'
 
 export const packagingVariantType = defineType({
   name: 'packagingVariant',
-  title: 'Packaging variant',
+  title: 'Ambalaj varyantı',
   type: 'object',
   icon: PackageIcon,
   fields: [
     defineField({
       name: 'label',
-      title: 'Label',
+      title: 'Etiket',
       type: 'internationalizedArrayString',
+      description: 'Ürün sayfasında ambalaj seçeneği olarak görünen ad.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'sku',
       title: 'SKU',
       type: 'string',
+      description: 'Ürün / ambalaj stok kodu; sitede veya sipariş süreçlerinde referans için.',
     }),
     defineField({
       name: 'volume',
-      title: 'Volume / size',
+      title: 'Hacim / boyut',
       type: 'string',
+      description: 'Ürün sayfasında ambalaj boyutu olarak görünen değer (örn. 20 L, 1 kg).',
     }),
   ],
   preview: {
@@ -31,7 +34,7 @@ export const packagingVariantType = defineType({
     },
     prepare({sku, volume}) {
       return {
-        title: volume || sku || 'Packaging variant',
+        title: volume || sku || 'Ambalaj varyantı',
         subtitle: sku,
       }
     },

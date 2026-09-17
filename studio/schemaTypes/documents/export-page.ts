@@ -3,19 +3,21 @@ import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export const exportActivityType = defineType({
   name: 'exportActivity',
-  title: 'Export activity',
+  title: 'İhracat faaliyeti',
   type: 'object',
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Başlık',
       type: 'internationalizedArrayString',
+      description: 'İhracat sayfasındaki faaliyet kartının başlığını belirler.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'Açıklama',
       type: 'internationalizedArrayText',
+      description: 'İhracat sayfasındaki faaliyet kartının açıklama metnini belirler.',
     }),
   ],
   preview: {
@@ -27,44 +29,46 @@ export const exportActivityType = defineType({
               item.language === 'tr' || item._key === 'tr',
           )?.value
         : undefined
-      return {title: localized || 'Export activity'}
+      return {title: localized || 'İhracat faaliyeti'}
     },
   },
 })
 
 export const exportContactType = defineType({
   name: 'exportContact',
-  title: 'Export contact',
+  title: 'İhracat iletişim kişisi',
   type: 'object',
   fields: [
     defineField({
       name: 'name',
-      title: 'Name',
+      title: 'Ad',
       type: 'string',
+      description: 'İhracat sayfasında gösterilen iletişim kişisinin adını belirler.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'role',
-      title: 'Role',
+      title: 'Ünvan',
       type: 'internationalizedArrayString',
+      description: 'İhracat sayfasında kişinin adının altında görünen ünvanı belirler.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'phone',
-      title: 'Phone',
+      title: 'Telefon',
       type: 'string',
-      description: 'Displayed publicly and used as a click-to-call link.',
+      description: 'İhracat sayfasında herkese açık gösterilen ve arama linki olarak kullanılan telefonu belirler.',
       validation: (rule) =>
         rule.required().custom((phone) => {
           if (!phone) return true
-          return phone.replace(/\D/g, '').length >= 10 || 'Enter a valid phone number'
+          return phone.replace(/\D/g, '').length >= 10 || 'Geçerli bir telefon numarası girin'
         }),
     }),
     defineField({
       name: 'email',
-      title: 'Email',
+      title: 'E-posta',
       type: 'string',
-      description: 'Displayed publicly and used as a mailto link.',
+      description: 'İhracat sayfasında herkese açık gösterilen ve mailto linki olarak kullanılan e-postayı belirler.',
       validation: (rule) => rule.required().email(),
     }),
   ],
@@ -75,90 +79,103 @@ export const exportContactType = defineType({
 
 export const exportPageType = defineType({
   name: 'exportPage',
-  title: 'Export page',
+  title: 'İhracat sayfası',
   type: 'document',
   icon: EarthGlobeIcon,
   fields: [
     defineField({
       name: 'eyebrow',
-      title: 'Eyebrow',
+      title: 'Üst etiket',
       type: 'internationalizedArrayString',
+      description: 'İhracat sayfası başlığının hemen üstünde görünen küçük etiketi belirler.',
     }),
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Başlık',
       type: 'internationalizedArrayString',
+      description: 'İhracat sayfasının ana başlığını belirler.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'intro',
-      title: 'Introduction',
+      title: 'Giriş metni',
       type: 'internationalizedArrayText',
+      description: 'İhracat sayfası başlığının altındaki giriş paragrafını belirler.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'countryCount',
-      title: 'Export country count',
+      title: 'İhracat ülke sayısı',
       type: 'string',
-      description: 'Public value such as “50+”.',
+      description: 'İhracat sayfasında öne çıkan ülke sayısı değerini belirler (örn. “50+”).',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'countryLabel',
-      title: 'Country count label',
+      title: 'Ülke sayısı etiketi',
       type: 'internationalizedArrayString',
+      description: 'Ülke sayısının yanında görünen açıklama etiketini belirler (örn. “ülke”).',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'activityEyebrow',
-      title: 'Activities eyebrow',
+      title: 'Faaliyetler üst etiketi',
       type: 'internationalizedArrayString',
+      description: 'İhracat faaliyetleri bölümünün üstündeki küçük etiketi belirler.',
     }),
     defineField({
       name: 'activityTitle',
-      title: 'Activities title',
+      title: 'Faaliyetler başlığı',
       type: 'internationalizedArrayString',
+      description: 'İhracat faaliyetleri bölümünün ana başlığını belirler.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'activityDescription',
-      title: 'Activities description',
+      title: 'Faaliyetler açıklaması',
       type: 'internationalizedArrayText',
+      description: 'İhracat faaliyetleri bölümünün giriş açıklamasını belirler.',
     }),
     defineField({
       name: 'activities',
-      title: 'Active export work',
+      title: 'Aktif ihracat çalışmaları',
       type: 'array',
+      description: 'İhracat sayfasında listelenen faaliyet kartlarını belirler.',
       of: [defineArrayMember({type: 'exportActivity'})],
       validation: (rule) => rule.min(1),
     }),
     defineField({
       name: 'contactEyebrow',
-      title: 'Contacts eyebrow',
+      title: 'İletişim üst etiketi',
       type: 'internationalizedArrayString',
+      description: 'İhracat iletişim kişileri bölümünün üstündeki küçük etiketi belirler.',
     }),
     defineField({
       name: 'contactTitle',
-      title: 'Contacts title',
+      title: 'İletişim başlığı',
       type: 'internationalizedArrayString',
+      description: 'İhracat iletişim kişileri bölümünün ana başlığını belirler.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'contactDescription',
-      title: 'Contacts description',
+      title: 'İletişim açıklaması',
       type: 'internationalizedArrayText',
+      description: 'İhracat iletişim kişileri bölümünün giriş açıklamasını belirler.',
     }),
     defineField({
       name: 'contacts',
-      title: 'Export contacts',
+      title: 'İhracat iletişim kişileri',
       type: 'array',
+      description: 'İhracat sayfasında gösterilen iki iletişim kişisini belirler.',
       of: [defineArrayMember({type: 'exportContact'})],
-      validation: (rule) => rule.length(2).error('Add exactly two export contacts'),
+      validation: (rule) => rule.length(2).error('Tam olarak iki ihracat iletişim kişisi ekleyin'),
     }),
     defineField({
       name: 'seo',
       title: 'SEO',
       type: 'localizedSeo',
+      description: 'İhracat sayfasının arama motoru başlığı, açıklaması ve paylaşım görselini belirler.',
     }),
   ],
   preview: {
@@ -171,8 +188,8 @@ export const exportPageType = defineType({
           )?.value
         : undefined
       return {
-        title: localized || 'Export page',
-        subtitle: subtitle ? `${subtitle} countries` : undefined,
+        title: localized || 'İhracat sayfası',
+        subtitle: subtitle ? `${subtitle} ülke` : undefined,
       }
     },
   },

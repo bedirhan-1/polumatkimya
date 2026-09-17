@@ -4,6 +4,7 @@ import {applicationGridSectionType} from './blocks/application-grid-section'
 import {certificateSectionType} from './blocks/certificate-section'
 import {ctaSectionType} from './blocks/cta-section'
 import {featureGridSectionType} from './blocks/feature-grid-section'
+import {galleryShowcaseSectionType} from './blocks/gallery-showcase-section'
 import {heroSectionType} from './blocks/hero-section'
 import {imageTextSectionType} from './blocks/image-text-section'
 import {latestContentSectionType} from './blocks/latest-content-section'
@@ -12,6 +13,7 @@ import {statsSectionType} from './blocks/stats-section'
 import {videoSectionType} from './blocks/video-section'
 import {applicationAreaType} from './documents/application-area'
 import {certificateType} from './documents/certificate'
+import {galleryImageItemType, galleryType} from './documents/gallery'
 import {
   contactEmailType,
   contactLocationType,
@@ -25,7 +27,6 @@ import {
   exportPageType,
 } from './documents/export-page'
 import {homePageType} from './documents/home-page'
-import {localeType} from './documents/locale'
 import {pageType} from './documents/page'
 import {postType} from './documents/post'
 import {productType} from './documents/product'
@@ -64,7 +65,6 @@ import {specificationGroupType, specificationItemType} from './objects/specifica
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   // Documents
-  localeType,
   siteSettingsType,
   exportPageType,
   productType,
@@ -76,6 +76,8 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   pageType,
   postType,
   videoType,
+  galleryType,
+  galleryImageItemType,
   downloadableDocumentType,
   certificateType,
 
@@ -121,6 +123,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   imageTextSectionType,
   statsSectionType,
   certificateSectionType,
+  galleryShowcaseSectionType,
   videoSectionType,
   latestContentSectionType,
   ctaSectionType,

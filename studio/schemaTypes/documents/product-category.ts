@@ -4,21 +4,22 @@ import {slugValidation, isUniqueSlug} from '../../lib/slug'
 
 export const productCategoryType = defineType({
   name: 'productCategory',
-  title: 'Product category',
+  title: 'Ürün kategorisi',
   type: 'document',
   icon: TagIcon,
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Başlık',
       type: 'internationalizedArrayString',
+      description: 'Katalog ve kategori sayfalarında görünen kategori adını belirler.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'slug',
-      title: 'Slug',
+      title: 'Sayfa adresi (slug)',
       type: 'slug',
-      description: 'Shared English slug used across all locales',
+      description: 'Kategori sayfasının web adresi. Tüm dillerde ortak kullanılır (örn. /tr/products/category/sprays).',
       options: {
         maxLength: 96,
         isUnique: isUniqueSlug,
@@ -27,65 +28,48 @@ export const productCategoryType = defineType({
     }),
     defineField({
       name: 'summary',
-      title: 'Summary',
+      title: 'Özet',
       type: 'internationalizedArrayText',
+      description: 'Kategori kartlarında ve kategori sayfasının üstünde görünen kısa özeti belirler.',
     }),
     defineField({
       name: 'body',
-      title: 'Detail',
+      title: 'Detay',
       type: 'internationalizedArrayPortableText',
-    }),
-    defineField({
-      name: 'image',
-      title: 'Image',
-      type: 'imageWithAlt',
-    }),
-    defineField({
-      name: 'icon',
-      title: 'Icon',
-      type: 'image',
-    }),
-    defineField({
-      name: 'themeAccent',
-      title: 'Theme accent',
-      type: 'string',
-      options: {
-        list: [
-          {title: 'Default', value: 'default'},
-          {title: 'Red', value: 'red'},
-          {title: 'Neutral', value: 'neutral'},
-        ],
-      },
-      initialValue: 'default',
+      description: 'Kategori detay sayfasındaki uzun açıklama metnini belirler.',
     }),
     defineField({
       name: 'sortOrder',
-      title: 'Sort order',
+      title: 'Sıralama',
       type: 'number',
+      description: 'Kategorilerin katalog listesindeki sırasını belirler; düşük sayılar önce gelir.',
       initialValue: 0,
     }),
     defineField({
       name: 'seo',
       title: 'SEO',
       type: 'localizedSeo',
+      description: 'Kategori sayfasının arama motoru başlığı, açıklaması ve paylaşım görselini belirler.',
     }),
     defineField({
       name: 'legacyId',
-      title: 'Legacy ID',
+      title: 'Eski sistem ID',
       type: 'string',
       readOnly: true,
+      hidden: true,
     }),
     defineField({
       name: 'legacyUrls',
-      title: 'Legacy URLs',
+      title: 'Eski URL’ler',
       type: 'array',
       of: [defineArrayMember({type: 'string'})],
       readOnly: true,
+      hidden: true,
     }),
   ],
   orderings: [
     {
-      title: 'Sort order',
+      title: 'Sıralama',
       name: 'sortOrderAsc',
       by: [{field: 'sortOrder', direction: 'asc'}],
     },
@@ -94,17 +78,15 @@ export const productCategoryType = defineType({
     select: {
       titleTr: 'title',
       slug: 'slug.current',
-      media: 'image',
     },
-    prepare({titleTr, slug, media}) {
+    prepare({titleTr, slug}) {
       const localized = Array.isArray(titleTr)
         ? titleTr.find((item: {language?: string; _key?: string; value?: string}) => item.language === 'tr' || item._key === 'tr')
             ?.value
         : undefined
       return {
-        title: localized || slug || 'Category',
+        title: localized || slug || 'Kategori',
         subtitle: slug,
-        media,
       }
     },
   },

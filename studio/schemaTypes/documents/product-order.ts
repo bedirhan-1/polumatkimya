@@ -7,22 +7,22 @@ import {defineArrayMember, defineField, defineType} from 'sanity'
  */
 export const productOrderType = defineType({
   name: 'productOrder',
-  title: 'Product order',
+  title: 'Ürün sırası',
   type: 'document',
   icon: SortIcon,
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Başlık',
       type: 'string',
       initialValue: 'Product order',
       hidden: true,
     }),
     defineField({
       name: 'products',
-      title: 'Products',
+      title: 'Ürünler',
       description:
-        'Drag items to set the catalog order. New products appear at the end of the site until you add them here.',
+        'Katalogdaki ürün sırasını ayarlamak için öğeleri sürükleyin. Yeni ürünler buraya eklenene kadar sitenin sonunda görünür.',
       type: 'array',
       of: [
         defineArrayMember({
@@ -37,8 +37,8 @@ export const productOrderType = defineType({
   preview: {
     prepare() {
       return {
-        title: 'Product order',
-        subtitle: 'Drag & drop catalog sequence',
+        title: 'Ürün sırası',
+        subtitle: 'Sürükle-bırak katalog sırası',
       }
     },
   },

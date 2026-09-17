@@ -5,7 +5,6 @@ export type ProductCardData = {
   sku?: string | null
   shortDescription?: string | null
   badge?: string | null
-  featured?: boolean | null
   cardImage?: {asset?: {_ref?: string}; alt?: string | null} | null
   packshot?: {asset?: {_ref?: string}; alt?: string | null} | null
   primaryCategory?: {
@@ -16,11 +15,9 @@ export type ProductCardData = {
 }
 
 export type ProductDetailData = ProductCardData & {
-  body?: unknown
   usageAreas?: unknown
   applicationInstructions?: unknown
   warnings?: unknown
-  externalVideoUrl?: string | null
   gallery?: Array<{asset?: {_ref?: string}; alt?: string | null} | null> | null
   categories?: Array<{_id: string; title?: string | null; slug?: string | null}> | null
   applicationAreas?: Array<{_id: string; title?: string | null; slug?: string | null}> | null

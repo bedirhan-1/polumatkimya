@@ -97,30 +97,25 @@ export const LATEST_POSTS_QUERY = defineQuery(`
 `)
 
 export const VIDEOS_QUERY = defineQuery(`
-  *[_type == "video"] | order(coalesce(publishedAt, _createdAt) desc) {
+  *[_type == "video"] | order(_createdAt desc) {
     _id,
     "title": title[language == $locale || _key == $locale][0].value,
     "description": description[language == $locale || _key == $locale][0].value,
     provider,
     externalUrl,
     playbackId,
-    publishedAt,
-    coverImage{${imageWithAltProjection}},
-    relatedProducts[]->{
-      ${relatedProductProjection}
-    }
+    coverImage{${imageWithAltProjection}}
   }
 `)
 
 export const LATEST_VIDEOS_QUERY = defineQuery(`
-  *[_type == "video"] | order(coalesce(publishedAt, _createdAt) desc)[0...$limit] {
+  *[_type == "video"] | order(_createdAt desc)[0...$limit] {
     _id,
     "title": title[language == $locale || _key == $locale][0].value,
     "description": description[language == $locale || _key == $locale][0].value,
     provider,
     externalUrl,
     playbackId,
-    publishedAt,
     coverImage{${imageWithAltProjection}}
   }
 `)

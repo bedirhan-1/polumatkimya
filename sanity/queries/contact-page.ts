@@ -38,8 +38,6 @@ export const CONTACT_PAGE_QUERY = defineQuery(/* groq */ `
     "formTitle": ${localeValue('formTitle')},
     "formDescription": ${localeValue('formDescription')},
     "openInMapsLabel": ${localeValue('openInMapsLabel')},
-    "formSuccessMessage": ${localeValue('formSuccessMessage')},
-    "formErrorMessage": ${localeValue('formErrorMessage')},
     ${seoProjection}
   }
 `)

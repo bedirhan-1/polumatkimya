@@ -4,41 +4,44 @@ import {defineField, defineType} from 'sanity'
 /** Plain CTA for document-level localized pages (one language per document). */
 export const simpleCallToActionType = defineType({
   name: 'simpleCallToAction',
-  title: 'Call to action',
+  title: 'Eylem düğmesi',
   type: 'object',
   icon: LaunchIcon,
   fields: [
     defineField({
       name: 'label',
-      title: 'Label',
+      title: 'Etiket',
       type: 'string',
+      description: 'Sitede düğme üzerinde görünen metin.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'linkType',
-      title: 'Link type',
+      title: 'Bağlantı türü',
       type: 'string',
       options: {
         list: [
-          {title: 'Internal path', value: 'internal'},
-          {title: 'External URL', value: 'external'},
+          {title: 'Site içi yol', value: 'internal'},
+          {title: 'Dış URL', value: 'external'},
         ],
         layout: 'radio',
       },
       initialValue: 'internal',
       validation: (rule) => rule.required(),
+      description: 'Düğmenin site içi bir sayfaya mı yoksa dış adrese mi gideceği.',
     }),
     defineField({
       name: 'internalPath',
-      title: 'Internal path',
+      title: 'Site içi yol',
       type: 'string',
-      description: 'Path after locale prefix, e.g. /products',
+      description: 'Dil önekinden sonraki yol, örn. /products',
       hidden: ({parent}) => parent?.linkType !== 'internal',
     }),
     defineField({
       name: 'externalUrl',
-      title: 'External URL',
+      title: 'Dış URL',
       type: 'url',
+      description: 'Site dışına giden tam adres.',
       hidden: ({parent}) => parent?.linkType !== 'external',
       validation: (rule) =>
         rule.uri({
@@ -47,17 +50,18 @@ export const simpleCallToActionType = defineType({
     }),
     defineField({
       name: 'variant',
-      title: 'Variant',
+      title: 'Görünüm',
       type: 'string',
       options: {
         list: [
-          {title: 'Primary', value: 'primary'},
-          {title: 'Secondary', value: 'secondary'},
-          {title: 'Ghost', value: 'ghost'},
+          {title: 'Birincil (dolu)', value: 'primary'},
+          {title: 'İkincil (çerçeveli)', value: 'secondary'},
+          {title: 'Sade (yalnızca metin)', value: 'ghost'},
         ],
         layout: 'radio',
       },
       initialValue: 'primary',
+      description: 'Düğmenin sitedeki stil varyantı (dolu, çerçeveli veya sade).',
     }),
   ],
   preview: {

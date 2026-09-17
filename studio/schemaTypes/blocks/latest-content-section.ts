@@ -3,40 +3,43 @@ import {defineField, defineType} from 'sanity'
 
 export const latestContentSectionType = defineType({
   name: 'latestContentSection',
-  title: 'Latest content',
+  title: 'Son içerikler',
   type: 'object',
   icon: DocumentTextIcon,
   fields: [
     defineField({
       name: 'heading',
-      title: 'Heading',
+      title: 'Başlık',
       type: 'string',
+      description: 'Sayfadaki son içerikler bölümünün başlığı.',
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'Açıklama',
       type: 'text',
       rows: 3,
+      description: 'Son içerikler başlığının altındaki kısa metin.',
     }),
     defineField({
       name: 'source',
-      title: 'Content source',
+      title: 'İçerik kaynağı',
       type: 'string',
       options: {
         list: [
-          {title: 'Blog posts', value: 'posts'},
-          {title: 'Videos', value: 'videos'},
-          {title: 'Both', value: 'both'},
+          {title: 'Blog yazıları', value: 'posts'},
+          {title: 'Videolar', value: 'videos'},
+          {title: 'İkisi birden', value: 'both'},
         ],
         layout: 'radio',
       },
       initialValue: 'posts',
+      description: 'Bu bölümde otomatik listelenecek içerik türü.',
     }),
   ],
   preview: {
     select: {title: 'heading'},
     prepare({title}) {
-      return {title: title || 'Latest content'}
+      return {title: title || 'Son içerikler'}
     },
   },
 })

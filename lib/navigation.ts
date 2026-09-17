@@ -23,6 +23,7 @@ export function getCorporateNavItems(locale: Locale, dictionary: Dictionary): Na
   return [
     {href: `/${locale}/export`, label: dictionary.nav.export},
     {href: `/${locale}/about`, label: dictionary.nav.about},
+    {href: `/${locale}/gallery`, label: dictionary.nav.gallery},
     {
       href: `/${locale}/company/mission-and-vision`,
       label: dictionary.nav.missionVision,
@@ -96,7 +97,10 @@ export function getDefaultFooterColumns(locale: Locale, dictionary: Dictionary) 
   return [
     {
       title: dictionary.footer.company,
-      links: getCorporateNavItems(locale, dictionary),
+      links: [
+        ...getCorporateNavItems(locale, dictionary),
+        {href: `/${locale}/contact`, label: dictionary.nav.contact},
+      ],
     },
     {
       title: dictionary.footer.resources,
@@ -106,6 +110,7 @@ export function getDefaultFooterColumns(locale: Locale, dictionary: Dictionary) 
         {href: `/${locale}/export`, label: dictionary.nav.export},
         {href: `/${locale}/blog`, label: dictionary.nav.blog},
         {href: `/${locale}/videos`, label: dictionary.footer.videos},
+        {href: `/${locale}/gallery`, label: dictionary.nav.gallery},
       ],
     },
     {
@@ -123,4 +128,60 @@ export function getDefaultFooterColumns(locale: Locale, dictionary: Dictionary) 
       ],
     },
   ]
+}
+
+/** Ensure contact + gallery stay available even when Sanity overrides footer/nav. */
+export function withFooterEssentials(
+  columns: Array<{title: string; links: NavItem[]}>,
+  locale: Locale,
+  dictionary: Dictionary,
+): Array<{title: string; links: NavItem[]}> {
+  if (!columns.length) return getDefaultFooterColumns(locale, dictionary)
+
+  const contactHref = `/${locale}/contact`
+  const galleryHref = `/${locale}/gallery`
+  const allLinks = columns.flatMap((column) => column.links)
+  const hasContact = allLinks.some((link) => link.href === contactHref)
+  const hasGallery = allLinks.some((link) => link.href === galleryHref)
+
+  if (hasContact && hasGallery) return columns
+
+  return columns.map((column, index) => {
+    if (index !== 0) return column
+    const links = [...column.links]
+    if (!hasGallery) {
+      links.push({href: galleryHref, label: dictionary.nav.gallery})
+    }
+    if (!hasContact) {
+      links.push({href: contactHref, label: dictionary.nav.contact})
+    }
+    return {...column, links}
+  })
+}
+
+export function withCorporateGallery(
+  items: NavItem[],
+  locale: Locale,
+  dictionary: Dictionary,
+): NavItem[] {
+  const galleryHref = `/${locale}/gallery`
+  const alreadyPresent = items.some((item) => {
+    if (item.href === galleryHref) return true
+    return (item.children || []).some((child) => child.href === galleryHref)
+  })
+  if (alreadyPresent) return items
+
+  return items.map((item) => {
+    if (!item.children?.length) return item
+    const isCorporate =
+      item.label === dictionary.nav.corporate ||
+      item.children.some((child) => child.href === `/${locale}/about`)
+    if (!isCorporate) return item
+
+    const aboutIndex = item.children.findIndex((child) => child.href === `/${locale}/about`)
+    const insertAt = aboutIndex >= 0 ? aboutIndex + 1 : 1
+    const children = [...item.children]
+    children.splice(insertAt, 0, {href: galleryHref, label: dictionary.nav.gallery})
+    return {...item, children}
+  })
 }

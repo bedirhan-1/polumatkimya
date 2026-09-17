@@ -4,70 +4,75 @@ import {defineArrayMember, defineField, defineType} from 'sanity'
 /** Single-composition homepage hero (no slider). */
 export const homeHeroType = defineType({
   name: 'homeHero',
-  title: 'Home hero',
+  title: 'Ana sayfa üst tanıtım alanı',
   type: 'object',
   icon: BoltIcon,
   fields: [
     defineField({
       name: 'eyebrow',
-      title: 'Eyebrow',
+      title: 'Üst etiket',
       type: 'string',
+      description: 'Ana sayfanın en üstünde, büyük başlığın hemen üzerinde küçük satır olarak görünür.',
     }),
     defineField({
       name: 'headingLead',
-      title: 'Heading — lead',
+      title: 'Başlık — ilk satır',
       type: 'string',
-      description: 'First line of the display heading.',
+      description: 'Ana sayfanın en üstündeki büyük başlığın ilk satırı.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'headingAccent',
-      title: 'Heading — accent',
+      title: 'Başlık — vurgu satırı',
       type: 'string',
-      description: 'Highlighted middle line (brand accent color).',
+      description: 'Ana sayfa büyük başlığının marka rengiyle vurgulanan orta satırı.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'headingTail',
-      title: 'Heading — tail',
+      title: 'Başlık — son satır',
       type: 'string',
-      description: 'Final line of the display heading.',
+      description: 'Ana sayfanın en üstündeki büyük başlığın son satırı.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'Açıklama',
       type: 'text',
       rows: 3,
+      description: 'Ana sayfa büyük başlığının altında görünen kısa tanıtım metni.',
     }),
     defineField({
       name: 'desktopImage',
-      title: 'Desktop image',
+      title: 'Masaüstü görseli',
       type: 'imageWithAlt',
-      description: 'Full-bleed hero image. Recommended ~21:9, e.g. 2400×1024.',
+      description:
+        'Ana sayfanın en üstündeki arka plan görseli (tam genişlik). Önerilen oran yaklaşık 21:9, örn. 2400×1024.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'mobileImage',
-      title: 'Mobile image',
+      title: 'Mobil görsel',
       type: 'imageWithAlt',
-      description: 'Optional art direction for small screens.',
+      description: 'İsteğe bağlı. Telefon ekranlarında üst tanıtım için farklı görsel kullanılır.',
     }),
     defineField({
       name: 'primaryCta',
-      title: 'Primary CTA',
+      title: 'Birincil düğme',
       type: 'simpleCallToAction',
+      description: 'Ana sayfanın en üstündeki ana eylem düğmesi (örn. Ürünleri incele).',
     }),
     defineField({
       name: 'secondaryCta',
-      title: 'Secondary CTA',
+      title: 'İkincil düğme',
       type: 'simpleCallToAction',
+      description: 'Ana sayfanın en üstündeki ikinci eylem düğmesi.',
     }),
     defineField({
       name: 'trustItems',
-      title: 'Trust strip',
+      title: 'Güven şeridi',
       type: 'array',
-      description: 'Up to 4 items shown under the hero on the homepage.',
+      description: 'Ana sayfanın en üstünde, düğmelerin altında görünen güven maddeleri (en fazla 4).',
       of: [
         defineArrayMember({
           type: 'object',
@@ -75,13 +80,13 @@ export const homeHeroType = defineType({
           fields: [
             defineField({
               name: 'title',
-              title: 'Title',
+              title: 'Başlık',
               type: 'string',
               validation: (rule) => rule.required(),
             }),
             defineField({
               name: 'description',
-              title: 'Description',
+              title: 'Açıklama',
               type: 'string',
             }),
           ],
@@ -101,7 +106,7 @@ export const homeHeroType = defineType({
     },
     prepare({title, accent, media}) {
       return {
-        title: [title, accent].filter(Boolean).join(' ') || 'Home hero',
+        title: [title, accent].filter(Boolean).join(' ') || 'Ana sayfa üst tanıtım',
         media,
       }
     },

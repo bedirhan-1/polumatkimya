@@ -3,59 +3,55 @@ import {defineField, defineType} from 'sanity'
 
 export const certificateType = defineType({
   name: 'certificate',
-  title: 'Certificate',
+  title: 'Sertifika',
   type: 'document',
   icon: CheckmarkCircleIcon,
   fields: [
     defineField({
       name: 'name',
-      title: 'Certificate name',
+      title: 'Sertifika adı',
       type: 'internationalizedArrayString',
+      description: 'Sertifika listelerinde ve kalite bölümünde görünen adı belirler.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'issuer',
-      title: 'Issuing organization',
+      title: 'Veren kuruluş',
       type: 'string',
+      description: 'Sertifikayı veren kurumun adını belirler; sitede sertifika kartında gösterilebilir.',
     }),
     defineField({
       name: 'certificateNumber',
-      title: 'Certificate number',
+      title: 'Sertifika numarası',
       type: 'string',
-    }),
-    defineField({
-      name: 'issuedAt',
-      title: 'Issued at',
-      type: 'date',
-    }),
-    defineField({
-      name: 'expiresAt',
-      title: 'Expires at',
-      type: 'date',
+      description: 'Sertifika numarasını belirler; sitede detay bilgisi olarak gösterilebilir.',
     }),
     defineField({
       name: 'logo',
-      title: 'Logo / image',
+      title: 'Logo / görsel',
       type: 'imageWithAlt',
+      description: 'Sertifika kartında veya kalite bölümünde görünen logo / görseli belirler.',
     }),
     defineField({
       name: 'file',
-      title: 'Downloadable file',
+      title: 'İndirilebilir dosya',
       type: 'file',
+      description: 'Siteden indirilebilen sertifika PDF’ini belirler.',
       options: {
         accept: '.pdf',
       },
     }),
     defineField({
       name: 'sortOrder',
-      title: 'Sort order',
+      title: 'Sıralama',
       type: 'number',
+      description: 'Sertifikaların listede görünme sırasını belirler; düşük sayılar önce gelir.',
       initialValue: 0,
     }),
   ],
   orderings: [
     {
-      title: 'Sort order',
+      title: 'Sıralama',
       name: 'sortOrderAsc',
       by: [{field: 'sortOrder', direction: 'asc'}],
     },
@@ -68,7 +64,7 @@ export const certificateType = defineType({
     },
     prepare({issuer, media, number}) {
       return {
-        title: issuer || 'Certificate',
+        title: issuer || 'Sertifika',
         subtitle: number,
         media,
       }

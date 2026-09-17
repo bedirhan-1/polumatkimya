@@ -7,9 +7,9 @@ export const SLUG_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/
 export function slugValidation(rule: SlugRule) {
   return rule.required().custom((value) => {
     const current = value?.current
-    if (!current) return 'Slug is required'
+    if (!current) return 'Sayfa adresi (slug) zorunludur'
     if (!SLUG_PATTERN.test(current)) {
-      return 'Slug must be lowercase ASCII letters, numbers, and hyphens only'
+      return 'Slug yalnızca küçük harf, rakam ve tire içerebilir (örn. misyon-ve-vizyon)'
     }
     return true
   })

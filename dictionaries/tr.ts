@@ -30,6 +30,7 @@ const tr: Dictionary = {
     ohs: 'İş Sağlığı ve Güvenliği',
     customerSatisfaction: 'Müşteri Memnuniyeti',
     humanResources: 'İnsan Kaynakları',
+    gallery: 'Galeri',
     export: 'İhracat',
     blog: 'Blog',
     contact: 'İletişim',
@@ -223,6 +224,13 @@ const tr: Dictionary = {
     play: 'Oynat',
     empty: 'Henüz yayınlanmış video bulunmuyor.',
     breadcrumbs: 'Sayfa yolu',
+  },
+  gallery: {
+    title: 'Galeri',
+    description: 'Polumat üretim tesisi, ekip ve kurumsal görseller.',
+    empty: 'Henüz galeri görseli eklenmemiş.',
+    breadcrumbs: 'Sayfa yolu',
+    viewAll: 'Tüm galeri',
   },
 }
 

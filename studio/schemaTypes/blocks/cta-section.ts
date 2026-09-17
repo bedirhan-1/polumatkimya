@@ -3,32 +3,35 @@ import {defineField, defineType} from 'sanity'
 
 export const ctaSectionType = defineType({
   name: 'ctaSection',
-  title: 'CTA section',
+  title: 'Alt eylem bandı',
   type: 'object',
   icon: LaunchIcon,
   fields: [
     defineField({
       name: 'heading',
-      title: 'Heading',
+      title: 'Başlık',
       type: 'string',
+      description: 'Sayfadaki alt eylem bandının ana başlığı (örn. “Teklif alın”).',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'Açıklama',
       type: 'text',
       rows: 3,
+      description: 'Alt eylem bandında başlığın altında görünen kısa metin.',
     }),
     defineField({
       name: 'cta',
-      title: 'CTA',
+      title: 'Eylem düğmesi',
       type: 'simpleCallToAction',
+      description: 'Alt eylem bandındaki düğme (örn. İletişime geç).',
     }),
   ],
   preview: {
     select: {title: 'heading'},
     prepare({title}) {
-      return {title: title || 'CTA section'}
+      return {title: title || 'Alt eylem bandı'}
     },
   },
 })

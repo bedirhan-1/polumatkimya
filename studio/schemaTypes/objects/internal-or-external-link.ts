@@ -5,41 +5,44 @@ import {validateLinkValue} from '../../lib/cta-validation'
 
 export const internalOrExternalLinkType = defineType({
   name: 'internalOrExternalLink',
-  title: 'Link',
+  title: 'Bağlantı',
   type: 'object',
   icon: LinkIcon,
   fields: [
     defineField({
       name: 'label',
-      title: 'Label',
+      title: 'Etiket',
       type: 'internationalizedArrayString',
-      description: 'Optional when this link is nested inside a call to action.',
+      description:
+        'Sitede görünen bağlantı metni. Eylem düğmesi içinde kullanıldığında isteğe bağlıdır.',
     }),
     defineField({
       name: 'linkType',
-      title: 'Link type',
+      title: 'Bağlantı türü',
       type: 'string',
       options: {
         list: [
-          {title: 'Internal path', value: 'internal'},
-          {title: 'External URL', value: 'external'},
-          {title: 'Document reference', value: 'reference'},
+          {title: 'Site içi yol', value: 'internal'},
+          {title: 'Dış URL', value: 'external'},
+          {title: 'Belge referansı', value: 'reference'},
         ],
         layout: 'radio',
       },
       initialValue: 'internal',
+      description: 'Bağlantının site içi mi, dış URL mi yoksa bir içeriğe mi gideceği.',
     }),
     defineField({
       name: 'internalPath',
-      title: 'Internal path',
+      title: 'Site içi yol',
       type: 'string',
-      description: 'Path after locale prefix, e.g. /products or /about',
+      description: 'Dil önekinden sonraki yol, örn. /products veya /about',
       hidden: ({parent}) => parent?.linkType !== 'internal',
     }),
     defineField({
       name: 'externalUrl',
-      title: 'External URL',
+      title: 'Dış URL',
       type: 'url',
+      description: 'Site dışına giden tam adres.',
       hidden: ({parent}) => parent?.linkType !== 'external',
       validation: (rule) =>
         rule.uri({
@@ -48,8 +51,9 @@ export const internalOrExternalLinkType = defineType({
     }),
     defineField({
       name: 'reference',
-      title: 'Reference',
+      title: 'Referans',
       type: 'reference',
+      description: 'Bağlantının hedef ürünü, kategorisi, sayfası veya yazısı.',
       to: [
         {type: 'product'},
         {type: 'productCategory'},
@@ -61,9 +65,10 @@ export const internalOrExternalLinkType = defineType({
     }),
     defineField({
       name: 'openInNewTab',
-      title: 'Open in new tab',
+      title: 'Yeni sekmede aç',
       type: 'boolean',
       initialValue: false,
+      description: 'Bağlantı tıklandığında yeni tarayıcı sekmesi açılır.',
     }),
   ],
   validation: (rule) => rule.custom((value) => validateLinkValue(value)),
@@ -75,7 +80,7 @@ export const internalOrExternalLinkType = defineType({
     },
     prepare({linkType, internalPath, externalUrl}) {
       return {
-        title: 'Link',
+        title: 'Bağlantı',
         subtitle: linkType === 'external' ? externalUrl : internalPath || linkType,
       }
     },

@@ -26,7 +26,6 @@ const productCardProjection = /* groq */ `
   "slug": slug.current,
   "shortDescription": shortDescription[language == $locale || _key == $locale][0].value,
   "badge": badge[language == $locale || _key == $locale][0].value,
-  featured,
   cardImage{
     asset,
     hotspot,

@@ -13,6 +13,7 @@ import {
   DEFAULT_CONTACT,
   DEALER_PORTAL_URL,
   getDefaultNavItems,
+  withCorporateGallery,
   withDealerLogin,
   type NavItem,
 } from '@/lib/navigation'
@@ -102,7 +103,11 @@ export function SiteHeader({
 }: SiteHeaderProps) {
   const pathname = usePathname() || `/${locale}`
   const navItems = withDealerLogin(
-    items?.length ? items : getDefaultNavItems(locale, dictionary),
+    withCorporateGallery(
+      items?.length ? items : getDefaultNavItems(locale, dictionary),
+      locale,
+      dictionary,
+    ),
     dictionary,
   )
   const homeHref = `/${locale}`

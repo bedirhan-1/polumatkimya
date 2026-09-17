@@ -1,5 +1,5 @@
 import {PlayIcon} from '@sanity/icons'
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import {defineField, defineType} from 'sanity'
 
 export const videoType = defineType({
   name: 'video',
@@ -9,19 +9,22 @@ export const videoType = defineType({
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Başlık',
       type: 'internationalizedArrayString',
+      description: 'Video listelerinde ve video oynatıcının yanında görünen başlığı belirler.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'Açıklama',
       type: 'internationalizedArrayText',
+      description: 'Video sayfasında veya listelerde görünen açıklama metnini belirler.',
     }),
     defineField({
       name: 'provider',
-      title: 'Provider',
+      title: 'Sağlayıcı',
       type: 'string',
+      description: 'Videonun hangi platformdan oynatılacağını belirler.',
       options: {
         list: [
           {title: 'YouTube', value: 'youtube'},
@@ -35,35 +38,25 @@ export const videoType = defineType({
     }),
     defineField({
       name: 'externalUrl',
-      title: 'External URL',
+      title: 'Harici URL',
       type: 'url',
       description:
-        'YouTube/Vimeo link, or full Cloudflare Stream URL (e.g. https://customer-xxx.cloudflarestream.com/{uid}/iframe).',
+        'Sitede oynatılan YouTube/Vimeo linkini veya Cloudflare Stream iframe URL’sini belirler.',
       hidden: ({parent}) => parent?.provider === 'mux',
     }),
     defineField({
       name: 'playbackId',
-      title: 'Playback ID',
+      title: 'Oynatma kimliği',
       type: 'string',
       description:
-        'Mux playback ID, or Cloudflare Stream video UID when using NEXT_PUBLIC_CLOUDFLARE_STREAM_CUSTOMER_CODE.',
+        'Mux oynatma kimliğini veya Cloudflare Stream video UID’sini belirler (NEXT_PUBLIC_CLOUDFLARE_STREAM_CUSTOMER_CODE ile kullanılır).',
       hidden: ({parent}) => parent?.provider !== 'mux' && parent?.provider !== 'cloudflare',
     }),
     defineField({
       name: 'coverImage',
-      title: 'Cover image',
+      title: 'Kapak görseli',
       type: 'imageWithAlt',
-    }),
-    defineField({
-      name: 'relatedProducts',
-      title: 'Related products',
-      type: 'array',
-      of: [defineArrayMember({type: 'reference', to: [{type: 'product'}]})],
-    }),
-    defineField({
-      name: 'publishedAt',
-      title: 'Published at',
-      type: 'datetime',
+      description: 'Video oynatılmadan önce gösterilen kapak / önizleme görselini belirler.',
     }),
   ],
   preview: {

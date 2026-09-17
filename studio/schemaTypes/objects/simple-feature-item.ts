@@ -4,27 +4,30 @@ import {defineField, defineType} from 'sanity'
 /** Plain feature item for document-level localized page builder blocks. */
 export const simpleFeatureItemType = defineType({
   name: 'simpleFeatureItem',
-  title: 'Feature',
+  title: 'Özellik',
   type: 'object',
   icon: CheckmarkCircleIcon,
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Başlık',
       type: 'string',
+      description: 'Sayfa oluşturucudaki özellik ızgarasında görünen madde başlığı.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'Açıklama',
       type: 'text',
       rows: 3,
+      description: 'Özellik başlığının altında görünen kısa açıklama.',
     }),
     defineField({
       name: 'icon',
-      title: 'Icon',
+      title: 'İkon',
       type: 'image',
       options: {hotspot: true},
+      description: 'Özellik maddesinin yanında görünen ikon görseli.',
     }),
   ],
   preview: {

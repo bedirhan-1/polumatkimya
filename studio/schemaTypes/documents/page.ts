@@ -5,7 +5,7 @@ import {languageField, translationStatusField} from '../shared/localization-fiel
 
 export const pageType = defineType({
   name: 'page',
-  title: 'Page',
+  title: 'Sayfa',
   type: 'document',
   icon: DocumentIcon,
   fields: [
@@ -13,16 +13,17 @@ export const pageType = defineType({
     translationStatusField,
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Başlık',
       type: 'string',
+      description: 'Sayfanın sitede ve Studio listesinde görünen başlığını belirler.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'slug',
-      title: 'Slug',
+      title: 'Sayfa adresi (slug)',
       type: 'slug',
       description:
-        'Shared English-character slug across language versions (TR/EN/AR of the same page keep the same slug).',
+        'Sayfanın web adresi. Aynı sayfanın Türkçe/İngilizce/Arapça sürümleri aynı adresi paylaşır.',
       options: {
         source: 'title',
         maxLength: 96,
@@ -32,27 +33,31 @@ export const pageType = defineType({
     }),
     defineField({
       name: 'pageBuilder',
-      title: 'Page builder',
+      title: 'Sayfa oluşturucu',
       type: 'pageBuilder',
+      description: 'Sayfanın içeriğini oluşturan bölümleri (blokları) belirler.',
     }),
     defineField({
       name: 'seo',
       title: 'SEO',
       type: 'seo',
+      description: 'Sayfanın arama motoru başlığı, açıklaması ve paylaşım görselini belirler.',
     }),
     defineField({
       name: 'legacyUrls',
-      title: 'Legacy URLs',
+      title: 'Eski URL’ler',
       type: 'array',
       of: [defineArrayMember({type: 'string'})],
       readOnly: true,
+      hidden: true,
     }),
     defineField({
       name: 'previousSlugs',
-      title: 'Previous slugs',
+      title: 'Önceki slug’lar',
       type: 'array',
       of: [defineArrayMember({type: 'string'})],
       readOnly: true,
+      hidden: true,
     }),
   ],
   preview: {
@@ -64,7 +69,7 @@ export const pageType = defineType({
     },
     prepare({title, language, slug, status}) {
       return {
-        title: title || slug || 'Page',
+        title: title || slug || 'Sayfa',
         subtitle: [language?.toUpperCase(), slug, status].filter(Boolean).join(' · '),
       }
     },

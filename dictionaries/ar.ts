@@ -29,6 +29,7 @@ const ar: Dictionary = {
     ohs: 'الصحة والسلامة المهنية',
     customerSatisfaction: 'رضا العملاء',
     humanResources: 'الموارد البشرية',
+    gallery: 'المعرض',
     export: 'التصدير',
     blog: 'المدونة',
     contact: 'اتصل بنا',
@@ -219,6 +220,13 @@ const ar: Dictionary = {
     play: 'تشغيل',
     empty: 'لا توجد مقاطع فيديو منشورة بعد.',
     breadcrumbs: 'مسار التنقل',
+  },
+  gallery: {
+    title: 'المعرض',
+    description: 'صور منشأة بولومات والفريق والشركة.',
+    empty: 'لا توجد صور في المعرض بعد.',
+    breadcrumbs: 'مسار التنقل',
+    viewAll: 'عرض المعرض كاملاً',
   },
 }
 

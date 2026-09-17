@@ -5,7 +5,7 @@ import {languageField, translationStatusField} from '../shared/localization-fiel
 
 export const postType = defineType({
   name: 'post',
-  title: 'Blog post',
+  title: 'Blog yazısı',
   type: 'document',
   icon: DocumentTextIcon,
   fields: [
@@ -13,16 +13,17 @@ export const postType = defineType({
     translationStatusField,
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Başlık',
       type: 'string',
+      description: 'Blog yazısının listelerde ve yazı sayfasında görünen başlığını belirler.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'slug',
-      title: 'Slug',
+      title: 'Sayfa adresi (slug)',
       type: 'slug',
       description:
-        'Shared English-character slug across language versions (TR/EN/AR of the same post keep the same slug).',
+        'Blog yazısının web adresi. Aynı yazının Türkçe/İngilizce/Arapça sürümleri aynı adresi paylaşır.',
       options: {
         source: 'title',
         maxLength: 96,
@@ -32,65 +33,76 @@ export const postType = defineType({
     }),
     defineField({
       name: 'excerpt',
-      title: 'Excerpt',
+      title: 'Özet',
       type: 'text',
       rows: 3,
+      description: 'Blog listelerinde ve önizlemelerde görünen kısa özeti belirler.',
     }),
     defineField({
       name: 'coverImage',
-      title: 'Cover image',
+      title: 'Kapak görseli',
       type: 'imageWithAlt',
+      description: 'Blog listesi kartlarında ve yazı sayfasının üstündeki kapak görselini belirler.',
     }),
     defineField({
       name: 'body',
-      title: 'Body',
+      title: 'İçerik',
       type: 'portableText',
+      description: 'Blog yazısı sayfasının ana metin içeriğini belirler.',
     }),
     defineField({
       name: 'publishedAt',
-      title: 'Published at',
+      title: 'Yayın tarihi',
       type: 'datetime',
+      description: 'Blog yazısının sitede gösterilen yayın tarihini belirler.',
     }),
     defineField({
       name: 'category',
-      title: 'Category',
+      title: 'Kategori',
       type: 'string',
+      description: 'Blog yazısının kategorisini belirler; listelerde etiket olarak görünebilir.',
     }),
     defineField({
       name: 'author',
-      title: 'Author',
+      title: 'Yazar',
       type: 'string',
+      description: 'Blog yazısında gösterilen yazar adını belirler.',
     }),
     defineField({
       name: 'relatedProducts',
-      title: 'Related products',
+      title: 'İlgili ürünler',
       type: 'array',
+      description: 'Blog yazısı sayfasının altındaki ilgili ürünler bölümünü belirler.',
       of: [defineArrayMember({type: 'reference', to: [{type: 'product'}]})],
     }),
     defineField({
       name: 'seo',
       title: 'SEO',
       type: 'seo',
+      description: 'Blog yazısının arama motoru başlığı, açıklaması ve paylaşım görselini belirler.',
     }),
     defineField({
       name: 'legacyId',
-      title: 'Legacy ID',
+      title: 'Eski sistem ID',
       type: 'string',
       readOnly: true,
+      hidden: true,
     }),
     defineField({
       name: 'legacyUrls',
-      title: 'Legacy URLs',
+      title: 'Eski URL’ler',
       type: 'array',
       of: [defineArrayMember({type: 'string'})],
       readOnly: true,
+      hidden: true,
     }),
     defineField({
       name: 'previousSlugs',
-      title: 'Previous slugs',
+      title: 'Önceki slug’lar',
       type: 'array',
       of: [defineArrayMember({type: 'string'})],
       readOnly: true,
+      hidden: true,
     }),
   ],
   preview: {
@@ -102,7 +114,7 @@ export const postType = defineType({
     },
     prepare({title, language, media, status}) {
       return {
-        title: title || 'Post',
+        title: title || 'Yazı',
         subtitle: [language?.toUpperCase(), status].filter(Boolean).join(' · '),
         media,
       }

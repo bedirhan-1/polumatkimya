@@ -3,41 +3,35 @@ import {defineField, defineType} from 'sanity'
 
 export const featureItemType = defineType({
   name: 'featureItem',
-  title: 'Feature',
+  title: 'Özellik',
   type: 'object',
   icon: CheckmarkCircleIcon,
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Başlık',
       type: 'internationalizedArrayString',
+      description: 'Özellik listelerinde veya ızgaralarda görünen madde başlığı.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'Açıklama',
       type: 'internationalizedArrayText',
-    }),
-    defineField({
-      name: 'icon',
-      title: 'Icon',
-      type: 'image',
-      options: {hotspot: true},
+      description: 'Özellik başlığının altında görünen kısa açıklama.',
     }),
   ],
   preview: {
     select: {
       titleTr: 'title',
-      media: 'icon',
     },
-    prepare({titleTr, media}) {
+    prepare({titleTr}) {
       const localized = Array.isArray(titleTr)
         ? titleTr.find((item: {language?: string; _key?: string; value?: string}) => item.language === 'tr' || item._key === 'tr')
             ?.value
         : undefined
       return {
-        title: localized || 'Feature',
-        media,
+        title: localized || 'Özellik',
       }
     },
   },

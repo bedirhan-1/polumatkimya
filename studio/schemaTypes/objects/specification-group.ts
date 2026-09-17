@@ -3,30 +3,34 @@ import {defineArrayMember, defineField, defineType} from 'sanity'
 
 export const specificationItemType = defineType({
   name: 'specificationItem',
-  title: 'Specification item',
+  title: 'Teknik özellik maddesi',
   type: 'object',
   fields: [
     defineField({
       name: 'label',
-      title: 'Label',
+      title: 'Etiket',
       type: 'internationalizedArrayString',
+      description: 'Ürün sayfasındaki teknik özellik tablosunda satır adı (sol sütun).',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'value',
-      title: 'Value',
+      title: 'Değer',
       type: 'internationalizedArrayString',
+      description: 'Ürün sayfasındaki teknik özellik tablosunda ölçüm veya değer (sağ sütun).',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'unit',
-      title: 'Unit',
+      title: 'Birim',
       type: 'internationalizedArrayString',
+      description: 'Ürün sayfasında değerin yanında gösterilen birim (örn. kg, °C).',
     }),
     defineField({
       name: 'note',
-      title: 'Note',
+      title: 'Not',
       type: 'internationalizedArrayString',
+      description: 'Ürün sayfasında özelliğe ek kısa açıklama veya dipnot.',
     }),
   ],
   preview: {
@@ -47,7 +51,7 @@ export const specificationItemType = defineType({
       const valueText = pick(value)
       const unitText = pick(unit)
       return {
-        title: unitText ? `${valueText} ${unitText}` : valueText || 'Specification',
+        title: unitText ? `${valueText} ${unitText}` : valueText || 'Teknik özellik',
       }
     },
   },
@@ -55,26 +59,28 @@ export const specificationItemType = defineType({
 
 export const specificationGroupType = defineType({
   name: 'specificationGroup',
-  title: 'Specification group',
+  title: 'Teknik özellik grubu',
   type: 'object',
   icon: ComposeIcon,
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Başlık',
       type: 'internationalizedArrayString',
+      description: 'Ürün sayfasında bir teknik özellik tablosunun grup başlığı.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'items',
-      title: 'Items',
+      title: 'Maddeler',
       type: 'array',
+      description: 'Bu grup altında ürün sayfasında listelenen özellik satırları.',
       of: [defineArrayMember({type: 'specificationItem'})],
     }),
   ],
   preview: {
     prepare() {
-      return {title: 'Specification group'}
+      return {title: 'Teknik özellik grubu'}
     },
   },
 })

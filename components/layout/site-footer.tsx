@@ -8,6 +8,7 @@ import {
   DEFAULT_CONTACT,
   DEALER_PORTAL_URL,
   getDefaultFooterColumns,
+  withFooterEssentials,
   type NavItem,
 } from '@/lib/navigation'
 
@@ -39,11 +40,13 @@ export function SiteFooter({
   metaItems,
   socialLinks,
 }: SiteFooterProps) {
-  const resolvedColumns = (columns?.length ? columns : getDefaultFooterColumns(locale, dictionary)).map(
-    (column) => ({
+  const resolvedColumns = withFooterEssentials(
+    (columns?.length ? columns : getDefaultFooterColumns(locale, dictionary)).map((column) => ({
       ...column,
       links: column.links.filter((link) => link.href !== DEALER_PORTAL_URL),
-    }),
+    })),
+    locale,
+    dictionary,
   )
   const year = new Date().getFullYear()
   const phoneValue = phone?.trim() || DEFAULT_CONTACT.phone

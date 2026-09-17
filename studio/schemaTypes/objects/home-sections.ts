@@ -3,13 +3,13 @@ import {defineArrayMember, defineField, defineType} from 'sanity'
 const titledItemFields = [
   defineField({
     name: 'title',
-    title: 'Title',
+    title: 'Başlık',
     type: 'string',
     validation: (rule) => rule.required(),
   }),
   defineField({
     name: 'description',
-    title: 'Description',
+    title: 'Açıklama',
     type: 'text',
     rows: 2,
   }),
@@ -17,23 +17,46 @@ const titledItemFields = [
 
 export const homeProductsSectionType = defineType({
   name: 'homeProductsSection',
-  title: 'Products section',
+  title: 'Ürünler bölümü',
   type: 'object',
   fields: [
-    defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
+    defineField({
+      name: 'eyebrow',
+      title: 'Üst etiket',
+      type: 'string',
+      description: 'Ana sayfa ürünler bölümünde başlığın üstündeki küçük etiket.',
+    }),
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Başlık',
       type: 'string',
       validation: (rule) => rule.required(),
+      description: 'Ana sayfa ürünler bölümünün ana başlığı.',
     }),
-    defineField({name: 'description', title: 'Description', type: 'text', rows: 3}),
-    defineField({name: 'viewAllLabel', title: 'View all label', type: 'string'}),
-    defineField({name: 'detailLabel', title: 'Product detail label', type: 'string'}),
+    defineField({
+      name: 'description',
+      title: 'Açıklama',
+      type: 'text',
+      rows: 3,
+      description: 'Ana sayfa ürünler bölümünde başlığın altındaki kısa metin.',
+    }),
+    defineField({
+      name: 'viewAllLabel',
+      title: 'Tümünü gör etiketi',
+      type: 'string',
+      description: 'Ana sayfa ürünler bölümünde “tüm ürünler” bağlantısının metni.',
+    }),
+    defineField({
+      name: 'detailLabel',
+      title: 'Ürün detay etiketi',
+      type: 'string',
+      description: 'Ana sayfa ürün kartlarındaki detay bağlantısı metni.',
+    }),
     defineField({
       name: 'products',
-      title: 'Featured products',
+      title: 'Öne çıkan ürünler',
       type: 'array',
+      description: 'Ana sayfa ürünler bölümünde listelenen ürünler (en fazla 8).',
       of: [defineArrayMember({type: 'reference', to: [{type: 'product'}]})],
       validation: (rule) => rule.max(8),
     }),
@@ -42,20 +65,27 @@ export const homeProductsSectionType = defineType({
 
 export const homeStrengthsSectionType = defineType({
   name: 'homeStrengthsSection',
-  title: 'Strengths section',
+  title: 'Güçlü yönler bölümü',
   type: 'object',
   fields: [
-    defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
+    defineField({
+      name: 'eyebrow',
+      title: 'Üst etiket',
+      type: 'string',
+      description: 'Ana sayfa güçlü yönler bölümünde başlığın üstündeki küçük etiket.',
+    }),
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Başlık',
       type: 'string',
       validation: (rule) => rule.required(),
+      description: 'Ana sayfa güçlü yönler bölümünün ana başlığı.',
     }),
     defineField({
       name: 'items',
-      title: 'Items',
+      title: 'Maddeler',
       type: 'array',
+      description: 'Ana sayfa güçlü yönler bölümündeki madde listesi (en fazla 6).',
       of: [
         defineArrayMember({
           type: 'object',
@@ -71,29 +101,31 @@ export const homeStrengthsSectionType = defineType({
 
 export const homeIndustryCardType = defineType({
   name: 'homeIndustryCard',
-  title: 'Industry card',
+  title: 'Sektör kartı',
   type: 'object',
   fields: [
     defineField({
       name: 'area',
-      title: 'Application area',
+      title: 'Uygulama alanı',
       type: 'reference',
       to: [{type: 'applicationArea'}],
       validation: (rule) => rule.required(),
-      description: 'Used for the card link and for cover/icon media.',
+      description:
+        'Ana sayfa sektör kartının bağlantısı ve kapak/ikon görselleri bu uygulama alanından gelir.',
     }),
     defineField({
       name: 'title',
-      title: 'Card title',
+      title: 'Kart başlığı',
       type: 'string',
-      description: 'Overrides the application area title when set.',
+      description:
+        'Ana sayfa sektör kartında görünür. Doluysa uygulama alanı başlığının yerine geçer.',
     }),
     defineField({
       name: 'summary',
-      title: 'Card summary',
+      title: 'Kart özeti',
       type: 'text',
       rows: 2,
-      description: 'Optional short line under the card title.',
+      description: 'Ana sayfa sektör kartında başlığın altındaki kısa satır.',
     }),
   ],
   preview: {
@@ -108,7 +140,7 @@ export const homeIndustryCardType = defineType({
         (Array.isArray(areaTitle)
           ? areaTitle.find((item: {_key?: string; value?: string}) => item?.value)?.value
           : areaTitle) ||
-        'Industry card'
+        'Sektör kartı'
       return {title: resolved, media}
     },
   },
@@ -116,46 +148,47 @@ export const homeIndustryCardType = defineType({
 
 export const homeIndustriesSectionType = defineType({
   name: 'homeIndustriesSection',
-  title: 'Industries section',
+  title: 'Sektörler bölümü',
   type: 'object',
   fields: [
     defineField({
       name: 'eyebrow',
-      title: 'Eyebrow',
+      title: 'Üst etiket',
       type: 'string',
-      description: 'Small label above the title (e.g. Uygulama alanları).',
+      description: 'Ana sayfa sektörler bölümünde başlığın üstündeki küçük etiket (örn. Uygulama alanları).',
     }),
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Başlık',
       type: 'string',
       validation: (rule) => rule.required(),
-      description: 'Main heading (e.g. Her sektör için güvenilir bakım çözümleri).',
+      description:
+        'Ana sayfa sektörler bölümünün ana başlığı (örn. Her sektör için güvenilir bakım çözümleri).',
     }),
     defineField({
       name: 'description',
-      title: 'Description',
+      title: 'Açıklama',
       type: 'text',
       rows: 3,
-      description: 'Short supporting text under the title.',
+      description: 'Ana sayfa sektörler bölümünde başlığın altındaki kısa destek metni.',
     }),
     defineField({
       name: 'detailLabel',
-      title: 'Card action label',
+      title: 'Kart eylem etiketi',
       type: 'string',
-      description: 'Text shown on each card (e.g. Çözümleri keşfet).',
+      description: 'Ana sayfa sektör kartlarındaki eylem metni (örn. Çözümleri keşfet).',
     }),
     defineField({
       name: 'viewAllCta',
-      title: 'View all CTA',
+      title: 'Tümünü gör düğmesi',
       type: 'simpleCallToAction',
-      description: 'Optional link to the full industries listing page.',
+      description: 'İsteğe bağlı. Ana sayfa sektörler bölümünden tüm sektörler sayfasına bağlantı.',
     }),
     defineField({
       name: 'areas',
-      title: 'Industry cards',
+      title: 'Sektör kartları',
       description:
-        'Up to 6 cards. Set title/summary here. Cover photo and icon come from the linked application area (not edited in this section).',
+        'Ana sayfada en fazla 6 sektör kartı. Başlık/özet burada; kapak ve ikon bağlı uygulama alanından gelir.',
       type: 'array',
       of: [defineArrayMember({type: 'homeIndustryCard'})],
       validation: (rule) => rule.max(6),
@@ -165,31 +198,46 @@ export const homeIndustriesSectionType = defineType({
 
 export const homePrivateLabelSectionType = defineType({
   name: 'homePrivateLabelSection',
-  title: 'Private label section',
+  title: 'Private label bölümü',
   type: 'object',
   fields: [
-    defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
+    defineField({
+      name: 'eyebrow',
+      title: 'Üst etiket',
+      type: 'string',
+      description: 'Ana sayfa private label bölümünde başlığın üstündeki küçük etiket.',
+    }),
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Başlık',
       type: 'string',
       validation: (rule) => rule.required(),
+      description: 'Ana sayfa private label bölümünün ana başlığı.',
     }),
-    defineField({name: 'description', title: 'Description', type: 'text', rows: 3}),
+    defineField({
+      name: 'description',
+      title: 'Açıklama',
+      type: 'text',
+      rows: 3,
+      description: 'Ana sayfa private label bölümünde başlığın altındaki metin.',
+    }),
     defineField({
       name: 'cta',
-      title: 'CTA',
+      title: 'Eylem düğmesi',
       type: 'simpleCallToAction',
+      description: 'Ana sayfa private label bölümündeki eylem düğmesi.',
     }),
     defineField({
       name: 'image',
-      title: 'Visual',
+      title: 'Görsel',
       type: 'imageWithAlt',
+      description: 'Ana sayfa private label bölümünde metnin yanında görünen görsel.',
     }),
     defineField({
       name: 'features',
-      title: 'Features',
+      title: 'Özellikler',
       type: 'array',
+      description: 'Ana sayfa private label bölümündeki özellik maddeleri.',
       of: [
         defineArrayMember({
           type: 'object',
@@ -199,11 +247,17 @@ export const homePrivateLabelSectionType = defineType({
         }),
       ],
     }),
-    defineField({name: 'processTitle', title: 'Process title', type: 'string'}),
+    defineField({
+      name: 'processTitle',
+      title: 'Süreç başlığı',
+      type: 'string',
+      description: 'Ana sayfa private label bölümünde süreç adımlarının üst başlığı.',
+    }),
     defineField({
       name: 'process',
-      title: 'Process steps',
+      title: 'Süreç adımları',
       type: 'array',
+      description: 'Ana sayfa private label bölümündeki adım listesi (en fazla 6).',
       of: [
         defineArrayMember({
           type: 'object',
@@ -219,52 +273,67 @@ export const homePrivateLabelSectionType = defineType({
 
 export const homeAboutSectionType = defineType({
   name: 'homeAboutSection',
-  title: 'About section',
+  title: 'Hakkımızda bölümü',
   type: 'object',
   fields: [
-    defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
+    defineField({
+      name: 'eyebrow',
+      title: 'Üst etiket',
+      type: 'string',
+      description: 'Ana sayfa hakkımızda bölümünde başlığın üstündeki küçük etiket.',
+    }),
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Başlık',
       type: 'string',
       validation: (rule) => rule.required(),
+      description: 'Ana sayfa hakkımızda bölümünün ana başlığı.',
     }),
-    defineField({name: 'description', title: 'Description', type: 'text', rows: 4}),
+    defineField({
+      name: 'description',
+      title: 'Açıklama',
+      type: 'text',
+      rows: 4,
+      description: 'Ana sayfa hakkımızda bölümünde başlığın altındaki metin.',
+    }),
     defineField({
       name: 'cta',
-      title: 'CTA',
+      title: 'Eylem düğmesi',
       type: 'simpleCallToAction',
+      description: 'Ana sayfa hakkımızda bölümündeki eylem düğmesi.',
     }),
     defineField({
       name: 'image',
-      title: 'Video poster',
+      title: 'Video kapak görseli',
       type: 'imageWithAlt',
-      description: 'Poster shown before the promotional video plays.',
+      description: 'Ana sayfa hakkımızda bölümünde video oynatılmadan önce gösterilen kapak.',
     }),
     defineField({
       name: 'videoPlayLabel',
-      title: 'Video play label',
+      title: 'Video oynat etiketi',
       type: 'string',
-      description: 'Text under the play button (e.g. Tanıtım videosunu izle).',
+      description:
+        'Ana sayfa hakkımızda bölümünde oynat düğmesinin altındaki metin (örn. Tanıtım videosunu izle).',
     }),
     defineField({
       name: 'streamUrl',
       title: 'Cloudflare Stream URL',
       type: 'url',
       description:
-        'Paste the Stream iframe or watch URL from Cloudflare dashboard (customer-xxx.cloudflarestream.com/...).',
+        'Ana sayfa hakkımızda videosu. Cloudflare panelinden iframe veya izleme URL’sini yapıştırın (customer-xxx.cloudflarestream.com/...).',
     }),
     defineField({
       name: 'streamVideoId',
       title: 'Cloudflare Stream video UID',
       type: 'string',
       description:
-        'Optional if stream URL is set. Uses NEXT_PUBLIC_CLOUDFLARE_STREAM_CUSTOMER_CODE when only the UID is provided.',
+        'İsteğe bağlı (URL varsa gerekmez). Yalnızca UID verilirse NEXT_PUBLIC_CLOUDFLARE_STREAM_CUSTOMER_CODE kullanılır.',
     }),
     defineField({
       name: 'stats',
-      title: 'Stats',
+      title: 'İstatistikler',
       type: 'array',
+      description: 'Ana sayfa hakkımızda bölümünde gösterilen sayı/etiket satırları (en fazla 5).',
       of: [
         defineArrayMember({
           type: 'object',
@@ -272,19 +341,19 @@ export const homeAboutSectionType = defineType({
           fields: [
             defineField({
               name: 'icon',
-              title: 'Icon',
+              title: 'İkon',
               type: 'imageWithAlt',
-              description: 'Optional red line-art icon. Site fallbacks are used when empty.',
+              description: 'İsteğe bağlı kırmızı çizgi ikon. Boşsa sitedeki varsayılanlar kullanılır.',
             }),
             defineField({
               name: 'value',
-              title: 'Value',
+              title: 'Değer',
               type: 'string',
               validation: (rule) => rule.required(),
             }),
             defineField({
               name: 'label',
-              title: 'Label',
+              title: 'Etiket',
               type: 'string',
               validation: (rule) => rule.required(),
             }),
@@ -299,26 +368,34 @@ export const homeAboutSectionType = defineType({
 
 export const homeQualitySectionType = defineType({
   name: 'homeQualitySection',
-  title: 'Quality section',
+  title: 'Kalite bölümü',
   type: 'object',
   fields: [
-    defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
+    defineField({
+      name: 'eyebrow',
+      title: 'Üst etiket',
+      type: 'string',
+      description: 'Ana sayfa kalite bölümünde başlığın üstündeki küçük etiket.',
+    }),
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Başlık',
       type: 'string',
       validation: (rule) => rule.required(),
+      description: 'Ana sayfa kalite bölümünün ana başlığı.',
     }),
     defineField({
       name: 'link',
-      title: 'Certificates page link',
+      title: 'Sertifikalar sayfası bağlantısı',
       type: 'simpleCallToAction',
-      description: 'Optional. Badges below can also link here when no per-badge URL is set.',
+      description:
+        'İsteğe bağlı. Ana sayfa kalite bölümünden sertifikalar sayfasına; rozetlerde ayrı URL yoksa da buraya gider.',
     }),
     defineField({
       name: 'items',
-      title: 'Quality points',
+      title: 'Kalite maddeleri',
       type: 'array',
+      description: 'Ana sayfa kalite bölümündeki madde listesi (en fazla 5).',
       of: [
         defineArrayMember({
           type: 'object',
@@ -326,13 +403,13 @@ export const homeQualitySectionType = defineType({
           fields: [
             defineField({
               name: 'icon',
-              title: 'Icon',
+              title: 'İkon',
               type: 'imageWithAlt',
-              description: 'Optional red line-art icon. Built-in icons are used when empty.',
+              description: 'İsteğe bağlı kırmızı çizgi ikon. Boşsa yerleşik ikonlar kullanılır.',
             }),
             defineField({
               name: 'label',
-              title: 'Label',
+              title: 'Etiket',
               type: 'string',
               validation: (rule) => rule.required(),
             }),
@@ -344,9 +421,10 @@ export const homeQualitySectionType = defineType({
     }),
     defineField({
       name: 'badges',
-      title: 'Certification badges',
+      title: 'Sertifika rozetleri',
       type: 'array',
-      description: 'ISO / Made in Türkiye marks shown on the right. Upload official logos when available.',
+      description:
+        'Ana sayfa kalite bölümünün sağında ISO / Made in Türkiye rozetleri. Varsa resmi logoları yükleyin.',
       of: [
         defineArrayMember({
           type: 'object',
@@ -354,15 +432,15 @@ export const homeQualitySectionType = defineType({
           fields: [
             defineField({
               name: 'image',
-              title: 'Badge image',
+              title: 'Rozet görseli',
               type: 'imageWithAlt',
             }),
             defineField({
               name: 'label',
-              title: 'Label',
+              title: 'Etiket',
               type: 'string',
               validation: (rule) => rule.required(),
-              description: 'e.g. ISO 9001:2015 or Made in Türkiye',
+              description: 'Örn. ISO 9001:2015 veya Made in Türkiye',
             }),
           ],
           preview: {select: {title: 'label', media: 'image'}},
@@ -375,18 +453,40 @@ export const homeQualitySectionType = defineType({
 
 export const homeCtaSectionType = defineType({
   name: 'homeCtaSection',
-  title: 'CTA section',
+  title: 'Alt eylem bandı',
   type: 'object',
   fields: [
-    defineField({name: 'eyebrow', title: 'Eyebrow', type: 'string'}),
+    defineField({
+      name: 'eyebrow',
+      title: 'Üst etiket',
+      type: 'string',
+      description: 'Ana sayfanın en altındaki eylem bandında, başlığın üstündeki küçük etiket.',
+    }),
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Başlık',
       type: 'string',
       validation: (rule) => rule.required(),
+      description: 'Ana sayfanın en altındaki eylem bandının ana başlığı.',
     }),
-    defineField({name: 'description', title: 'Description', type: 'text', rows: 3}),
-    defineField({name: 'primaryCta', title: 'Primary CTA', type: 'simpleCallToAction'}),
-    defineField({name: 'secondaryCta', title: 'Secondary CTA', type: 'simpleCallToAction'}),
+    defineField({
+      name: 'description',
+      title: 'Açıklama',
+      type: 'text',
+      rows: 3,
+      description: 'Ana sayfa alt eylem bandında başlığın altında görünen metin.',
+    }),
+    defineField({
+      name: 'primaryCta',
+      title: 'Birincil düğme',
+      type: 'simpleCallToAction',
+      description: 'Ana sayfa alt eylem bandındaki ana düğme.',
+    }),
+    defineField({
+      name: 'secondaryCta',
+      title: 'İkincil düğme',
+      type: 'simpleCallToAction',
+      description: 'Ana sayfa alt eylem bandındaki ikinci düğme.',
+    }),
   ],
 })

@@ -5,33 +5,36 @@ import {validateCallToActionValue} from '../../lib/cta-validation'
 
 export const callToActionType = defineType({
   name: 'callToAction',
-  title: 'Call to action',
+  title: 'Eylem düğmesi',
   type: 'object',
   icon: LaunchIcon,
   fields: [
     defineField({
       name: 'label',
-      title: 'Label',
+      title: 'Etiket',
       type: 'internationalizedArrayString',
+      description: 'Sitede düğme üzerinde görünen metin.',
     }),
     defineField({
       name: 'link',
-      title: 'Link',
+      title: 'Bağlantı',
       type: 'internalOrExternalLink',
+      description: 'Düğmeye tıklanınca gidilecek adres veya içerik.',
     }),
     defineField({
       name: 'variant',
-      title: 'Variant',
+      title: 'Görünüm',
       type: 'string',
       options: {
         list: [
-          {title: 'Primary', value: 'primary'},
-          {title: 'Secondary', value: 'secondary'},
-          {title: 'Ghost', value: 'ghost'},
+          {title: 'Birincil (dolu)', value: 'primary'},
+          {title: 'İkincil (çerçeveli)', value: 'secondary'},
+          {title: 'Sade (yalnızca metin)', value: 'ghost'},
         ],
         layout: 'radio',
       },
       initialValue: 'primary',
+      description: 'Düğmenin sitedeki görünümü: dolu renk, çerçeveli veya sade metin.',
     }),
   ],
   validation: (rule) => rule.custom((value) => validateCallToActionValue(value)),
@@ -53,7 +56,7 @@ export const callToActionType = defineType({
       const target =
         linkType === 'external' ? externalUrl : linkType === 'internal' ? internalPath : linkType
       return {
-        title: localized || 'Call to action',
+        title: localized || 'Eylem düğmesi',
         subtitle: [variant, target].filter(Boolean).join(' · '),
       }
     },

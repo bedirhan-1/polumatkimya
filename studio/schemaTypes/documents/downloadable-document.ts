@@ -1,43 +1,55 @@
 import {DocumentPdfIcon} from '@sanity/icons'
-import {defineArrayMember, defineField, defineType} from 'sanity'
+import {defineField, defineType} from 'sanity'
 
 export const downloadableDocumentType = defineType({
   name: 'downloadableDocument',
-  title: 'Downloadable document',
+  title: 'İndirilebilir belge',
   type: 'document',
   icon: DocumentPdfIcon,
   fields: [
     defineField({
       name: 'title',
-      title: 'Title',
+      title: 'Başlık',
       type: 'string',
+      description: 'İndirme listelerinde ve ürün sayfasında görünen belge adını belirler.',
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'documentType',
-      title: 'Document type',
+      title: 'Belge türü',
       type: 'string',
+      description: 'Belgenin türünü belirler; sitede filtreleme ve etiketleme için kullanılır.',
       options: {
         list: [
           {title: 'SDS', value: 'sds'},
           {title: 'TDS', value: 'tds'},
-          {title: 'Catalog', value: 'catalog'},
-          {title: 'Certificate', value: 'certificate'},
-          {title: 'User guide', value: 'userGuide'},
+          {title: 'Katalog', value: 'catalog'},
+          {title: 'Sertifika', value: 'certificate'},
+          {title: 'Kullanım kılavuzu', value: 'userGuide'},
         ],
       },
       validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'language',
-      title: 'Document language',
-      type: 'reference',
-      to: [{type: 'locale'}],
+      title: 'Belge dili',
+      type: 'string',
+      description:
+        'PDF’in hangi dilde olduğunu belirtir. Katalog indirmede ziyaretçinin diline uygun dosya seçilir.',
+      options: {
+        list: [
+          {title: 'Türkçe', value: 'tr'},
+          {title: 'English', value: 'en'},
+          {title: 'العربية', value: 'ar'},
+        ],
+        layout: 'radio',
+      },
     }),
     defineField({
       name: 'file',
-      title: 'File',
+      title: 'Dosya',
       type: 'file',
+      description: 'Siteden indirilecek PDF dosyasını belirler.',
       options: {
         accept: '.pdf',
       },
@@ -45,30 +57,22 @@ export const downloadableDocumentType = defineType({
     }),
     defineField({
       name: 'version',
-      title: 'Version',
+      title: 'Sürüm',
       type: 'string',
+      description: 'Belge sürüm numarasını belirler; indirme listesinde gösterilebilir.',
     }),
     defineField({
       name: 'publishedAt',
-      title: 'Published at',
+      title: 'Yayın tarihi',
       type: 'datetime',
-    }),
-    defineField({
-      name: 'validUntil',
-      title: 'Valid until',
-      type: 'date',
-    }),
-    defineField({
-      name: 'relatedProducts',
-      title: 'Related products',
-      type: 'array',
-      of: [defineArrayMember({type: 'reference', to: [{type: 'product'}]})],
+      description: 'Belgenin yayın / güncellenme tarihini belirler.',
     }),
     defineField({
       name: 'legacySourceUrl',
-      title: 'Legacy source URL',
+      title: 'Eski kaynak URL',
       type: 'url',
       readOnly: true,
+      hidden: true,
     }),
   ],
   preview: {

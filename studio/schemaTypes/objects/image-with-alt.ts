@@ -3,21 +3,22 @@ import {defineField, defineType} from 'sanity'
 
 export const imageWithAltType = defineType({
   name: 'imageWithAlt',
-  title: 'Image',
+  title: 'Görsel',
   type: 'image',
   icon: ImageIcon,
   options: {hotspot: true},
   fields: [
     defineField({
       name: 'alt',
-      title: 'Alternative text',
+      title: 'Alternatif metin',
       type: 'string',
-      description: 'Describe the image for accessibility and SEO. Leave empty only for decorative images.',
+      description:
+        'Görseli ekran okuyucular ve SEO için tanımlar. Sitede görselin yanında yazı olarak görünmez; yalnızca erişilebilirlik ve arama için kullanılır. Dekoratif görsellerde boş bırakılabilir.',
       validation: (rule) =>
         rule.custom((alt, context) => {
           const parent = context.parent as {asset?: {_ref?: string}} | undefined
           if (parent?.asset?._ref && !alt) {
-            return 'Alt text is strongly recommended for content images'
+            return 'İçerik görselleri için alternatif metin şiddetle önerilir'
           }
           return true
         }).warning(),
@@ -30,7 +31,7 @@ export const imageWithAltType = defineType({
     },
     prepare({alt, media}) {
       return {
-        title: alt || 'Image',
+        title: alt || 'Görsel',
         media,
       }
     },
