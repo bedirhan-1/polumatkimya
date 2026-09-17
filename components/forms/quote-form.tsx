@@ -55,13 +55,29 @@ export function QuoteForm({
           consent: formData.get('consent') === 'on',
         }),
       })
-      setStatus(response.ok ? 'success' : 'error')
-      if (response.ok) form.reset()
+      if (response.ok) {
+        form.reset()
+        setStatus('success')
+      } else {
+        setStatus('error')
+      }
     } catch {
       setStatus('error')
     } finally {
       setPending(false)
     }
+  }
+
+  if (status === 'success') {
+    return (
+      <div
+        role="status"
+        className="flex min-h-64 flex-col items-start justify-center gap-3 border border-border border-s-2 border-s-accent bg-background/60 px-6 py-10"
+      >
+        <p className="font-display text-xl text-foreground sm:text-2xl">{labels.successTitle}</p>
+        <p className="max-w-md text-sm leading-relaxed text-muted">{labels.success}</p>
+      </div>
+    )
   }
 
   return (
@@ -121,11 +137,6 @@ export function QuoteForm({
         {privateLabel ? labels.submitPrivateLabel : labels.submitQuote}
       </button>
 
-      {status === 'success' ? (
-        <p className="border border-border border-s-2 border-s-accent bg-background/60 px-4 py-3 text-sm text-success">
-          {labels.success}
-        </p>
-      ) : null}
       {status === 'error' ? (
         <p className="border border-border border-s-2 border-s-[var(--danger)] bg-background/60 px-4 py-3 text-sm text-danger">
           {labels.error}

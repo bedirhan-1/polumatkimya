@@ -145,6 +145,7 @@ const en: Dictionary = {
     submitQuote: 'Request quote',
     submitPrivateLabel: 'Request Private Label quote',
     consent: 'I agree to the processing of my personal data.',
+    successTitle: 'Message sent',
     success: 'Your message was received. We will get back to you shortly.',
     error: 'Submission failed. Please try again.',
   },

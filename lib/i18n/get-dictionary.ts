@@ -129,6 +129,7 @@ export type Dictionary = {
     submitQuote: string
     submitPrivateLabel: string
     consent: string
+    successTitle: string
     success: string
     error: string
   }

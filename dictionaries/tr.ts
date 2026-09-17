@@ -146,6 +146,7 @@ const tr: Dictionary = {
     submitQuote: 'Teklif iste',
     submitPrivateLabel: 'Private Label teklifi iste',
     consent: 'Kişisel verilerimin işlenmesini kabul ediyorum.',
+    successTitle: 'Mesajınız gönderildi',
     success: 'Mesajınız alındı. En kısa sürede dönüş yapacağız.',
     error: 'Gönderim başarısız. Lütfen tekrar deneyin.',
   },
