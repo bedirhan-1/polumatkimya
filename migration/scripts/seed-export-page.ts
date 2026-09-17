@@ -151,17 +151,17 @@ function buildDocument() {
       en: 'Speak with our export team about products, distribution, target markets and private-label manufacturing.',
       ar: 'تواصل مع فريق التصدير بخصوص المنتجات والتوزيع والأسواق المستهدفة وتصنيع العلامة الخاصة.',
     }),
-    leadContact: contact(
-      'Mahmut Zarifoğlu',
-      {
-        tr: 'İhracat Müdürü',
-        en: 'Export Manager',
-        ar: 'مدير التصدير',
-      },
-      '+90 555 555 55 55',
-      'export@polumat.com',
-    ),
-    regionalContacts: [
+    contacts: [
+      contact(
+        'Mahmut Zarifoğlu',
+        {
+          tr: 'İhracat Müdürü',
+          en: 'Export Manager',
+          ar: 'مدير التصدير',
+        },
+        '+90 544 640 32 72',
+        'mahmut@polumatkimya.com',
+      ),
       contact(
         'Enes Gürdağ',
         {
@@ -169,8 +169,8 @@ function buildDocument() {
           en: 'Export Manager — Europe, Americas & Balkans',
           ar: 'مدير التصدير — أوروبا وأمريكا والبلقان',
         },
-        '+90 555 555 55 56',
-        'export@polumat.com',
+        '+90 554 682 27 58',
+        'enes@polumatkimya.com',
       ),
     ],
     seo: {

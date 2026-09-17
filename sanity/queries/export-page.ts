@@ -22,20 +22,6 @@ export const EXPORT_PAGE_QUERY = defineQuery(/* groq */ `
     "contactEyebrow": ${localeValue('contactEyebrow')},
     "contactTitle": ${localeValue('contactTitle')},
     "contactDescription": ${localeValue('contactDescription')},
-    leadContact{
-      name,
-      phone,
-      email,
-      "role": ${localeValue('role')}
-    },
-    regionalContacts[]{
-      _key,
-      name,
-      phone,
-      email,
-      "role": ${localeValue('role')}
-    },
-    // Legacy fallback while content migrates from contacts[]
     contacts[]{
       _key,
       name,

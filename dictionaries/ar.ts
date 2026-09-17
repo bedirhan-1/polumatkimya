@@ -110,12 +110,6 @@ const ar: Dictionary = {
     contactTitle: 'احصل على المعلومات من قسم التصدير',
     contactDescription:
       'تواصل مع فريق التصدير بخصوص المنتجات والتوزيع والأسواق المستهدفة وتصنيع العلامة الخاصة.',
-    leadName: 'Mahmut Zarifoğlu',
-    leadRole: 'مدير التصدير',
-    regionalName: 'Enes Gürdağ',
-    regionalRole: 'مدير التصدير — أوروبا وأمريكا والبلقان',
-    contactRole: 'قسم التصدير',
-    openSlot: 'منصب شاغر',
     phoneLabel: 'الهاتف',
     emailLabel: 'البريد الإلكتروني',
   },

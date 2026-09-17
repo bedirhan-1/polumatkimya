@@ -164,21 +164,13 @@ export const exportPageType = defineType({
       description: 'İhracat iletişim kişileri bölümünün giriş açıklamasını belirler.',
     }),
     defineField({
-      name: 'leadContact',
-      title: 'İhracat müdürü (üst kart)',
-      type: 'exportContact',
-      description:
-        'İhracat sayfasında iletişim bölümünün en üstünde, tam genişlikte gösterilen kişi (örn. İhracat Müdürü).',
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: 'regionalContacts',
-      title: 'Bölge sorumluları (alt kolonlar)',
+      name: 'contacts',
+      title: 'Çalışanlar',
       type: 'array',
       description:
-        'Üst kartın altında 3 kolonlu sırada soldan sağa gösterilir. Yeni eleman eklendikçe sıradaki boş kolona yerleşir (en fazla 3).',
+        'İhracat ekibi. Sıra sürükle-bırak ile değişir. İlk kişi üstte geniş kart; diğerleri sayıya göre altta (1 kişi geniş, 2 kişi yan yana, 3+ kişi üçlü ızgara).',
       of: [defineArrayMember({type: 'exportContact'})],
-      validation: (rule) => rule.max(3),
+      validation: (rule) => rule.min(1),
     }),
     defineField({
       name: 'seo',

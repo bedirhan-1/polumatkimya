@@ -38,9 +38,6 @@ type ExportPageData = {
   contactEyebrow?: string | null
   contactTitle?: string | null
   contactDescription?: string | null
-  leadContact?: ExportContact | null
-  regionalContacts?: Array<ExportContact | null> | null
-  /** @deprecated Prefer leadContact + regionalContacts */
   contacts?: Array<ExportContact | null> | null
   seo?: unknown
 }
@@ -56,16 +53,21 @@ type ResolvedContact = {
 function resolveContact(
   contact: ExportContact | null | undefined,
   fallbackKey: string,
-  fallbackRole: string,
 ): ResolvedContact | null {
   if (!contact?.name || !contact.phone) return null
   return {
     _key: contact._key || fallbackKey,
     name: contact.name,
-    role: contact.role || fallbackRole,
+    role: contact.role?.trim() || '',
     phone: contact.phone,
     email: contact.email?.trim() || '',
   }
+}
+
+function teamGridClass(count: number) {
+  if (count <= 1) return 'grid gap-4'
+  if (count === 2) return 'grid gap-4 sm:grid-cols-2'
+  return 'grid gap-4 sm:grid-cols-2 lg:grid-cols-3'
 }
 
 function ContactCard({
@@ -88,9 +90,11 @@ function ContactCard({
       }`}
     >
       <div className={`absolute inset-y-0 start-0 bg-accent ${featured ? 'w-1.5' : 'w-1'}`} aria-hidden />
-      <p className="text-xs font-semibold tracking-[0.18em] text-accent uppercase">{contact.role}</p>
+      {contact.role ? (
+        <p className="text-xs font-semibold tracking-[0.18em] text-accent uppercase">{contact.role}</p>
+      ) : null}
       <h2
-        className={`mt-3 font-display leading-tight text-foreground ${
+        className={`font-display leading-tight text-foreground ${contact.role ? 'mt-3' : ''} ${
           featured ? 'text-3xl sm:text-4xl' : 'text-xl sm:text-2xl'
         }`}
       >
@@ -127,16 +131,6 @@ function ContactCard({
         ) : null}
       </div>
     </article>
-  )
-}
-
-function EmptyTeamSlot({label}: {label: string}) {
-  return (
-    <div className="flex min-h-[12rem] items-center justify-center border border-dashed border-border bg-background/60 px-5 py-8 text-center sm:min-h-[14rem]">
-      <p className="max-w-[12rem] text-xs font-semibold tracking-[0.14em] text-muted uppercase">
-        {label}
-      </p>
-    </div>
   )
 }
 
@@ -204,46 +198,12 @@ export default async function ExportPage({params}: PageProps) {
         ]
       }) || fallbackActivities
 
-  const legacyContacts =
+  const contacts =
     data?.contacts
-      ?.map((contact, index) =>
-        resolveContact(contact, `legacy-contact-${index}`, dictionary.exportPage.contactRole),
-      )
+      ?.map((contact, index) => resolveContact(contact, `contact-${index}`))
       .filter((contact): contact is ResolvedContact => Boolean(contact)) || []
 
-  const leadContact =
-    resolveContact(data?.leadContact, 'lead-contact', dictionary.exportPage.leadRole) ||
-    legacyContacts[0] || {
-      _key: 'lead-contact',
-      name: dictionary.exportPage.leadName,
-      role: dictionary.exportPage.leadRole,
-      phone: '+90 555 555 55 55',
-      email: 'export@polumat.com',
-    }
-
-  const regionalFromCms =
-    data?.regionalContacts
-      ?.map((contact, index) =>
-        resolveContact(contact, `regional-${index}`, dictionary.exportPage.regionalRole),
-      )
-      .filter((contact): contact is ResolvedContact => Boolean(contact)) || []
-
-  const regionalContacts =
-    regionalFromCms.length > 0
-      ? regionalFromCms.slice(0, 3)
-      : legacyContacts.length > 1
-        ? legacyContacts.slice(1, 4)
-        : [
-            {
-              _key: 'regional-1',
-              name: dictionary.exportPage.regionalName,
-              role: dictionary.exportPage.regionalRole,
-              phone: '+90 555 555 55 56',
-              email: 'export@polumat.com',
-            },
-          ]
-
-  const regionalSlots = Array.from({length: 3}, (_, index) => regionalContacts[index] || null)
+  const [featuredContact, ...teamContacts] = contacts
 
   return (
     <main id="main-content">
@@ -320,32 +280,30 @@ export default async function ExportPage({params}: PageProps) {
             )}
           />
 
-          <div className="mt-10 flex flex-col gap-4">
-            <ContactCard
-              contact={leadContact}
-              phoneLabel={dictionary.exportPage.phoneLabel}
-              emailLabel={dictionary.exportPage.emailLabel}
-              featured
-            />
+          {featuredContact ? (
+            <div className="mt-10 flex flex-col gap-4">
+              <ContactCard
+                contact={featuredContact}
+                phoneLabel={dictionary.exportPage.phoneLabel}
+                emailLabel={dictionary.exportPage.emailLabel}
+                featured
+              />
 
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {regionalSlots.map((contact, index) =>
-                contact ? (
-                  <ContactCard
-                    key={contact._key}
-                    contact={contact}
-                    phoneLabel={dictionary.exportPage.phoneLabel}
-                    emailLabel={dictionary.exportPage.emailLabel}
-                  />
-                ) : (
-                  <EmptyTeamSlot
-                    key={`empty-slot-${index}`}
-                    label={dictionary.exportPage.openSlot}
-                  />
-                ),
-              )}
+              {teamContacts.length > 0 ? (
+                <div className={teamGridClass(teamContacts.length)}>
+                  {teamContacts.map((contact) => (
+                    <ContactCard
+                      key={contact._key}
+                      contact={contact}
+                      phoneLabel={dictionary.exportPage.phoneLabel}
+                      emailLabel={dictionary.exportPage.emailLabel}
+                      featured={teamContacts.length === 1}
+                    />
+                  ))}
+                </div>
+              ) : null}
             </div>
-          </div>
+          ) : null}
         </div>
       </section>
     </main>

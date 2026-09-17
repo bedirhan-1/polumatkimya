@@ -113,12 +113,6 @@ const en: Dictionary = {
     contactTitle: 'Get information from our export department',
     contactDescription:
       'Speak with our export team about products, distribution, target markets and private-label manufacturing.',
-    leadName: 'Mahmut Zarifoğlu',
-    leadRole: 'Export Manager',
-    regionalName: 'Enes Gürdağ',
-    regionalRole: 'Export Manager — Europe, Americas & Balkans',
-    contactRole: 'Export Department',
-    openSlot: 'Open position',
     phoneLabel: 'Phone',
     emailLabel: 'Email',
   },

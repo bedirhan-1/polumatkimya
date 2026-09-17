@@ -88,8 +88,21 @@ function isActivePath(pathname: string, href?: string) {
   return pathname.startsWith(`${href}/`)
 }
 
-function isNavItemActive(pathname: string, item: NavItem) {
-  if (item.children?.some((child) => isActivePath(pathname, child.href))) return true
+function isNavItemActive(pathname: string, item: NavItem, siblings: NavItem[] = []) {
+  if (item.children?.length) {
+    const childActive = item.children.some((child) => isActivePath(pathname, child.href))
+    if (!childActive) return isActivePath(pathname, item.href)
+
+    // Prefer a top-level twin (e.g. İhracat) over highlighting the parent dropdown (Kurumsal).
+    const topLevelAlsoActive = siblings.some(
+      (sibling) =>
+        sibling !== item &&
+        !sibling.children?.length &&
+        isActivePath(pathname, sibling.href),
+    )
+    return !topLevelAlsoActive
+  }
+
   return isActivePath(pathname, item.href)
 }
 
@@ -153,7 +166,7 @@ export function SiteHeader({
         <nav aria-label={dictionary.a11y.mainNavigation} className="hidden min-w-0 flex-1 xl:block">
           <ul className="flex flex-nowrap items-center justify-center">
             {desktopNav.map((item) => {
-              const active = isNavItemActive(pathname, item)
+              const active = isNavItemActive(pathname, item, desktopNav)
               const itemKey = `${item.href || 'group'}-${item.label}`
               const linkClassName = `inline-flex min-h-11 shrink-0 items-center whitespace-nowrap leading-none border-b px-2 text-[0.7rem] font-semibold tracking-[0.03em] uppercase no-underline transition 2xl:px-3.5 2xl:text-xs 2xl:tracking-[0.06em] ${
                 active

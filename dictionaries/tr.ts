@@ -114,12 +114,6 @@ const tr: Dictionary = {
     contactTitle: 'İhracat departmanımızdan bilgi alın',
     contactDescription:
       'Ürünler, distribütörlük, hedef pazarlar ve özel marka üretimi hakkında ihracat ekibimizle görüşün.',
-    leadName: 'Mahmut Zarifoğlu',
-    leadRole: 'İhracat Müdürü',
-    regionalName: 'Enes Gürdağ',
-    regionalRole: 'Avrupa, Amerika ve Balkanlar İhracat Müdürü',
-    contactRole: 'İhracat Departmanı',
-    openSlot: 'Yeni ekip üyesi',
     phoneLabel: 'Telefon',
     emailLabel: 'E-posta',
   },
