@@ -13,6 +13,14 @@ type PageProps = {
   params: Promise<{locale: string}>
 }
 
+type ExportContact = {
+  _key?: string | null
+  name?: string | null
+  role?: string | null
+  phone?: string | null
+  email?: string | null
+}
+
 type ExportPageData = {
   eyebrow?: string | null
   title?: string | null
@@ -30,14 +38,106 @@ type ExportPageData = {
   contactEyebrow?: string | null
   contactTitle?: string | null
   contactDescription?: string | null
-  contacts?: Array<{
-    _key?: string | null
-    name?: string | null
-    role?: string | null
-    phone?: string | null
-    email?: string | null
-  } | null> | null
+  leadContact?: ExportContact | null
+  regionalContacts?: Array<ExportContact | null> | null
+  /** @deprecated Prefer leadContact + regionalContacts */
+  contacts?: Array<ExportContact | null> | null
   seo?: unknown
+}
+
+type ResolvedContact = {
+  _key: string
+  name: string
+  role: string
+  phone: string
+  email: string
+}
+
+function resolveContact(
+  contact: ExportContact | null | undefined,
+  fallbackKey: string,
+  fallbackRole: string,
+): ResolvedContact | null {
+  if (!contact?.name || !contact.phone) return null
+  return {
+    _key: contact._key || fallbackKey,
+    name: contact.name,
+    role: contact.role || fallbackRole,
+    phone: contact.phone,
+    email: contact.email?.trim() || '',
+  }
+}
+
+function ContactCard({
+  contact,
+  phoneLabel,
+  emailLabel,
+  featured = false,
+}: {
+  contact: ResolvedContact
+  phoneLabel: string
+  emailLabel: string
+  featured?: boolean
+}) {
+  const phoneHref = `tel:${contact.phone.replace(/[^\d+]/g, '')}`
+
+  return (
+    <article
+      className={`relative h-full overflow-hidden border border-border bg-background ${
+        featured ? 'p-7 sm:p-9 lg:p-10' : 'p-6 sm:p-7'
+      }`}
+    >
+      <div className={`absolute inset-y-0 start-0 bg-accent ${featured ? 'w-1.5' : 'w-1'}`} aria-hidden />
+      <p className="text-xs font-semibold tracking-[0.18em] text-accent uppercase">{contact.role}</p>
+      <h2
+        className={`mt-3 font-display leading-tight text-foreground ${
+          featured ? 'text-3xl sm:text-4xl' : 'text-xl sm:text-2xl'
+        }`}
+      >
+        {contact.name}
+      </h2>
+      <div className={`grid gap-5 ${featured ? 'mt-8 sm:mt-10 sm:grid-cols-2' : 'mt-7'}`}>
+        <div>
+          <p className="text-xs font-semibold tracking-[0.16em] text-muted uppercase">{phoneLabel}</p>
+          <a
+            href={phoneHref}
+            className={`mt-2 inline-flex min-h-11 items-center gap-2 border px-4 py-2.5 text-sm font-semibold no-underline transition sm:text-base ${
+              featured
+                ? 'border-accent bg-accent text-white shadow-[0_0_24px_var(--accent-glow)] hover:brightness-110'
+                : 'border-border bg-surface text-foreground hover:border-accent hover:text-accent'
+            }`}
+            dir="ltr"
+          >
+            {contact.phone}
+            <span aria-hidden>→</span>
+          </a>
+        </div>
+        {contact.email ? (
+          <div>
+            <p className="text-xs font-semibold tracking-[0.16em] text-muted uppercase">{emailLabel}</p>
+            <a
+              href={`mailto:${contact.email}`}
+              className="mt-2 inline-flex min-h-11 items-center gap-2 border border-border bg-surface px-4 py-2.5 text-sm font-semibold text-foreground no-underline transition hover:border-accent hover:text-accent sm:text-base"
+              dir="ltr"
+            >
+              {contact.email}
+              <span aria-hidden>→</span>
+            </a>
+          </div>
+        ) : null}
+      </div>
+    </article>
+  )
+}
+
+function EmptyTeamSlot({label}: {label: string}) {
+  return (
+    <div className="flex min-h-[12rem] items-center justify-center border border-dashed border-border bg-background/60 px-5 py-8 text-center sm:min-h-[14rem]">
+      <p className="max-w-[12rem] text-xs font-semibold tracking-[0.14em] text-muted uppercase">
+        {label}
+      </p>
+    </div>
+  )
 }
 
 export function generateStaticParams() {
@@ -95,41 +195,55 @@ export default async function ExportPage({params}: PageProps) {
     data?.activities
       ?.flatMap((activity, index) => {
         if (!activity?.title) return []
-        return [{
-          _key: activity._key || `activity-${index}`,
-          title: activity.title,
-          description: activity.description || '',
-        }]
+        return [
+          {
+            _key: activity._key || `activity-${index}`,
+            title: activity.title,
+            description: activity.description || '',
+          },
+        ]
       }) || fallbackActivities
 
-  const fallbackContacts = [
-    {
-      _key: 'export-contact-1',
-      name: dictionary.exportPage.contact1Name,
-      role: dictionary.exportPage.contactRole,
+  const legacyContacts =
+    data?.contacts
+      ?.map((contact, index) =>
+        resolveContact(contact, `legacy-contact-${index}`, dictionary.exportPage.contactRole),
+      )
+      .filter((contact): contact is ResolvedContact => Boolean(contact)) || []
+
+  const leadContact =
+    resolveContact(data?.leadContact, 'lead-contact', dictionary.exportPage.leadRole) ||
+    legacyContacts[0] || {
+      _key: 'lead-contact',
+      name: dictionary.exportPage.leadName,
+      role: dictionary.exportPage.leadRole,
       phone: '+90 555 555 55 55',
       email: 'export@polumat.com',
-    },
-    {
-      _key: 'export-contact-2',
-      name: dictionary.exportPage.contact2Name,
-      role: dictionary.exportPage.contactRole,
-      phone: '+90 555 555 55 56',
-      email: 'export@polumat.com',
-    },
-  ]
-  const contacts =
-    data?.contacts
-      ?.flatMap((contact, index) => {
-        if (!contact?.name || !contact.phone) return []
-        return [{
-          _key: contact._key || `contact-${index}`,
-          name: contact.name,
-          role: contact.role || dictionary.exportPage.contactRole,
-          phone: contact.phone,
-          email: contact.email?.trim() || '',
-        }]
-      }) || fallbackContacts
+    }
+
+  const regionalFromCms =
+    data?.regionalContacts
+      ?.map((contact, index) =>
+        resolveContact(contact, `regional-${index}`, dictionary.exportPage.regionalRole),
+      )
+      .filter((contact): contact is ResolvedContact => Boolean(contact)) || []
+
+  const regionalContacts =
+    regionalFromCms.length > 0
+      ? regionalFromCms.slice(0, 3)
+      : legacyContacts.length > 1
+        ? legacyContacts.slice(1, 4)
+        : [
+            {
+              _key: 'regional-1',
+              name: dictionary.exportPage.regionalName,
+              role: dictionary.exportPage.regionalRole,
+              phone: '+90 555 555 55 56',
+              email: 'export@polumat.com',
+            },
+          ]
+
+  const regionalSlots = Array.from({length: 3}, (_, index) => regionalContacts[index] || null)
 
   return (
     <main id="main-content">
@@ -186,9 +300,7 @@ export default async function ExportPage({params}: PageProps) {
                     {activity.title}
                   </h2>
                   {activity.description ? (
-                    <p className="mt-3 text-sm leading-relaxed text-muted">
-                      {activity.description}
-                    </p>
+                    <p className="mt-3 text-sm leading-relaxed text-muted">{activity.description}</p>
                   ) : null}
                 </li>
               ))}
@@ -208,54 +320,31 @@ export default async function ExportPage({params}: PageProps) {
             )}
           />
 
-          <div className="mt-10 grid gap-4 lg:grid-cols-2">
-            {contacts.map((contact) => {
-              const phoneHref = `tel:${contact.phone.replace(/[^\d+]/g, '')}`
-              return (
-                <article
-                  key={contact._key}
-                  className="relative overflow-hidden border border-border bg-background p-6 sm:p-8"
-                >
-                  <div className="absolute inset-y-0 start-0 w-1 bg-accent" aria-hidden />
-                  <p className="text-xs font-semibold tracking-[0.18em] text-accent uppercase">
-                    {contact.role}
-                  </p>
-                  <h2 className="mt-3 font-display text-2xl text-foreground sm:text-3xl">
-                    {contact.name}
-                  </h2>
-                  <div className="mt-8 grid gap-5">
-                    <div>
-                      <p className="text-xs font-semibold tracking-[0.16em] text-muted uppercase">
-                        {dictionary.exportPage.phoneLabel}
-                      </p>
-                      <a
-                        href={phoneHref}
-                        className="mt-2 inline-flex min-h-11 items-center border border-accent bg-accent px-5 py-2.5 text-base font-semibold text-white no-underline shadow-[0_0_24px_var(--accent-glow)] transition hover:brightness-110"
-                        dir="ltr"
-                      >
-                        {contact.phone}
-                        <span aria-hidden>→</span>
-                      </a>
-                    </div>
-                    {contact.email ? (
-                      <div>
-                        <p className="text-xs font-semibold tracking-[0.16em] text-muted uppercase">
-                          {dictionary.exportPage.emailLabel}
-                        </p>
-                        <a
-                          href={`mailto:${contact.email}`}
-                          className="mt-2 inline-flex min-h-11 items-center border border-border bg-surface px-5 py-2.5 text-base font-semibold text-foreground no-underline transition hover:border-accent hover:text-accent"
-                          dir="ltr"
-                        >
-                          {contact.email}
-                          <span aria-hidden>→</span>
-                        </a>
-                      </div>
-                    ) : null}
-                  </div>
-                </article>
-              )
-            })}
+          <div className="mt-10 flex flex-col gap-4">
+            <ContactCard
+              contact={leadContact}
+              phoneLabel={dictionary.exportPage.phoneLabel}
+              emailLabel={dictionary.exportPage.emailLabel}
+              featured
+            />
+
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {regionalSlots.map((contact, index) =>
+                contact ? (
+                  <ContactCard
+                    key={contact._key}
+                    contact={contact}
+                    phoneLabel={dictionary.exportPage.phoneLabel}
+                    emailLabel={dictionary.exportPage.emailLabel}
+                  />
+                ) : (
+                  <EmptyTeamSlot
+                    key={`empty-slot-${index}`}
+                    label={dictionary.exportPage.openSlot}
+                  />
+                ),
+              )}
+            </div>
           </div>
         </div>
       </section>

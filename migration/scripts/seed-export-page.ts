@@ -54,16 +54,17 @@ function activity(
   }
 }
 
-function contact(name: string, phone: string, email: string) {
+function contact(
+  name: string,
+  role: {tr: string; en: string; ar: string},
+  phone: string,
+  email: string,
+) {
   return {
     _key: key(),
     _type: 'exportContact',
     name,
-    role: localizedString({
-      tr: 'İhracat Departmanı',
-      en: 'Export Department',
-      ar: 'قسم التصدير',
-    }),
+    role: localizedString(role),
     phone,
     email,
   }
@@ -150,9 +151,27 @@ function buildDocument() {
       en: 'Speak with our export team about products, distribution, target markets and private-label manufacturing.',
       ar: 'تواصل مع فريق التصدير بخصوص المنتجات والتوزيع والأسواق المستهدفة وتصنيع العلامة الخاصة.',
     }),
-    contacts: [
-      contact('İhracat Yetkilisi 1', '+90 555 555 55 55', 'export@polumat.com'),
-      contact('İhracat Yetkilisi 2', '+90 555 555 55 56', 'export@polumat.com'),
+    leadContact: contact(
+      'Mahmut Zarifoğlu',
+      {
+        tr: 'İhracat Müdürü',
+        en: 'Export Manager',
+        ar: 'مدير التصدير',
+      },
+      '+90 555 555 55 55',
+      'export@polumat.com',
+    ),
+    regionalContacts: [
+      contact(
+        'Enes Gürdağ',
+        {
+          tr: 'Avrupa, Amerika ve Balkanlar İhracat Müdürü',
+          en: 'Export Manager — Europe, Americas & Balkans',
+          ar: 'مدير التصدير — أوروبا وأمريكا والبلقان',
+        },
+        '+90 555 555 55 56',
+        'export@polumat.com',
+      ),
     ],
     seo: {
       _type: 'localizedSeo',

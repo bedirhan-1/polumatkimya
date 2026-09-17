@@ -98,9 +98,12 @@ export type Dictionary = {
     contactEyebrow: string
     contactTitle: string
     contactDescription: string
-    contact1Name: string
-    contact2Name: string
+    leadName: string
+    leadRole: string
+    regionalName: string
+    regionalRole: string
     contactRole: string
+    openSlot: string
     phoneLabel: string
     emailLabel: string
   }
