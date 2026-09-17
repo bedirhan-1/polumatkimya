@@ -11,6 +11,7 @@ type ContactPayload = {
   message?: string
   consent?: boolean
   website?: string
+  company_url_hp?: string
 }
 
 function asTrimmedString(value: unknown) {
@@ -26,7 +27,7 @@ export async function POST(request: Request) {
   }
 
   // Honeypot — bots fill hidden fields; pretend success.
-  if (asTrimmedString(body.website)) {
+  if (asTrimmedString(body.website) || asTrimmedString(body.company_url_hp)) {
     return NextResponse.json({ok: true})
   }
 

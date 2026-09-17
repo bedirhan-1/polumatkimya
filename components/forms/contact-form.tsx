@@ -21,8 +21,8 @@ export function ContactForm({labels, locale}: ContactFormProps) {
     const form = event.currentTarget
     const formData = new FormData(form)
 
-    // Honeypot
-    if (formData.get('website')) {
+    // Honeypot — obscure name avoids browser autofill (e.g. "website")
+    if (formData.get('company_url_hp')) {
       setPending(false)
       setStatus('success')
       return
@@ -71,9 +71,10 @@ export function ContactForm({labels, locale}: ContactFormProps) {
     <form onSubmit={onSubmit} className="relative flex flex-col gap-4" noValidate>
       <input
         type="text"
-        name="website"
+        name="company_url_hp"
         tabIndex={-1}
         autoComplete="off"
+        defaultValue=""
         className="pointer-events-none absolute h-px w-px overflow-hidden opacity-0"
         aria-hidden="true"
       />

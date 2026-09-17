@@ -32,7 +32,7 @@ export function QuoteForm({
     const form = event.currentTarget
     const formData = new FormData(form)
 
-    if (formData.get('website')) {
+    if (formData.get('company_url_hp')) {
       setPending(false)
       setStatus('success')
       return
@@ -84,9 +84,10 @@ export function QuoteForm({
     <form onSubmit={onSubmit} className="relative flex flex-col gap-5" noValidate>
       <input
         type="text"
-        name="website"
+        name="company_url_hp"
         tabIndex={-1}
         autoComplete="off"
+        defaultValue=""
         className="pointer-events-none absolute h-px w-px overflow-hidden opacity-0"
         aria-hidden="true"
       />
