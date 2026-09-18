@@ -11,6 +11,7 @@ import {getDictionary} from '@/lib/i18n/get-dictionary'
 import {getDirection, isLocale, locales, type Locale} from '@/lib/i18n/locales'
 import {fontArabic, fontBody, fontDisplay} from '@/lib/fonts'
 import {SanityLive} from '@/sanity/lib/live'
+import {revalidateSyncTagsAndRefresh} from '@/sanity/lib/revalidate-sync-tags'
 import {getCatalogDownload, getSiteSettings, mapFooterColumns, mapHeaderNavigation} from '@/sanity/lib/site-settings'
 
 import '../../globals.css'
@@ -112,7 +113,10 @@ export default async function LocaleLayout({children, params}: LocaleLayoutProps
             socialLinks={siteSettings?.socialLinks}
           />
         </LocaleAlternatesProvider>
-        <SanityLive />
+        <SanityLive
+          refreshOnMount
+          revalidateSyncTags={revalidateSyncTagsAndRefresh}
+        />
         {isDraftMode ? <VisualEditing /> : null}
       </body>
     </html>

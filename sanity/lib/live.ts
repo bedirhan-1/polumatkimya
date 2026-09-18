@@ -9,4 +9,8 @@ export const {sanityFetch, SanityLive} = defineLive({
   // Token optional at build time; Draft Mode / live preview need it in env
   serverToken: token || false,
   browserToken: token || false,
+  // Safety net when no visitor has SanityLive connected and webhook is delayed
+  fetchOptions: {
+    revalidate: 60,
+  },
 })
