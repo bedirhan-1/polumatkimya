@@ -61,7 +61,7 @@ export default async function PrivateLabelQuotePage({params}: PageProps) {
 
   return (
     <main id="main-content">
-      <PageHero>
+      <PageHero pattern="private-label">
         <p className="animate-product-rise text-xs font-semibold tracking-[0.22em] text-accent uppercase">
           {dictionary.privateLabelPage.eyebrow}
         </p>

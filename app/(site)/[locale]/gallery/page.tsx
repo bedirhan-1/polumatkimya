@@ -45,7 +45,7 @@ export default async function GalleryPage({params}: PageProps) {
 
   return (
     <main id="main-content">
-      <PageHero>
+      <PageHero pattern="gallery">
         <Breadcrumbs
           className="mb-0"
           label={dictionary.gallery.breadcrumbs}

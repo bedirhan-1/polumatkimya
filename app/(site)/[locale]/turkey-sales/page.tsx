@@ -83,7 +83,7 @@ function ContactCard({
 
   return (
     <article
-      className={`relative h-full border border-border bg-background ${
+      className={`relative border border-border bg-background ${
         featured ? 'p-6 sm:p-8' : 'p-6 sm:p-7'
       }`}
     >
@@ -98,20 +98,22 @@ function ContactCard({
       >
         {contact.name}
       </h2>
-      <div className={`grid gap-5 ${featured ? 'mt-7 sm:mt-8' : 'mt-7'}`}>
+      <div className="mt-7 flex flex-col gap-4">
         <div className="min-w-0">
           <p className="text-xs font-semibold tracking-[0.16em] text-muted uppercase">{phoneLabel}</p>
           <a
             href={phoneHref}
-            className={`mt-2 inline-flex w-full min-h-11 items-center justify-between gap-3 border px-4 py-2.5 text-sm font-semibold whitespace-nowrap no-underline transition ${
+            className={`mt-2 flex h-11 w-full items-center justify-between gap-3 border px-3 text-sm font-semibold no-underline transition ${
               featured
-                ? 'border-accent bg-accent text-white shadow-[0_0_24px_var(--accent-glow)] hover:brightness-110'
+                ? 'border-accent bg-accent text-[#fff] shadow-[0_0_20px_var(--accent-glow)] hover:brightness-110'
                 : 'border-border bg-surface text-foreground hover:border-accent hover:text-accent'
             }`}
             dir="ltr"
           >
-            <span>{contact.phone}</span>
-            <span aria-hidden>→</span>
+            <span className="truncate tabular-nums tracking-wide">{contact.phone}</span>
+            <span className="shrink-0 opacity-80" aria-hidden>
+              →
+            </span>
           </a>
         </div>
         {contact.email ? (
@@ -119,11 +121,11 @@ function ContactCard({
             <p className="text-xs font-semibold tracking-[0.16em] text-muted uppercase">{emailLabel}</p>
             <a
               href={`mailto:${contact.email}`}
-              className="mt-2 inline-flex w-full min-h-11 items-center justify-between gap-3 border border-border bg-surface px-4 py-2.5 text-sm font-semibold text-foreground whitespace-nowrap no-underline transition hover:border-accent hover:text-accent"
+              className="mt-2 flex h-11 w-full items-center justify-between gap-3 border border-border bg-surface px-3 text-sm font-semibold text-foreground no-underline transition hover:border-accent hover:text-accent"
               dir="ltr"
             >
               <span className="truncate">{contact.email}</span>
-              <span className="shrink-0" aria-hidden>
+              <span className="shrink-0 opacity-80" aria-hidden>
                 →
               </span>
             </a>
@@ -208,7 +210,7 @@ export default async function TurkeySalesPage({params}: PageProps) {
 
   return (
     <main id="main-content">
-      <PageHero>
+      <PageHero pattern="turkey-sales">
         <p className="animate-product-rise text-xs font-semibold tracking-[0.22em] text-accent uppercase">
           {asString(data?.eyebrow, dictionary.turkeySalesPage.eyebrow)}
         </p>

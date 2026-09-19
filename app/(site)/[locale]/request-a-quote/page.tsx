@@ -63,7 +63,7 @@ export default async function RequestQuotePage({params, searchParams}: PageProps
 
   return (
     <main id="main-content">
-      <PageHero>
+      <PageHero pattern="quote">
         <p className="animate-product-rise text-xs font-semibold tracking-[0.22em] text-accent uppercase">
           {dictionary.quotePage.eyebrow}
         </p>

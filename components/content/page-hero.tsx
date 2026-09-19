@@ -1,18 +1,25 @@
 import type {ReactNode} from 'react'
 
+import {HeroBackdrop, type HeroPattern} from '@/components/content/hero-backdrop'
+
 type PageHeroProps = {
   children: ReactNode
   className?: string
   compact?: boolean
+  /** Page-specific decorative backdrop for the title / breadcrumb band. */
+  pattern?: HeroPattern
 }
 
 /** Shared inner-page title band (breadcrumbs + heading). */
-export function PageHero({children, className = '', compact = false}: PageHeroProps) {
+export function PageHero({
+  children,
+  className = '',
+  compact = false,
+  pattern = 'default',
+}: PageHeroProps) {
   return (
-    <section
-      className={`product-hero-panel relative overflow-hidden border-b border-border ${className}`.trim()}
-    >
-      <div className="product-mesh pointer-events-none absolute inset-0 opacity-90" aria-hidden />
+    <section className={`relative overflow-hidden border-b border-border ${className}`.trim()}>
+      <HeroBackdrop pattern={pattern} />
       <div
         className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/12 to-transparent"
         aria-hidden

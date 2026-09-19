@@ -207,7 +207,7 @@ export default async function ExportPage({params}: PageProps) {
 
   return (
     <main id="main-content">
-      <PageHero>
+      <PageHero pattern="export">
         <p className="animate-product-rise text-xs font-semibold tracking-[0.22em] text-accent uppercase">
           {asString(data?.eyebrow, dictionary.exportPage.eyebrow)}
         </p>

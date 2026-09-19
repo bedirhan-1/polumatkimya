@@ -64,7 +64,7 @@ export default async function ProductsPage({params, searchParams}: PageProps) {
 
   return (
     <main id="main-content">
-      <PageHero>
+      <PageHero pattern="products">
         <Breadcrumbs
           className="mb-0"
           label={dictionary.products.breadcrumbs}

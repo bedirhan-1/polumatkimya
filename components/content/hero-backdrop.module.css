@@ -1,0 +1,366 @@
+.root {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.wash,
+.motif,
+.accent,
+.grain {
+  position: absolute;
+  inset: 0;
+}
+
+/* Soft film grain — shared */
+.grain {
+  opacity: 0.35;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.45'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  mix-blend-mode: soft-light;
+}
+
+/* ── default: refined mesh ── */
+.default .wash {
+  background:
+    radial-gradient(ellipse 80% 90% at 100% 0%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 52%),
+    radial-gradient(ellipse 50% 60% at 0% 100%, color-mix(in srgb, #ffffff 4%, transparent), transparent 55%),
+    linear-gradient(180deg, #12151a 0%, #0b0c0e 100%);
+}
+
+.default .motif {
+  opacity: 0.9;
+  background:
+    radial-gradient(ellipse 55% 70% at 12% 0%, color-mix(in srgb, #ffffff 7%, transparent), transparent 55%),
+    radial-gradient(ellipse 45% 55% at 92% 100%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 60%),
+    linear-gradient(
+      115deg,
+      transparent 0%,
+      color-mix(in srgb, #ffffff 3.5%, transparent) 42%,
+      transparent 58%
+    );
+}
+
+.default .accent {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, var(--accent) 8%, transparent) 70%,
+    transparent 100%
+  );
+  opacity: 0.5;
+}
+
+/* ── products: molecular hex field ── */
+.products .wash {
+  background:
+    radial-gradient(ellipse 70% 80% at 88% 18%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 55%),
+    linear-gradient(180deg, #13161c 0%, #0b0c0e 100%);
+}
+
+.products .motif {
+  opacity: 0.55;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='98' viewBox='0 0 56 98'%3E%3Cpath d='M28 2 L52 16 V44 L28 58 L4 44 V16 Z' fill='none' stroke='%23ffffff' stroke-opacity='0.14' stroke-width='1'/%3E%3Ccircle cx='28' cy='30' r='2.2' fill='%23e31c23' fill-opacity='0.35'/%3E%3C/svg%3E");
+  background-size: 56px 98px;
+  mask-image: linear-gradient(105deg, transparent 8%, #000 38%, #000 72%, transparent 96%);
+}
+
+.products .accent {
+  background:
+    radial-gradient(circle at 18% 70%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 28%),
+    radial-gradient(circle at 72% 40%, color-mix(in srgb, #ffffff 6%, transparent), transparent 22%);
+  animation: hero-breathe 9s ease-in-out infinite;
+}
+
+/* ── industries: structural hatch + beams ── */
+.industries .wash {
+  background:
+    radial-gradient(ellipse 55% 70% at 0% 0%, color-mix(in srgb, #ffffff 6%, transparent), transparent 50%),
+    linear-gradient(180deg, #12151a 0%, #0b0c0e 100%);
+}
+
+.industries .motif {
+  opacity: 0.5;
+  background-image:
+    repeating-linear-gradient(
+      -28deg,
+      transparent 0,
+      transparent 11px,
+      color-mix(in srgb, #ffffff 7%, transparent) 11px,
+      color-mix(in srgb, #ffffff 7%, transparent) 12px
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cpath d='M0 90 H120 M30 60 H120 M60 30 H120' stroke='%23e31c23' stroke-opacity='0.22' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: auto, 120px 120px;
+  background-position: 0 0, 100% 0;
+  background-repeat: repeat, no-repeat;
+  mask-image: radial-gradient(ellipse 80% 90% at 85% 20%, #000 20%, transparent 75%);
+}
+
+.industries .accent {
+  background: linear-gradient(
+    135deg,
+    transparent 40%,
+    color-mix(in srgb, var(--accent) 14%, transparent) 58%,
+    transparent 72%
+  );
+}
+
+/* ── gallery: stacked frame mats ── */
+.gallery .wash {
+  background:
+    radial-gradient(ellipse 60% 70% at 100% 50%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 55%),
+    linear-gradient(180deg, #14171d 0%, #0b0c0e 100%);
+}
+
+.gallery .motif {
+  opacity: 0.7;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='200' viewBox='0 0 280 200'%3E%3Crect x='40' y='28' width='140' height='100' fill='none' stroke='%23ffffff' stroke-opacity='0.16' stroke-width='1.2'/%3E%3Crect x='88' y='58' width='140' height='100' fill='none' stroke='%23e31c23' stroke-opacity='0.32' stroke-width='1.2'/%3E%3Crect x='20' y='90' width='90' height='70' fill='none' stroke='%23ffffff' stroke-opacity='0.1' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: min(48vw, 280px) auto;
+  background-position: calc(100% + 1rem) 55%;
+  background-repeat: no-repeat;
+}
+
+.gallery .accent {
+  background: radial-gradient(
+    circle at 82% 42%,
+    color-mix(in srgb, #ffffff 8%, transparent),
+    transparent 30%
+  );
+}
+
+/* ── videos: concentric arcs + play ghost ── */
+.videos .wash {
+  background:
+    radial-gradient(ellipse 50% 80% at 100% 50%, color-mix(in srgb, var(--accent) 16%, transparent), transparent 58%),
+    linear-gradient(180deg, #12151a 0%, #0b0c0e 100%);
+}
+
+.videos .motif {
+  opacity: 0.75;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='240' viewBox='0 0 320 240'%3E%3Ccircle cx='260' cy='120' r='38' fill='none' stroke='%23ffffff' stroke-opacity='0.12' stroke-width='1.2'/%3E%3Ccircle cx='260' cy='120' r='68' fill='none' stroke='%23ffffff' stroke-opacity='0.09' stroke-width='1'/%3E%3Ccircle cx='260' cy='120' r='98' fill='none' stroke='%23e31c23' stroke-opacity='0.22' stroke-width='1.2'/%3E%3Cpath d='M248 100 L248 140 L282 120 Z' fill='%23e31c23' fill-opacity='0.28'/%3E%3C/svg%3E");
+  background-size: min(55vw, 320px) auto;
+  background-position: 100% 50%;
+  background-repeat: no-repeat;
+}
+
+.videos .accent {
+  animation: hero-breathe 10s ease-in-out infinite;
+  background: radial-gradient(
+    circle at 88% 50%,
+    color-mix(in srgb, var(--accent) 20%, transparent),
+    transparent 26%
+  );
+}
+
+/* ── blog: type rules + mark ── */
+.blog .wash {
+  background:
+    radial-gradient(ellipse 45% 60% at 0% 100%, color-mix(in srgb, #ffffff 5%, transparent), transparent 50%),
+    linear-gradient(180deg, #13161b 0%, #0b0c0e 100%);
+}
+
+.blog .motif {
+  opacity: 0.55;
+  background-image:
+    repeating-linear-gradient(
+      180deg,
+      transparent 0,
+      transparent 17px,
+      color-mix(in srgb, #ffffff 6%, transparent) 17px,
+      color-mix(in srgb, #ffffff 6%, transparent) 18px
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='140' viewBox='0 0 120 140'%3E%3Cpath d='M88 18 C70 18 58 32 58 52 V78 H78 V54 C78 42 86 34 98 34 H108 V18 Z' fill='%23e31c23' fill-opacity='0.2'/%3E%3C/svg%3E");
+  background-size: 100% 18px, 120px 140px;
+  background-position: 0 0, calc(100% - 1.5rem) 1rem;
+  background-repeat: repeat, no-repeat;
+  mask-image: linear-gradient(90deg, transparent 0%, #000 35%, #000 70%, transparent 100%);
+}
+
+.blog .accent {
+  background: linear-gradient(
+    90deg,
+    color-mix(in srgb, var(--accent) 16%, transparent),
+    transparent 18%
+  );
+  opacity: 0.7;
+}
+
+/* ── contact: signal rings ── */
+.contact .wash {
+  background:
+    radial-gradient(ellipse 70% 90% at 100% 0%, color-mix(in srgb, var(--accent) 15%, transparent), transparent 55%),
+    linear-gradient(180deg, #12151a 0%, #0b0c0e 100%);
+}
+
+.contact .motif {
+  opacity: 0.8;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='360' height='260' viewBox='0 0 360 260'%3E%3Ccircle cx='300' cy='40' r='24' fill='none' stroke='%23e31c23' stroke-opacity='0.45' stroke-width='1.5'/%3E%3Cpath d='M300 40 m-48 0 a48 48 0 1 1 96 0 a48 48 0 1 1 -96 0' fill='none' stroke='%23ffffff' stroke-opacity='0.12' stroke-width='1'/%3E%3Cpath d='M300 40 m-78 0 a78 78 0 1 1 156 0 a78 78 0 1 1 -156 0' fill='none' stroke='%23ffffff' stroke-opacity='0.09' stroke-width='1'/%3E%3Cpath d='M300 40 m-112 0 a112 112 0 1 1 224 0 a112 112 0 1 1 -224 0' fill='none' stroke='%23e31c23' stroke-opacity='0.16' stroke-width='1'/%3E%3Ccircle cx='300' cy='40' r='5' fill='%23e31c23' fill-opacity='0.7'/%3E%3C/svg%3E");
+  background-size: min(70vw, 360px) auto;
+  background-position: 100% 0;
+  background-repeat: no-repeat;
+}
+
+.contact .accent {
+  animation: hero-pulse-ring 6.5s ease-out infinite;
+  background: radial-gradient(
+    circle at 88% 12%,
+    color-mix(in srgb, var(--accent) 28%, transparent),
+    transparent 18%
+  );
+}
+
+/* ── export: globe meridians ── */
+.export .wash {
+  background:
+    radial-gradient(ellipse 65% 85% at 95% 40%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 58%),
+    linear-gradient(180deg, #12151a 0%, #0b0c0e 100%);
+}
+
+.export .motif {
+  opacity: 0.7;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='260' viewBox='0 0 340 260'%3E%3Cellipse cx='250' cy='130' rx='95' ry='95' fill='none' stroke='%23ffffff' stroke-opacity='0.14' stroke-width='1.2'/%3E%3Cellipse cx='250' cy='130' rx='48' ry='95' fill='none' stroke='%23ffffff' stroke-opacity='0.1' stroke-width='1'/%3E%3Cpath d='M155 130 H345 M250 35 V225' stroke='%23ffffff' stroke-opacity='0.1' stroke-width='1'/%3E%3Cpath d='M170 70 Q250 50 330 70 M170 190 Q250 210 330 190' fill='none' stroke='%23e31c23' stroke-opacity='0.28' stroke-width='1.2'/%3E%3Ccircle cx='210' cy='95' r='3' fill='%23e31c23' fill-opacity='0.65'/%3E%3Ccircle cx='290' cy='155' r='3' fill='%23e31c23' fill-opacity='0.65'/%3E%3Cpath d='M210 95 Q250 110 290 155' fill='none' stroke='%23e31c23' stroke-opacity='0.4' stroke-width='1' stroke-dasharray='3 4'/%3E%3C/svg%3E");
+  background-size: min(58vw, 340px) auto;
+  background-position: 100% 45%;
+  background-repeat: no-repeat;
+}
+
+.export .accent {
+  background: radial-gradient(
+    circle at 78% 48%,
+    color-mix(in srgb, #ffffff 5%, transparent),
+    transparent 28%
+  );
+}
+
+/* ── turkey-sales: anatolian geometry, fine skyline ── */
+.turkey-sales .wash {
+  background:
+    radial-gradient(ellipse 55% 80% at 92% 8%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 58%),
+    radial-gradient(ellipse 40% 55% at 8% 90%, color-mix(in srgb, #ffffff 4%, transparent), transparent 55%),
+    linear-gradient(180deg, #12151a 0%, #0b0c0e 100%);
+}
+
+.turkey-sales .illustration {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  color: #c8c4bc;
+  opacity: 0.85;
+}
+
+.turkey-sales .accent {
+  background: linear-gradient(
+    105deg,
+    transparent 50%,
+    color-mix(in srgb, var(--accent) 7%, transparent) 78%,
+    transparent 100%
+  );
+}
+
+/* ── private-label: badge / stamp ── */
+.private-label .wash {
+  background:
+    radial-gradient(ellipse 50% 70% at 100% 0%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 52%),
+    linear-gradient(180deg, #13161c 0%, #0b0c0e 100%);
+}
+
+.private-label .motif {
+  opacity: 0.7;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='220' viewBox='0 0 280 220'%3E%3Crect x='120' y='30' width='130' height='160' rx='4' fill='none' stroke='%23ffffff' stroke-opacity='0.14' stroke-width='1.2' stroke-dasharray='5 4'/%3E%3Crect x='138' y='48' width='94' height='20' fill='none' stroke='%23e31c23' stroke-opacity='0.4' stroke-width='1.2'/%3E%3Cpath d='M148 90 H222 M148 110 H210 M148 130 H222 M148 150 H200' stroke='%23ffffff' stroke-opacity='0.12' stroke-width='1.5'/%3E%3Ccircle cx='70' cy='150' r='42' fill='none' stroke='%23e31c23' stroke-opacity='0.28' stroke-width='1.5' stroke-dasharray='3 5'/%3E%3Ccircle cx='70' cy='150' r='28' fill='none' stroke='%23ffffff' stroke-opacity='0.12' stroke-width='1'/%3E%3C/svg%3E");
+  background-size: min(50vw, 280px) auto;
+  background-position: 100% 40%;
+  background-repeat: no-repeat;
+}
+
+.private-label .accent {
+  background: radial-gradient(
+    circle at 22% 75%,
+    color-mix(in srgb, var(--accent) 14%, transparent),
+    transparent 22%
+  );
+}
+
+/* ── quote: document + brackets ── */
+.quote .wash {
+  background:
+    radial-gradient(ellipse 60% 80% at 100% 100%, color-mix(in srgb, var(--accent) 14%, transparent), transparent 55%),
+    linear-gradient(180deg, #12151a 0%, #0b0c0e 100%);
+}
+
+.quote .motif {
+  opacity: 0.65;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='220' viewBox='0 0 300 220'%3E%3Cpath d='M40 40 H70 V50 H50 V70 H40 Z' fill='none' stroke='%23e31c23' stroke-opacity='0.45' stroke-width='1.5'/%3E%3Cpath d='M260 150 H230 V140 H250 V120 H260 Z' fill='none' stroke='%23e31c23' stroke-opacity='0.45' stroke-width='1.5'/%3E%3Crect x='90' y='35' width='130' height='160' fill='none' stroke='%23ffffff' stroke-opacity='0.14' stroke-width='1.2'/%3E%3Cpath d='M110 60 H200 M110 80 H190 M110 100 H200 M110 120 H175 M110 140 H195' stroke='%23ffffff' stroke-opacity='0.12' stroke-width='1.4'/%3E%3Cpath d='M110 165 H155' stroke='%23e31c23' stroke-opacity='0.4' stroke-width='2'/%3E%3C/svg%3E");
+  background-size: min(52vw, 300px) auto;
+  background-position: 100% 50%;
+  background-repeat: no-repeat;
+}
+
+.quote .accent {
+  background: linear-gradient(
+    115deg,
+    transparent 55%,
+    color-mix(in srgb, #ffffff 4%, transparent) 72%,
+    transparent 88%
+  );
+}
+
+@keyframes hero-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.04);
+  }
+}
+
+@keyframes hero-pulse-ring {
+  0% {
+    opacity: 0.85;
+    transform: scale(0.96);
+  }
+  70% {
+    opacity: 0.15;
+    transform: scale(1.12);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.18);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .products .accent,
+  .videos .accent,
+  .contact .accent {
+    animation: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .gallery .motif,
+  .videos .motif,
+  .export .motif,
+  .private-label .motif,
+  .quote .motif,
+  .contact .motif {
+    opacity: 0.45;
+    background-size: min(72vw, 240px) auto;
+  }
+
+  .turkey-sales .illustration {
+    opacity: 0.7;
+  }
+
+  .products .motif {
+    opacity: 0.35;
+  }
+
+  .blog .motif {
+    opacity: 0.35;
+  }
+}

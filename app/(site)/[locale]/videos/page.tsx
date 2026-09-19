@@ -41,7 +41,7 @@ export default async function VideosPage({params}: PageProps) {
 
   return (
     <main id="main-content">
-      <PageHero>
+      <PageHero pattern="videos">
         <Breadcrumbs
           className="mb-0"
           label={dictionary.videos.breadcrumbs}

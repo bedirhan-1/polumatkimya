@@ -240,7 +240,7 @@ export default async function ContactPage({params}: PageProps) {
 
   return (
     <main id="main-content">
-      <PageHero>
+      <PageHero pattern="contact">
         <p className="text-xs font-semibold tracking-[0.22em] text-accent uppercase">{eyebrow}</p>
         <h1 className="mt-4 max-w-3xl font-display text-[clamp(1.85rem,7vw,3.75rem)] leading-[1.05] text-foreground">
           {title}

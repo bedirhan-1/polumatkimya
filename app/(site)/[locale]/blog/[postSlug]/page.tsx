@@ -142,7 +142,7 @@ export default async function BlogPostPage({params}: PageProps) {
       <JsonLd data={jsonLd} />
 
       <article>
-        <PageHero>
+        <PageHero pattern="blog">
           <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
             <div className="flex flex-col gap-5">
               <Breadcrumbs

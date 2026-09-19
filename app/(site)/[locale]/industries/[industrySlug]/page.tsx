@@ -92,7 +92,7 @@ export default async function IndustryDetailPage({params}: PageProps) {
 
   return (
     <main id="main-content">
-      <PageHero compact>
+      <PageHero compact pattern="industries">
         <Breadcrumbs
           className="mb-0"
           label={dictionary.products.breadcrumbs}

@@ -118,7 +118,7 @@ export default async function ProductDetailPage({params}: PageProps) {
       <JsonLd data={jsonLd} />
 
       {/* Industrial title band */}
-      <PageHero compact>
+      <PageHero compact pattern="products">
         <Breadcrumbs
           className="mb-0"
           label={dictionary.products.breadcrumbs}

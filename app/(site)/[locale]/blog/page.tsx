@@ -42,7 +42,7 @@ export default async function BlogIndexPage({params}: PageProps) {
 
   return (
     <main id="main-content">
-      <PageHero>
+      <PageHero pattern="blog">
         <Breadcrumbs
           className="mb-0"
           label={dictionary.blog.breadcrumbs}
