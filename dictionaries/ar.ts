@@ -31,6 +31,7 @@ const ar: Dictionary = {
     humanResources: 'الموارد البشرية',
     gallery: 'المعرض',
     export: 'التصدير',
+    turkeySales: 'مبيعات تركيا',
     blog: 'المدونة',
     contact: 'اتصل بنا',
     requestQuote: 'اطلب عرض سعر',
@@ -110,6 +111,32 @@ const ar: Dictionary = {
     contactTitle: 'احصل على المعلومات من قسم التصدير',
     contactDescription:
       'تواصل مع فريق التصدير بخصوص المنتجات والتوزيع والأسواق المستهدفة وتصنيع العلامة الخاصة.',
+    phoneLabel: 'الهاتف',
+    emailLabel: 'البريد الإلكتروني',
+  },
+  turkeySalesPage: {
+    eyebrow: 'المبيعات المحلية',
+    title: 'مبيعات تركيا',
+    intro:
+      'تواصل مباشرة مع مدير مبيعات تركيا لدعم شبكة الوكلاء والمبيعات في جميع أنحاء البلاد.',
+    mapTitle: 'شبكة المبيعات في تركيا',
+    mapDescription:
+      'من قاعدة الإنتاج في تشايكوما / زونغولداق ندعم المبيعات والتوزيع في كل مناطق تركيا.',
+    mapFactoryLabel: 'تشايكوما · زونغولداق',
+    mapIstanbulLabel: 'باشاك شهير · إسطنبول',
+    highlight1Title: 'تغطية وطنية',
+    highlight1Body:
+      'نبني هياكل مبيعات مستدامة مع الوكلاء والشركاء في كل مناطق تركيا.',
+    highlight2Title: 'دعم الوكلاء',
+    highlight2Body:
+      'نبقى قريبين من وكلائنا عبر الإرشاد حول المنتجات وتخطيط المخزون ودعم المبيعات الميدانية.',
+    highlight3Title: 'استجابة سريعة',
+    highlight3Body:
+      'تواصل مباشرة مع فريق مبيعات تركيا لعروض الأسعار والمعلومات الفنية وطلبات الطلبات.',
+    contactEyebrow: 'تواصل مباشر',
+    contactTitle: 'تحدث مع مدير مبيعات تركيا',
+    contactDescription:
+      'تواصل مع أيدن تشاكار بخصوص المبيعات المحلية وعلاقات الوكلاء وطلبات المنتجات.',
     phoneLabel: 'الهاتف',
     emailLabel: 'البريد الإلكتروني',
   },
@@ -225,6 +252,11 @@ const ar: Dictionary = {
     empty: 'لا توجد صور في المعرض بعد.',
     breadcrumbs: 'مسار التنقل',
     viewAll: 'عرض المعرض كاملاً',
+    lightboxClose: 'إغلاق',
+    lightboxPrevious: 'الصورة السابقة',
+    lightboxNext: 'الصورة التالية',
+    lightboxOf: '{current} / {total}',
+    lightboxOpen: 'تكبير {title}',
   },
 }
 

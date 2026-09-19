@@ -11,6 +11,7 @@ import {
   HomeIcon,
   ImagesIcon,
   PlayIcon,
+  PinIcon,
   SortIcon,
   TagIcon,
 } from '@sanity/icons'
@@ -23,6 +24,7 @@ const SINGLETON_TYPES = new Set([
   'homePage',
   'contactPage',
   'exportPage',
+  'turkeySalesPage',
   'productOrder',
   'gallery',
 ])
@@ -35,6 +37,7 @@ function createSingleton(
   documentId = typeName,
 ) {
   return S.listItem()
+    .id(documentId)
     .title(title)
     .icon(icon)
     .child(S.document().schemaType(typeName).documentId(documentId).title(title))
@@ -102,6 +105,7 @@ export const structure: StructureResolver = (S) =>
       createLocalizedSingleton(S, 'homePage', 'Ana sayfa', HomeIcon),
       createSingleton(S, 'contactPage', 'İletişim sayfası', EnvelopeIcon),
       createSingleton(S, 'exportPage', 'İhracat sayfası', EarthGlobeIcon),
+      createSingleton(S, 'turkeySalesPage', 'Türkiye satış sayfası', PinIcon),
       S.divider(),
       S.listItem()
         .title('Ürünler')

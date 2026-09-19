@@ -29,6 +29,7 @@ export type Dictionary = {
     humanResources: string
     gallery: string
     export: string
+    turkeySales: string
     blog: string
     contact: string
     requestQuote: string
@@ -95,6 +96,26 @@ export type Dictionary = {
     initiative2Body: string
     initiative3Title: string
     initiative3Body: string
+    contactEyebrow: string
+    contactTitle: string
+    contactDescription: string
+    phoneLabel: string
+    emailLabel: string
+  }
+  turkeySalesPage: {
+    eyebrow: string
+    title: string
+    intro: string
+    mapTitle: string
+    mapDescription: string
+    mapFactoryLabel: string
+    mapIstanbulLabel: string
+    highlight1Title: string
+    highlight1Body: string
+    highlight2Title: string
+    highlight2Body: string
+    highlight3Title: string
+    highlight3Body: string
     contactEyebrow: string
     contactTitle: string
     contactDescription: string
@@ -212,6 +233,11 @@ export type Dictionary = {
     empty: string
     breadcrumbs: string
     viewAll: string
+    lightboxClose: string
+    lightboxPrevious: string
+    lightboxNext: string
+    lightboxOf: string
+    lightboxOpen: string
   }
 }
 

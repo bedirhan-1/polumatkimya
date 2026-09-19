@@ -64,6 +64,7 @@ export function getDefaultNavItems(locale: Locale, dictionary: Dictionary): NavI
       children: getCorporateNavItems(locale, dictionary),
     },
     {href: `/${locale}/export`, label: dictionary.nav.export},
+    {href: `/${locale}/turkey-sales`, label: dictionary.nav.turkeySales},
     {href: `/${locale}/contact`, label: dictionary.nav.contact},
     {
       href: DEALER_PORTAL_URL,
@@ -99,6 +100,7 @@ export function getDefaultFooterColumns(locale: Locale, dictionary: Dictionary) 
       title: dictionary.footer.company,
       links: [
         ...getCorporateNavItems(locale, dictionary),
+        {href: `/${locale}/turkey-sales`, label: dictionary.nav.turkeySales},
         {href: `/${locale}/contact`, label: dictionary.nav.contact},
       ],
     },
@@ -154,6 +156,66 @@ export function withFooterEssentials(
     }
     if (!hasContact) {
       links.push({href: contactHref, label: dictionary.nav.contact})
+    }
+    return {...column, links}
+  })
+}
+
+/** Ensure Turkey Sales sits between Export and Contact when Sanity nav is stale. */
+export function withTurkeySalesNav(
+  items: NavItem[],
+  locale: Locale,
+  dictionary: Dictionary,
+): NavItem[] {
+  const turkeyHref = `/${locale}/turkey-sales`
+  const alreadyPresent = items.some((item) => {
+    if (item.href === turkeyHref) return true
+    return (item.children || []).some((child) => child.href === turkeyHref)
+  })
+  if (alreadyPresent) return items
+
+  const exportIndex = items.findIndex((item) => item.href === `/${locale}/export`)
+  const contactIndex = items.findIndex((item) => item.href === `/${locale}/contact`)
+  const link = {href: turkeyHref, label: dictionary.nav.turkeySales}
+
+  if (exportIndex >= 0) {
+    const next = [...items]
+    next.splice(exportIndex + 1, 0, link)
+    return next
+  }
+
+  if (contactIndex >= 0) {
+    const next = [...items]
+    next.splice(contactIndex, 0, link)
+    return next
+  }
+
+  return [...items, link]
+}
+
+/** Ensure Turkey Sales appears under the Kurumsal / Company footer column. */
+export function withTurkeySalesFooter(
+  columns: Array<{title: string; links: NavItem[]}>,
+  locale: Locale,
+  dictionary: Dictionary,
+): Array<{title: string; links: NavItem[]}> {
+  if (!columns.length) return columns
+
+  const turkeyHref = `/${locale}/turkey-sales`
+  const alreadyPresent = columns.some((column) =>
+    column.links.some((link) => link.href === turkeyHref),
+  )
+  if (alreadyPresent) return columns
+
+  return columns.map((column, index) => {
+    if (index !== 0) return column
+    const links = [...column.links]
+    const contactIndex = links.findIndex((link) => link.href === `/${locale}/contact`)
+    const link = {href: turkeyHref, label: dictionary.nav.turkeySales}
+    if (contactIndex >= 0) {
+      links.splice(contactIndex, 0, link)
+    } else {
+      links.push(link)
     }
     return {...column, links}
   })

@@ -32,6 +32,7 @@ const tr: Dictionary = {
     humanResources: 'İnsan Kaynakları',
     gallery: 'Galeri',
     export: 'İhracat',
+    turkeySales: 'Türkiye Satış',
     blog: 'Blog',
     contact: 'İletişim',
     requestQuote: 'Teklif Al',
@@ -114,6 +115,32 @@ const tr: Dictionary = {
     contactTitle: 'İhracat departmanımızdan bilgi alın',
     contactDescription:
       'Ürünler, distribütörlük, hedef pazarlar ve özel marka üretimi hakkında ihracat ekibimizle görüşün.',
+    phoneLabel: 'Telefon',
+    emailLabel: 'E-posta',
+  },
+  turkeySalesPage: {
+    eyebrow: 'Yurt içi satış',
+    title: 'Türkiye Satış',
+    intro:
+      'Türkiye genelindeki bayi ve satış ağımız için doğrudan Türkiye satış müdürümüzle iletişime geçin.',
+    mapTitle: 'Türkiye satış ağı',
+    mapDescription:
+      'Çaycuma / Zonguldak üretim üssümüzden Türkiye’nin her bölgesine satış ve dağıtım desteği sunuyoruz.',
+    mapFactoryLabel: 'Çaycuma · Zonguldak',
+    mapIstanbulLabel: 'Başakşehir · İstanbul',
+    highlight1Title: 'Ulusal kapsama',
+    highlight1Body:
+      'Türkiye’nin tüm bölgelerinde bayi ve iş ortaklarımızla sürdürülebilir satış yapısı kuruyoruz.',
+    highlight2Title: 'Bayi desteği',
+    highlight2Body:
+      'Ürün bilgilendirme, stok planlama ve saha satış süreçlerinde bayilerimize yakın destek sağlıyoruz.',
+    highlight3Title: 'Hızlı yanıt',
+    highlight3Body:
+      'Teklif, teknik bilgi ve sipariş talepleriniz için Türkiye satış ekibimizle doğrudan görüşebilirsiniz.',
+    contactEyebrow: 'Doğrudan iletişim',
+    contactTitle: 'Türkiye satış müdürümüzle görüşün',
+    contactDescription:
+      'Yurt içi satış, bayi ilişkileri ve ürün talepleri için Aydın ÇAKAR ile iletişime geçebilirsiniz.',
     phoneLabel: 'Telefon',
     emailLabel: 'E-posta',
   },
@@ -229,6 +256,11 @@ const tr: Dictionary = {
     empty: 'Henüz galeri görseli eklenmemiş.',
     breadcrumbs: 'Sayfa yolu',
     viewAll: 'Tüm galeri',
+    lightboxClose: 'Kapat',
+    lightboxPrevious: 'Önceki görsel',
+    lightboxNext: 'Sonraki görsel',
+    lightboxOf: '{current} / {total}',
+    lightboxOpen: '{title} görselini büyüt',
   },
 }
 

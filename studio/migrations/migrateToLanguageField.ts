@@ -11,6 +11,7 @@ const DOCUMENT_TYPES = [
   'applicationArea',
   'certificate',
   'exportPage',
+  'turkeySalesPage',
   'product',
   'productCategory',
   'siteSettings',

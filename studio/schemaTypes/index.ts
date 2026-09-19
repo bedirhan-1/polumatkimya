@@ -27,6 +27,7 @@ import {
   exportPageType,
 } from './documents/export-page'
 import {homePageType} from './documents/home-page'
+import {turkeySalesPageType} from './documents/turkey-sales-page'
 import {pageType} from './documents/page'
 import {postType} from './documents/post'
 import {productType} from './documents/product'
@@ -67,6 +68,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   // Documents
   siteSettingsType,
   exportPageType,
+  turkeySalesPageType,
   productType,
   productCategoryType,
   productOrderType,

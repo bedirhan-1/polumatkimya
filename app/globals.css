@@ -217,3 +217,76 @@
     animation: none;
   }
 }
+
+/* Turkey sales mapcn markers */
+.turkey-sales-map {
+  aspect-ratio: 900 / 520;
+  min-height: 16rem;
+}
+
+.turkey-sales-map .maplibregl-ctrl-attrib {
+  background: color-mix(in srgb, var(--background) 78%, transparent);
+  color: var(--muted);
+  font-size: 0.65rem;
+}
+
+.turkey-sales-marker {
+  position: relative;
+  width: 1rem;
+  height: 1rem;
+  pointer-events: none;
+}
+
+.turkey-sales-marker__dot {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: var(--accent);
+  box-shadow:
+    0 0 0 2px color-mix(in srgb, #fff 55%, transparent),
+    0 0 18px var(--accent-glow);
+}
+
+.turkey-sales-marker__pulse {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0.9rem;
+  height: 0.9rem;
+  margin: -0.45rem 0 0 -0.45rem;
+  border-radius: 9999px;
+  border: 1.5px solid color-mix(in srgb, var(--accent) 85%, white);
+  opacity: 0;
+  animation: turkey-sales-ripple 2.8s cubic-bezier(0.15, 0.65, 0.3, 1) infinite;
+}
+
+.turkey-sales-marker__pulse--delay {
+  animation-delay: 0.9s;
+}
+
+.turkey-sales-marker__pulse--delay-2 {
+  animation-delay: 1.8s;
+}
+
+@keyframes turkey-sales-ripple {
+  0% {
+    transform: scale(0.55);
+    opacity: 0.8;
+  }
+  55% {
+    opacity: 0.28;
+  }
+  100% {
+    transform: scale(11);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .turkey-sales-marker__pulse {
+    animation: none;
+    opacity: 0.35;
+    transform: scale(2.4);
+  }
+}
+

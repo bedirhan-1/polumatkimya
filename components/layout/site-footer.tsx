@@ -9,6 +9,7 @@ import {
   DEALER_PORTAL_URL,
   getDefaultFooterColumns,
   withFooterEssentials,
+  withTurkeySalesFooter,
   type NavItem,
 } from '@/lib/navigation'
 
@@ -40,11 +41,15 @@ export function SiteFooter({
   metaItems,
   socialLinks,
 }: SiteFooterProps) {
-  const resolvedColumns = withFooterEssentials(
-    (columns?.length ? columns : getDefaultFooterColumns(locale, dictionary)).map((column) => ({
-      ...column,
-      links: column.links.filter((link) => link.href !== DEALER_PORTAL_URL),
-    })),
+  const resolvedColumns = withTurkeySalesFooter(
+    withFooterEssentials(
+      (columns?.length ? columns : getDefaultFooterColumns(locale, dictionary)).map((column) => ({
+        ...column,
+        links: column.links.filter((link) => link.href !== DEALER_PORTAL_URL),
+      })),
+      locale,
+      dictionary,
+    ),
     locale,
     dictionary,
   )

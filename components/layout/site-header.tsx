@@ -15,6 +15,7 @@ import {
   getDefaultNavItems,
   withCorporateGallery,
   withDealerLogin,
+  withTurkeySalesNav,
   type NavItem,
 } from '@/lib/navigation'
 
@@ -116,8 +117,12 @@ export function SiteHeader({
 }: SiteHeaderProps) {
   const pathname = usePathname() || `/${locale}`
   const navItems = withDealerLogin(
-    withCorporateGallery(
-      items?.length ? items : getDefaultNavItems(locale, dictionary),
+    withTurkeySalesNav(
+      withCorporateGallery(
+        items?.length ? items : getDefaultNavItems(locale, dictionary),
+        locale,
+        dictionary,
+      ),
       locale,
       dictionary,
     ),

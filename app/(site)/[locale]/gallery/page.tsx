@@ -66,7 +66,17 @@ export default async function GalleryPage({params}: PageProps) {
 
       <section className="border-b border-border section-space">
         <div className="container-site">
-          <GalleryGrid images={images} emptyLabel={dictionary.gallery.empty} />
+          <GalleryGrid
+            images={images}
+            emptyLabel={dictionary.gallery.empty}
+            lightboxLabels={{
+              close: dictionary.gallery.lightboxClose,
+              previous: dictionary.gallery.lightboxPrevious,
+              next: dictionary.gallery.lightboxNext,
+              of: dictionary.gallery.lightboxOf,
+              open: dictionary.gallery.lightboxOpen,
+            }}
+          />
         </div>
       </section>
     </main>

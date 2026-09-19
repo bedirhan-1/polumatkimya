@@ -202,6 +202,10 @@ function buildSettingsPayload(images: {
         {linkType: 'internal', internalPath: '/export'},
       ),
       navItem(
+        {tr: 'Türkiye Satış', en: 'Turkey Sales', ar: 'مبيعات تركيا'},
+        {linkType: 'internal', internalPath: '/turkey-sales'},
+      ),
+      navItem(
         {tr: 'İletişim', en: 'Contact', ar: 'اتصل بنا'},
         {linkType: 'internal', internalPath: '/contact'},
       ),
@@ -251,6 +255,10 @@ function buildSettingsPayload(images: {
           navLink(
             {tr: 'İnsan Kaynakları', en: 'Human resources', ar: 'الموارد البشرية'},
             {linkType: 'internal', internalPath: '/company/human-resources'},
+          ),
+          navLink(
+            {tr: 'Türkiye Satış', en: 'Turkey Sales', ar: 'مبيعات تركيا'},
+            {linkType: 'internal', internalPath: '/turkey-sales'},
           ),
           navLink(
             {tr: 'İletişim', en: 'Contact', ar: 'اتصل بنا'},

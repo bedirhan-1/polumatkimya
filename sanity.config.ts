@@ -68,8 +68,10 @@ export default defineConfig({
           template.schemaType === 'homePage' ||
           template.schemaType === 'contactPage' ||
           template.schemaType === 'exportPage' ||
+          template.schemaType === 'turkeySalesPage' ||
           template.schemaType === 'siteSettings' ||
-          template.schemaType === 'productOrder'
+          template.schemaType === 'productOrder' ||
+          template.schemaType === 'gallery'
         ) {
           return false
         }

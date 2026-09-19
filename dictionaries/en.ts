@@ -32,6 +32,7 @@ const en: Dictionary = {
     humanResources: 'Human resources',
     gallery: 'Gallery',
     export: 'Export',
+    turkeySales: 'Turkey Sales',
     blog: 'Blog',
     contact: 'Contact',
     requestQuote: 'Request a quote',
@@ -113,6 +114,32 @@ const en: Dictionary = {
     contactTitle: 'Get information from our export department',
     contactDescription:
       'Speak with our export team about products, distribution, target markets and private-label manufacturing.',
+    phoneLabel: 'Phone',
+    emailLabel: 'Email',
+  },
+  turkeySalesPage: {
+    eyebrow: 'Domestic sales',
+    title: 'Turkey Sales',
+    intro:
+      'Contact our Turkey sales manager directly for dealer and sales network support across the country.',
+    mapTitle: 'Turkey sales network',
+    mapDescription:
+      'From our Çaycuma / Zonguldak production base we support sales and distribution across every region of Turkey.',
+    mapFactoryLabel: 'Çaycuma · Zonguldak',
+    mapIstanbulLabel: 'Başakşehir · Istanbul',
+    highlight1Title: 'Nationwide coverage',
+    highlight1Body:
+      'We build sustainable sales structures with dealers and partners in every region of Turkey.',
+    highlight2Title: 'Dealer support',
+    highlight2Body:
+      'We stay close to our dealers with product guidance, stock planning and field sales support.',
+    highlight3Title: 'Fast response',
+    highlight3Body:
+      'Reach our Turkey sales team directly for quotes, technical information and order requests.',
+    contactEyebrow: 'Direct contact',
+    contactTitle: 'Speak with our Turkey sales manager',
+    contactDescription:
+      'Contact Aydın ÇAKAR for domestic sales, dealer relations and product requests.',
     phoneLabel: 'Phone',
     emailLabel: 'Email',
   },
@@ -228,6 +255,11 @@ const en: Dictionary = {
     empty: 'No gallery images yet.',
     breadcrumbs: 'Breadcrumb',
     viewAll: 'View full gallery',
+    lightboxClose: 'Close',
+    lightboxPrevious: 'Previous image',
+    lightboxNext: 'Next image',
+    lightboxOf: '{current} / {total}',
+    lightboxOpen: 'Enlarge {title}',
   },
 }
 
