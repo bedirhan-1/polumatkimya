@@ -153,7 +153,7 @@ export function SiteHeader({
 
   return (
     <header className="sticky top-0 z-50 border-b border-white/10 bg-[#070809]/96 shadow-[0_10px_30px_rgba(0,0,0,0.22)]">
-      <div className="container-site flex h-[var(--header-height)] flex-nowrap items-center justify-between gap-2 sm:gap-3 xl:gap-3 2xl:gap-5">
+      <div className="container-site flex h-[var(--header-height)] flex-nowrap items-center justify-between gap-2 sm:gap-3 xl:gap-3">
         <Link
           href={homeHref}
           aria-label={dictionary.meta.siteName}
@@ -163,17 +163,17 @@ export function SiteHeader({
             alt={dictionary.meta.siteName}
             size="small"
             surface="dark"
-            className="h-7 w-auto max-w-[9.5rem] sm:h-8 sm:max-w-none xl:h-8 2xl:h-9"
+            className="h-7 w-auto max-w-[9.5rem] sm:h-8 sm:max-w-none xl:h-8"
             eager
           />
         </Link>
 
         <nav aria-label={dictionary.a11y.mainNavigation} className="hidden min-w-0 flex-1 xl:block">
-          <ul className="flex flex-nowrap items-center justify-center">
+          <ul className="flex flex-nowrap items-center justify-start">
             {desktopNav.map((item) => {
               const active = isNavItemActive(pathname, item, desktopNav)
               const itemKey = `${item.href || 'group'}-${item.label}`
-              const linkClassName = `inline-flex min-h-11 shrink-0 items-center whitespace-nowrap leading-none border-b px-2 text-[0.7rem] font-semibold tracking-[0.03em] uppercase no-underline transition 2xl:px-3.5 2xl:text-xs 2xl:tracking-[0.06em] ${
+              const linkClassName = `inline-flex min-h-11 shrink-0 items-center whitespace-nowrap leading-none border-b px-2 text-[0.7rem] font-semibold tracking-[0.03em] uppercase no-underline transition ${
                 active
                   ? 'border-accent text-foreground'
                   : 'border-transparent text-muted hover:text-foreground'
@@ -255,7 +255,7 @@ export function SiteHeader({
                 aria-label={dictionary.nav.downloadCatalog}
                 className={buttonClassName(
                   'secondary',
-                  'min-h-10 gap-2 px-3 py-2 text-xs uppercase no-underline 2xl:px-4',
+                  'min-h-10 gap-2 px-3 py-2 text-xs uppercase no-underline',
                 )}
               >
                 <DownloadIcon />
@@ -264,7 +264,7 @@ export function SiteHeader({
             ) : null}
             <ButtonLink
               href={quoteHref}
-              className="min-h-10 px-3 py-2 text-xs uppercase no-underline 2xl:px-5"
+              className="min-h-10 px-3 py-2 text-xs uppercase no-underline"
             >
               {dictionary.nav.requestQuote}
               <span aria-hidden>→</span>
