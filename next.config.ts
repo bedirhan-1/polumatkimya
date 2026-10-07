@@ -15,6 +15,9 @@ function r2PublicHostname() {
 
 const nextConfig: NextConfig = {
   images: {
+    // Vercel Image Optimization returns 402 (payment required), so every
+    // next/image request fails. Originals on /api/media and /brand already work.
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
