@@ -22,6 +22,7 @@
     "migrate:validate": "tsx migration/scripts/validate.ts",
     "migrate:import": "tsx migration/scripts/import.ts",
     "fix:grout-filler": "tsx migration/scripts/fix-grout-filler-product.ts",
+    "replace:silicone-images": "tsx migration/scripts/replace-silicone-images.ts",
     "seed:export-page": "tsx migration/scripts/seed-export-page.ts",
     "seed:turkey-sales-page": "tsx migration/scripts/seed-turkey-sales-page.ts",
     "seed:contact-page": "tsx migration/scripts/seed-contact-page.ts",
