@@ -1,6 +1,6 @@
 /**
  * Replaces `cardImage` and `packshot` of the products in the new "Silikon Grubu"
- * catalog page (PK1.pdf) with the new product renders.
+ * catalog page (the Silikon Grubu catalog pages (pk12.pdf, rendered at 600 dpi)) with the new product renders.
  *
  * Assets live in migration/assets/silicone:
  *   <key>-packshot.png  transparent product render  → product.packshot
