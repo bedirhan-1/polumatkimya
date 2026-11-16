@@ -1,6 +1,6 @@
 /**
  * Replaces `cardImage` and `packshot` of the products in the new "Silikon Grubu"
- * catalog page (the Silikon Grubu catalog pages (pk12.pdf, rendered at 600 dpi)) with the new product renders.
+ * catalog page and "Otomotiv Grubu" catalog pages (rendered at 600 dpi) with the new product renders.
  *
  * Assets live in migration/assets/silicone:
  *   <key>-packshot.png  transparent product render  → product.packshot
@@ -34,6 +34,14 @@ const MAPPINGS: Mapping[] = [
   {slug: 'high-temperature-rtv-silicone', key: 'high-temperature-rtv-silicone', label: 'P50 RTV Yüksek Isı Silikonu'},
   {slug: 'aquarium-silicone', key: 'aquarium-silicone', label: 'P101 Akvaryum Silikonu'},
   {slug: 'grout-filler', key: 'grout-filler', label: 'P-DZ40 Derz Dolgu'},
+  // Otomotiv Grubu
+  {slug: 'rust-remover-spray', key: 'rust-remover-spray', label: 'Pas Sökücü Sprey'},
+  {slug: 'brake-cleaner-spray', key: 'brake-cleaner-spray', label: 'Fren Balata Temizleyici Sprey'},
+  {slug: 'mdf-kit-activator', key: 'mdf-kit-activator', label: 'MDF Kit Hızlı Yapıştırıcı'},
+  {slug: 'engine-cleaner-spray', key: 'engine-cleaner-spray', label: 'Motor Temizleme Spreyi'},
+  {slug: 'chain-lubricant-spray', key: 'chain-lubricant-spray', label: 'Sıvı Gres Zincir Yağlayıcı Sprey'},
+  {slug: 'tire-shine-spray', key: 'tire-shine-spray', label: 'Lastik Parlatıcı Sprey'},
+  {slug: 'dashboard-polish-spray', key: 'dashboard-polish-spray', label: 'Torpido Parlatıcı Sprey'},
 ]
 
 /** In the PDF, but no Sanity product mapped yet — confirm slugs before adding. */
