@@ -1,6 +1,7 @@
 /**
  * Creates the products that are in the new catalog (Silikon Grubu) but not yet
- * on the site: Poliüretan Mastik Sosis, Poliüretan Mastik, Foam Köpük, Montage Fix.
+ * on the site: Poliüretan Mastik Sosis, Poliüretan Mastik, Foam Köpük, Montage Fix,
+ * Silikon Tabancası.
  *
  * - Content (TR/EN/AR) comes from the catalog pages.
  * - Images come from migration/assets/silicone (<key>-card.jpg / <key>-packshot.png).
@@ -190,6 +191,44 @@ export const NEW_PRODUCTS: NewProduct[] = [
       stock('PALET', '100 Koli'),
     ],
   },
+  {
+    slug: 'caulking-gun',
+    assetKey: 'caulking-gun',
+    title: L('Silikon Tabancası', 'Caulking Gun', 'مسدس السيليكون'),
+    description: L(
+      'Ergonomik tasarımı ve dayanıklı metal gövdesiyle silikon, mastik ve diğer yapıştırıcıların uygulamasında hassasiyet ve kolaylık sağlar. Kolay sıkma mekanizması uzun ömürlü kullanım sunar. Akış kontrolüyle temiz ve düzenli uygulama yapılmasına yardımcı olur. İnşaat, tamirat, sızdırmazlık ve montaj işlerinde profesyonel ve hobi amaçlı kullanıma uygundur.',
+      'An ergonomic caulking gun with a durable metal body for precise, easy application of silicone, sealants and other adhesives. Its easy-squeeze mechanism supports long service life. Flow control helps achieve clean, controlled application. Suitable for professional and DIY construction, repair, sealing and assembly work.',
+      'يتميز بتصميم مريح وهيكل متين، مما يجعله مناسبًا للاستخدام المهني والمنزلي. يوفر سهولة ودقة في تطبيق السيليكون والماستيك وأنواع المواد اللاصقة الأخرى. يتمتع بهيكل معدني وآلية ضغط سهلة الاستخدام لضمان عمر افتراضي طويل، كما يتيح التحكم في تدفق المادة أثناء التطبيق للحصول على نتائج نظيفة ومتناسقة. يُستخدم في أعمال البناء والإصلاح والعزل والتركيب.',
+    ),
+    features: [
+      L('Metal Gövde', 'Metal Body', 'هيكل معدني'),
+      L('Kolay Kullanım', 'Easy to Use', 'سهل الاستخدام'),
+      L('Uzun Ömür', 'Long Service Life', 'عمر خدمة طويل'),
+    ],
+    packaging: [],
+    specs: [
+      row(L('Gövde', 'Body', 'الهيكل'), L('Metal', 'Metal', 'معدن')),
+      row(
+        L('Uygulama', 'Application', 'التطبيق'),
+        L(
+          'Silikon / mastik / yapıştırıcı',
+          'Silicone / Sealant / Adhesive',
+          'سيليكون / مانع تسرب / لاصق',
+        ),
+      ),
+      row(L('Mekanizma', 'Mechanism', 'الآلية'), L('Kolay sıkma', 'Easy squeeze', 'ضغط سهل')),
+      row(
+        L('Akış kontrolü', 'Flow Control', 'التحكم بالتدفق'),
+        L('Hassas uygulama', 'Precise application', 'تطبيق دقيق'),
+      ),
+      row(
+        L('Kullanım', 'Use', 'الاستخدام'),
+        L('Profesyonel / hobi', 'Professional / DIY', 'مهني / منزلي'),
+      ),
+      stock('KOLİ', '50 Adet'),
+      stock('PALET', '18 Koli'),
+    ],
+  },
 ]
 
 function loadEnvFile(filePath: string) {
@@ -242,12 +281,16 @@ export function buildDocument(
       _type: 'featureItem',
       title: localizedString(feature),
     })),
-    packagingVariants: product.packaging.map((volume) => ({
-      _key: key(),
-      _type: 'packagingVariant',
-      label: localizedString(same(volume)),
-      volume,
-    })),
+    ...(product.packaging.length > 0
+      ? {
+          packagingVariants: product.packaging.map((volume) => ({
+            _key: key(),
+            _type: 'packagingVariant',
+            label: localizedString(same(volume)),
+            volume,
+          })),
+        }
+      : {}),
     specificationGroups: [
       {
         _key: key(),
