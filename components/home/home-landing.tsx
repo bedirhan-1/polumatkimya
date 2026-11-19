@@ -225,46 +225,49 @@ export function HomeLanding({locale, content, spotlightProduct}: HomeLandingProp
   return (
     <div className={styles.home}>
       <section
-        className="relative isolate min-h-[min(100svh,42rem)] w-full overflow-hidden border-b border-white/10 bg-[#050607] sm:min-h-[min(100svh,46rem)] lg:aspect-[21/9] lg:min-h-0"
+        className="relative isolate flex w-full flex-col overflow-hidden border-b border-white/10 bg-[#050607] lg:block lg:aspect-[21/9]"
         aria-labelledby="home-hero-title"
       >
-        <div className={`absolute inset-0 ${styles.heroMedia}`}>
-          {hero?.mobileImage?.asset ? (
-            <>
+        {/*
+          Mobile / tablet: the image is its own block on top and the copy sits
+          below it, so nothing is cropped behind the text. From `lg` the image
+          is a full-bleed background again.
+        */}
+        <div className="relative z-0 aspect-[4/3] w-full overflow-hidden sm:aspect-[16/9] lg:absolute lg:inset-0 lg:aspect-auto">
+          <div className={`absolute inset-0 ${styles.heroMedia}`}>
+            {hero?.mobileImage?.asset ? (
+              <>
+                <SanityImage
+                  image={hero.desktopImage}
+                  alt={heroImageAlt}
+                  fill
+                  priority
+                  sizes="100vw"
+                  className="hidden object-cover lg:block lg:object-center"
+                />
+                <SanityImage
+                  image={hero.mobileImage}
+                  alt={hero.mobileImage.alt || heroImageAlt}
+                  fill
+                  priority
+                  sizes="100vw"
+                  className="object-contain lg:hidden"
+                />
+              </>
+            ) : hero?.desktopImage?.asset ? (
               <SanityImage
                 image={hero.desktopImage}
                 alt={heroImageAlt}
                 fill
                 priority
                 sizes="100vw"
-                className="hidden object-cover object-[64%_center] lg:block lg:object-center"
+                className="object-cover object-[98%_center] lg:object-center"
               />
-              <SanityImage
-                image={hero.mobileImage}
-                alt={hero.mobileImage.alt || heroImageAlt}
-                fill
-                priority
-                sizes="100vw"
-                className="object-cover object-[64%_center] lg:hidden"
-              />
-            </>
-          ) : hero?.desktopImage?.asset ? (
-            <SanityImage
-              image={hero.desktopImage}
-              alt={heroImageAlt}
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover object-[64%_center] lg:object-center"
-            />
-          ) : null}
+            ) : null}
+          </div>
         </div>
-        <div
-          className={`absolute inset-0 z-[1] bg-[linear-gradient(90deg,rgba(2,3,4,0.96)_0%,rgba(2,3,4,0.82)_52%,rgba(2,3,4,0.26)_100%)] lg:hidden ${styles.heroOverlay}`}
-          aria-hidden
-        />
 
-        <div className="container-site relative z-[2] flex min-h-[min(100svh,42rem)] flex-col justify-end pt-12 pb-6 sm:min-h-[min(100svh,46rem)] sm:justify-center sm:pb-10 lg:min-h-full lg:justify-center lg:pt-0 lg:pb-20">
+        <div className="container-site relative z-[2] flex flex-col pt-6 pb-6 sm:pt-8 sm:pb-10 lg:min-h-full lg:justify-center lg:pt-0 lg:pb-20">
           <div className={`${styles.heroCopy} max-w-[31rem] lg:w-[36%] lg:min-w-0 lg:max-w-[31rem] xl:min-w-[28rem]`}>
             {heroEyebrow ? (
               <p className="flex items-center gap-3 text-[0.68rem] font-bold leading-none tracking-[0.2em] text-accent uppercase before:h-px before:w-7 before:shrink-0 before:bg-current before:content-['']">
